@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Manrope:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface": "#0f131f",
+            "surface-container": "#1b1f2c",
+            "surface-container-high": "#262a37",
+            "on-surface": "#dfe2f3",
+            "on-surface-variant": "#d4c5ab",
+            "primary": "#ffe3b7",
+            "secondary": "#bdf4ff",
+            "tertiary": "#91ff89",
+            "outline-variant": "#4f4632"
+          },
+          "fontFamily": {
+            "headline": ["Space Grotesk"],
+            "body": ["Manrope"],
+            "label": ["Inter"]
+          }
+        }
+      }
+    }
+</script>
+<style>
+    .glass-panel {
+        background: rgba(49, 52, 66, 0.4);
+        backdrop-filter: blur(24px);
+    }
+    .laser-beam {
+        background: linear-gradient(90deg, #bdf4ff 0%, rgba(189, 244, 255, 0) 100%);
+    }
+    .ref-number {
+        font-variant-numeric: tabular-nums;
+    }
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen">
+
+<!-- TopAppBar -->
+<header class="fixed top-0 z-50 w-full flex justify-between items-center px-8 py-6 bg-transparent backdrop-blur-md">
+    <div class="text-2xl font-black tracking-tighter text-[#ffe3b7] drop-shadow-[0_0_8px_rgba(255,227,183,0.4)] font-headline">POLARIS</div>
+    <nav class="hidden md:flex items-center space-x-12">
+        <a class="text-[#ffe3b7]/70 font-headline uppercase tracking-widest font-bold hover:text-[#ffba20] transition-colors duration-300" href="../index.html">INDEX</a>
+        <a class="text-[#ffba20] border-b border-[#bdf4ff] font-headline uppercase tracking-widest font-bold" href="#">BIBLIOGRAPHY</a>
+    </nav>
+</header>
+
+<main class="pt-28 pb-24 px-6 md:px-16 max-w-5xl mx-auto">
+
+    <!-- Chapter Header -->
+    <div class="mb-16">
+        <div class="flex items-center space-x-4 mb-4">
+            <div class="h-[1px] w-12" style="background: linear-gradient(90deg, #bdf4ff 0%, rgba(189,244,255,0) 100%)"></div>
+            <span class="font-label text-secondary tracking-[0.4em] text-xs font-bold uppercase">Scientific References</span>
+        </div>
+        <h1 class="font-headline text-5xl md:text-7xl font-black text-primary tracking-tighter leading-none">BIBLIOGRAPHY</h1>
+        <p class="mt-4 text-on-surface-variant font-body text-sm opacity-60 tracking-widest uppercase">Harvard Style — 12 Core References // ONCS 2026</p>
+    </div>
+
+    <!-- References Grid -->
+    <div class="space-y-4">
+
+        <!-- Ref 1 -->
+        <div class="glass-panel p-6 border-l-2 border-[#bdf4ff]/30 hover:border-[#bdf4ff] transition-colors duration-300">
+            <div class="flex items-start gap-4">
+                <span class="ref-number font-headline text-2xl font-black text-[#bdf4ff]/30 min-w-[2.5rem]">01</span>
+                <div class="flex-1">
+                    <p class="font-body text-on-surface leading-relaxed">
+                        <span class="text-primary font-semibold">Glaser, P.E.</span>, 1968. Power from the Sun: Its Future.
+                        <em class="text-on-surface-variant">Science</em>, 162(3856), pp.857–861.
+                    </p>
+                    <a href="https://doi.org/10.1126/science.162.3856.857" target="_blank"
+                       class="inline-flex items-center gap-1 mt-2 font-label text-xs text-[#bdf4ff] opacity-60 hover:opacity-100 transition-opacity tracking-widest uppercase">
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        doi.org/10.1126/science.162.3856.857
+                    </a>
+                    <div class="mt-2">
+                        <span class="font-label text-[10px] tracking-widest uppercase px-2 py-1 bg-[#bdf4ff]/10 text-[#bdf4ff]">FOUNDATIONAL — SBSP CONCEPT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ref 2 -->
+        <div class="glass-panel p-6 border-l-2 border-[#ffe3b7]/30 hover:border-[#ffe3b7] transition-colors duration-300">
+            <div class="flex items-start gap-4">
+                <span class="ref-number font-headline text-2xl font-black text-[#ffe3b7]/30 min-w-[2.5rem]">02</span>
+                <div class="flex-1">
+                    <p class="font-body text-on-surface leading-relaxed">
+                        <span class="text-primary font-semibold">International Energy Agency (IEA)</span>, 2024.
+                        <em class="text-on-surface-variant">Electricity 2024: Analysis and forecast to 2026.</em>
+                    </p>
+                    <a href="https://www.iea.org/reports/electricity-2024" target="_blank"
+                       class="inline-flex items-center gap-1 mt-2 font-label text-xs text-[#bdf4ff] opacity-60 hover:opacity-100 transition-opacity tracking-widest uppercase">
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        iea.org/reports/electricity-2024
+                    </a>
+                    <div class="mt-2">
+                        <span class="font-label text-[10px] tracking-widest uppercase px-2 py-1 bg-[#ffe3b7]/10 text-[#ffe3b7]">GLOBAL ENERGY DATA — 3.36 TW REFERENCE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ref 3 -->
+        <div class="glass-panel p-6 border-l-2 border-[#bdf4ff]/30 hover:border-[#bdf4ff] transition-colors duration-300">
+            <div class="flex items-start gap-4">
+                <span class="ref-number font-headline text-2xl font-black text-[#bdf4ff]/30 min-w-[2.5rem]">03</span>
+                <div class="flex-1">
+                    <p class="font-body text-on-surface leading-relaxed">
+                        <span class="text-primary font-semibold">Japan Aerospace Exploration Agency (JAXA)</span>, n.d.
+                        Space Solar Power Systems (SSPS).
+                    </p>
+                    <a href="https://www.kenkai.jaxa.jp/eng/research/ssps/" target="_blank"
+                       class="inline-flex items-center gap-1 mt-2 font-label text-xs text-[#bdf4ff] opacity-60 hover:opacity-100 transition-opacity tracking-widest uppercase">
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        kenkai.jaxa.jp/eng/research/ssps
+                    </a>
+                    <div class="mt-2">
+                        <span class="font-label text-[10px] tracking-widest uppercase px-2 py-1 bg-[#bdf4ff]/10 text-[#bdf4ff]">MICROWAVE ENERGY TRANSMISSION — KW SCALE DEMO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ref 4 -->
+        <div class="glass-panel p-6 border-l-2 border-[#91ff89]/30 hover:border-[#91ff89] transition-colors duration-300">
+            <div class="flex items-start gap-4">
+                <span class="ref-number font-headline text-2xl font-black text-[#91ff89]/30 min-w-[2.5rem]">04</span>
+                <div class="flex-1">
+                    <p class="font-body text-on-surface leading-relaxed">
+                        <span class="text-primary font-semibold">Mankins, J.C.</span>, 2011. SPS-ALPHA: The First Practical Solar Power Satellite via Arbitrarily Large Phased Array.
+                        <em class="text-on-surface-variant">NASA NIAC Phase I Report.</em>
+                    </p>
+                    <a href="https://ntrs.nasa.gov/api/citations/20110023492/downloads/20110023492.pdf" target="_blank"
+                       class="inline-flex items-center gap-1 mt-2 font-label text-xs text-[#bdf4ff] opacity-60 hover:opacity-100 transition-opacity tracking-widest uppercase">
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        ntrs.nasa.gov — NASA Technical Reports Server
+                    </a>
+                    <div class="mt-2">
+                        <span class="font-label text-[10px] tracking-widest uppercase px-2 py-1 bg-[#91ff89]/10 text-[#91ff89]">SPS ARCHITECTURE — PHASED ARRAY</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ref 5 -->
+        <div class="glass-panel p-6 border-l-2 border-[#ffe3b7]/30 hover:border-[#ffe3b7] transition-colors duration-300">
+            <div class="flex items-start gap-4">
+                <span class="ref-number font-headline text-2xl font-black text-[#ffe3b7]/30 min-w-[2.5rem]">05</span>
+                <div class="flex-1">
+                    <p class="font-body text-on-surface leading-relaxed">
+                        <span class="text-primary font-semibold">NASA</span>, n.d. Space-Based Solar Power.
+                        <em class="text-on-surface-variant">NASA Innovative Advanced Concepts (NIAC).</em>
+                    </p>
+                    <a href="https://www.nasa.gov/space-technology-research-grants/niac/" target="_blank"
+                       class="inline-flex items-center gap-1 mt-2 font-label text-xs text-[#bdf4ff] opacity-60 hover:opacity-100 transition-opacity tracking-widest uppercase">
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        nasa.gov/niac
+                    </a>
+                    <div class="mt-2">
+                        <span class="font-label text-[10px] tracking-widest uppercase px-2 py-1 bg-[#ffe3b7]/10 text-[#ffe3b7]">NASA SBSP PROGRAM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ref 6 -->
+        <div class="glass-panel p-6 border-l-2 border-[#bdf4ff]/30 hover:border-[#bdf4ff] transition-colors duration-300">
+            <div class="flex items-start gap-4">
+                <span class="ref-number font-headline text-2xl font-black text-[#bdf4ff]/30 min-w-[2.5rem]">06</span>
+                <div class="flex-1">
+                    <p class="font-body text-on-surface leading-relaxed">
+                        <span class="text-primary font-semibold">NASA Marshall Space Flight Center</span>, n.d.
+                        Solar Physics — Total Solar Irradiance.
+                    </p>
+                    <a href="https://solarscience.msfc.nasa.gov/" target="_blank"
+                       class="inline-flex items-center gap-1 mt-2 font-label text-xs text-[#bdf4ff] opacity-60 hover:opacity-100 transition-opacity tracking-widest uppercase">
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        solarscience.msfc.nasa.gov
+                    </a>
+                    <div class="mt-2">
+                        <span class="font-label text-[10px] tracking-widest uppercase px-2 py-1 bg-[#bdf4ff]/10 text-[#bdf4ff]">SOLAR CONSTANT — 1361 W/m² REFERENCE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ref 7 -->
+        <div class="glass-panel p-6 border-l-2 border-[#91ff89]/30 hover:border-[#91ff89] transition-colors duration-300">
+            <div class="flex items-start gap-4">
+                <span class="ref-number font-headline text-2xl font-black text-[#91ff89]/30 min-w-[2.5rem]">07</span>
+                <div class="flex-1">
+                    <p class="font-body text-on-surface leading-relaxed">
+                        <span class="text-primary font-semibold">NASA</span>, n.d. What are Lagrange Points?
+                        <em class="text-on-surface-variant">NASA Science — Solar System Exploration.</em>
+                    </p>
+                    <a href="https://science.nasa.gov/solar-system/lagrange-points/" target="_blank"
+                       class="inline-flex items-center gap-1 mt-2 font-label text-xs text-[#bdf4ff] opacity-60 hover:opacity-100 transition-opacity tracking-widest uppercase">
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        science.nasa.gov/solar-system/lagrange-points
+                    </a>
+                    <div class="mt-2">
+                        <span class="font-label text-[10px] tracking-widest uppercase px-2 py-1 bg-[#91ff89]/10 text-[#91ff89]">L4/L5 LAGRANGE NODES</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ref 8 -->
+        <div class="glass-panel p-6 border-l-2 border-[#ffe3b7]/30 hover:border-[#ffe3b7] transition-colors duration-300">
+            <div class="flex items-start gap-4">
+                <span class="ref-number font-headline text-2xl font-black text-[#ffe3b7]/30 min-w-[2.5rem]">08</span>
+                <div class="flex-1">
+                    <p class="font-body text-on-surface leading-relaxed">
+                        <span class="text-primary font-semibold">NASA</span>, 2018. Parker Solar Probe Mission Overview.
+                    </p>
+                    <a href="https://science.nasa.gov/mission/parker-solar-probe" target="_blank"
+                       class="inline-flex items-center gap-1 mt-2 font-label text-xs text-[#bdf4ff] opacity-60 hover:opacity-100 transition-opacity tracking-widest uppercase">
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        science.nasa.gov/mission/parker-solar-probe
+                    </a>
+                    <div class="mt-2">
+                        <span class="font-label text-[10px] tracking-widest uppercase px-2 py-1 bg-[#ffe3b7]/10 text-[#ffe3b7]">PROOF — PROXIMITY TO SUN IS FEASIBLE (6.1M KM)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ref 9 -->
+        <div class="glass-panel p-6 border-l-2 border-[#bdf4ff]/30 hover:border-[#bdf4ff] transition-colors duration-300">
+            <div class="flex items-start gap-4">
+                <span class="ref-number font-headline text-2xl font-black text-[#bdf4ff]/30 min-w-[2.5rem]">09</span>
+                <div class="flex-1">
+                    <p class="font-body text-on-surface leading-relaxed">
+                        <span class="text-primary font-semibold">Brown, W.C.</span>, 1984. The History of Power Transmission by Radio Waves.
+                        <em class="text-on-surface-variant">IEEE Transactions on Microwave Theory and Techniques</em>, 32(9), pp.1230–1242.
+                    </p>
+                    <div class="mt-2">
+                        <span class="font-label text-[10px] tracking-widest uppercase px-2 py-1 bg-[#bdf4ff]/10 text-[#bdf4ff]">WIRELESS POWER TRANSMISSION — HISTORICAL BASIS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ref 10 -->
+        <div class="glass-panel p-6 border-l-2 border-[#91ff89]/30 hover:border-[#91ff89] transition-colors duration-300">
+            <div class="flex items-start gap-4">
+                <span class="ref-number font-headline text-2xl font-black text-[#91ff89]/30 min-w-[2.5rem]">10</span>
+                <div class="flex-1">
+                    <p class="font-body text-on-surface leading-relaxed">
+                        <span class="text-primary font-semibold">Shinohara, N.</span>, 2014.
+                        <em class="text-on-surface-variant">Wireless Power Transfer via Radiowaves.</em> London: ISTE Ltd.
+                    </p>
+                    <div class="mt-2">
+                        <span class="font-label text-[10px] tracking-widest uppercase px-2 py-1 bg-[#91ff89]/10 text-[#91ff89]">STAR POWER GRID — MICROWAVE TRANSMISSION BASIS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ref 11 -->
+        <div class="glass-panel p-6 border-l-2 border-[#ffe3b7]/30 hover:border-[#ffe3b7] transition-colors duration-300">
+            <div class="flex items-start gap-4">
+                <span class="ref-number font-headline text-2xl font-black text-[#ffe3b7]/30 min-w-[2.5rem]">11</span>
+                <div class="flex-1">
+                    <p class="font-body text-on-surface leading-relaxed">
+                        <span class="text-primary font-semibold">CERN</span>, 2021. High-temperature superconductors for future accelerators.
+                    </p>
+                    <a href="https://home.cern/science/engineering/superconductivity" target="_blank"
+                       class="inline-flex items-center gap-1 mt-2 font-label text-xs text-[#bdf4ff] opacity-60 hover:opacity-100 transition-opacity tracking-widest uppercase">
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        home.cern/science/engineering/superconductivity
+                    </a>
+                    <div class="mt-2">
+                        <span class="font-label text-[10px] tracking-widest uppercase px-2 py-1 bg-[#ffe3b7]/10 text-[#ffe3b7]">YBCO vs NbTi — CERN CONSULTATION BASIS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ref 12 -->
+        <div class="glass-panel p-6 border-l-2 border-[#91ff89]/30 hover:border-[#91ff89] transition-colors duration-300">
+            <div class="flex items-start gap-4">
+                <span class="ref-number font-headline text-2xl font-black text-[#91ff89]/30 min-w-[2.5rem]">12</span>
+                <div class="flex-1">
+                    <p class="font-body text-on-surface leading-relaxed">
+                        <span class="text-primary font-semibold">Larbalestier, D., Gurevich, A., Feldmann, D.M. and Polyanskii, A.</span>, 2001.
+                        High-T<sub>c</sub> superconducting materials for electric power applications.
+                        <em class="text-on-surface-variant">Nature</em>, 414(6861), pp.368–377.
+                    </p>
+                    <a href="https://doi.org/10.1038/35104654" target="_blank"
+                       class="inline-flex items-center gap-1 mt-2 font-label text-xs text-[#bdf4ff] opacity-60 hover:opacity-100 transition-opacity tracking-widest uppercase">
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        doi.org/10.1038/35104654
+                    </a>
+                    <div class="mt-2">
+                        <span class="font-label text-[10px] tracking-widest uppercase px-2 py-1 bg-[#91ff89]/10 text-[#91ff89]">HTS/YBCO MATERIALS SCIENCE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Collaborators Note -->
+    <div class="mt-16 glass-panel p-8 border border-dashed border-outline-variant/40">
+        <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary">group</span>
+            <span class="font-headline text-lg font-bold text-primary tracking-widest uppercase">Collaboratori</span>
+        </div>
+        <p class="font-body text-on-surface-variant opacity-60 text-sm italic">
+            — Secțiunea va fi completată. —
+        </p>
+    </div>
+
+    <!-- Team -->
+    <div class="mt-8 flex items-center justify-between opacity-40">
+        <div class="font-label text-[10px] tracking-widest uppercase">Polaris Bears // ONCS 2026</div>
+        <div class="font-label text-[10px] tracking-widest uppercase">Chelaru Ioan Cristian & Olariu David Albert</div>
+    </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="w-full border-t border-[#4f4632]/15 bg-[#0f131f] flex flex-col items-center justify-center py-12 px-4 space-y-4">
+    <div class="text-xl font-bold text-[#ffe3b7] font-headline">POLARIS COMMAND</div>
+    <p class="font-label text-[10px] tracking-widest text-[#ffe3b7] uppercase opacity-80">© 2026 POLARIS COMMAND. ALL SYSTEMS NOMINAL.</p>
+</footer>
+
+</body>
+</html>
