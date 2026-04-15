@@ -9,192 +9,464 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Manrope:wght@400;600&family=Inter:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="globals.css">
     <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 4rem 2rem;
+            padding: 0;
             min-height: 100vh;
-            background: radial-gradient(circle at top right, #1b1f2c, #0f131f);
+            background: #0f131f;
+            overflow-x: hidden;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 4rem;
+        /* Hero Banner */
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            height: 340px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-banner video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.55;
+        }
+
+        .hero-banner .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(15,19,31,0.3) 0%, rgba(15,19,31,0.85) 100%);
+        }
+
+        .hero-banner .content {
+            position: relative;
             z-index: 10;
+            text-align: center;
         }
 
-        header h1 {
-            font-size: 4rem;
-            margin: 0;
+        .hero-banner h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
             background: linear-gradient(to bottom, #ffe3b7, #ffc041);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1;
+            text-shadow: none;
+            filter: drop-shadow(0 0 20px rgba(255, 186, 32, 0.4));
         }
 
-        header p {
-            color: var(--color-on-surface);
-            opacity: 0.6;
+        .hero-banner p {
+            color: #ffe3b7;
+            opacity: 0.5;
+            letter-spacing: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            margin-top: 0.75rem;
+        }
+
+        .hero-banner .sub {
+            color: #bdf4ff;
+            opacity: 0.4;
             letter-spacing: 4px;
-            font-family: var(--font-label);
-            font-size: 0.8rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            margin-top: 0.5rem;
         }
 
+        /* Main Content */
+        .main {
+            width: 100%;
+            max-width: 1280px;
+            padding: 3rem 2rem 5rem;
+        }
+
+        /* Act Section */
+        .act {
+            margin-bottom: 3rem;
+        }
+
+        .act-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(79, 70, 50, 0.25);
+        }
+
+        .act-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            color: #bdf4ff;
+            opacity: 0.5;
+        }
+
+        .act-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #ffe3b7;
+            opacity: 0.7;
+        }
+
+        .act-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, rgba(189,244,255,0.2), transparent);
+        }
+
+        /* Card Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.25rem;
         }
 
+        .grid-wide {
+            grid-template-columns: 1fr;
+        }
+
+        /* Card */
         .card {
             position: relative;
-            padding: 2rem;
+            padding: 1.75rem 2rem;
             text-decoration: none;
             color: inherit;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            border-radius: 0;
             overflow: hidden;
+            background: rgba(27, 31, 40, 0.6);
+            border: 1px solid rgba(79, 70, 50, 0.15);
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            background: rgba(49, 52, 66, 0.6);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transform: translateY(-4px);
+            background: rgba(49, 52, 66, 0.7);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+            border-color: rgba(255, 186, 32, 0.2);
         }
 
-        .card:hover .laser-line-green, 
+        .card:hover .laser-line-green,
         .card:hover .laser-line-cyan {
             width: 100%;
         }
 
+        .card.pending {
+            opacity: 0.45;
+            pointer-events: none;
+            border-style: dashed;
+        }
+
+        .card.system-core {
+            background: rgba(15, 19, 31, 0.8);
+            border: 1px dashed rgba(79, 70, 50, 0.4);
+        }
+
         .card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--color-primary);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: #ffe3b7;
         }
 
         .card p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            opacity: 0.7;
+            font-size: 0.85rem;
+            line-height: 1.65;
+            opacity: 0.6;
+            color: #dfe2f3;
+            font-family: 'Manrope', sans-serif;
         }
 
         .laser-line {
-            width: 40px;
+            width: 32px;
+            height: 2px;
             transition: width 0.4s ease;
-            margin-top: 1rem;
+            margin-top: 1.25rem;
         }
 
         .tag {
-            font-family: var(--font-label);
-            font-size: 0.7rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62rem;
             opacity: 0.4;
             display: block;
-            margin-bottom: 1rem;
-        }
-
-        .system-diagram-preview {
-            grid-column: 1 / -1;
-            padding: 3rem;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px dashed var(--color-outline-variant);
+            margin-bottom: 0.75rem;
+            letter-spacing: 2px;
+            color: #bdf4ff;
         }
 
         .badge {
             display: inline-block;
-            padding: 4px 8px;
-            background: var(--color-surface-container-high);
-            border: 1px solid var(--color-outline-variant);
+            padding: 3px 8px;
+            background: rgba(49, 52, 66, 0.8);
+            border: 1px solid rgba(79, 70, 50, 0.4);
             font-size: 0.6rem;
-            font-family: var(--font-label);
-            margin-top: 1rem;
+            font-family: 'Inter', sans-serif;
+            margin-top: 0.75rem;
+            letter-spacing: 2px;
+            color: #ffe3b7;
+            opacity: 0.6;
+        }
+
+        .badge.new {
+            border-color: rgba(145, 255, 137, 0.4);
+            color: #91ff89;
+            opacity: 1;
+        }
+
+        .badge.video {
+            border-color: rgba(189, 244, 255, 0.4);
+            color: #bdf4ff;
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 2rem;
+            padding: 2rem;
+            opacity: 0.25;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            color: #ffe3b7;
+            text-align: center;
+            border-top: 1px solid rgba(79, 70, 50, 0.15);
+            width: 100%;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            width: 100%;
+            height: 2px;
+            background: rgba(49, 52, 66, 0.6);
+            margin: 0.75rem 0 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, #ffba20, #bdf4ff);
         }
     </style>
 </head>
 <body>
-    <header>
-        <p>ORBITAL ENERGY VISION</p>
-        <h1>POLARIS</h1>
-    </header>
 
-    <div class="grid">
-        <!-- System Diagram -->
-        <a href="docs/00-system-diagram.html" class="card glass-panel system-diagram-preview">
-            <span class="tag">00 // SYSTEM CORE</span>
-            <h2>Core Infrastructure Diagram</h2>
-            <p>The technical blueprint of the Dyson Ring, Lagrange nodes, and Earth-side Polar Stations.</p>
-            <div class="laser-line-green laser-line"></div>
-        </a>
-
-        <!-- Hero Screen -->
-        <a href="docs/Hero_Mission_Entry.html" class="card glass-panel">
-            <span class="tag">01 // MISSION CONTROL</span>
-            <h2>Hero: Mission Entry</h2>
-            <p>The strategic overview of the planetary-scale energy distribution infrastructure.</p>
-            <div class="laser-line-cyan laser-line"></div>
-            <div class="badge">DESKTOP</div>
-        </a>
-
-        <!-- Mirrors Screen -->
-        <a href="docs/Mirrors_Solar_Concentration.html" class="card glass-panel">
-            <span class="tag">02 // ENERGY HARVEST</span>
-            <h2>The Mirrors</h2>
-            <p>Solar concentration protocols and mirror fleet management telemetry.</p>
-            <div class="laser-line-green laser-line"></div>
-            <div class="badge">DESKTOP</div>
-        </a>
-
-        <!-- Relay Screen -->
-        <a href="docs/Relay_Polar_Delivery.html" class="card glass-panel">
-            <span class="tag">03 // DISTRIBUTION</span>
-            <h2>Relay & Polar Delivery</h2>
-            <p>Managing the orbital relay network and the blue laser transmission to polar stations.</p>
-            <div class="laser-line-cyan laser-line"></div>
-            <div class="badge">DESKTOP</div>
-        </a>
-
-        <!-- Vision Screen -->
-        <a href="docs/Vision_Planetary_Scale.html" class="card glass-panel">
-            <span class="tag">04 // OUTREACH</span>
-            <h2>Planetary Scale Vision</h2>
-            <p>Communicating the impact and safety protocols to the global population.</p>
-            <div class="laser-line-green laser-line"></div>
-            <div class="badge">DESKTOP</div>
-        </a>
-
-        <!-- Scientific Screen -->
-        <a href="docs/Scientific_Credibility.html" class="card glass-panel">
-            <span class="tag">05 // DATA VALIDATION</span>
-            <h2>Scientific Credibility</h2>
-            <p>Formal validation of the orbital energy transfer models and atmospheric constraints.</p>
-            <div class="laser-line-green laser-line"></div>
-            <div class="badge">DESKTOP</div>
-        </a>
-
-        <!-- Mobile Screen -->
-        <a href="docs/Mobile_Distribution.html" class="card glass-panel">
-            <span class="tag">06 // GLOBAL ACCESS</span>
-            <h2>Mobile Distribution</h2>
-            <p>Consumer-facing energy management interface for planetary wide access.</p>
-            <div class="laser-line-cyan laser-line"></div>
-            <div class="badge">MOBILE</div>
-        </a>
-
-        <!-- Team Screen -->
-        <a href="docs/Team_Closing.html" class="card glass-panel">
-            <span class="tag">07 // PERSONNEL</span>
-            <h2>Team & Visionaries</h2>
-            <p>The architects behind the Polaris Initiative and our roadmap for the next decade.</p>
-            <div class="laser-line-green laser-line"></div>
-            <div class="badge">DESKTOP</div>
-        </a>
+    <!-- Hero Banner with Video Background -->
+    <div class="hero-banner">
+        <video autoplay loop muted playsinline>
+            <source src="videos/generated/Image A - Earth Energy Crisis - Video.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+        <div class="content">
+            <p>P.O.L.A.R.I.S. // ORBITAL ENERGY VISION</p>
+            <h1>POLARIS</h1>
+            <div class="sub">ONCS 2026 // POLARIS BEARS // 13 CHAPTERS</div>
+        </div>
     </div>
 
-    <footer style="margin-top: 4rem; opacity: 0.3; font-family: var(--font-label); font-size: 0.7rem;">
-        POLARIS BEARS // ONCS 2026 // CLAUDE CODE INTEGRATION
+    <div class="main">
+
+        <!-- Progress -->
+        <div style="margin-bottom: 2.5rem; font-family: 'Inter', sans-serif; font-size: 0.65rem; letter-spacing: 3px; color: #bdf4ff; opacity: 0.5;">
+            STRUCTURĂ PREZENTARE
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 54%;"></div>
+            </div>
+            <div style="margin-top: 0.5rem; opacity: 0.6;">7 / 13 SLIDE-URI COMPLETE</div>
+        </div>
+
+        <!-- ACT 0: CORE -->
+        <div class="act">
+            <div class="act-header">
+                <span class="act-number">CORE</span>
+                <span class="act-title">SYSTEM INFRASTRUCTURE</span>
+                <div class="act-line"></div>
+            </div>
+            <div class="grid grid-wide">
+                <a href="docs/00-system-diagram.html" class="card glass-panel system-core">
+                    <span class="tag">00 // BLUEPRINT</span>
+                    <h2>Core Infrastructure Diagram</h2>
+                    <p>The technical blueprint of the Dyson Ring, Lagrange nodes, and Earth-side Polar Stations.</p>
+                    <div class="laser-line laser-line-green"></div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ACT 1: HOOK -->
+        <div class="act">
+            <div class="act-header">
+                <span class="act-number">ACT I</span>
+                <span class="act-title">HOOK — DE CE CONTEAZĂ</span>
+                <div class="act-line"></div>
+            </div>
+            <div class="grid">
+                <a href="docs/Hero_Mission_Entry.html" class="card glass-panel">
+                    <span class="tag">01 // MISSION CONTROL</span>
+                    <h2>Hero: Mission Entry</h2>
+                    <p>POLARIS — platforma orbitală ce transformă lumina stelară în putere planetară. Intrare în misiune.</p>
+                    <div class="laser-line laser-line-cyan"></div>
+                    <div class="badge">COMPLETE</div>
+                </a>
+                <a href="docs/Problem_Energy_Crisis.html" class="card glass-panel pending">
+                    <span class="tag">02 // PROBLEMA</span>
+                    <h2>Energy Crisis</h2>
+                    <p>17.7 TW cerere globală. Combustibili fosili. Criza climatică. De ce soluțiile actuale nu sunt suficiente.</p>
+                    <div class="laser-line laser-line-green"></div>
+                    <div class="badge new">IN PROGRESS</div>
+                    <div class="badge video">KLING VIDEO BG</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ACT 2: VISION -->
+        <div class="act">
+            <div class="act-header">
+                <span class="act-number">ACT II</span>
+                <span class="act-title">VISION — ARHITECTURA SOLUȚIEI</span>
+                <div class="act-line"></div>
+            </div>
+            <div class="grid">
+                <a href="docs/Vision_Planetary_Scale.html" class="card glass-panel">
+                    <span class="tag">03 // VIZIUNEA</span>
+                    <h2>Planetary Scale Vision</h2>
+                    <p>420.5 TW output proiectat vs 17.7 TW cerere globală. Eficiență +2,275%. De ce POLARIS schimbă totul.</p>
+                    <div class="laser-line laser-line-green"></div>
+                    <div class="badge">COMPLETE</div>
+                </a>
+                <a href="docs/System_Overview.html" class="card glass-panel pending">
+                    <span class="tag">04 // SISTEM</span>
+                    <h2>System Overview</h2>
+                    <p>Cele 5 niveluri ale arhitecturii: Dyson Ring → Colectori → Relay L4/L5 → Stații Polare → Grid Global.</p>
+                    <div class="laser-line laser-line-cyan"></div>
+                    <div class="badge new">IN PROGRESS</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ACT 3: TECHNOLOGY -->
+        <div class="act">
+            <div class="act-header">
+                <span class="act-number">ACT III</span>
+                <span class="act-title">TECHNOLOGY — DEEP DIVE</span>
+                <div class="act-line"></div>
+            </div>
+            <div class="grid">
+                <a href="docs/Mirrors_Solar_Concentration.html" class="card glass-panel">
+                    <span class="tag">05 // NIVELUL 1</span>
+                    <h2>Mirror Construction</h2>
+                    <p>Inelul Dyson: oglinzi hexagonale 99.98% reflectivitate, concentrare solară, fleet management telemetry.</p>
+                    <div class="laser-line laser-line-green"></div>
+                    <div class="badge">COMPLETE</div>
+                </a>
+                <a href="docs/Collector_Satellites.html" class="card glass-panel pending">
+                    <span class="tag">06 // NIVELUL 2</span>
+                    <h2>Collector Satellites</h2>
+                    <p>Sateliții colectori în orbită joasă. Conversia energiei concentrate în fascicole laser pentru transmisie.</p>
+                    <div class="laser-line laser-line-cyan"></div>
+                    <div class="badge new">IN PROGRESS</div>
+                </a>
+                <a href="docs/Relay_Polar_Delivery.html" class="card glass-panel">
+                    <span class="tag">07 // NIVELUL 3+4</span>
+                    <h2>Relay & Polar Delivery</h2>
+                    <p>Nodurile relay L4/L5 Lagrange și livrarea prin laser polar la stațiile terestre.</p>
+                    <div class="laser-line laser-line-cyan"></div>
+                    <div class="badge">COMPLETE</div>
+                </a>
+                <a href="docs/YBCO_Cable.html" class="card glass-panel pending">
+                    <span class="tag">08 // NIVELUL 5</span>
+                    <h2>YBCO Superconductor</h2>
+                    <p>Cablul YBCO criogenic pentru distribuție zero-pierderi. Meissner effect. Rețeaua globală la sol.</p>
+                    <div class="laser-line laser-line-green"></div>
+                    <div class="badge new">IN PROGRESS</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ACT 4: PROOF -->
+        <div class="act">
+            <div class="act-header">
+                <span class="act-number">ACT IV</span>
+                <span class="act-title">PROOF — NUMERELE ȘI LIMITELE</span>
+                <div class="act-line"></div>
+            </div>
+            <div class="grid">
+                <a href="docs/Energy_Budget.html" class="card glass-panel pending">
+                    <span class="tag">09 // MATEMATICA</span>
+                    <h2>Energy Budget</h2>
+                    <p>Calculul complet: flux solar → captare → conversie → transmisie → livrare. Eficiențele la fiecare etapă.</p>
+                    <div class="laser-line laser-line-cyan"></div>
+                    <div class="badge new">IN PROGRESS</div>
+                </a>
+                <a href="docs/Scientific_Credibility.html" class="card glass-panel">
+                    <span class="tag">10 // VALIDARE</span>
+                    <h2>Scientific Credibility</h2>
+                    <p>Constrângerile reale: oboseala materialelor, flux termic, precizie orbitală. 550 KM, 400 TB/S, 2.400 noduri.</p>
+                    <div class="laser-line laser-line-green"></div>
+                    <div class="badge">COMPLETE</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ACT 5: IMPACT -->
+        <div class="act">
+            <div class="act-header">
+                <span class="act-number">ACT V</span>
+                <span class="act-title">IMPACT — TRANSFORMARE PLANETARĂ</span>
+                <div class="act-line"></div>
+            </div>
+            <div class="grid">
+                <a href="docs/Mobile_Distribution.html" class="card glass-panel">
+                    <span class="tag">11 // DISTRIBUȚIE</span>
+                    <h2>Global Distribution</h2>
+                    <p>North Sector Relay 14.2 TW. Rețeaua globală de distribuție. Interfața de acces pentru fiecare regiune.</p>
+                    <div class="laser-line laser-line-cyan"></div>
+                    <div class="badge">COMPLETE</div>
+                </a>
+                <a href="docs/Kardashev_Scale.html" class="card glass-panel pending">
+                    <span class="tag">12 // KARDASHEV</span>
+                    <h2>Kardashev Scale</h2>
+                    <p>De la Tip 0 la Tip I → Tip II. POLARIS ca primul pas spre o civilizație de scară stelară.</p>
+                    <div class="laser-line laser-line-green"></div>
+                    <div class="badge new">IN PROGRESS</div>
+                    <div class="badge video">KLING VIDEO BG</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ACT 6: CLOSE -->
+        <div class="act">
+            <div class="act-header">
+                <span class="act-number">ACT VI</span>
+                <span class="act-title">CLOSE — ECHIPA</span>
+                <div class="act-line"></div>
+            </div>
+            <div class="grid grid-wide">
+                <a href="docs/Team_Closing.html" class="card glass-panel">
+                    <span class="tag">13 // PERSONAL</span>
+                    <h2>Polaris Bears</h2>
+                    <p>Ioan CHELARU & Albert OLARIU. Rolurile în proiect, contribuțiile individuale. Total Synchronization.</p>
+                    <div class="laser-line laser-line-green"></div>
+                    <div class="badge">COMPLETE</div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        POLARIS BEARS // ONCS 2026 // CELESTIAL COMMAND // CLAUDE CODE
     </footer>
+
 </body>
 </html>
