@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P.O.L.A.R.I.S. — System Diagram</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #06060f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .wrapper {
+      width: 1200px;
+      height: 680px;
+      position: relative;
+    }
+    svg {
+      width: 1200px;
+      height: 680px;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+<svg viewBox="0 0 1200 680" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  DEFS                                                      -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <defs>
+    <!-- Sun glow -->
+    <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#fffde0"/>
+      <stop offset="35%"  stop-color="#ffd700"/>
+      <stop offset="70%"  stop-color="#ff8800" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ff4400" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Earth gradient -->
+    <radialGradient id="earthGrad" cx="40%" cy="38%" r="60%">
+      <stop offset="0%"   stop-color="#6ac0ff"/>
+      <stop offset="45%"  stop-color="#1a6ac8"/>
+      <stop offset="100%" stop-color="#06183a"/>
+    </radialGradient>
+    <!-- Glow filter (soft) -->
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Glow filter (strong) -->
+    <filter id="glowStrong" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Arrowheads -->
+    <marker id="arrGold"   markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ffd700"/></marker>
+    <marker id="arrGreen"  markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#91ff89"/></marker>
+    <marker id="arrBlue"   markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#bdf4ff"/></marker>
+    <marker id="arrOrange" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="#ff8800"/></marker>
+    <!-- Clip to keep things in frame -->
+    <clipPath id="frame"><rect width="1200" height="680"/></clipPath>
+  </defs>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  BACKGROUND                                                -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <rect width="1200" height="680" fill="#06060f"/>
+  <!-- Subtle star field -->
+  <g fill="#ffffff" opacity="0.35">
+    <circle cx="450" cy="50"  r="1"/><circle cx="520" cy="90"  r="0.8"/>
+    <circle cx="600" cy="35"  r="1.2"/><circle cx="680" cy="75" r="0.8"/>
+    <circle cx="740" cy="48"  r="1"/><circle cx="820" cy="20"  r="0.8"/>
+    <circle cx="400" cy="600" r="1"/><circle cx="490" cy="630" r="0.8"/>
+    <circle cx="580" cy="610" r="1.2"/><circle cx="700" cy="645" r="0.8"/>
+    <circle cx="760" cy="598" r="1"/><circle cx="850" cy="625" r="0.8"/>
+    <circle cx="175" cy="140" r="0.8"/><circle cx="210" cy="520" r="0.8"/>
+    <circle cx="1100" cy="150" r="0.8"/><circle cx="1130" cy="500" r="0.8"/>
+    <circle cx="1060" cy="80"  r="1"/><circle cx="1080" cy="590" r="1"/>
+  </g>
+  <!-- Orbital plane (ecliptic) -->
+  <line x1="60" y1="340" x2="1140" y2="340" stroke="#1e1e33" stroke-width="1.5" stroke-dasharray="5,10"/>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  HEADER                                                    -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <text x="600" y="32" text-anchor="middle"
+        font-family="Space Grotesk" font-size="18" font-weight="700"
+        fill="#ffe3b7" letter-spacing="5">P.O.L.A.R.I.S.</text>
+  <text x="600" y="52" text-anchor="middle"
+        font-family="Space Grotesk" font-size="11" font-weight="400"
+        fill="#555" letter-spacing="3">SYSTEM DIAGRAM — NOT TO SCALE</text>
+
+  <!-- Zone headers -->
+  <text x="195" y="75" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#444" letter-spacing="2">INNER SOLAR SYSTEM</text>
+  <text x="650" y="75" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#444" letter-spacing="2">LAGRANGE POINTS · 1 AU</text>
+  <text x="990" y="75" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#444" letter-spacing="2">EARTH SYSTEM</text>
+
+  <!-- Zone dividers -->
+  <line x1="390" y1="65" x2="390" y2="615" stroke="#1a1a28" stroke-width="1" stroke-dasharray="2,9"/>
+  <line x1="570" y1="65" x2="570" y2="615" stroke="#1a1a28" stroke-width="1" stroke-dasharray="2,9"/>
+  <line x1="860" y1="65" x2="860" y2="615" stroke="#1a1a28" stroke-width="1" stroke-dasharray="2,9"/>
+  <line x1="1060" y1="65" x2="1060" y2="615" stroke="#1a1a28" stroke-width="1" stroke-dasharray="2,9"/>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  LEVEL 1 — SUN                                             -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Ambient glow -->
+  <circle cx="105" cy="340" r="70"  fill="url(#sunGrad)" opacity="0.25"/>
+  <circle cx="105" cy="340" r="40"  fill="#fff3a0" filter="url(#glowStrong)" opacity="0.5"/>
+  <!-- Sun body -->
+  <circle cx="105" cy="340" r="34"  fill="#ffd700"/>
+  <circle cx="105" cy="340" r="28"  fill="#fffde0"/>
+  <circle cx="105" cy="340" r="22"  fill="#ffffff" opacity="0.6"/>
+  <!-- Label -->
+  <text x="105" y="390" text-anchor="middle"
+        font-family="Space Grotesk" font-size="11" font-weight="700" fill="#ffd700">SUN</text>
+  <text x="105" y="403" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#666">3.85 × 10²⁶ W</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  LEVEL 1 — DYSON RING (mirrors at 7M km — INNER orbit)    -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Orbit ellipse -->
+  <ellipse cx="105" cy="340" rx="125" ry="90"
+           stroke="#ffd70033" stroke-width="1.5" fill="none" stroke-dasharray="3,6"/>
+
+  <!-- 8 mirror panels (schematic, gold-framed rectangles) -->
+  <!-- Top group -->
+  <g filter="url(#glow)">
+    <rect x="178" y="254" width="26" height="11" rx="2" fill="#d8d8e8" stroke="#ffd700" stroke-width="1.5" transform="rotate(-35 191 259)"/>
+    <rect x="203" y="288" width="26" height="11" rx="2" fill="#d8d8e8" stroke="#ffd700" stroke-width="1.5" transform="rotate(-18 216 293)"/>
+    <!-- Right -->
+    <rect x="222" y="334" width="26" height="11" rx="2" fill="#d8d8e8" stroke="#ffd700" stroke-width="1.5"/>
+    <!-- Bottom group -->
+    <rect x="203" y="381" width="26" height="11" rx="2" fill="#d8d8e8" stroke="#ffd700" stroke-width="1.5" transform="rotate(18 216 387)"/>
+    <rect x="178" y="413" width="26" height="11" rx="2" fill="#d8d8e8" stroke="#ffd700" stroke-width="1.5" transform="rotate(35 191 419)"/>
+    <!-- Left -->
+    <rect x="-12" y="334" width="26" height="11" rx="2" fill="#d8d8e8" stroke="#ffd700" stroke-width="1.5"/>
+    <!-- Top-left -->
+    <rect x="68"  y="261" width="26" height="11" rx="2" fill="#d8d8e8" stroke="#ffd700" stroke-width="1.5" transform="rotate(-55 81 267)"/>
+    <!-- Bottom-left -->
+    <rect x="68"  y="407" width="26" height="11" rx="2" fill="#d8d8e8" stroke="#ffd700" stroke-width="1.5" transform="rotate(55 81 413)"/>
+  </g>
+
+  <!-- Dyson Ring label -->
+  <text x="105" y="448" text-anchor="middle"
+        font-family="Space Grotesk" font-size="10" font-weight="700" fill="#ffd700">DYSON RING</text>
+  <text x="105" y="461" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#666">30 mirrors · ⌀1 km · η=90%</text>
+  <text x="105" y="473" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#555">@ 7 million km</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  REFLECTED LIGHT: Mirrors → Collectors                     -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- 2 upper beams → upper collectors -->
+  <line x1="238" y1="282" x2="300" y2="272" stroke="#ffd700" stroke-width="2.2" stroke-opacity="0.9" marker-end="url(#arrGold)" filter="url(#glow)"/>
+  <line x1="240" y1="296" x2="300" y2="288" stroke="#ffd700" stroke-width="1.8" stroke-opacity="0.55"/>
+  <!-- 2 lower beams → lower collectors -->
+  <line x1="238" y1="388" x2="300" y2="392" stroke="#ffd700" stroke-width="2.2" stroke-opacity="0.9" marker-end="url(#arrGold)" filter="url(#glow)"/>
+  <line x1="240" y1="374" x2="300" y2="380" stroke="#ffd700" stroke-width="1.8" stroke-opacity="0.55"/>
+  <!-- beam label -->
+  <text x="272" y="335" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#ffd700aa" font-style="italic">reflected</text>
+  <text x="272" y="347" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#ffd700aa" font-style="italic">sunlight</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  LEVEL 2 — COLLECTOR SATELLITES (at 10M km — OUTER orbit) -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Outer orbit ellipse -->
+  <ellipse cx="105" cy="340" rx="195" ry="140"
+           stroke="#ff880022" stroke-width="1" fill="none" stroke-dasharray="2,7"/>
+
+  <!-- Collector macro: solar panels (red/orange) + body (dark) + laser emitter (green) -->
+  <!-- Upper-1: y=268 -->
+  <g transform="translate(318, 268)" filter="url(#glow)">
+    <rect x="-22" y="-12" width="44" height="22" rx="3" fill="#12121e" stroke="#ff7700" stroke-width="1.5"/>
+    <!-- Solar panels top/bottom -->
+    <rect x="-22" y="-22" width="44" height="8"  rx="1" fill="#7a1a00" opacity="0.9"/>
+    <rect x="-22"  y="12" width="44" height="8"  rx="1" fill="#7a1a00" opacity="0.9"/>
+    <!-- Reception face (left, toward mirrors) — white highlight -->
+    <rect x="-22" y="-12" width="10" height="22" rx="2" fill="#2a2a3a" stroke="#ffd70066" stroke-width="1"/>
+    <!-- Laser emitter (right, toward L4/L5) -->
+    <circle cx="18" cy="0" r="6" fill="#91ff89" filter="url(#glow)" opacity="0.9"/>
+    <circle cx="18" cy="0" r="3" fill="#ffffff"/>
+  </g>
+  <!-- Upper-2: y=290 -->
+  <g transform="translate(318, 292)" filter="url(#glow)">
+    <rect x="-22" y="-12" width="44" height="22" rx="3" fill="#12121e" stroke="#ff7700" stroke-width="1.5"/>
+    <rect x="-22" y="-22" width="44" height="8"  rx="1" fill="#7a1a00" opacity="0.9"/>
+    <rect x="-22"  y="12" width="44" height="8"  rx="1" fill="#7a1a00" opacity="0.9"/>
+    <rect x="-22" y="-12" width="10" height="22" rx="2" fill="#2a2a3a" stroke="#ffd70066" stroke-width="1"/>
+    <circle cx="18" cy="0" r="6" fill="#91ff89" filter="url(#glow)" opacity="0.9"/>
+    <circle cx="18" cy="0" r="3" fill="#ffffff"/>
+  </g>
+  <!-- Lower-1: y=388 -->
+  <g transform="translate(318, 388)" filter="url(#glow)">
+    <rect x="-22" y="-12" width="44" height="22" rx="3" fill="#12121e" stroke="#ff7700" stroke-width="1.5"/>
+    <rect x="-22" y="-22" width="44" height="8"  rx="1" fill="#7a1a00" opacity="0.9"/>
+    <rect x="-22"  y="12" width="44" height="8"  rx="1" fill="#7a1a00" opacity="0.9"/>
+    <rect x="-22" y="-12" width="10" height="22" rx="2" fill="#2a2a3a" stroke="#ffd70066" stroke-width="1"/>
+    <circle cx="18" cy="0" r="6" fill="#91ff89" filter="url(#glow)" opacity="0.9"/>
+    <circle cx="18" cy="0" r="3" fill="#ffffff"/>
+  </g>
+  <!-- Lower-2: y=410 -->
+  <g transform="translate(318, 412)" filter="url(#glow)">
+    <rect x="-22" y="-12" width="44" height="22" rx="3" fill="#12121e" stroke="#ff7700" stroke-width="1.5"/>
+    <rect x="-22" y="-22" width="44" height="8"  rx="1" fill="#7a1a00" opacity="0.9"/>
+    <rect x="-22"  y="12" width="44" height="8"  rx="1" fill="#7a1a00" opacity="0.9"/>
+    <rect x="-22" y="-12" width="10" height="22" rx="2" fill="#2a2a3a" stroke="#ffd70066" stroke-width="1"/>
+    <circle cx="18" cy="0" r="6" fill="#91ff89" filter="url(#glow)" opacity="0.9"/>
+    <circle cx="18" cy="0" r="3" fill="#ffffff"/>
+  </g>
+
+  <!-- Grouping brackets -->
+  <line x1="365" y1="256" x2="375" y2="256" stroke="#ff770044" stroke-width="1"/>
+  <line x1="375" y1="256" x2="375" y2="304" stroke="#ff770044" stroke-width="1"/>
+  <line x1="375" y1="304" x2="365" y2="304" stroke="#ff770044" stroke-width="1"/>
+  <text x="378" y="283" font-family="Space Grotesk" font-size="8" fill="#ff7700aa">→ L4</text>
+
+  <line x1="365" y1="376" x2="375" y2="376" stroke="#ff770044" stroke-width="1"/>
+  <line x1="375" y1="376" x2="375" y2="424" stroke="#ff770044" stroke-width="1"/>
+  <line x1="375" y1="424" x2="365" y2="424" stroke="#ff770044" stroke-width="1"/>
+  <text x="378" y="403" font-family="Space Grotesk" font-size="8" fill="#ff7700aa">→ L5</text>
+
+  <!-- Collectors label -->
+  <text x="318" y="449" text-anchor="middle"
+        font-family="Space Grotesk" font-size="10" font-weight="700" fill="#ff8800">COLLECTORS</text>
+  <text x="318" y="462" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#666">4 sats · η=43%</text>
+  <text x="318" y="474" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#555">@ 10 million km</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  GREEN LASER BEAMS: Collectors → L4/L5                     -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Upper pair → L4 (direct + cross) -->
+  <line x1="340" y1="270" x2="632" y2="178" stroke="#91ff89" stroke-width="2.5" stroke-opacity="0.9" marker-end="url(#arrGreen)" filter="url(#glow)"/>
+  <line x1="340" y1="292" x2="632" y2="182" stroke="#91ff89" stroke-width="1.8" stroke-opacity="0.45"/>
+  <!-- Lower pair → L5 (direct) -->
+  <line x1="340" y1="408" x2="632" y2="500" stroke="#91ff89" stroke-width="2.5" stroke-opacity="0.9" marker-end="url(#arrGreen)" filter="url(#glow)"/>
+  <line x1="340" y1="388" x2="632" y2="496" stroke="#91ff89" stroke-width="1.8" stroke-opacity="0.45"/>
+  <!-- Cross beams (upper→L5, lower→L4) — dashed to show X pattern -->
+  <line x1="340" y1="275" x2="632" y2="493" stroke="#91ff89" stroke-width="1.2" stroke-opacity="0.28" stroke-dasharray="5,6" marker-end="url(#arrGreen)"/>
+  <line x1="340" y1="405" x2="632" y2="185" stroke="#91ff89" stroke-width="1.2" stroke-opacity="0.28" stroke-dasharray="5,6" marker-end="url(#arrGreen)"/>
+  <!-- Beam label -->
+  <text x="488" y="305" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#91ff89aa" font-style="italic">green laser · 543 nm</text>
+  <text x="488" y="375" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#91ff89aa" font-style="italic">1.42 TW / sat</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  LEVEL 3 — L4 / L5 LAGRANGE NODES                         -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- ─── L4 (NORTH) ─── -->
+  <g transform="translate(655, 168)" filter="url(#glow)">
+    <!-- Iris petals (8 petals schematic) -->
+    <circle cx="0" cy="0" r="26" fill="none" stroke="#ffd70022" stroke-width="1"/>
+    <!-- 8 trapezoid petals -->
+    <polygon points="0,-26  6,-10  0,-6 -6,-10"  fill="#ffe3b7" opacity="0.85"/>
+    <polygon points="26,0   10,6   6,0  10,-6"   fill="#ffe3b7" opacity="0.85"/>
+    <polygon points="0,26  -6,10   0,6   6,10"   fill="#ffe3b7" opacity="0.85"/>
+    <polygon points="-26,0 -10,-6 -6,0 -10,6"   fill="#ffe3b7" opacity="0.85"/>
+    <polygon points="18,-18  7,-5  0,0  -5,-7"   fill="#ffe3b799"/>
+    <polygon points="18,18   5,7   0,0   7,5"    fill="#ffe3b799"/>
+    <polygon points="-18,18 -7,5   0,0  -5,7"   fill="#ffe3b799"/>
+    <polygon points="-18,-18 -5,-7 0,0  -7,-5"  fill="#ffe3b799"/>
+    <!-- Hub hexagon -->
+    <polygon points="0,-9 8,-5 8,5 0,9 -8,5 -8,-5" fill="#111122" stroke="#ffd700" stroke-width="1.5"/>
+    <!-- Focal point (green dot) -->
+    <circle cx="0" cy="0" r="4" fill="#91ff89" filter="url(#glow)"/>
+  </g>
+  <text x="655" y="212" text-anchor="middle"
+        font-family="Space Grotesk" font-size="11" font-weight="700" fill="#ffe3b7">L4 NODE</text>
+  <text x="655" y="226" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#666">North relay · Iris receptor</text>
+  <text x="655" y="238" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#555">2.83 TW in · η=60%</text>
+
+  <!-- ─── L5 (SOUTH) ─── -->
+  <g transform="translate(655, 512)" filter="url(#glow)">
+    <circle cx="0" cy="0" r="26" fill="none" stroke="#ffd70022" stroke-width="1"/>
+    <polygon points="0,-26  6,-10  0,-6 -6,-10"  fill="#ffe3b7" opacity="0.85"/>
+    <polygon points="26,0   10,6   6,0  10,-6"   fill="#ffe3b7" opacity="0.85"/>
+    <polygon points="0,26  -6,10   0,6   6,10"   fill="#ffe3b7" opacity="0.85"/>
+    <polygon points="-26,0 -10,-6 -6,0 -10,6"   fill="#ffe3b7" opacity="0.85"/>
+    <polygon points="18,-18  7,-5  0,0  -5,-7"   fill="#ffe3b799"/>
+    <polygon points="18,18   5,7   0,0   7,5"    fill="#ffe3b799"/>
+    <polygon points="-18,18 -7,5   0,0  -5,7"   fill="#ffe3b799"/>
+    <polygon points="-18,-18 -5,-7 0,0  -7,-5"  fill="#ffe3b799"/>
+    <polygon points="0,-9 8,-5 8,5 0,9 -8,5 -8,-5" fill="#111122" stroke="#ffd700" stroke-width="1.5"/>
+    <circle cx="0" cy="0" r="4" fill="#91ff89" filter="url(#glow)"/>
+  </g>
+  <text x="655" y="456" text-anchor="middle"
+        font-family="Space Grotesk" font-size="11" font-weight="700" fill="#ffe3b7">L5 NODE</text>
+  <text x="655" y="469" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#666">South relay · Iris receptor</text>
+  <text x="655" y="481" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#555">2.83 TW in · η=60%</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  EARTH                                                     -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- Atmosphere halo -->
+  <circle cx="920" cy="340" r="60" fill="#1a3a6a" opacity="0.25"/>
+  <!-- Earth body -->
+  <circle cx="920" cy="340" r="52" fill="url(#earthGrad)" filter="url(#glow)"/>
+  <!-- Continent blobs -->
+  <ellipse cx="910" cy="318" rx="20" ry="25" fill="#2d8a4a" opacity="0.65" transform="rotate(-10 910 318)"/>
+  <ellipse cx="932" cy="350" rx="13" ry="16" fill="#2d8a4a" opacity="0.55" transform="rotate(8 932 350)"/>
+  <ellipse cx="895" cy="355" rx="9"  ry="10" fill="#2d8a4a" opacity="0.5"/>
+  <!-- Terminator -->
+  <circle cx="920" cy="340" r="52" fill="none" stroke="#3366aa66" stroke-width="2"/>
+  <!-- Polar axis -->
+  <line x1="920" y1="95" x2="920" y2="585" stroke="#ffffff15" stroke-width="1.5" stroke-dasharray="3,7"/>
+  <!-- Earth label -->
+  <text x="920" y="410" text-anchor="middle"
+        font-family="Space Grotesk" font-size="11" font-weight="700" fill="#88aaff">EARTH</text>
+  <text x="920" y="423" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#555">29,471 TWh/yr consumption</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  BLUE LASER BEAMS: L4/L5 → Polar Stations                 -->
+  <!-- (horizontal from ecliptic — L4/L5 are in orbital plane,    -->
+  <!--  seen from poles as horizon-level beams)                   -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <line x1="682" y1="166" x2="876" y2="162" stroke="#bdf4ff" stroke-width="2.8" stroke-opacity="0.92" marker-end="url(#arrBlue)" filter="url(#glow)"/>
+  <line x1="682" y1="515" x2="876" y2="518" stroke="#bdf4ff" stroke-width="2.8" stroke-opacity="0.92" marker-end="url(#arrBlue)" filter="url(#glow)"/>
+  <!-- Label -->
+  <text x="780" y="152" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#bdf4ffaa" font-style="italic">blue relay laser</text>
+  <text x="780" y="530" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#bdf4ffaa" font-style="italic">blue relay laser</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  LEVEL 4 — POLAR BALLOON STATIONS                          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- ─── NORTH station ─── -->
+  <g transform="translate(920, 148)">
+    <!-- 3 inverted-teardrop balloons (wide dome at top, narrow at bottom) -->
+    <ellipse cx="-22" cy="-24" rx="14" ry="20" fill="#b0b0cc" opacity="0.75" stroke="#ddddef" stroke-width="1"/>
+    <ellipse cx="0"   cy="-28" rx="16" ry="22" fill="#b8b8d8" opacity="0.82" stroke="#ddddef" stroke-width="1"/>
+    <ellipse cx="22"  cy="-24" rx="14" ry="20" fill="#b0b0cc" opacity="0.75" stroke="#ddddef" stroke-width="1"/>
+    <!-- Tether strings -->
+    <line x1="-22" y1="-4"  x2="-10" y2="8"  stroke="#777" stroke-width="0.8"/>
+    <line x1="0"   y1="-6"  x2="0"   y2="8"  stroke="#777" stroke-width="0.8"/>
+    <line x1="22"  y1="-4"  x2="10"  y2="8"  stroke="#777" stroke-width="0.8"/>
+    <!-- Station body -->
+    <rect x="-16" y="8"  width="32" height="20" rx="3" fill="#111122" stroke="#ffe3b7" stroke-width="1.5"/>
+    <!-- Iris receptor (lateral face, receives horizontal blue beam) -->
+    <circle cx="-16" cy="18" r="8" fill="none" stroke="#bdf4ff" stroke-width="1.5"/>
+    <circle cx="-16" cy="18" r="4" fill="#bdf4ff" opacity="0.8" filter="url(#glow)"/>
+  </g>
+  <text x="920" y="188" text-anchor="middle"
+        font-family="Space Grotesk" font-size="10" font-weight="700" fill="#b8b8d8">POLAR STATION N</text>
+  <text x="920" y="200" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#555">30 km altitude · ≤4 t · helium balloons</text>
+
+  <!-- ─── SOUTH station ─── -->
+  <g transform="translate(920, 532)">
+    <ellipse cx="-22" cy="-24" rx="14" ry="20" fill="#b0b0cc" opacity="0.75" stroke="#ddddef" stroke-width="1"/>
+    <ellipse cx="0"   cy="-28" rx="16" ry="22" fill="#b8b8d8" opacity="0.82" stroke="#ddddef" stroke-width="1"/>
+    <ellipse cx="22"  cy="-24" rx="14" ry="20" fill="#b0b0cc" opacity="0.75" stroke="#ddddef" stroke-width="1"/>
+    <line x1="-22" y1="-4"  x2="-10" y2="8"  stroke="#777" stroke-width="0.8"/>
+    <line x1="0"   y1="-6"  x2="0"   y2="8"  stroke="#777" stroke-width="0.8"/>
+    <line x1="22"  y1="-4"  x2="10"  y2="8"  stroke="#777" stroke-width="0.8"/>
+    <rect x="-16" y="8"  width="32" height="20" rx="3" fill="#111122" stroke="#ffe3b7" stroke-width="1.5"/>
+    <circle cx="-16" cy="18" r="8" fill="none" stroke="#bdf4ff" stroke-width="1.5"/>
+    <circle cx="-16" cy="18" r="4" fill="#bdf4ff" opacity="0.8" filter="url(#glow)"/>
+  </g>
+  <text x="920" y="575" text-anchor="middle"
+        font-family="Space Grotesk" font-size="10" font-weight="700" fill="#b8b8d8">POLAR STATION S</text>
+  <text x="920" y="587" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#555">30 km altitude · ≤4 t · helium balloons</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  LEVEL 5 — YBCO CABLES (Station → Earth surface)          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- North cable -->
+  <line x1="920" y1="172" x2="920" y2="285" stroke="#ff8800" stroke-width="3.5" stroke-opacity="0.92" marker-end="url(#arrOrange)" filter="url(#glow)"/>
+  <!-- North junction node (on polar ice) -->
+  <polygon points="920,292 926,284 920,276 914,284" fill="#ff8800" filter="url(#glow)"/>
+  <!-- South cable -->
+  <line x1="920" y1="508" x2="920" y2="395" stroke="#ff8800" stroke-width="3.5" stroke-opacity="0.92" marker-end="url(#arrOrange)" filter="url(#glow)"/>
+  <!-- South junction node -->
+  <polygon points="920,388 926,396 920,404 914,396" fill="#ff8800" filter="url(#glow)"/>
+
+  <!-- YBCO label -->
+  <text x="940" y="237" font-family="Space Grotesk" font-size="9" font-weight="700" fill="#ff8800">YBCO CABLE</text>
+  <text x="940" y="249" font-family="Space Grotesk" font-size="9" fill="#ff8800aa">800 GW · 30 km</text>
+  <text x="940" y="261" font-family="Space Grotesk" font-size="9" fill="#555">T_c = 93 K (−180°C)</text>
+
+  <text x="940" y="475" font-family="Space Grotesk" font-size="9" font-weight="700" fill="#ff8800">YBCO CABLE</text>
+  <text x="940" y="487" font-family="Space Grotesk" font-size="9" fill="#ff8800aa">800 GW · 30 km</text>
+  <text x="940" y="499" font-family="Space Grotesk" font-size="9" fill="#555">T_c = 93 K (−180°C)</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  POWER GRID OUTPUT                                         -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <rect x="1070" y="305" width="100" height="70" rx="4" fill="#080f08" stroke="#91ff8944" stroke-width="1.5"/>
+  <!-- Lightning bolt -->
+  <polygon points="1120,318 1108,340 1118,340 1108,364 1132,338 1120,338" fill="#ffff55" opacity="0.9"/>
+  <text x="1120" y="385" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" font-weight="700" fill="#91ff89">POWER GRID</text>
+  <text x="1120" y="397" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#91ff89aa">1.6 TW</text>
+  <text x="1120" y="409" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#555">≈ 48% global</text>
+
+  <!-- Cable lines to grid -->
+  <line x1="960" y1="286" x2="1068" y2="325" stroke="#ff8800" stroke-width="1.8" stroke-opacity="0.55" stroke-dasharray="5,5" marker-end="url(#arrOrange)"/>
+  <line x1="960" y1="394" x2="1068" y2="355" stroke="#ff8800" stroke-width="1.8" stroke-opacity="0.55" stroke-dasharray="5,5" marker-end="url(#arrOrange)"/>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  LEGEND (bottom-left)                                      -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <rect x="30" y="488" width="218" height="138" rx="4" fill="#07070f" stroke="#222233" stroke-width="1"/>
+  <text x="42" y="506" font-family="Space Grotesk" font-size="10" font-weight="700" fill="#ffe3b7" letter-spacing="2">LEGEND</text>
+
+  <line x1="42" y1="520" x2="78" y2="520" stroke="#ffd700"  stroke-width="2"   marker-end="url(#arrGold)"   filter="url(#glow)"/>
+  <text x="86" y="524" font-family="Space Grotesk" font-size="9" fill="#999">Reflected sunlight</text>
+
+  <line x1="42" y1="538" x2="78" y2="538" stroke="#91ff89"  stroke-width="2"   marker-end="url(#arrGreen)"  filter="url(#glow)"/>
+  <text x="86" y="542" font-family="Space Grotesk" font-size="9" fill="#999">Green laser  543 nm</text>
+
+  <line x1="42" y1="556" x2="78" y2="556" stroke="#bdf4ff"  stroke-width="2.5" marker-end="url(#arrBlue)"   filter="url(#glow)"/>
+  <text x="86" y="560" font-family="Space Grotesk" font-size="9" fill="#999">Blue relay laser</text>
+
+  <line x1="42" y1="574" x2="78" y2="574" stroke="#ff8800"  stroke-width="2.5" marker-end="url(#arrOrange)" filter="url(#glow)"/>
+  <text x="86" y="578" font-family="Space Grotesk" font-size="9" fill="#999">YBCO cable  800 GW</text>
+
+  <line x1="42" y1="592" x2="78" y2="592" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="86" y="596" font-family="Space Grotesk" font-size="9" fill="#555">Ecliptic / orbital plane</text>
+
+  <line x1="42" y1="610" x2="78" y2="610" stroke="#ffd700" stroke-width="1" stroke-dasharray="3,5"/>
+  <text x="86" y="614" font-family="Space Grotesk" font-size="9" fill="#555">Mirror / collector orbits</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  EFFICIENCY TABLE (bottom-center)                          -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <rect x="268" y="488" width="228" height="138" rx="4" fill="#07070f" stroke="#222233" stroke-width="1"/>
+  <text x="382" y="506" text-anchor="middle"
+        font-family="Space Grotesk" font-size="10" font-weight="700" fill="#ffe3b7" letter-spacing="2">ENERGY BUDGET</text>
+
+  <!-- Table rows -->
+  <text x="280" y="522" font-family="Space Grotesk" font-size="9" fill="#666">Mirrors reflect</text>
+  <text x="486" y="522" text-anchor="end" font-family="Space Grotesk" font-size="9" font-weight="600" fill="#ffd700">13.2 TW · η=90%</text>
+
+  <text x="280" y="537" font-family="Space Grotesk" font-size="9" fill="#666">Collectors (light→laser)</text>
+  <text x="486" y="537" text-anchor="end" font-family="Space Grotesk" font-size="9" font-weight="600" fill="#91ff89">5.67 TW · η=43%</text>
+
+  <text x="280" y="552" font-family="Space Grotesk" font-size="9" fill="#666">L4/L5 (laser→electricity)</text>
+  <text x="486" y="552" text-anchor="end" font-family="Space Grotesk" font-size="9" font-weight="600" fill="#bdf4ff">η=60%</text>
+
+  <text x="280" y="567" font-family="Space Grotesk" font-size="9" fill="#666">YBCO cable losses</text>
+  <text x="486" y="567" text-anchor="end" font-family="Space Grotesk" font-size="9" font-weight="600" fill="#ff8800">≈ 0%</text>
+
+  <text x="280" y="582" font-family="Space Grotesk" font-size="9" fill="#666">Star Power Grid surplus</text>
+  <text x="486" y="582" text-anchor="end" font-family="Space Grotesk" font-size="9" fill="#555">~53% at L4/L5</text>
+
+  <line x1="280" y1="590" x2="488" y2="590" stroke="#222" stroke-width="1"/>
+
+  <text x="280" y="605" font-family="Space Grotesk" font-size="10" font-weight="700" fill="#ffe3b7">TOTAL OUTPUT</text>
+  <text x="486" y="605" text-anchor="end" font-family="Space Grotesk" font-size="10" font-weight="700" fill="#ffe3b7">2 × 800 GW = 1.6 TW</text>
+
+  <text x="280" y="618" font-family="Space Grotesk" font-size="9" fill="#444">Solar intensity at 7M km: 6.22 × 10⁵ W/m²</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  DISTANCE SCALE (bottom)                                   -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!-- scale bar under diagram -->
+  <line x1="105" y1="440" x2="318" y2="440" stroke="#2a2a3a" stroke-width="1"/>
+  <line x1="105" y1="436" x2="105" y2="444" stroke="#2a2a3a" stroke-width="1"/>
+  <line x1="318" y1="436" x2="318" y2="444" stroke="#2a2a3a" stroke-width="1"/>
+  <text x="212" y="438" text-anchor="middle"
+        font-family="Space Grotesk" font-size="8" fill="#444">7M km → 10M km</text>
+
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <!--  CREDITS                                                   -->
+  <!-- ══════════════════════════════════════════════════════════ -->
+  <text x="600" y="658" text-anchor="middle"
+        font-family="Space Grotesk" font-size="9" fill="#333">
+    Polaris Bears · ONCS 2026 · Ioan Cristian Chelaru &amp; Olariu David Albert · Mentor: Prof. Francisc Dionisie Aaron
+  </text>
+
+</svg>
+</div>
+</body>
+</html>
