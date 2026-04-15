@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>POLARIS | SCIENTIFIC CREDIBILITY</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001f24",
+                        "on-secondary-container": "#00616d",
+                        "tertiary-fixed-dim": "#00e639",
+                        "surface-variant": "#313442",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#dfe2f3",
+                        "surface-container-high": "#262a37",
+                        "secondary-fixed": "#9cf0ff",
+                        "on-secondary-fixed-variant": "#004f58",
+                        "surface": "#0f131f",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#ffba20",
+                        "outline-variant": "#4f4632",
+                        "primary-container": "#ffc041",
+                        "error": "#ffb4ab",
+                        "on-surface": "#dfe2f3",
+                        "outline": "#9c8f78",
+                        "surface-bright": "#353946",
+                        "on-error": "#690005",
+                        "secondary": "#bdf4ff",
+                        "background": "#0f131f",
+                        "surface-dim": "#0f131f",
+                        "surface-container-highest": "#313442",
+                        "inverse-primary": "#7c5800",
+                        "primary": "#ffe3b7",
+                        "surface-container-lowest": "#0a0e1a",
+                        "secondary-fixed-dim": "#00daf3",
+                        "on-primary-fixed": "#271900",
+                        "on-primary": "#412d00",
+                        "surface-container-low": "#171b28",
+                        "primary-fixed": "#ffdea8",
+                        "surface-container": "#1b1f2c",
+                        "on-primary-container": "#704f00",
+                        "on-tertiary": "#003907",
+                        "on-background": "#dfe2f3",
+                        "on-tertiary-container": "#006313",
+                        "surface-tint": "#ffba20",
+                        "on-primary-fixed-variant": "#5e4200",
+                        "tertiary-fixed": "#72ff70",
+                        "on-tertiary-fixed-variant": "#00530e",
+                        "on-surface-variant": "#d4c5ab",
+                        "on-secondary": "#00363d",
+                        "tertiary": "#91ff89",
+                        "tertiary-container": "#00ea3b",
+                        "secondary-container": "#00e3fd",
+                        "inverse-on-surface": "#2c303d",
+                        "on-tertiary-fixed": "#002203"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(79, 70, 50, 0.15) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+        .transmission-line {
+            background: linear-gradient(90deg, transparent, #bdf4ff, transparent);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="bg-transparent backdrop-blur-md text-[#ffe3b7] font-['Space_Grotesk'] uppercase tracking-widest font-bold docked full-width top-0 z-50 flex justify-between items-center w-full px-8 py-6 fixed">
+<div class="text-2xl font-black tracking-tighter text-[#ffe3b7] drop-shadow-[0_0_8px_rgba(255,227,183,0.4)]">POLARIS</div>
+<nav class="hidden md:flex space-x-12">
+<a class="text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300" href="#">VISION</a>
+<a class="text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300" href="#">TECH</a>
+<a class="text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300" href="#">MAP</a>
+</nav>
+<div class="flex space-x-4">
+<span class="text-[#ffba20] border-b border-[#bdf4ff] cursor-pointer">EN</span>
+<span class="text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300 cursor-pointer">RO</span>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="bg-[#171b28]/80 backdrop-blur-xl text-[#bdf4ff] font-['Inter'] text-[10px] tracking-[0.2em] uppercase font-medium fixed left-0 top-1/2 -translate-y-1/2 h-auto w-16 shadow-[60px_0_60px_-10px_rgba(15,19,31,0.06)] z-40 hidden md:block">
+<div class="flex flex-col space-y-8 py-10">
+<div class="flex flex-col items-center group cursor-pointer">
+<span class="material-symbols-outlined mb-1 transition-all group-hover:text-[#91ff89]">visibility</span>
+<span class="text-white/40 pl-4 invisible group-hover:visible absolute left-12 whitespace-nowrap bg-surface-container px-2 py-1">Vision</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<span class="material-symbols-outlined mb-1 transition-all group-hover:text-[#91ff89]">architecture</span>
+<span class="text-white/40 pl-4 invisible group-hover:visible absolute left-12 whitespace-nowrap bg-surface-container px-2 py-1">Architecture</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<span class="material-symbols-outlined mb-1 transition-all group-hover:text-[#91ff89]">memory</span>
+<span class="text-white/40 pl-4 invisible group-hover:visible absolute left-12 whitespace-nowrap bg-surface-container px-2 py-1">Technology</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer">
+<span class="material-symbols-outlined mb-1 transition-all group-hover:text-[#91ff89]">group</span>
+<span class="text-white/40 pl-4 invisible group-hover:visible absolute left-12 whitespace-nowrap bg-surface-container px-2 py-1">Team</span>
+</div>
+</div>
+</aside>
+<main class="pt-32 pb-20 px-6 md:px-24 max-w-7xl mx-auto">
+<!-- Hero Section: Scientific Identity -->
+<section class="mb-24 grid md:grid-cols-2 gap-12 items-end">
+<div class="space-y-6">
+<div class="inline-flex items-center space-x-2 text-secondary font-label text-xs tracking-widest uppercase">
+<span class="w-8 h-px bg-secondary"></span>
+<span>System Protocol 08.1</span>
+</div>
+<h1 class="font-headline text-5xl md:text-7xl font-bold leading-none tracking-tight text-primary">
+                    SCIENTIFIC CREDIBILITY &amp; LIMITS
+                </h1>
+<h2 class="font-headline text-xl md:text-2xl text-outline italic">
+                    CREDIBILITATE ȘTIINȚIFICĂ ȘI LIMITE
+                </h2>
+<p class="text-on-surface-variant max-w-lg leading-relaxed">
+                    A rigorous examination of the engineering frontiers. We acknowledge the physical constraints that define the boundary between speculative ambition and orbital reality.
+                </p>
+</div>
+<div class="bg-surface-container-low p-8 border-l border-outline-variant relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 font-label text-[8px] text-outline/30 uppercase">Metadata: Sector 08</div>
+<div class="flex items-center justify-between mb-8">
+<div class="space-y-1">
+<span class="block text-[10px] text-tertiary uppercase font-label">Engineering Status</span>
+<span class="block text-xl font-headline font-bold text-on-surface">ANALYTICAL</span>
+</div>
+<div class="text-right">
+<span class="block text-[10px] text-secondary uppercase font-label">Risk Margin</span>
+<span class="block text-xl font-headline font-bold text-on-surface">14.2%</span>
+</div>
+</div>
+<div class="h-1 bg-surface-variant w-full relative">
+<div class="absolute top-0 left-0 h-full bg-tertiary w-3/4"></div>
+</div>
+</div>
+</section>
+<!-- The Bento Grid of Constraints -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-24">
+<!-- Constraint 01: Materials -->
+<div class="md:col-span-7 bg-surface-container-low group overflow-hidden relative border-t border-outline-variant/20 p-8">
+<div class="flex justify-between items-start mb-6">
+<span class="text-4xl font-headline font-bold text-outline-variant/30">01</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">layers</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-primary mb-4 uppercase">Advanced Materials Fatigue</h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">
+                    The structural integrity of large-scale orbital arrays faces unprecedented stress from cosmic radiation and thermal cycling. Our credibility rests on the honest appraisal of carbon-nanotube durability and atomic oxygen erosion at LEO altitudes.
+                </p>
+<div class="grid grid-cols-3 gap-4 border-t border-outline-variant/10 pt-6">
+<div>
+<span class="block text-[9px] text-outline font-label uppercase">Tensile Strength</span>
+<span class="text-sm font-headline font-bold">130 GPa</span>
+</div>
+<div>
+<span class="block text-[9px] text-outline font-label uppercase">Erosion Rate</span>
+<span class="text-sm font-headline font-bold">0.02μm/yr</span>
+</div>
+<div>
+<span class="block text-[9px] text-outline font-label uppercase">Radiation Shielding</span>
+<span class="text-sm font-headline font-bold">Class IV</span>
+</div>
+</div>
+</div>
+<!-- Constraint 02: Thermal Management -->
+<div class="md:col-span-5 bg-surface-container-high p-8 relative">
+<div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(45deg, #4f4632 1px, transparent 1px), linear-gradient(-45deg, #4f4632 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="relative z-10">
+<span class="text-4xl font-headline font-bold text-outline-variant/30">02</span>
+<h3 class="font-headline text-2xl font-bold text-tertiary mt-4 mb-4 uppercase">Thermal Flux</h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">
+                        Managing 1,400W/m² of solar energy while preventing sensor desensitization requires active cryo-management and passive radiator optimization.
+                    </p>
+<img class="w-full h-40 object-cover grayscale brightness-50 contrast-125 border border-outline-variant/30" data-alt="Technical blueprint of a thermal radiator panel with intricate cooling lines and hexagonal heat dissipation patterns in blueprint blue" src="../images/generated/02%20Satelit%20Colector%20(close-up)%20(v2).png"/>
+</div>
+</div>
+<!-- Constraint 03: Orbital Alignment -->
+<div class="md:col-span-4 bg-surface-container-low p-8 border-r border-outline-variant/20">
+<span class="text-4xl font-headline font-bold text-outline-variant/30">03</span>
+<h3 class="font-headline text-xl font-bold text-secondary mt-2 mb-4 uppercase">Orbital Precision</h3>
+<ul class="space-y-4">
+<li class="flex items-start space-x-3">
+<span class="w-1.5 h-1.5 bg-secondary mt-1.5"></span>
+<span class="text-xs text-on-surface-variant font-label uppercase tracking-wider">Sub-millimetric Station Keeping</span>
+</li>
+<li class="flex items-start space-x-3">
+<span class="w-1.5 h-1.5 bg-secondary mt-1.5"></span>
+<span class="text-xs text-on-surface-variant font-label uppercase tracking-wider">Atmospheric Drag Compensation</span>
+</li>
+<li class="flex items-start space-x-3">
+<span class="w-1.5 h-1.5 bg-secondary mt-1.5"></span>
+<span class="text-xs text-on-surface-variant font-label uppercase tracking-wider">Relativistic Clock Correction</span>
+</li>
+</ul>
+</div>
+<!-- Constraint 04: Logistics & Deployment -->
+<div class="md:col-span-8 bg-surface-container-highest p-8 relative overflow-hidden group">
+<div class="flex flex-col md:flex-row gap-8 items-center">
+<div class="w-full md:w-1/2">
+<span class="text-4xl font-headline font-bold text-outline-variant/30">04</span>
+<h3 class="font-headline text-2xl font-bold text-primary mt-2 mb-4 uppercase">Deployment Logistics</h3>
+<p class="text-on-surface-variant text-sm mb-4">
+                            The bridge between earth and orbit. We address the launch cadence constraints, payload volume limitations, and the necessity of robotic autonomous assembly.
+                        </p>
+<div class="flex space-x-4">
+<button class="bg-primary-container text-on-primary-container px-6 py-2 text-xs font-label font-bold uppercase tracking-widest hover:brightness-110 transition-all">
+                                VIEW MANIFESTO
+                            </button>
+<button class="border border-outline-variant text-secondary px-6 py-2 text-xs font-label font-bold uppercase tracking-widest hover:bg-secondary/10 transition-all">
+                                DATA TABLES
+                            </button>
+</div>
+</div>
+<div class="w-full md:w-1/2 bg-surface p-4 border border-outline-variant/20 relative">
+<div class="flex justify-between font-label text-[10px] text-outline mb-4">
+<span>PHASE 01: LAUNCH</span>
+<span>READY</span>
+</div>
+<div class="space-y-2">
+<div class="h-2 bg-surface-variant"></div>
+<div class="h-2 bg-surface-variant w-4/5"></div>
+<div class="h-2 bg-surface-variant w-3/5"></div>
+</div>
+<div class="mt-4 transmission-line h-px w-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- The Engineering Manifesto Section -->
+<section class="bg-surface-container-low border-l-4 border-tertiary p-12 mb-24">
+<div class="max-w-3xl">
+<h4 class="font-headline text-xs text-tertiary tracking-[0.4em] uppercase mb-8">SPECULATIVE ENGINEERING MANIFESTO</h4>
+<p class="font-headline text-3xl md:text-4xl font-light text-on-surface mb-8 leading-tight italic">
+                    "We do not ignore the laws of physics; we negotiate with them. POLARIS is not a dream of the impossible, but a roadmap of the difficult."
+                </p>
+<div class="grid md:grid-cols-2 gap-8 text-on-surface-variant text-sm">
+<p>
+                        The jury must recognize that every data point presented is backed by current aerospace capability. Where we deviate into the future, we provide a mathematical bridge of necessity.
+                    </p>
+<p>
+                        Our credibility is our most valuable payload. By detailing our limits, we solidify the reality of our achievements. The path to the stars is paved with rigorous skepticism.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Technical Data Overlay -->
+<section class="relative h-96 mb-24 border border-outline-variant/10 overflow-hidden">
+<img class="w-full h-full object-cover opacity-40 grayscale" data-alt="Digital representation of earth with glowing data network lines and satellite orbital paths in deep navy and cyan hues" src="../images/generated/05%20Cablul%20YBCO%20(v2).png"/>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+<div class="space-y-1">
+<span class="block text-[10px] text-secondary font-label uppercase tracking-widest">Orbit Height</span>
+<span class="block text-3xl font-headline font-bold">550 KM</span>
+</div>
+<div class="space-y-1">
+<span class="block text-[10px] text-tertiary font-label uppercase tracking-widest">Latency Gap</span>
+<span class="block text-3xl font-headline font-bold">12 MS</span>
+</div>
+<div class="space-y-1">
+<span class="block text-[10px] text-primary font-label uppercase tracking-widest">Throughput</span>
+<span class="block text-3xl font-headline font-bold">400 TB/S</span>
+</div>
+<div class="space-y-1">
+<span class="block text-[10px] text-outline font-label uppercase tracking-widest">Nodes</span>
+<span class="block text-3xl font-headline font-bold">2,400</span>
+</div>
+</div>
+</div>
+<!-- Glass Overlay Info -->
+<div class="absolute bottom-8 right-8 bg-surface/80 backdrop-blur-md p-6 border border-outline-variant/30 max-w-xs">
+<span class="text-[10px] text-secondary font-label uppercase">Sensor Array 09</span>
+<p class="text-xs text-on-surface-variant mt-2 font-body">Real-time simulation of material degradation in high-energy plasma environments.</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0f131f] text-[#ffe3b7] font-['Inter'] text-[10px] tracking-widest w-full border-t border-[#4f4632]/15 flex flex-col items-center justify-center w-full py-12 px-4 space-y-4">
+<div class="text-xl font-bold text-[#ffe3b7] drop-shadow-[0_0_12px_rgba(255,227,183,0.3)]">POLARIS COMMAND</div>
+<div class="flex space-x-8">
+<a class="text-white/50 hover:text-white transition-opacity" href="#">PRIVACY</a>
+<a class="text-white/50 hover:text-white transition-opacity" href="#">PROTOCOLS</a>
+</div>
+<div class="text-white/30 mt-4 text-center">© 2024 POLARIS COMMAND. ALL SYSTEMS NOMINAL.</div>
+</footer>
+</body></html>

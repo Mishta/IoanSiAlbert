@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ro"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600&amp;family=Inter:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#5e4200",
+                    "primary": "#ffe3b7",
+                    "on-tertiary": "#003907",
+                    "surface-container-low": "#171b28",
+                    "primary-fixed-dim": "#ffba20",
+                    "on-surface": "#dfe2f3",
+                    "error": "#ffb4ab",
+                    "inverse-on-surface": "#2c303d",
+                    "on-surface-variant": "#d4c5ab",
+                    "surface-container": "#1b1f2c",
+                    "surface-dim": "#0f131f",
+                    "secondary-container": "#00e3fd",
+                    "on-secondary-fixed-variant": "#004f58",
+                    "error-container": "#93000a",
+                    "secondary": "#bdf4ff",
+                    "on-background": "#dfe2f3",
+                    "on-tertiary-fixed": "#002203",
+                    "tertiary-container": "#00ea3b",
+                    "on-tertiary-container": "#006313",
+                    "tertiary": "#91ff89",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed-variant": "#00530e",
+                    "surface-bright": "#353946",
+                    "surface": "#0f131f",
+                    "primary-container": "#ffc041",
+                    "tertiary-fixed-dim": "#00e639",
+                    "inverse-surface": "#dfe2f3",
+                    "surface-variant": "#313442",
+                    "surface-container-high": "#262a37",
+                    "surface-tint": "#ffba20",
+                    "primary-fixed": "#ffdea8",
+                    "on-secondary-fixed": "#001f24",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary": "#00363d",
+                    "secondary-fixed": "#9cf0ff",
+                    "outline-variant": "#4f4632",
+                    "surface-container-highest": "#313442",
+                    "on-primary-container": "#704f00",
+                    "secondary-fixed-dim": "#00daf3",
+                    "on-primary": "#412d00",
+                    "background": "#0f131f",
+                    "outline": "#9c8f78",
+                    "on-secondary-container": "#00616d",
+                    "on-primary-fixed": "#271900",
+                    "tertiary-fixed": "#72ff70",
+                    "surface-container-lowest": "#0a0e1a",
+                    "inverse-primary": "#7c5800"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Manrope"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(49, 52, 66, 0.4);
+            backdrop-filter: blur(20px);
+        }
+        .transmission-line {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(145, 255, 137, 0) 0%, rgba(145, 255, 137, 1) 50%, rgba(145, 255, 137, 0) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex items-center px-6 h-16 bg-[#0f131f] dark:bg-[#0f131f]">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#ffe3b7]" data-icon="language">language</span>
+<h1 class="text-xl font-bold text-[#ffe3b7] drop-shadow-[0_0_8px_rgba(255,227,183,0.4)] font-['Space_Grotesk'] uppercase tracking-widest">POLARIS MISSION</h1>
+</div>
+<div class="ml-auto flex items-center gap-4">
+<span class="material-symbols-outlined text-[#ffe3b7] cursor-pointer hover:text-[#91ff89] transition-colors" data-icon="settings">settings</span>
+</div>
+</header>
+<!-- NavigationDrawer (Hidden on mobile by default, but following structural layout for completeness) -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 z-40 bg-[#171b28] border-r border-[#4f4632]/15 hidden md:block">
+<div class="p-6">
+<span class="text-lg font-black text-[#ffe3b7] font-['Space_Grotesk']">SECTOR JUMP</span>
+</div>
+<nav class="mt-4 flex flex-col gap-2">
+<div class="flex items-center gap-3 py-3 text-[#91ff89] font-bold border-l-2 border-[#91ff89] pl-4 font-['Space_Grotesk'] text-sm uppercase tracking-tighter cursor-pointer">
+<span class="material-symbols-outlined" data-icon="radar">radar</span>
+                Orbital Sector
+            </div>
+<div class="flex items-center gap-3 py-3 text-[#bdf4ff]/40 pl-4 font-['Space_Grotesk'] text-sm uppercase tracking-tighter hover:bg-[#262a37] hover:text-[#ffe3b7] transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+                Energy Grid
+            </div>
+<div class="flex items-center gap-3 py-3 text-[#bdf4ff]/40 pl-4 font-['Space_Grotesk'] text-sm uppercase tracking-tighter hover:bg-[#262a37] hover:text-[#ffe3b7] transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="nights_stay">nights_stay</span>
+                Lunar Relay
+            </div>
+<div class="flex items-center gap-3 py-3 text-[#bdf4ff]/40 pl-4 font-['Space_Grotesk'] text-sm uppercase tracking-tighter hover:bg-[#262a37] hover:text-[#ffe3b7] transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+                Deep Space
+            </div>
+</nav>
+</aside>
+<main class="pt-16 md:pl-64 min-h-screen flex flex-col">
+<!-- Hero Visualization -->
+<section class="relative h-[530px] overflow-hidden bg-surface-container-lowest flex items-center justify-center">
+<div class="absolute inset-0 opacity-40">
+<img alt="Global energy network" class="w-full h-full object-cover grayscale brightness-50 contrast-125" data-alt="Digital holographic Earth floating in dark space with glowing golden poles and thin cyan laser lines connecting global energy nodes" src="../images/generated/06%20POLARIS%20System%20General%20View%20(v2).png"/>
+</div>
+<!-- Global Overlay Graphics -->
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<div class="w-full max-w-lg px-6 text-center z-10">
+<div class="inline-block border border-tertiary/30 px-3 py-1 mb-4 bg-surface-container/50 backdrop-blur-md">
+<span class="font-label text-[10px] tracking-[0.3em] text-tertiary uppercase">LIVE FEED // SIGNAL STABLE</span>
+</div>
+<h2 class="font-headline text-4xl md:text-6xl font-bold text-primary tracking-tight leading-none mb-2 drop-shadow-2xl">
+                        DISTRIBUȚIE GLOBALĂ
+                    </h2>
+<p class="font-headline text-xl md:text-2xl text-secondary/80 tracking-widest uppercase mb-8">
+                        GLOBAL DISTRIBUTION
+                    </p>
+<div class="flex justify-between items-end gap-4 mt-12 h-20">
+<div class="flex flex-col items-start">
+<span class="font-label text-[10px] text-outline">SYSTEM LATENCY</span>
+<span class="font-headline text-2xl text-tertiary">0.04ms</span>
+</div>
+<div class="flex-1 h-[2px] bg-outline-variant/20 relative mb-2 overflow-hidden">
+<div class="absolute inset-0 transmission-line"></div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label text-[10px] text-outline">UPTIME REGISTRY</span>
+<span class="font-headline text-2xl text-secondary">99.98%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- UI Corner Accents -->
+<div class="absolute top-8 left-8 w-12 h-12 border-t border-l border-outline/30"></div>
+<div class="absolute top-8 right-8 w-12 h-12 border-t border-r border-outline/30"></div>
+<div class="absolute bottom-8 left-8 w-12 h-12 border-b border-l border-outline/30"></div>
+<div class="absolute bottom-8 right-8 w-12 h-12 border-b border-r border-outline/30"></div>
+</section>
+<!-- Distribution Metrics -->
+<section class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4 -mt-12 z-20">
+<div class="glass-panel p-6 border-l-4 border-primary shadow-2xl">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label text-[10px] text-primary tracking-[0.2em] uppercase">NORTH SECTOR RELAY</span>
+<span class="material-symbols-outlined text-primary text-sm" data-icon="bolt">bolt</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline text-4xl font-bold text-on-surface">14.2</span>
+<span class="font-headline text-xl text-primary/70 font-light">TW</span>
+</div>
+<div class="mt-4 h-1 bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-primary w-[82%]"></div>
+</div>
+<p class="mt-4 font-label text-[11px] text-on-surface-variant leading-relaxed">
+                    Crio-generare stabilizată în perimetrul arctic. Fluxul de energie este optimizat pentru rețeaua boreală.
+                    <span class="block mt-1 opacity-50 italic">Cryo-generation stabilized in arctic perimeter.</span>
+</p>
+</div>
+<div class="glass-panel p-6 border-l-4 border-secondary shadow-2xl">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label text-[10px] text-secondary tracking-[0.2em] uppercase">SOUTH SECTOR RELAY</span>
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="waves">waves</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="font-headline text-4xl font-bold text-on-surface">12.8</span>
+<span class="font-headline text-xl text-secondary/70 font-light">TW</span>
+</div>
+<div class="mt-4 h-1 bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-secondary w-[74%]"></div>
+</div>
+<p class="mt-4 font-label text-[11px] text-on-surface-variant leading-relaxed">
+                    Captare termică activă în bazinul antarctic. Conversia de fază în parametrii nominali.
+                    <span class="block mt-1 opacity-50 italic">Active thermal capture in antarctic basin.</span>
+</p>
+</div>
+</section>
+<!-- Regional Status Grid -->
+<section class="p-6 space-y-6">
+<div class="flex items-center justify-between">
+<h3 class="font-headline text-sm font-bold tracking-[0.4em] text-outline uppercase">NODURI REGIONALE // REGIONAL NODES</h3>
+<div class="h-[1px] flex-1 bg-outline-variant/10 ml-6"></div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<!-- Europe -->
+<div class="bg-surface-container-low p-5 hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-2 h-2 bg-tertiary shadow-[0_0_8px_rgba(145,255,137,0.5)]"></div>
+<span class="font-headline text-xs font-bold tracking-widest text-on-surface">EUROPE CENTRAL</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between font-label text-[10px]">
+<span class="text-outline">EFFICIENCY</span>
+<span class="text-tertiary">98.4%</span>
+</div>
+<div class="flex justify-between font-label text-[10px]">
+<span class="text-outline">STATUS</span>
+<span class="text-on-surface">NOMINAL</span>
+</div>
+</div>
+</div>
+<!-- Americas -->
+<div class="bg-surface-container-low p-5 hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-2 h-2 bg-tertiary shadow-[0_0_8px_rgba(145,255,137,0.5)]"></div>
+<span class="font-headline text-xs font-bold tracking-widest text-on-surface">AMERICAS GRID</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between font-label text-[10px]">
+<span class="text-outline">EFFICIENCY</span>
+<span class="text-tertiary">96.1%</span>
+</div>
+<div class="flex justify-between font-label text-[10px]">
+<span class="text-outline">STATUS</span>
+<span class="text-on-surface">NOMINAL</span>
+</div>
+</div>
+</div>
+<!-- Asia -->
+<div class="bg-surface-container-low p-5 hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-2 h-2 bg-primary shadow-[0_0_8px_rgba(255,227,183,0.5)]"></div>
+<span class="font-headline text-xs font-bold tracking-widest text-on-surface">ASIA PACIFIC</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between font-label text-[10px]">
+<span class="text-outline">EFFICIENCY</span>
+<span class="text-primary">92.8%</span>
+</div>
+<div class="flex justify-between font-label text-[10px]">
+<span class="text-outline">STATUS</span>
+<span class="text-on-surface">LOAD BALANCING</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="p-6 mt-4">
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-headline font-bold uppercase tracking-[0.2em] py-5 transition-transform active:scale-[0.98] flex items-center justify-center gap-3">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+                ACCESEAZĂ RAPORTUL COMPLET // VIEW FULL REPORT
+            </button>
+</section>
+<!-- Footer -->
+<footer class="w-full py-8 px-6 flex flex-col items-center gap-4 mt-auto bg-[#0f131f] border-t border-[#4f4632]/10">
+<div class="flex gap-6">
+<a class="font-['Inter'] text-[10px] tracking-widest uppercase opacity-50 text-[#bdf4ff] hover:text-[#ffe3b7] transition-opacity duration-500" href="#">SYSTEM STATUS</a>
+<a class="font-['Inter'] text-[10px] tracking-widest uppercase opacity-50 text-[#bdf4ff] hover:text-[#ffe3b7] transition-opacity duration-500" href="#">ENCRYPTION KEYS</a>
+<a class="font-['Inter'] text-[10px] tracking-widest uppercase opacity-50 text-[#bdf4ff] hover:text-[#ffe3b7] transition-opacity duration-500" href="#">DE-ORBIT</a>
+</div>
+<p class="font-['Inter'] text-[10px] tracking-widest uppercase opacity-50 text-[#bdf4ff]">POLARIS COMMAND © 2024 TERMINAL-01</p>
+</footer>
+</main>
+</body></html>

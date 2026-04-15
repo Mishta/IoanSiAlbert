@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001f24",
+                        "on-secondary-container": "#00616d",
+                        "tertiary-fixed-dim": "#00e639",
+                        "surface-variant": "#313442",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#dfe2f3",
+                        "surface-container-high": "#262a37",
+                        "secondary-fixed": "#9cf0ff",
+                        "on-secondary-fixed-variant": "#004f58",
+                        "surface": "#0f131f",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#ffba20",
+                        "outline-variant": "#4f4632",
+                        "primary-container": "#ffc041",
+                        "error": "#ffb4ab",
+                        "on-surface": "#dfe2f3",
+                        "outline": "#9c8f78",
+                        "surface-bright": "#353946",
+                        "on-error": "#690005",
+                        "secondary": "#bdf4ff",
+                        "background": "#0f131f",
+                        "surface-dim": "#0f131f",
+                        "surface-container-highest": "#313442",
+                        "inverse-primary": "#7c5800",
+                        "primary": "#ffe3b7",
+                        "surface-container-lowest": "#0a0e1a",
+                        "secondary-fixed-dim": "#00daf3",
+                        "on-primary-fixed": "#271900",
+                        "on-primary": "#412d00",
+                        "surface-container-low": "#171b28",
+                        "primary-fixed": "#ffdea8",
+                        "surface-container": "#1b1f2c",
+                        "on-primary-container": "#704f00",
+                        "on-tertiary": "#003907",
+                        "on-background": "#dfe2f3",
+                        "on-tertiary-container": "#006313",
+                        "surface-tint": "#ffba20",
+                        "on-primary-fixed-variant": "#5e4200",
+                        "tertiary-fixed": "#72ff70",
+                        "on-tertiary-fixed-variant": "#00530e",
+                        "on-surface-variant": "#d4c5ab",
+                        "on-secondary": "#00363d",
+                        "tertiary": "#91ff89",
+                        "tertiary-container": "#00ea3b",
+                        "secondary-container": "#00e3fd",
+                        "inverse-on-surface": "#2c303d",
+                        "on-tertiary-fixed": "#002203"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(49, 52, 66, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(156, 143, 120, 0.15);
+        }
+        .solar-glow {
+            box-shadow: 0 0 40px rgba(255, 227, 183, 0.1);
+        }
+        .laser-line {
+            height: 1px;
+            background: linear-gradient(90deg, rgba(189, 244, 255, 0) 0%, #bdf4ff 50%, rgba(189, 244, 255, 0) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<nav class="bg-transparent backdrop-blur-md text-[#ffe3b7] font-['Space_Grotesk'] uppercase tracking-widest font-bold docked full-width top-0 z-50 flex justify-between items-center w-full px-8 py-6 fixed">
+<div class="text-2xl font-black tracking-tighter text-[#ffe3b7] drop-shadow-[0_0_8px_rgba(255,227,183,0.4)]">POLARIS</div>
+<div class="hidden md:flex space-x-12 items-center">
+<a class="text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300" href="#">VISION</a>
+<a class="text-[#ffba20] border-b border-[#bdf4ff]" href="#">TECH</a>
+<a class="text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300" href="#">MAP</a>
+</div>
+<div class="flex items-center space-x-4 text-xs">
+<span class="cursor-pointer text-[#ffe3b7] hover:text-[#ffba20] transition-colors">EN</span>
+<span class="text-outline-variant">/</span>
+<span class="cursor-pointer text-white/50 hover:text-[#ffba20] transition-colors">RO</span>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="bg-[#171b28]/80 backdrop-blur-xl text-[#bdf4ff] font-['Inter'] text-[10px] tracking-[0.2em] uppercase font-medium fixed left-0 top-1/2 -translate-y-1/2 h-auto w-16 flex flex-col space-y-8 py-10 z-40 shadow-[60px_0_60px_-10px_rgba(15,19,31,0.06)] hidden md:flex">
+<div class="flex flex-col items-center space-y-1 mb-4 opacity-50">
+<span class="text-[8px]">SEC</span>
+<span class="font-bold">04</span>
+</div>
+<div class="flex flex-col space-y-8">
+<div class="flex flex-col items-center group cursor-pointer text-white/40 hover:text-[#bdf4ff] transition-all hover:translate-x-2 duration-300">
+<span class="material-symbols-outlined mb-1">visibility</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer text-white/40 hover:text-[#bdf4ff] transition-all hover:translate-x-2 duration-300">
+<span class="material-symbols-outlined mb-1">architecture</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer text-[#91ff89] border-l-2 border-[#91ff89] transition-all translate-x-1">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">memory</span>
+</div>
+<div class="flex flex-col items-center group cursor-pointer text-white/40 hover:text-[#bdf4ff] transition-all hover:translate-x-2 duration-300">
+<span class="material-symbols-outlined mb-1">group</span>
+</div>
+</div>
+</aside>
+<main class="relative min-h-screen w-full overflow-hidden">
+<!-- Hero Section: The Solar Mirrors -->
+<section class="relative h-screen w-full flex items-center justify-center pt-20">
+<div class="absolute inset-0 z-0">
+<img alt="Close-up of high-tech solar mirror array" class="w-full h-full object-cover opacity-60 mix-blend-lighten" data-alt="extreme close-up of a massive hexagonal solar mirror array reflecting brilliant golden sunlight with cinematic lens flares and deep space shadows" src="../images/generated/01%20Mirrors%20(v2).png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent"></div>
+</div>
+<!-- Content Overlay -->
+<div class="relative z-10 container mx-auto px-6 grid grid-cols-12 gap-8 items-end pb-24 h-full">
+<div class="col-span-12 md:col-span-8 space-y-6">
+<div class="flex items-center space-x-4 mb-2">
+<span class="h-[1px] w-12 bg-secondary"></span>
+<span class="font-label text-xs tracking-[0.4em] text-secondary">CHAPTER 04 / COMPONENT AR-X1</span>
+</div>
+<div class="space-y-0">
+<h2 class="font-headline text-2xl md:text-3xl text-primary font-light tracking-widest opacity-80">CONSTRUCȚIA OGLINZILOR</h2>
+<h1 class="font-headline text-6xl md:text-9xl font-bold text-primary tracking-tighter leading-none drop-shadow-2xl">MIRROR<br/>CONSTRUCTION</h1>
+</div>
+</div>
+<!-- Floating Data Panels -->
+<div class="col-span-12 md:col-span-4 space-y-4">
+<div class="glass-panel p-6 border-l-2 border-secondary solar-glow">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label text-[10px] tracking-widest text-primary uppercase">Reflective Surface</h3>
+<span class="font-label text-[10px] text-secondary">01 // EFFICIENCY</span>
+</div>
+<div class="flex items-baseline space-x-2">
+<span class="text-4xl font-headline font-bold text-white">99.98</span>
+<span class="text-sm font-label text-secondary">%</span>
+</div>
+<p class="text-xs text-on-surface-variant mt-2 leading-relaxed">Silver-dielectric coating optimized for the 400nm-1200nm solar spectrum, achieving near-perfect photon redirection.</p>
+</div>
+<div class="glass-panel p-6 border-l-2 border-tertiary">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label text-[10px] tracking-widest text-primary uppercase">Material Matrix</h3>
+<span class="font-label text-[10px] text-tertiary">02 // DURABILITY</span>
+</div>
+<div class="text-xl font-headline font-medium text-white tracking-wide">ULTRA-LOW EXPANSION GLASS</div>
+<div class="mt-4 grid grid-cols-2 gap-4">
+<div class="border-t border-outline-variant pt-2">
+<span class="block font-label text-[8px] text-on-surface-variant mb-1">THERMAL COEFF.</span>
+<span class="text-xs font-bold">0.02 x 10^-6/K</span>
+</div>
+<div class="border-t border-outline-variant pt-2">
+<span class="block font-label text-[8px] text-on-surface-variant mb-1">STRESS TOLERANCE</span>
+<span class="text-xs font-bold">1200 MPa</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Technical Tags -->
+<div class="absolute top-1/3 left-1/4 z-20 hidden md:block">
+<div class="flex flex-col items-center group">
+<div class="w-4 h-4 border border-secondary flex items-center justify-center rotate-45 transition-transform group-hover:scale-125">
+<div class="w-1 h-1 bg-secondary"></div>
+</div>
+<div class="h-20 w-[1px] bg-gradient-to-b from-secondary to-transparent"></div>
+<div class="glass-panel px-3 py-1 mt-2">
+<span class="font-label text-[9px] text-secondary tracking-widest">SUBSTRATE_CORE_09</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-1/3 right-1/3 z-20 hidden md:block">
+<div class="flex flex-col items-center group">
+<div class="w-4 h-4 border border-tertiary flex items-center justify-center rotate-45 transition-transform group-hover:scale-125">
+<div class="w-1 h-1 bg-tertiary"></div>
+</div>
+<div class="h-12 w-[1px] bg-gradient-to-b from-tertiary to-transparent"></div>
+<div class="glass-panel px-3 py-1 mt-2">
+<span class="font-label text-[9px] text-tertiary tracking-widest">ACTUATOR_CALIBRATION_X</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Specification Grid -->
+<section class="bg-surface-container-low py-32 relative">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 space-y-8 md:space-y-0">
+<div class="max-w-2xl">
+<h3 class="font-headline text-3xl font-bold text-white mb-6">PHOTON REDIRECTION PRECISION</h3>
+<p class="text-on-surface-variant leading-relaxed text-lg">Each mirror unit is controlled by a sub-millimeter precision actuator system, ensuring that every solar beam is focused precisely on the thermal collectors even as the station orbits.</p>
+</div>
+<div class="text-right">
+<div class="font-label text-[10px] text-primary tracking-[0.3em] mb-2">SYSTEM STATUS</div>
+<div class="flex items-center justify-end space-x-3">
+<span class="text-tertiary font-bold tracking-widest">NOMINAL</span>
+<div class="w-2 h-2 bg-tertiary rounded-full animate-pulse shadow-[0_0_8px_#91ff89]"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+<!-- Specification Item 1 -->
+<div class="bg-surface p-12 border border-outline-variant/10 hover:bg-surface-container-high transition-colors group">
+<div class="text-secondary mb-8 font-label text-sm">SPEC_01</div>
+<h4 class="font-headline text-xl font-bold mb-4 group-hover:text-primary transition-colors">HEXAGONAL GEOMETRY</h4>
+<p class="text-on-surface-variant text-sm mb-8">Modular design allows for infinite scaling and seamless surface continuity, minimizing light leakage between panels.</p>
+<div class="h-1 w-0 bg-secondary group-hover:w-full transition-all duration-500"></div>
+</div>
+<!-- Specification Item 2 -->
+<div class="bg-surface p-12 border border-outline-variant/10 hover:bg-surface-container-high transition-colors group">
+<div class="text-secondary mb-8 font-label text-sm">SPEC_02</div>
+<h4 class="font-headline text-xl font-bold mb-4 group-hover:text-primary transition-colors">THERMAL SHIELDING</h4>
+<p class="text-on-surface-variant text-sm mb-8">Integrated cooling channels prevent mirror warping under direct solar radiation of up to 1400 W/m².</p>
+<div class="h-1 w-0 bg-secondary group-hover:w-full transition-all duration-500"></div>
+</div>
+<!-- Specification Item 3 -->
+<div class="bg-surface p-12 border border-outline-variant/10 hover:bg-surface-container-high transition-colors group">
+<div class="text-secondary mb-8 font-label text-sm">SPEC_03</div>
+<h4 class="font-headline text-xl font-bold mb-4 group-hover:text-primary transition-colors">ACTIVE ALIGNMENT</h4>
+<p class="text-on-surface-variant text-sm mb-8">Neural-link sensor arrays perform real-time surface deformation correction 240 times per second.</p>
+<div class="h-1 w-0 bg-secondary group-hover:w-full transition-all duration-500"></div>
+</div>
+</div>
+</div>
+<!-- Background Decoration -->
+<div class="absolute bottom-0 right-0 p-8 opacity-10 pointer-events-none">
+<span class="font-headline text-9xl font-black tracking-tighter">04</span>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 bg-surface flex flex-col items-center text-center">
+<div class="laser-line w-1/3 mb-12"></div>
+<h3 class="font-headline text-4xl font-bold text-primary mb-8 tracking-tight">EXPLORE THE COLLECTOR ARRAY</h3>
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary font-headline font-bold py-5 px-12 tracking-widest text-sm hover:scale-95 transition-transform duration-200">
+                NEXT: CHAPTER 05
+            </button>
+<div class="laser-line w-1/3 mt-12"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0f131f] w-full border-t border-[#4f4632]/15 flex flex-col items-center justify-center py-12 px-4 space-y-4 font-['Inter'] text-[10px] tracking-widest">
+<div class="text-xl font-bold text-[#ffe3b7] drop-shadow-[0_0_12px_rgba(255,227,183,0.3)] font-headline">POLARIS COMMAND</div>
+<div class="text-[#ffe3b7] font-medium">© 2024 POLARIS COMMAND. ALL SYSTEMS NOMINAL.</div>
+<div class="flex space-x-8 mt-4">
+<a class="text-white/50 hover:text-white transition-opacity uppercase" href="#">PRIVACY</a>
+<a class="text-white/50 hover:text-white transition-opacity uppercase" href="#">PROTOCOLS</a>
+</div>
+<div class="mt-8 opacity-20 flex space-x-2">
+<span class="w-1 h-1 bg-primary"></span>
+<span class="w-1 h-1 bg-primary"></span>
+<span class="w-1 h-1 bg-primary"></span>
+</div>
+</footer>
+</body></html>

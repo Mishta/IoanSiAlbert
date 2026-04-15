@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001f24",
+                        "on-secondary-container": "#00616d",
+                        "tertiary-fixed-dim": "#00e639",
+                        "surface-variant": "#313442",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#dfe2f3",
+                        "surface-container-high": "#262a37",
+                        "secondary-fixed": "#9cf0ff",
+                        "on-secondary-fixed-variant": "#004f58",
+                        "surface": "#0f131f",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#ffba20",
+                        "outline-variant": "#4f4632",
+                        "primary-container": "#ffc041",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "secondary": "#bdf4ff",
+                        "background": "#0f131f",
+                        "surface-dim": "#0f131f",
+                        "surface-container-highest": "#313442",
+                        "inverse-primary": "#7c5800",
+                        "primary": "#ffe3b7",
+                        "surface-container-lowest": "#0a0e1a",
+                        "secondary-fixed-dim": "#00daf3",
+                        "on-primary-fixed": "#271900",
+                        "on-primary": "#412d00",
+                        "surface-container-low": "#171b28",
+                        "primary-fixed": "#ffdea8",
+                        "surface-container": "#1b1f2c",
+                        "on-primary-container": "#704f00",
+                        "on-tertiary": "#003907",
+                        "on-background": "#dfe2f3",
+                        "on-tertiary-container": "#006313",
+                        "surface-tint": "#ffba20",
+                        "on-primary-fixed-variant": "#5e4200",
+                        "tertiary-fixed": "#72ff70",
+                        "on-tertiary-fixed-variant": "#00530e",
+                        "on-surface-variant": "#d4c5ab",
+                        "on-secondary": "#00363d",
+                        "tertiary": "#91ff89",
+                        "tertiary-container": "#00ea3b",
+                        "secondary-container": "#00e3fd",
+                        "inverse-on-surface": "#2c303d",
+                        "on-tertiary-fixed": "#002203"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0f131f;
+            color: #dfe2f3;
+            overflow-x: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(49, 52, 66, 0.4);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(79, 70, 50, 0.15);
+        }
+        .transmission-line {
+            background: linear-gradient(90deg, transparent, #bdf4ff, transparent);
+            height: 1px;
+            width: 100%;
+        }
+        .orbital-path {
+            border: 1px dashed rgba(189, 244, 255, 0.2);
+            border-radius: 100%;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
+<header class="fixed top-0 z-50 w-full px-8 py-6 flex justify-between items-center bg-transparent backdrop-blur-md">
+<div class="text-2xl font-black tracking-tighter text-[#ffe3b7] drop-shadow-[0_0_8px_rgba(255,227,183,0.4)] font-headline">POLARIS</div>
+<nav class="hidden md:flex space-x-12">
+<a class="font-headline uppercase tracking-widest font-bold text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300" href="#">VISION</a>
+<a class="font-headline uppercase tracking-widest font-bold text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300" href="#">TECH</a>
+<a class="font-headline uppercase tracking-widest font-bold text-[#ffba20] border-b border-[#bdf4ff] transition-colors duration-300" href="#">MAP</a>
+</nav>
+<div class="flex space-x-4 font-headline text-[#ffe3b7] font-bold">
+<button class="hover:text-white transition-opacity opacity-80 hover:opacity-100">EN</button>
+<span class="opacity-30">|</span>
+<button class="hover:text-white transition-opacity opacity-80 hover:opacity-100 text-[#ffba20]">RO</button>
+</div>
+</header>
+<!-- SideNavBar (Sector Indicators) -->
+<aside class="fixed left-0 top-1/2 -translate-y-1/2 h-auto w-16 flex flex-col space-y-8 py-10 bg-[#171b28]/80 backdrop-blur-xl z-40 shadow-[60px_0_60px_-10px_rgba(15,19,31,0.06)]">
+<div class="flex flex-col items-center space-y-1 mb-6">
+<span class="font-headline text-[8px] tracking-widest text-[#ffe3b7] font-bold">SECTOR</span>
+<span class="font-headline text-xs text-[#ffe3b7] font-black">06</span>
+</div>
+<div class="flex flex-col space-y-10">
+<div class="group cursor-pointer flex flex-col items-center">
+<span class="material-symbols-outlined text-white/40 group-hover:text-[#bdf4ff] transition-all">visibility</span>
+</div>
+<div class="group cursor-pointer flex flex-col items-center">
+<span class="material-symbols-outlined text-white/40 group-hover:text-[#bdf4ff] transition-all">architecture</span>
+</div>
+<div class="group cursor-pointer flex flex-col items-center border-l-2 border-[#91ff89] pl-1">
+<span class="material-symbols-outlined text-[#91ff89]">memory</span>
+</div>
+<div class="group cursor-pointer flex flex-col items-center">
+<span class="material-symbols-outlined text-white/40 group-hover:text-[#bdf4ff] transition-all">group</span>
+</div>
+</div>
+</aside>
+<main class="min-h-screen">
+<!-- Hero Section: Celestial Scale -->
+<section class="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="Cinematic wide shot of Earth from space at night, showing atmospheric glow and bright city lights, with cosmic star fields in the background" src="../images/generated/06%20POLARIS%20System%20General%20View%20(v2).png"/>
+<div class="absolute inset-0 bg-gradient-to-b from-surface via-transparent to-surface"></div>
+</div>
+<!-- Transmission Lines (L4/L5 Nodes) -->
+<div class="absolute inset-0 z-10 pointer-events-none">
+<!-- L4 Relay Node -->
+<div class="absolute top-1/4 left-1/4 flex flex-col items-center">
+<div class="w-4 h-4 bg-secondary shadow-[0_0_20px_#bdf4ff] mb-2"></div>
+<div class="font-label text-[10px] tracking-[0.3em] text-secondary uppercase">LAGRANGE POINT L4</div>
+<div class="w-px h-64 bg-gradient-to-b from-secondary to-transparent"></div>
+</div>
+<!-- L5 Relay Node -->
+<div class="absolute top-1/4 right-1/4 flex flex-col items-center">
+<div class="w-4 h-4 bg-tertiary shadow-[0_0_20px_#91ff89] mb-2"></div>
+<div class="font-label text-[10px] tracking-[0.3em] text-tertiary uppercase">LAGRANGE POINT L5</div>
+<div class="w-px h-64 bg-gradient-to-b from-tertiary to-transparent"></div>
+</div>
+<!-- Polar Delivery Beams -->
+<div class="absolute bottom-1/3 left-1/2 -translate-x-1/2 flex items-center justify-center w-full">
+<div class="w-[800px] h-[800px] orbital-path absolute opacity-20"></div>
+<div class="w-[1200px] h-[1200px] orbital-path absolute opacity-10"></div>
+</div>
+</div>
+<div class="relative z-20 text-center px-4">
+<div class="mb-4 inline-block px-4 py-1 bg-surface-container-high border border-outline-variant/20">
+<span class="font-label text-[10px] tracking-[0.4em] text-secondary uppercase">Mission Protocol: Chapter 6</span>
+</div>
+<h1 class="font-headline text-7xl md:text-9xl font-black tracking-tighter text-primary drop-shadow-[0_0_30px_rgba(255,227,183,0.3)] mb-2">
+                    LIVRARE POLARĂ
+                </h1>
+<h2 class="font-headline text-2xl md:text-4xl font-bold tracking-widest text-secondary-fixed-dim uppercase mb-12">
+                    POLAR DELIVERY
+                </h2>
+<div class="max-w-2xl mx-auto flex flex-col md:flex-row items-center justify-center gap-8 border-t border-b border-outline-variant/15 py-12">
+<div class="text-right flex-1">
+<p class="font-body text-lg text-on-surface font-light leading-relaxed">
+                            From reflected starlight to a terrestrial energy grid.
+                        </p>
+</div>
+<div class="w-px h-16 bg-outline-variant/30 hidden md:block"></div>
+<div class="text-left flex-1">
+<p class="font-body text-lg text-on-surface font-light leading-relaxed">
+                            De la lumina stelară reflectată la o rețea energetică terestră.
+                        </p>
+</div>
+</div>
+</div>
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
+<span class="material-symbols-outlined text-primary text-4xl">keyboard_double_arrow_down</span>
+</div>
+</section>
+<!-- Bento Grid: Strategic Relay Infrastructure -->
+<section class="py-32 px-8 md:px-24 bg-surface-container-low">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 max-w-7xl mx-auto">
+<!-- L4/L5 Node Detail -->
+<div class="md:col-span-8 glass-panel p-10 flex flex-col justify-between">
+<div>
+<div class="flex items-center space-x-4 mb-8">
+<span class="material-symbols-outlined text-secondary text-4xl">satellite_alt</span>
+<h3 class="font-headline text-3xl font-bold uppercase tracking-tight">Relay Synchronization</h3>
+</div>
+<p class="font-body text-xl text-on-surface-variant leading-relaxed mb-8 max-w-xl">
+                            The L4 and L5 Lagrange points act as gravitational anchors, hosting our primary relay nodes. These strategic transmission points ensure constant visibility between the orbital collectors and terrestrial polar stations.
+                        </p>
+</div>
+<div class="grid grid-cols-2 gap-8 border-t border-outline-variant/20 pt-8">
+<div>
+<span class="font-label text-[10px] uppercase tracking-widest text-white/50 block mb-2">SIGNAL LATENCY</span>
+<span class="font-headline text-2xl font-bold text-secondary">0.0034 MS</span>
+</div>
+<div>
+<span class="font-label text-[10px] uppercase tracking-widest text-white/50 block mb-2">RELAY STABILITY</span>
+<span class="font-headline text-2xl font-bold text-tertiary">99.9998%</span>
+</div>
+</div>
+</div>
+<!-- North/South Beam Routing -->
+<div class="md:col-span-4 bg-surface-container-high p-8 flex flex-col">
+<span class="font-label text-[10px] tracking-widest text-primary font-bold mb-4 uppercase">Terrestrial Linkage</span>
+<h4 class="font-headline text-xl font-bold mb-6">POLAR RECEPTION</h4>
+<div class="space-y-6 flex-grow">
+<div class="flex justify-between items-end border-b border-outline-variant/30 pb-4">
+<div>
+<div class="font-label text-[10px] text-white/40">NORTH POLE</div>
+<div class="font-body font-bold text-secondary">AURORA-1 STATION</div>
+</div>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">arrow_downward</span>
+</div>
+<div class="flex justify-between items-end border-b border-outline-variant/30 pb-4">
+<div>
+<div class="font-label text-[10px] text-white/40">SOUTH POLE</div>
+<div class="font-body font-bold text-tertiary">ZENITH-1 STATION</div>
+</div>
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">arrow_downward</span>
+</div>
+</div>
+<div class="mt-8">
+<img class="w-full grayscale opacity-50 mix-blend-screen" data-alt="Technical blueprint style illustration of a polar energy receiver station with laser beams descending from the sky" src="../images/generated/04%20Polar%20Station%20(v2).png"/>
+</div>
+</div>
+<!-- Floating Stations Concept -->
+<div class="md:col-span-4 glass-panel p-8">
+<span class="material-symbols-outlined text-primary mb-4">dock</span>
+<h4 class="font-headline text-xl font-bold mb-4 uppercase tracking-tighter">Terrestrial Floating Stations</h4>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                        To bypass atmospheric interference, receiver stations are positioned on high-altitude floating platforms, tethered to the terrestrial grid via super-conductive fibers.
+                    </p>
+</div>
+<!-- Beam Precision Specs -->
+<div class="md:col-span-8 bg-surface-container-highest p-1 flex flex-col justify-center overflow-hidden">
+<div class="flex overflow-hidden">
+<div class="flex-none p-8 w-1/3 border-r border-outline-variant/20">
+<span class="font-label text-[10px] text-primary/60 block mb-2 tracking-widest">BEAM DIAMETER</span>
+<span class="font-headline text-3xl font-black">2.4m</span>
+</div>
+<div class="flex-none p-8 w-1/3 border-r border-outline-variant/20">
+<span class="font-label text-[10px] text-secondary/60 block mb-2 tracking-widest">POWER DENSITY</span>
+<span class="font-headline text-3xl font-black">8.2 GW/m²</span>
+</div>
+<div class="flex-none p-8 w-1/3">
+<span class="font-label text-[10px] text-tertiary/60 block mb-2 tracking-widest">GRID EFFICIENCY</span>
+<span class="font-headline text-3xl font-black">94%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Detail Section -->
+<section class="py-24 px-8 max-w-5xl mx-auto">
+<div class="flex flex-col md:flex-row items-start gap-12">
+<div class="flex-1">
+<h5 class="font-headline text-4xl font-black text-primary mb-8 tracking-tighter">LAGRANGE DYNAMICS</h5>
+<div class="space-y-6">
+<div class="flex items-start space-x-4">
+<div class="w-8 h-px bg-secondary mt-3"></div>
+<p class="font-body text-on-surface-variant">L4 and L5 offer unprecedented stability, allowing for permanent stationing of the <b>Polis Relay Array</b> without excessive fuel consumption for station-keeping.</p>
+</div>
+<div class="flex items-start space-x-4">
+<div class="w-8 h-px bg-tertiary mt-3"></div>
+<p class="font-body text-on-surface-variant">Energy beams are modulated at petahertz frequencies to penetrate common weather patterns at the poles, ensuring <b>uninterrupted power flow</b> regardless of terrestrial conditions.</p>
+</div>
+</div>
+</div>
+<div class="flex-1 relative">
+<div class="p-8 border border-outline-variant/20 bg-surface-container-low">
+<div class="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-secondary"></div>
+<div class="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-tertiary"></div>
+<div class="font-label text-[8px] tracking-[0.5em] text-primary/40 mb-4">SYSTEM SCHEMATIC // AXONOMETRIC</div>
+<img class="w-full h-auto opacity-80 contrast-125 saturate-0" data-alt="Abstract 3D scientific visualization of interconnected energy nodes in space forming a geometric web over a planet" src="../images/generated/03%20Satelit%20Lagrange%20(close-up)%20-%20L4-L5%20%20(v2).png"/>
+<div class="mt-4 flex justify-between">
+<div class="w-2 h-2 bg-secondary"></div>
+<div class="w-2 h-2 bg-tertiary"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-[#4f4632]/15 bg-[#0f131f] flex flex-col items-center justify-center py-12 px-4 space-y-4">
+<div class="text-xl font-bold text-[#ffe3b7] drop-shadow-[0_0_12px_rgba(255,227,183,0.3)] font-headline">POLARIS COMMAND</div>
+<div class="flex space-x-8">
+<a class="font-label text-[10px] tracking-widest text-white/50 hover:text-white transition-opacity uppercase" href="#">PRIVACY</a>
+<a class="font-label text-[10px] tracking-widest text-white/50 hover:text-white transition-opacity uppercase" href="#">PROTOCOLS</a>
+</div>
+<div class="font-label text-[10px] tracking-widest text-[#ffe3b7] opacity-80">© 2024 POLARIS COMMAND. ALL SYSTEMS NOMINAL.</div>
+</footer>
+</body></html>

@@ -1,0 +1,69 @@
+:root {
+  /* Color Palette - Celestial Command */
+  --color-primary: #ffe3b7;
+  --color-primary-container: #ffc041;
+  --color-on-primary: #412d00;
+  
+  --color-secondary: #bdf4ff;
+  --color-secondary-container: #00e3fd;
+  --color-on-secondary: #00363d;
+  
+  --color-tertiary: #91ff89;
+  --color-tertiary-container: #00ea3b;
+  --color-on-tertiary: #003907;
+  
+  --color-background: #0f131f;
+  --color-surface: #0f131f;
+  --color-surface-bright: #353946;
+  --color-surface-container-low: #171b28;
+  --color-surface-container: #1b1f2c;
+  --color-surface-container-high: #262a37;
+  --color-surface-container-highest: #313442;
+  --color-on-surface: #dfe2f3;
+  --color-outline: #9c8f78;
+  --color-outline-variant: #4f4632;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-label: 'Inter', sans-serif;
+
+  /* Spacing & Borders */
+  --radius-none: 0px;
+  --glass-blur: 20px;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  margin: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.glass-panel {
+  background: rgba(49, 52, 66, 0.4);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid rgba(156, 143, 120, 0.15);
+}
+
+.solar-glow {
+  box-shadow: 0 0 30px rgba(255, 227, 183, 0.2);
+}
+
+.laser-line-cyan {
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-secondary), transparent);
+}
+
+.laser-line-green {
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-tertiary), transparent);
+}

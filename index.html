@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLARIS | Celestial Command</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Manrope:wght@400;600&family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="globals.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 4rem 2rem;
+            min-height: 100vh;
+            background: radial-gradient(circle at top right, #1b1f2c, #0f131f);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin: 0;
+            background: linear-gradient(to bottom, #ffe3b7, #ffc041);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        header p {
+            color: var(--color-on-surface);
+            opacity: 0.6;
+            letter-spacing: 4px;
+            font-family: var(--font-label);
+            font-size: 0.8rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            position: relative;
+            padding: 2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(49, 52, 66, 0.6);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .card:hover .laser-line-green, 
+        .card:hover .laser-line-cyan {
+            width: 100%;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.7;
+        }
+
+        .laser-line {
+            width: 40px;
+            transition: width 0.4s ease;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            font-family: var(--font-label);
+            font-size: 0.7rem;
+            opacity: 0.4;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .system-diagram-preview {
+            grid-column: 1 / -1;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed var(--color-outline-variant);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: var(--color-surface-container-high);
+            border: 1px solid var(--color-outline-variant);
+            font-size: 0.6rem;
+            font-family: var(--font-label);
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p>ORBITAL ENERGY VISION</p>
+        <h1>POLARIS</h1>
+    </header>
+
+    <div class="grid">
+        <!-- System Diagram -->
+        <a href="docs/00-system-diagram.html" class="card glass-panel system-diagram-preview">
+            <span class="tag">00 // SYSTEM CORE</span>
+            <h2>Core Infrastructure Diagram</h2>
+            <p>The technical blueprint of the Dyson Ring, Lagrange nodes, and Earth-side Polar Stations.</p>
+            <div class="laser-line-green laser-line"></div>
+        </a>
+
+        <!-- Hero Screen -->
+        <a href="docs/Hero_Mission_Entry.html" class="card glass-panel">
+            <span class="tag">01 // MISSION CONTROL</span>
+            <h2>Hero: Mission Entry</h2>
+            <p>The strategic overview of the planetary-scale energy distribution infrastructure.</p>
+            <div class="laser-line-cyan laser-line"></div>
+            <div class="badge">DESKTOP</div>
+        </a>
+
+        <!-- Mirrors Screen -->
+        <a href="docs/Mirrors_Solar_Concentration.html" class="card glass-panel">
+            <span class="tag">02 // ENERGY HARVEST</span>
+            <h2>The Mirrors</h2>
+            <p>Solar concentration protocols and mirror fleet management telemetry.</p>
+            <div class="laser-line-green laser-line"></div>
+            <div class="badge">DESKTOP</div>
+        </a>
+
+        <!-- Relay Screen -->
+        <a href="docs/Relay_Polar_Delivery.html" class="card glass-panel">
+            <span class="tag">03 // DISTRIBUTION</span>
+            <h2>Relay & Polar Delivery</h2>
+            <p>Managing the orbital relay network and the blue laser transmission to polar stations.</p>
+            <div class="laser-line-cyan laser-line"></div>
+            <div class="badge">DESKTOP</div>
+        </a>
+
+        <!-- Vision Screen -->
+        <a href="docs/Vision_Planetary_Scale.html" class="card glass-panel">
+            <span class="tag">04 // OUTREACH</span>
+            <h2>Planetary Scale Vision</h2>
+            <p>Communicating the impact and safety protocols to the global population.</p>
+            <div class="laser-line-green laser-line"></div>
+            <div class="badge">DESKTOP</div>
+        </a>
+
+        <!-- Scientific Screen -->
+        <a href="docs/Scientific_Credibility.html" class="card glass-panel">
+            <span class="tag">05 // DATA VALIDATION</span>
+            <h2>Scientific Credibility</h2>
+            <p>Formal validation of the orbital energy transfer models and atmospheric constraints.</p>
+            <div class="laser-line-green laser-line"></div>
+            <div class="badge">DESKTOP</div>
+        </a>
+
+        <!-- Mobile Screen -->
+        <a href="docs/Mobile_Distribution.html" class="card glass-panel">
+            <span class="tag">06 // GLOBAL ACCESS</span>
+            <h2>Mobile Distribution</h2>
+            <p>Consumer-facing energy management interface for planetary wide access.</p>
+            <div class="laser-line-cyan laser-line"></div>
+            <div class="badge">MOBILE</div>
+        </a>
+
+        <!-- Team Screen -->
+        <a href="docs/Team_Closing.html" class="card glass-panel">
+            <span class="tag">07 // PERSONNEL</span>
+            <h2>Team & Visionaries</h2>
+            <p>The architects behind the Polaris Initiative and our roadmap for the next decade.</p>
+            <div class="laser-line-green laser-line"></div>
+            <div class="badge">DESKTOP</div>
+        </a>
+    </div>
+
+    <footer style="margin-top: 4rem; opacity: 0.3; font-family: var(--font-label); font-size: 0.7rem;">
+        POLARIS BEARS // ONCS 2026 // CLAUDE CODE INTEGRATION
+    </footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001f24",
+                        "on-secondary-container": "#00616d",
+                        "tertiary-fixed-dim": "#00e639",
+                        "surface-variant": "#313442",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#dfe2f3",
+                        "surface-container-high": "#262a37",
+                        "secondary-fixed": "#9cf0ff",
+                        "on-secondary-fixed-variant": "#004f58",
+                        "surface": "#0f131f",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#ffba20",
+                        "outline-variant": "#4f4632",
+                        "primary-container": "#ffc041",
+                        "error": "#ffb4ab",
+                        "on-surface": "#dfe2f3",
+                        "outline": "#9c8f78",
+                        "surface-bright": "#353946",
+                        "on-error": "#690005",
+                        "secondary": "#bdf4ff",
+                        "background": "#0f131f",
+                        "surface-dim": "#0f131f",
+                        "surface-container-highest": "#313442",
+                        "inverse-primary": "#7c5800",
+                        "primary": "#ffe3b7",
+                        "surface-container-lowest": "#0a0e1a",
+                        "secondary-fixed-dim": "#00daf3",
+                        "on-primary-fixed": "#271900",
+                        "on-primary": "#412d00",
+                        "surface-container-low": "#171b28",
+                        "primary-fixed": "#ffdea8",
+                        "surface-container": "#1b1f2c",
+                        "on-primary-container": "#704f00",
+                        "on-tertiary": "#003907",
+                        "on-background": "#dfe2f3",
+                        "on-tertiary-container": "#006313",
+                        "surface-tint": "#ffba20",
+                        "on-primary-fixed-variant": "#5e4200",
+                        "tertiary-fixed": "#72ff70",
+                        "on-tertiary-fixed-variant": "#00530e",
+                        "on-surface-variant": "#d4c5ab",
+                        "on-secondary": "#00363d",
+                        "tertiary": "#91ff89",
+                        "tertiary-container": "#00ea3b",
+                        "secondary-container": "#00e3fd",
+                        "inverse-on-surface": "#2c303d",
+                        "on-tertiary-fixed": "#002203"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #0f131f; color: #dfe2f3; }
+        .glass-panel { background: rgba(49, 52, 66, 0.4); backdrop-filter: blur(20px); border: 1px solid rgba(79, 70, 50, 0.15); }
+        .laser-glow { box-shadow: 0 0 20px rgba(189, 244, 255, 0.2); }
+        .solar-glow { text-shadow: 0 0 15px rgba(255, 227, 183, 0.5); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<nav class="bg-transparent backdrop-blur-md text-[#ffe3b7] font-['Space_Grotesk'] uppercase tracking-widest font-bold docked full-width top-0 z-50 flex justify-between items-center w-full px-8 py-6 fixed">
+<div class="text-2xl font-black tracking-tighter text-[#ffe3b7] drop-shadow-[0_0_8px_rgba(255,227,183,0.4)]">POLARIS</div>
+<div class="hidden md:flex space-x-12">
+<a class="text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300" href="#">VISION</a>
+<a class="text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300" href="#">TECH</a>
+<a class="text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300" href="#">MAP</a>
+</div>
+<div class="flex space-x-4">
+<span class="text-[#ffba20] border-b border-[#bdf4ff] cursor-pointer">EN</span>
+<span class="text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300 cursor-pointer">RO</span>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="bg-[#171b28]/80 backdrop-blur-xl text-[#bdf4ff] font-['Inter'] text-[10px] tracking-[0.2em] uppercase font-medium fixed left-0 top-1/2 -translate-y-1/2 h-auto w-16 shadow-[60px_0_60px_-10px_rgba(15,19,31,0.06)] flex flex-col space-y-8 py-10 z-40 hidden md:flex">
+<div class="px-4 text-center">
+<span class="material-symbols-outlined text-[#ffe3b7] font-bold">visibility</span>
+</div>
+<div class="flex flex-col space-y-8">
+<a class="text-white/40 pl-4 hover:text-[#bdf4ff] transition-all hover:translate-x-2 duration-300" href="#"><span class="material-symbols-outlined">architecture</span></a>
+<a class="text-white/40 pl-4 hover:text-[#bdf4ff] transition-all hover:translate-x-2 duration-300" href="#"><span class="material-symbols-outlined">memory</span></a>
+<a class="text-[#91ff89] border-l-2 border-[#91ff89] pl-4 hover:translate-x-2 duration-300" href="#"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span></a>
+</div>
+</aside>
+<main class="min-h-screen pt-24 overflow-hidden relative">
+<!-- Celestial Background Glows -->
+<div class="absolute top-1/4 -right-1/4 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]"></div>
+<!-- Section: Team Identity -->
+<section class="relative z-10 px-8 md:px-24 py-20 flex flex-col items-center justify-center min-h-[819px]">
+<div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-5 space-y-6">
+<div class="flex items-center space-x-3 text-secondary tracking-[0.3em] font-label text-[10px]">
+<span class="w-8 h-px bg-secondary"></span>
+<span>SECTOR 04: CREW</span>
+</div>
+<h1 class="text-6xl md:text-8xl font-headline font-black tracking-tighter text-primary solar-glow leading-[0.9]">
+                        POLARIS<br/>BEARS
+                    </h1>
+<p class="text-on-surface-variant font-body text-lg max-w-md border-l border-outline-variant/30 pl-6 py-2">
+                        A collective of celestial navigators and system architects dedicated to pushing the boundaries of the orbital frontier. Guided by precision, fueled by the stars.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<div class="bg-surface-container-low px-4 py-2 border-l border-tertiary">
+<span class="block text-[10px] text-tertiary font-label uppercase">Mission Integrity</span>
+<span class="text-on-surface font-headline font-bold">100% NOMINAL</span>
+</div>
+<div class="bg-surface-container-low px-4 py-2 border-l border-secondary">
+<span class="block text-[10px] text-secondary font-label uppercase">Deployment</span>
+<span class="text-on-surface font-headline font-bold">LEO ORBIT</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-7 flex justify-center relative">
+<!-- Central Glowing Beacon -->
+<div class="relative w-full aspect-square max-w-md flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/10 rounded-full blur-[100px] animate-pulse"></div>
+<!-- Logo Placeholder with Constellation Styling -->
+<div class="z-20 relative transform hover:scale-105 transition-transform duration-700">
+<img alt="POLARIS BEARS Logo" class="w-full h-full object-contain mix-blend-screen opacity-90 drop-shadow-[0_0_30px_rgba(255,227,183,0.6)]" data-alt="stylized constellation of a bear glowing with brilliant gold and white stars against a deep navy cosmic nebula background" src="../assets/logo-dark.jpeg"/>
+<!-- Precision Markings -->
+<div class="absolute -top-4 -left-4 w-8 h-8 border-t border-l border-primary/40"></div>
+<div class="absolute -bottom-4 -right-4 w-8 h-8 border-b border-r border-primary/40"></div>
+</div>
+<!-- Decorative Orbit Rings -->
+<div class="absolute w-[110%] h-[110%] border border-secondary/10 rounded-full"></div>
+<div class="absolute w-[130%] h-[130%] border border-primary/5 rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="relative z-10 px-8 py-40 flex flex-col items-center justify-center bg-surface-container-lowest/50">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-transparent via-secondary to-transparent"></div>
+<div class="max-w-4xl w-full text-center space-y-12">
+<h2 class="text-4xl md:text-6xl font-headline font-bold text-on-surface tracking-tight leading-tight">
+                    THE VISION IS READY FOR <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-container to-primary">TOTAL SYNCHRONIZATION</span>
+</h2>
+<div class="flex flex-col md:flex-row items-center justify-center gap-8">
+<a class="group relative bg-gradient-to-br from-primary-container to-primary text-on-primary font-headline font-black px-12 py-5 text-lg transition-all active:scale-95" href="#">
+                        EXPLORE THE VISION
+                        <span class="absolute -inset-1 border border-primary/30 group-hover:scale-105 transition-transform"></span>
+</a>
+<a class="group flex items-center space-x-3 text-secondary font-headline tracking-widest hover:text-white transition-colors" href="#">
+<span class="text-sm">EXPLOREAZĂ VIZIUNEA</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Closing Atmosphere / Credits Bento -->
+<section class="relative z-10 px-8 pb-32 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-1 overflow-hidden bg-outline-variant/10">
+<div class="bg-surface p-12 space-y-4 border-r border-outline-variant/10">
+<span class="text-secondary font-label text-[10px] tracking-[0.4em]">COORDINATES</span>
+<p class="text-2xl font-headline font-medium text-on-surface">45.9432° N<br/>24.9668° E</p>
+</div>
+<div class="bg-surface p-12 space-y-4 border-r border-outline-variant/10">
+<span class="text-tertiary font-label text-[10px] tracking-[0.4em]">FREQUENCY</span>
+<p class="text-2xl font-headline font-medium text-on-surface">142.20 MHz<br/>DEEP SPACE</p>
+</div>
+<div class="bg-surface p-12 space-y-4">
+<span class="text-primary font-label text-[10px] tracking-[0.4em]">COMMAND</span>
+<p class="text-2xl font-headline font-medium text-on-surface">ALL SYSTEMS<br/>NOMINAL</p>
+</div>
+</div>
+<!-- Final Constellation Mark -->
+<div class="mt-32 flex flex-col items-center opacity-40 hover:opacity-100 transition-opacity duration-1000">
+<div class="w-16 h-16 relative">
+<span class="material-symbols-outlined text-primary text-4xl absolute inset-0 flex items-center justify-center" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<div class="absolute inset-0 bg-primary/20 blur-xl"></div>
+</div>
+<span class="mt-4 text-[10px] font-label tracking-[0.5em] text-on-surface-variant">POLARIS COMMAND — END OF TRANSMISSION</span>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0f131f] text-[#ffe3b7] font-['Inter'] text-[10px] tracking-widest w-full border-t border-[#4f4632]/15 flex flex-col items-center justify-center w-full py-12 px-4 space-y-4 relative z-50">
+<div class="text-xl font-bold text-[#ffe3b7] drop-shadow-[0_0_12px_rgba(255,227,183,0.3)]">POLARIS</div>
+<div class="flex space-x-8">
+<a class="text-white/50 hover:text-white transition-opacity uppercase" href="#">PRIVACY</a>
+<a class="text-white/50 hover:text-white transition-opacity uppercase" href="#">PROTOCOLS</a>
+</div>
+<div class="opacity-80 hover:opacity-100 text-center">
+            © 2024 POLARIS COMMAND. ALL SYSTEMS NOMINAL.
+        </div>
+</footer>
+</body></html>

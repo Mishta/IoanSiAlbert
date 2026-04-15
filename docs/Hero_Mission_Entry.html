@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>POLARIS | Celestial Command</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed": "#001f24",
+                      "on-secondary-container": "#00616d",
+                      "tertiary-fixed-dim": "#00e639",
+                      "surface-variant": "#313442",
+                      "on-error-container": "#ffdad6",
+                      "inverse-surface": "#dfe2f3",
+                      "surface-container-high": "#262a37",
+                      "secondary-fixed": "#9cf0ff",
+                      "on-secondary-fixed-variant": "#004f58",
+                      "surface": "#0f131f",
+                      "error-container": "#93000a",
+                      "primary-fixed-dim": "#ffba20",
+                      "outline-variant": "#4f4632",
+                      "primary-container": "#ffc041",
+                      "error": "#ffb4ab",
+                      "on-surface": "#dfe2f3",
+                      "outline": "#9c8f78",
+                      "surface-bright": "#353946",
+                      "on-error": "#690005",
+                      "secondary": "#bdf4ff",
+                      "background": "#0f131f",
+                      "surface-dim": "#0f131f",
+                      "surface-container-highest": "#313442",
+                      "inverse-primary": "#7c5800",
+                      "primary": "#ffe3b7",
+                      "surface-container-lowest": "#0a0e1a",
+                      "secondary-fixed-dim": "#00daf3",
+                      "on-primary-fixed": "#271900",
+                      "on-primary": "#412d00",
+                      "surface-container-low": "#171b28",
+                      "primary-fixed": "#ffdea8",
+                      "surface-container": "#1b1f2c",
+                      "on-primary-container": "#704f00",
+                      "on-tertiary": "#003907",
+                      "on-background": "#dfe2f3",
+                      "on-tertiary-container": "#006313",
+                      "surface-tint": "#ffba20",
+                      "on-primary-fixed-variant": "#5e4200",
+                      "tertiary-fixed": "#72ff70",
+                      "on-tertiary-fixed-variant": "#00530e",
+                      "on-surface-variant": "#d4c5ab",
+                      "on-secondary": "#00363d",
+                      "tertiary": "#91ff89",
+                      "tertiary-container": "#00ea3b",
+                      "secondary-container": "#00e3fd",
+                      "inverse-on-surface": "#2c303d",
+                      "on-tertiary-fixed": "#002203"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.0rem",
+                      "lg": "0.0rem",
+                      "xl": "0.0rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Space Grotesk"],
+                      "body": ["Manrope"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0f131f;
+            color: #dfe2f3;
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+        }
+        .celestial-glow {
+            background: radial-gradient(circle at 50% 100%, #412d00 0%, #0f131f 70%);
+        }
+        .glass-panel {
+            background: rgba(49, 52, 66, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .transmission-line {
+            background: linear-gradient(90deg, transparent 0%, #bdf4ff 50%, transparent 100%);
+            height: 1px;
+            opacity: 0.3;
+        }
+        .star-field {
+            background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px);
+            background-size: 550px 550px;
+        }
+    </style>
+</head>
+<body class="bg-background">
+<!-- TopAppBar -->
+<header class="bg-transparent backdrop-blur-md text-[#ffe3b7] font-['Space_Grotesk'] uppercase tracking-widest font-bold docked full-width top-0 z-50 fixed flex justify-between items-center w-full px-8 py-6">
+<div class="text-2xl font-black tracking-tighter text-[#ffe3b7] drop-shadow-[0_0_8px_rgba(255,227,183,0.4)]">POLARIS</div>
+<nav class="hidden md:flex space-x-12">
+<a class="text-[#ffba20] border-b border-[#bdf4ff] hover:text-[#ffba20] transition-colors duration-300 scale-95 duration-200" href="#">VISION</a>
+<a class="text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300 scale-95 duration-200" href="#">TECH</a>
+<a class="text-[#ffe3b7]/70 hover:text-[#ffba20] transition-colors duration-300 scale-95 duration-200" href="#">MAP</a>
+</nav>
+<div class="flex space-x-4">
+<button class="text-[#ffe3b7] hover:text-[#ffba20] transition-colors">EN</button>
+<span class="text-[#4f4632]">|</span>
+<button class="text-[#ffe3b7]/50 hover:text-[#ffba20] transition-colors">RO</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="hidden lg:flex bg-[#171b28]/80 backdrop-blur-xl text-[#bdf4ff] font-['Inter'] text-[10px] tracking-[0.2em] uppercase font-medium fixed left-0 top-1/2 -translate-y-1/2 h-auto w-16 shadow-[60px_0_60px_-10px_rgba(15,19,31,0.06)] z-40 flex-col space-y-8 py-10">
+<div class="flex flex-col items-center space-y-12">
+<div class="flex flex-col items-center space-y-2 group cursor-pointer text-[#91ff89] border-l-2 border-[#91ff89] pl-4 hover:translate-x-2 duration-300">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+<div class="flex flex-col items-center space-y-2 group cursor-pointer text-white/40 pl-4 hover:text-[#bdf4ff] hover:translate-x-2 duration-300">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+</div>
+<div class="flex flex-col items-center space-y-2 group cursor-pointer text-white/40 pl-4 hover:text-[#bdf4ff] hover:translate-x-2 duration-300">
+<span class="material-symbols-outlined" data-icon="memory">memory</span>
+</div>
+<div class="flex flex-col items-center space-y-2 group cursor-pointer text-white/40 pl-4 hover:text-[#bdf4ff] hover:translate-x-2 duration-300">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+</div>
+</div>
+</aside>
+<main class="relative">
+<!-- Hero Section: Orbital Vision -->
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden celestial-glow">
+<!-- Background Visuals -->
+<div class="absolute inset-0 z-0">
+<img alt="Deep Space Horizon" class="w-full h-full object-cover opacity-60 mix-blend-screen" data-alt="cinematic deep space view with earth curvature below and a massive blinding solar glow on the horizon with lens flares" src="../images/generated/06%20POLARIS%20System%20General%20View%20(v2).png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0f131f] via-transparent to-transparent"></div>
+<div class="star-field absolute inset-0 opacity-40"></div>
+</div>
+<!-- Central Content Cluster -->
+<div class="relative z-10 flex flex-col items-center text-center px-6 max-w-5xl">
+<!-- Constellation Logo Mockup -->
+<div class="mb-12 relative">
+<div class="absolute -inset-10 bg-primary-container/20 blur-[60px] rounded-full"></div>
+<div class="relative flex items-center justify-center">
+<!-- Custom Bear Constellation Visualization -->
+<svg class="drop-shadow-[0_0_15px_rgba(255,227,183,0.8)]" height="240" viewbox="0 0 200 200" width="240">
+<circle cx="100" cy="40" fill="#ffe3b7" r="2"></circle>
+<circle cx="140" cy="60" fill="#ffe3b7" r="1.5"></circle>
+<circle cx="160" cy="100" fill="#ffe3b7" r="2.5"></circle>
+<circle cx="130" cy="140" fill="#ffe3b7" r="2"></circle>
+<circle cx="70" cy="140" fill="#ffe3b7" r="2"></circle>
+<circle cx="40" cy="100" fill="#ffe3b7" r="2.5"></circle>
+<circle cx="60" cy="60" fill="#ffe3b7" r="1.5"></circle>
+<path d="M100 40 L140 60 L160 100 L130 140 L70 140 L40 100 L60 60 Z" fill="none" stroke="#ffe3b7" stroke-dasharray="4 2" stroke-width="0.5"></path>
+<!-- Bear Head Shape -->
+<path d="M90 70 L110 70 L115 85 L100 95 L85 85 Z" fill="#ffe3b7" fill-opacity="0.2"></path>
+<circle cx="100" cy="100" fill="#ffe3b7" r="1"></circle>
+</svg>
+</div>
+<div class="mt-4 font-headline text-primary tracking-[0.8em] font-light text-sm opacity-60">EST. 2024 COMMAND</div>
+</div>
+<!-- Bilingual Headlines -->
+<div class="space-y-6">
+<h1 class="font-headline text-5xl md:text-7xl lg:text-8xl font-black text-primary leading-none tracking-tighter">
+                        POLARIS: AN ORBITAL VISION
+                        <span class="block text-2xl md:text-3xl lg:text-4xl font-light text-secondary mt-2 opacity-80">POLARIS: O VIZIUNE ORBITALĂ</span>
+</h1>
+<div class="flex items-center justify-center space-x-6 py-4">
+<div class="h-px w-24 bg-gradient-to-r from-transparent to-outline-variant/50"></div>
+<div class="font-label text-[10px] tracking-[0.4em] text-tertiary">SECTOR ALPHA-01</div>
+<div class="h-px w-24 bg-gradient-to-l from-transparent to-outline-variant/50"></div>
+</div>
+<p class="font-body text-lg md:text-xl text-on-surface/80 max-w-2xl mx-auto leading-relaxed">
+                        A planetary-scale infrastructure for future energy.
+                        <br/>
+<span class="italic font-light opacity-60">O infrastructură la scară planetară pentru viitorul energiei.</span>
+</p>
+</div>
+<!-- Call to Action -->
+<div class="mt-16 group cursor-pointer">
+<div class="flex flex-col items-center space-y-4">
+<div class="font-label text-xs tracking-[0.3em] text-primary group-hover:text-primary-container transition-colors">
+                            SCROLL TO ENTER THE SYSTEM / DERULEAZĂ PENTRU A INTRA ÎN SISTEM
+                        </div>
+<div class="relative w-px h-24 overflow-hidden bg-outline-variant/30">
+<div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-primary to-transparent animate-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Technical Overlays (Asymmetric Details) -->
+<div class="absolute top-1/4 right-12 text-right opacity-30 hidden lg:block">
+<div class="font-label text-[10px] tracking-widest uppercase mb-1">Telemetry Status</div>
+<div class="font-label text-[10px] tracking-widest text-tertiary">SIGNAL STRENGTH: 98.4%</div>
+<div class="font-label text-[10px] tracking-widest text-secondary mt-2">COORDINATES: 44.4268° N, 26.1025° E</div>
+</div>
+<div class="absolute bottom-12 left-12 opacity-30 hidden lg:block">
+<div class="transmission-line w-48 mb-4"></div>
+<div class="font-label text-[10px] tracking-widest uppercase">System Core: Nominal</div>
+<div class="font-label text-[10px] tracking-widest">Protocol: 0x8842-POLARIS</div>
+</div>
+</section>
+<!-- Mission Detail Section (Bento Grid) -->
+<section class="py-32 px-8 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Primary Mission Statement -->
+<div class="md:col-span-8 glass-panel p-12 border-l border-primary/20 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 font-label text-[8px] text-primary/30 tracking-[0.5em]">MISSION_LOG_01</div>
+<h2 class="font-headline text-4xl font-bold text-primary mb-8 tracking-tight">HARNESSING THE SOLAR ARC</h2>
+<p class="font-body text-on-surface/70 text-xl leading-relaxed mb-8">
+                        The Polaris Initiative represents the next leap in planetary energy distribution. By establishing a high-orbit relay network, we bypass the limitations of terrestrial atmospheric degradation.
+                    </p>
+<button class="bg-gradient-to-r from-[#ffe3b7] to-[#ffc041] text-[#412d00] px-8 py-4 font-label font-bold tracking-widest uppercase text-xs hover:shadow-[0_0_30px_rgba(255,186,32,0.3)] transition-all">
+                        DEPLOY PROTOCOLS
+                    </button>
+</div>
+<!-- Secondary Data Points -->
+<div class="md:col-span-4 space-y-8">
+<div class="bg-surface-container-low p-8 border-t border-secondary/20">
+<div class="text-secondary mb-4">
+<span class="material-symbols-outlined text-4xl" data-icon="memory">memory</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-2">NEURAL ARCHITECTURE</h3>
+<p class="font-body text-sm text-on-surface/60">Autonomous load balancing across 14 orbital sectors.</p>
+</div>
+<div class="bg-surface-container-low p-8 border-t border-tertiary/20">
+<div class="text-tertiary mb-4">
+<span class="material-symbols-outlined text-4xl" data-icon="public">public</span>
+</div>
+<h3 class="font-headline text-xl font-bold mb-2">GLOBAL GRID</h3>
+<p class="font-body text-sm text-on-surface/60">Seamless integration with existing planetary infrastructure.</p>
+</div>
+</div>
+<!-- Visual Asset / Map -->
+<div class="md:col-span-12 relative h-[400px] overflow-hidden group">
+<img alt="Orbital Map View" class="w-full h-full object-cover grayscale brightness-50 group-hover:grayscale-0 transition-all duration-1000" data-alt="abstract digital visualization of a global energy grid from space with glowing lines connecting major city hubs across continents" src="../images/generated/00%20System%20Diagram.png"/>
+<div class="absolute inset-0 bg-surface/40 flex items-center justify-center">
+<div class="text-center">
+<div class="font-label text-xs tracking-[1em] text-primary mb-4">ORBITAL MAP: ACTIVE</div>
+<div class="h-px w-32 bg-primary mx-auto mb-4"></div>
+<button class="font-headline text-lg font-bold border border-secondary px-6 py-2 hover:bg-secondary hover:text-surface transition-all">VIEW CONSTELLATION NODES</button>
+</div>
+</div>
+<!-- Technical corners -->
+<div class="absolute top-4 left-4 w-4 h-4 border-t border-l border-outline"></div>
+<div class="absolute bottom-4 right-4 w-4 h-4 border-b border-r border-outline"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#0f131f] w-full border-t border-[#4f4632]/15 flex flex-col items-center justify-center w-full py-12 px-4 space-y-4">
+<div class="text-xl font-bold text-[#ffe3b7] drop-shadow-[0_0_12px_rgba(255,227,183,0.3)] font-headline tracking-tighter">POLARIS COMMAND</div>
+<div class="flex space-x-8">
+<a class="font-['Inter'] text-[10px] tracking-widest text-white/50 hover:text-white transition-opacity uppercase" href="#">PRIVACY</a>
+<a class="font-['Inter'] text-[10px] tracking-widest text-white/50 hover:text-white transition-opacity uppercase" href="#">PROTOCOLS</a>
+</div>
+<div class="font-['Inter'] text-[10px] tracking-widest text-[#ffe3b7] opacity-80">© 2024 POLARIS COMMAND. ALL SYSTEMS NOMINAL.</div>
+<div class="mt-8">
+<div class="h-px w-12 bg-gradient-to-r from-transparent via-[#ffe3b7] to-transparent"></div>
+</div>
+</footer>
+</body></html>
