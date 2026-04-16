@@ -80,6 +80,7 @@ SLIDES = [
         "label": "P  ·  O  ·  L  ·  A  ·  R  ·  I  ·  S",
         "accent": C_PRIMARY,
         "image": "images/generated/Image C - Full System Panoramic.png",
+        "video": "videos/generated/Image C - Full System Panoramic - Video.mp4",
     },
     # 03 — OBIECTIVELE CERCETARII  (criteriu c = 10p)
     {
@@ -108,7 +109,7 @@ SLIDES = [
         ),
         "accent": C_PRIMARY,
         "image": "images/generated/Image B - Mirror and Sun.png",
-        "video": "videos/generated/Image B - Mirror and Sun.mp4",
+        "video": "videos/generated/Image B - Mirror and Sun - Video.mp4",
         "formula": "formula_power_incident.png",
     },
     # 05 — AVANTAJUL PROXIMITATII
@@ -122,7 +123,8 @@ SLIDES = [
             "intensitatea solara urmeaza legea inversului patratului."
         ),
         "accent": C_PRIMARY,
-        "image": "images/generated/01 Mirrors (v2).png",
+        "image": "images/generated/Image K - Solar Mirror Dyson.png",
+        "video": "videos/generated/Image K - Solar Mirror Dyson - Video.mp4",
         "formula": "formula_inverse_square.png",
     },
     # 06 — CONVERSIA LASER
@@ -138,7 +140,8 @@ SLIDES = [
             "un fascicul directional si controlabil."
         ),
         "accent": C_SECONDARY,
-        "image": "images/generated/02 Satelit Colector (close-up) (v2).png",
+        "image": "images/generated/Image L - Collector Satellite Laser.png",
+        "video": "videos/generated/Image L - Collector Satellite Laser - Video.mp4",
     },
     # 07 — NODURILE LAGRANGE
     {
@@ -170,7 +173,8 @@ SLIDES = [
             "Fasciculul nu oscileaza deasupra zonelor locuite."
         ),
         "accent": C_SECONDARY,
-        "image": "images/generated/03 Satelit Lagrange (close-up) - L4-L5  (v2).png",
+        "image": "images/generated/Image M - Lagrange Relay Node.png",
+        "video": "videos/generated/Image M - Lagrange Relay Node - Video.mp4",
         "wide_text": True,
     },
     # 09 — METODOLOGIE & COMPLEXITATE  (criteriu d = 10p)
@@ -198,7 +202,8 @@ SLIDES = [
             "Pierderi de transmisie: aproape zero"
         ),
         "accent": C_SECONDARY,
-        "image": "images/generated/05 Cablul YBCO (v2).png",
+        "image": "images/generated/Image J - YBCO Superconductor Crystal.png",
+        "video": "videos/generated/Image J - YBCO Superconductor Crystal - Video.mp4",
         "formula": "formula_current.png",
     },
     # 11 — NUMERELE  (1.6 TW)
@@ -213,7 +218,7 @@ SLIDES = [
         ),
         "accent": C_TERTIARY,
         "image": "images/generated/Image D - Energy Mathematics.png",
-        "video": "videos/generated/Image D - Energy Mathematics.mp4",
+        "video": "videos/generated/Image D - Energy Mathematics - Video.mp4",
         "formula": "formula_efficiency.png",
         "diagram": "diagram_energy_bar.png",
     },
@@ -265,7 +270,7 @@ SLIDES = [
         ),
         "accent": C_PRIMARY,
         "image": "images/generated/Image F - Kardashev Scale.png",
-        "video": "videos/generated/Image F - Kardashev Scale.mp4",
+        "video": "videos/generated/Image F - Kardashev Scale - Video.mp4",
         "diagram": "diagram_kardashev.png",
     },
     # 15 — ARHITECTURA ORIGINALA  (criteriu a — creativitate)
@@ -298,7 +303,7 @@ SLIDES = [
         ),
         "accent": C_SECONDARY,
         "image": "images/generated/Image G - Science Lab meets Space.png",
-        "video": "videos/generated/Image G - Science Lab meets Space.mp4",
+        "video": "videos/generated/Image G - Science Lab meets Space - Video.mp4",
     },
     # 17 — LIMITARI  (maturitate stiintifica)
     {
@@ -776,6 +781,10 @@ def build_cover(prs, data):
              font_name=F_LABEL, font_size=13, color=C_TEXT_DIM,
              line_spacing_pct=145)
 
+    # Logo top-left
+    logo_path = "assets/logo-no-ONCS-text-dark-highrez.png"
+    try_add_image(slide, logo_path, Inches(0.35), Inches(0.2), Inches(1.0), Inches(1.0))
+
     # POLARIS BEARS top right
     add_text(slide, "POLARIS BEARS",
              Inches(10.0), Inches(0.35), Inches(3.1), Inches(0.35),
@@ -819,11 +828,16 @@ def build_full_bleed(prs, data):
 
 
 def build_billboard(prs, data):
-    """Giant quote statement. Background image. Minimal chrome."""
+    """Giant quote statement. Background video or image. Minimal chrome."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     set_bg(slide, C_BG)
 
-    if data.get("image"):
+    if data.get("video"):
+        vid = add_video(slide, data["video"],
+                        Inches(0), Inches(0), Inches(13.33), Inches(7.5))
+        if vid is None and data.get("image"):
+            add_full_bleed_image(slide, data["image"], opacity_pct=65)
+    elif data.get("image"):
         add_full_bleed_image(slide, data["image"], opacity_pct=65)
 
     accent = data.get("accent", C_PRIMARY)
@@ -1221,6 +1235,10 @@ def build_credits(prs, data):
     add_text(slide, bib,
              Inches(7.0), Inches(5.08), Inches(5.9), Inches(1.85),
              font_name=F_LABEL, font_size=8, color=C_OUTLINE)
+
+    # Logo bottom-right (above chrome line)
+    logo_path = "assets/logo-no-ONCS-text-dark-highrez.png"
+    try_add_image(slide, logo_path, Inches(12.05), Inches(6.1), Inches(0.85), Inches(0.85))
 
     # Bottom chrome
     add_rect(slide, Inches(0.42), Inches(7.05), Inches(12.5), Inches(0.02), C_OUTLINE)

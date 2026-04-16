@@ -13,106 +13,87 @@ from reportlab.lib import colors
 from reportlab.platypus import (
     SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable
 )
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.lib.enums import TA_LEFT, TA_CENTER
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OUT_PDF  = os.path.join(BASE_DIR, "docs", "POLARIS_CrossCheck_Report.pdf")
 
-# ── Culori POLARIS design system ──────────────────────────────────────────────
-C_BG_DARK   = colors.HexColor("#0f131f")
-C_GOLD      = colors.HexColor("#ffe3b7")
-C_CYAN      = colors.HexColor("#bdf4ff")
-C_GREEN     = colors.HexColor("#91ff89")
-C_TEXT      = colors.HexColor("#e8dcc8")
-C_TEXT_DIM  = colors.HexColor("#d4c5ab")
-C_OUTLINE   = colors.HexColor("#4f4632")
-C_WARN      = colors.HexColor("#ff9f43")
-C_OK        = colors.HexColor("#91ff89")
-C_SECTION   = colors.HexColor("#1a2035")
-
 PAGE_W, PAGE_H = A4
 
-# ── Stiluri ───────────────────────────────────────────────────────────────────
-styles = getSampleStyleSheet()
-
-def style(name, **kwargs):
-    return ParagraphStyle(name, **kwargs)
-
-S_TITLE = style("Title",
-    fontSize=22, leading=28, textColor=C_GOLD,
-    fontName="Helvetica-Bold", spaceAfter=4, alignment=TA_LEFT)
-
-S_SUBTITLE = style("Subtitle",
-    fontSize=11, leading=16, textColor=C_CYAN,
-    fontName="Helvetica", spaceAfter=2, alignment=TA_LEFT)
-
-S_DATE = style("Date",
-    fontSize=8, leading=12, textColor=C_TEXT_DIM,
-    fontName="Helvetica", spaceAfter=12, alignment=TA_LEFT)
-
-S_SECTION = style("Section",
-    fontSize=12, leading=16, textColor=C_CYAN,
-    fontName="Helvetica-Bold", spaceBefore=14, spaceAfter=4)
-
-S_BODY = style("Body",
-    fontSize=9, leading=14, textColor=C_TEXT,
-    fontName="Helvetica", spaceAfter=4)
-
-S_WARN = style("Warn",
-    fontSize=9, leading=14, textColor=C_WARN,
-    fontName="Helvetica-Bold", spaceAfter=4)
-
-S_OK = style("Ok",
-    fontSize=9, leading=14, textColor=C_OK,
-    fontName="Helvetica", spaceAfter=4)
-
-S_FOOTER = style("Footer",
-    fontSize=7, leading=10, textColor=C_TEXT_DIM,
-    fontName="Helvetica", alignment=TA_CENTER)
-
-S_TABLE_HEADER = style("TH",
-    fontSize=8, leading=11, textColor=C_BG_DARK,
-    fontName="Helvetica-Bold")
-
-S_TABLE_CELL = style("TC",
-    fontSize=8, leading=12, textColor=C_TEXT,
-    fontName="Helvetica")
-
-S_TABLE_CELL_OK = style("TC_OK",
-    fontSize=8, leading=12, textColor=C_OK,
-    fontName="Helvetica-Bold")
-
-S_TABLE_CELL_WARN = style("TC_WARN",
-    fontSize=8, leading=12, textColor=C_WARN,
-    fontName="Helvetica-Bold")
-
-# ── Table style helpers ───────────────────────────────────────────────────────
-def tbl_style(header_color=C_CYAN, row_colors=None):
-    rc = row_colors or [(1, C_SECTION), (0, C_BG_DARK)]
-    cmds = [
-        ("BACKGROUND",  (0, 0), (-1, 0),  header_color),
-        ("TEXTCOLOR",   (0, 0), (-1, 0),  C_BG_DARK),
-        ("FONTNAME",    (0, 0), (-1, 0),  "Helvetica-Bold"),
-        ("FONTSIZE",    (0, 0), (-1, 0),  8),
-        ("ROWBACKGROUNDS", (0, 1), (-1, -1),
-            [C_SECTION, C_BG_DARK]),
-        ("GRID",        (0, 0), (-1, -1), 0.4, C_OUTLINE),
-        ("LEFTPADDING", (0, 0), (-1, -1), 6),
-        ("RIGHTPADDING",(0, 0), (-1, -1), 6),
-        ("TOPPADDING",  (0, 0), (-1, -1), 5),
-        ("BOTTOMPADDING",(0,0), (-1, -1), 5),
-        ("VALIGN",      (0, 0), (-1, -1), "TOP"),
-    ]
-    return TableStyle(cmds)
+# ── Paleta culori (fond ALB) ──────────────────────────────────────────────────
+C_WHITE      = colors.white
+C_TITLE      = colors.HexColor("#1a2035")   # navy inchis
+C_SECTION    = colors.HexColor("#1a5276")   # albastru inchis
+C_BODY       = colors.HexColor("#2c3e50")   # gri inchis
+C_DIM        = colors.HexColor("#7f8c8d")   # gri mediu
+C_OK         = colors.HexColor("#1e8449")   # verde inchis
+C_WARN       = colors.HexColor("#d35400")   # portocaliu inchis
+C_GRID       = colors.HexColor("#bdc3c7")   # gri deschis
+C_TH_BG      = colors.HexColor("#2c3e50")   # header tabel inchis
+C_ROW_ALT    = colors.HexColor("#f2f6fc")   # rand alternativ albastru pal
+C_ACCENT_BAR = colors.HexColor("#2980b9")   # bara accent
 
 
-def hr(color=C_OUTLINE, thickness=0.5):
+# ── Stiluri text ──────────────────────────────────────────────────────────────
+def S(name, **kw):
+    return ParagraphStyle(name, **kw)
+
+S_TITLE    = S("Title",    fontSize=20, leading=26, textColor=C_TITLE,
+               fontName="Helvetica-Bold", spaceAfter=2)
+S_SUBTITLE = S("Subtitle", fontSize=11, leading=16, textColor=C_SECTION,
+               fontName="Helvetica",     spaceAfter=2)
+S_DATE     = S("Date",     fontSize=8,  leading=12, textColor=C_DIM,
+               fontName="Helvetica",     spaceAfter=10)
+S_SECTION  = S("Section",  fontSize=11, leading=15, textColor=C_SECTION,
+               fontName="Helvetica-Bold", spaceBefore=12, spaceAfter=5)
+S_BODY     = S("Body",     fontSize=9,  leading=14, textColor=C_BODY,
+               fontName="Helvetica",     spaceAfter=4)
+S_OK       = S("Ok",       fontSize=9,  leading=14, textColor=C_OK,
+               fontName="Helvetica-Bold", spaceAfter=4)
+S_WARN     = S("Warn",     fontSize=9,  leading=14, textColor=C_WARN,
+               fontName="Helvetica-Bold", spaceAfter=4)
+S_FOOTER   = S("Footer",   fontSize=7,  leading=10, textColor=C_DIM,
+               fontName="Helvetica",     alignment=TA_CENTER)
+
+# Stiluri pentru celule tabel
+S_TH  = S("TH",  fontSize=8, leading=11, textColor=C_WHITE,
+           fontName="Helvetica-Bold")
+S_TC  = S("TC",  fontSize=8, leading=12, textColor=C_BODY,
+           fontName="Helvetica")
+S_TOK = S("TOK", fontSize=8, leading=12, textColor=C_OK,
+           fontName="Helvetica-Bold")
+S_TWN = S("TWN", fontSize=8, leading=12, textColor=C_WARN,
+           fontName="Helvetica-Bold")
+
+
+def p(text, style):
+    """Shortcut: Paragraph cu stil dat."""
+    return Paragraph(text, style)
+
+
+def make_table(rows, col_widths, header_bg=C_TH_BG):
+    """Construieste tabel cu celule Paragraph (wrapping automat)."""
+    tbl = Table(rows, colWidths=col_widths, repeatRows=1)
+    tbl.setStyle(TableStyle([
+        ("BACKGROUND",    (0, 0), (-1, 0),  header_bg),
+        ("ROWBACKGROUNDS",(0, 1), (-1, -1), [C_WHITE, C_ROW_ALT]),
+        ("GRID",          (0, 0), (-1, -1), 0.4, C_GRID),
+        ("LEFTPADDING",   (0, 0), (-1, -1), 7),
+        ("RIGHTPADDING",  (0, 0), (-1, -1), 7),
+        ("TOPPADDING",    (0, 0), (-1, -1), 5),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+        ("VALIGN",        (0, 0), (-1, -1), "TOP"),
+    ]))
+    return tbl
+
+
+def hr(color=C_GRID, thickness=0.5):
     return HRFlowable(width="100%", thickness=thickness,
-                      color=color, spaceAfter=6, spaceBefore=6)
+                      color=color, spaceAfter=6, spaceBefore=4)
 
 
-# ── Continut document ─────────────────────────────────────────────────────────
+# ── Build PDF ─────────────────────────────────────────────────────────────────
 def build_pdf():
     os.makedirs(os.path.dirname(OUT_PDF), exist_ok=True)
 
@@ -122,155 +103,187 @@ def build_pdf():
         leftMargin=2*cm, rightMargin=2*cm,
         topMargin=2.2*cm, bottomMargin=2*cm,
         title="POLARIS Cross-Check Report — ONCS 2026",
-        author="P.O.L.A.R.I.S. / Claude Code",
+        author="Polaris Bears / Claude Code",
     )
 
+    W = PAGE_W - 4*cm   # latime utila
     story = []
 
     # ── Header ────────────────────────────────────────────────────────────────
-    story.append(Paragraph("P.O.L.A.R.I.S.", S_TITLE))
-    story.append(Paragraph(
-        "Raport Cross-Check — Prezentare vs. Regulament ONCS 2026", S_SUBTITLE))
-    story.append(Paragraph("Generat: 2026-04-16  ·  Echipa: Polaris Bears", S_DATE))
-    story.append(hr(C_CYAN, 1.0))
-    story.append(Spacer(1, 6))
+    story.append(p("P.O.L.A.R.I.S.", S_TITLE))
+    story.append(p("Raport Cross-Check — Prezentare vs. Regulament ONCS 2026", S_SUBTITLE))
+    story.append(p("Generat: 2026-04-16  &nbsp;·&nbsp;  Echipa: Polaris Bears &nbsp;·&nbsp; ONCS 2026", S_DATE))
+    story.append(hr(C_ACCENT_BAR, 1.5))
+    story.append(Spacer(1, 4))
 
     # ── 1. Grila de punctaj ───────────────────────────────────────────────────
-    story.append(Paragraph("1. GRILA DE PUNCTAJ (100p)", S_SECTION))
+    story.append(p("1. GRILA DE PUNCTAJ (100 puncte)", S_SECTION))
 
-    data_punctaj = [
-        ["Criteriu", "Puncte", "Acoperire in PPTX", "Status"],
-        ["a) Creativitate\n(#1 departajare)",
-         "25p",
-         "Slide 02 (viziune), Slide 15 (arhitectura originala\nexplicit), Slide 14 (Kardashev)",
-         "✅ Excelent"],
-        ["b) Abordare stiintifica\n(#2 departajare)",
-         "15p",
-         "Slide 04/05/07/10/11 (ecuatii + date numerice),\nSlide 16 (NASA/CERN/JAXA), Slide 17 (limitari)",
-         "✅ Excelent"],
-        ["c) Definirea obiectivelor\n(#5 departajare)",
-         "10p",
-         "Slide 03 — 5 obiective clare, slide dedicat",
-         "✅ Complet"],
-        ["d) Complexitate cercetare\n(#3 departajare)",
-         "10p",
-         "Slide 09 — 6 domenii + lant metodologic complet",
-         "✅ Complet"],
-        ["e) Claritate prezentare\n(#4 departajare)",
-         "15p",
-         "Design system consistent, imagini Kling\ncinematice, formule vizuale per slide",
-         "✅ Solid"],
-        ["f) Activitate echipa\n(#6 departajare)",
-         "15p",
-         "Slide 19 — roluri individuale distincte\nper elev (Ioan vs. Albert)",
-         "✅ Complet"],
-        ["g) Puncte din oficiu", "10p", "Automat", "✅"],
+    # Latime coloane: criteriu | puncte | acoperire | status
+    cw1 = [3.6*cm, 1.3*cm, 9.8*cm, 2.3*cm]
+    rows1 = [
+        [p("Criteriu", S_TH), p("Pct.", S_TH),
+         p("Acoperire in prezentare", S_TH), p("Status", S_TH)],
+
+        [p("a) Creativitate &amp; originalitate<br/><i>(#1 la departajare)</i>", S_TC),
+         p("25p", S_TC),
+         p("Slide 02 (viziune), Slide 15 (arhitectura originala — explicit: "
+           "\"Nicio lucrare existenta nu combina Dyson+Lagrange+YBCO+baloane\"), "
+           "Slide 14 (Kardashev 0.73→1.0)", S_TC),
+         p("✅ Excelent", S_TOK)],
+
+        [p("b) Abordare stiintifica<br/><i>(#2 la departajare)</i>", S_TC),
+         p("15p", S_TC),
+         p("Slide 04/05/07/10/11 (ecuatii + date numerice cu surse), "
+           "Slide 16 (validare NASA/CERN/JAXA/NASA NIAC), "
+           "Slide 17 (limitari recunoscute = maturitate stiintifica)", S_TC),
+         p("✅ Excelent", S_TOK)],
+
+        [p("c) Definirea obiectivelor<br/><i>(#5 la departajare)</i>", S_TC),
+         p("10p", S_TC),
+         p("Slide 03 dedicat — 5 obiective clare, masurabile, cu surse", S_TC),
+         p("✅ Complet", S_TOK)],
+
+        [p("d) Complexitate cercetare<br/><i>(#3 la departajare)</i>", S_TC),
+         p("10p", S_TC),
+         p("Slide 09 — 6 domenii integrate (fizica, astronomie, inginerie, "
+           "supraconductivitate, criogenie, mecanica fluidelor) + lant "
+           "metodologic complet", S_TC),
+         p("✅ Complet", S_TOK)],
+
+        [p("e) Claritate prezentare<br/><i>(#4 la departajare)</i>", S_TC),
+         p("15p", S_TC),
+         p("Design system consistent pe toate 20 slide-urile, imagini Kling "
+           "cinematice, formule vizuale dedicate per slide", S_TC),
+         p("✅ Solid", S_TOK)],
+
+        [p("f) Activitate echipa<br/><i>(#6 la departajare)</i>", S_TC),
+         p("15p", S_TC),
+         p("Slide 19 — roluri individuale distincte: Ioan (vizual, Kardashev, "
+           "prezentare) vs. Albert (arhitectura, calcule, YBCO, dinamica)", S_TC),
+         p("✅ Complet", S_TOK)],
+
+        [p("g) Puncte din oficiu", S_TC),
+         p("10p", S_TC),
+         p("Acordate automat", S_TC),
+         p("✅", S_TOK)],
     ]
+    story.append(make_table(rows1, cw1))
+    story.append(Spacer(1, 8))
 
-    col_w = [3.8*cm, 1.4*cm, 8.5*cm, 2.3*cm]
-    tbl = Table(data_punctaj, colWidths=col_w, repeatRows=1)
-    tbl.setStyle(tbl_style(C_CYAN))
-    story.append(tbl)
-    story.append(Spacer(1, 10))
+    # ── 2. Intrebari juriu ────────────────────────────────────────────────────
+    story.append(p("2. INTREBARILE OBLIGATORII ALE JURIULUI (Art. 16.3)", S_SECTION))
 
-    # ── 2. Intrebari obligatorii juriu ────────────────────────────────────────
-    story.append(Paragraph("2. INTREBARILE OBLIGATORII ALE JURIULUI (Art. 16.3)", S_SECTION))
+    cw2 = [0.7*cm, 5.8*cm, 9.0*cm, 1.5*cm]
+    rows2 = [
+        [p("#", S_TH), p("Intrebare obligatorie", S_TH),
+         p("Slide pregatit", S_TH), p("OK", S_TH)],
 
-    data_juriu = [
-        ["#", "Intrebare juriului", "Slide pregatit", "Status"],
-        ["a", "Importanta problemelor practice rezolvate",
-         "Slide 01 + Slide 11 (1,6 TW = 48% global)", "✅"],
-        ["b", "Ingeniozitate specifica varstei",
-         "Slide 14 (Kardashev 0.73→1.0) + Slide 15", "✅"],
-        ["c", "Modul de intelegere a problematicii",
-         "Slide-urile 04→12 (lant tehnic complet)", "✅"],
-        ["d", "Experimentare & evaluare rezultate",
-         "Slide 09 (metodologie) + Slide 11 (numere)", "✅"],
-        ["e", "Nivelul de implicare, rolul fiecarui elev",
-         "Slide 19 (Ioan = vizual/Kardashev, Albert = arhitectura/calcule)", "✅"],
-        ["f ★", "Propunerea de dezvoltare ulterioara",
-         "Slide 13 — Star Power Grid, orizont 30–50 ani", "✅"],
+        [p("a", S_TC),
+         p("Importanta problemelor practice rezolvate", S_TC),
+         p("Slide 01 (Problema: fosile limitate, atmosfera blocheaza 30%) + "
+           "Slide 11 (1,6 TW = 48% din consumul electric global)", S_TC),
+         p("✅", S_TOK)],
+
+        [p("b", S_TC),
+         p("Ingeniozitate specifica varstei", S_TC),
+         p("Slide 14 (Kardashev 0.73→1.0, tranzitie civilizationala) + "
+           "Slide 15 (arhitectura absentata din literatura clasica)", S_TC),
+         p("✅", S_TOK)],
+
+        [p("c", S_TC),
+         p("Modul de intelegere a problematicii", S_TC),
+         p("Slide-urile 04-12: lant tehnic complet "
+           "(oglinzi → laser → Lagrange → YBCO → receptor polar → retea)", S_TC),
+         p("✅", S_TOK)],
+
+        [p("d", S_TC),
+         p("Experimentare si evaluare rezultate", S_TC),
+         p("Slide 09 (metodologie, modele matematice imbricate) + "
+           "Slide 11 (numere exacte cu surse IEA 2023)", S_TC),
+         p("✅", S_TOK)],
+
+        [p("e", S_TC),
+         p("Nivelul de implicare, rolul fiecarui elev", S_TC),
+         p("Slide 19 — Ioan: modelare vizuala, Kardashev, Star Power Grid, prezentare. "
+           "Albert: arhitectura sistem, calcule energetice, YBCO, dinamica orbitala.", S_TC),
+         p("✅", S_TOK)],
+
+        [p("f ★", S_TWN),
+         p("<b>Propunerea de dezvoltare ulterioara</b><br/>"
+           "(ceruta explicit de juriu)", S_TC),
+         p("Slide 13 — Star Power Grid: distributie prin microunde GEO catre "
+           "regiuni slab deservite. Orizont temporal explicit: 30-50 ani.", S_TC),
+         p("✅", S_TOK)],
     ]
+    story.append(make_table(rows2, cw2))
+    story.append(Spacer(1, 8))
 
-    col_w2 = [0.8*cm, 5.5*cm, 7.5*cm, 2.2*cm]
-    tbl2 = Table(data_juriu, colWidths=col_w2, repeatRows=1)
-    tbl2.setStyle(tbl_style(C_GOLD))
-    story.append(tbl2)
-    story.append(Spacer(1, 10))
-
-    # ── 3. Timing prezentare ──────────────────────────────────────────────────
-    story.append(Paragraph("3. TIMING PREZENTARE — 10 MINUTE", S_SECTION))
-    story.append(Paragraph(
+    # ── 3. Timing ─────────────────────────────────────────────────────────────
+    story.append(p("3. TIMING PREZENTARE — 10 MINUTE", S_SECTION))
+    story.append(p(
         "20 slide-uri (00–19) aliniate cu structura din regulament. "
-        "Conform tabelului din REGULAMENT_NOTES.md, totalul estimat este "
-        "<b>≈ 9:45 min</b> — margine de siguranta de 15 secunde.", S_BODY))
-    story.append(Paragraph("Status: ✅ Incadrat in timp", S_OK))
-    story.append(Spacer(1, 6))
+        "Totalul estimat conform REGULAMENT_NOTES.md: <b>aprox. 9:45 min</b> — "
+        "margine de siguranta de 15 secunde.", S_BODY))
+    story.append(p("✅  Incadrat in timp", S_OK))
+    story.append(Spacer(1, 4))
 
     # ── 4. Probleme identificate ──────────────────────────────────────────────
-    story.append(Paragraph("4. PROBLEME IDENTIFICATE", S_SECTION))
+    story.append(p("4. PROBLEME IDENTIFICATE", S_SECTION))
 
-    story.append(Paragraph(
-        "⚠️  CRITIC — Diacritice lipsa in textul slide-urilor", S_WARN))
-    story.append(Paragraph(
-        "Regulamentul impune diacritice obligatorii (Anexa 2.1) pentru toate "
-        "materialele prezentate juriului. Textul din generate_pptx.py omite "
-        "sistematic diacriticele. Exemple:", S_BODY))
+    story.append(p("⚠  CRITIC — Diacritice lipsa in textul slide-urilor", S_WARN))
+    story.append(p(
+        "Regulamentul impune diacritice obligatorii (Anexa 2.1) pentru toate materialele "
+        "prezentate juriului. Textul din generate_pptx.py omite sistematic diacriticele. "
+        "Risc de penalizare la criteriul (e) Claritate prezentare (15p, #4 departajare).", S_BODY))
 
-    data_diacritice = [
-        ["Text curent (fara diacritice)", "Text corect (cu diacritice)"],
-        ['"statii plutitoare"', '"stații plutitoare"'],
-        ['"Cererea globala de energie creste"', '"Cererea globală de energie crește"'],
-        ['"pozitionate", "eficienta", "fasciculelor"',
-         '"poziționate", "eficiența", "fasciculelor"'],
-        ['"Limitari cunoscute"', '"Limitări cunoscute"'],
-        ['"arhitectura orbitala"', '"arhitectură orbitală"'],
+    cw3 = [W/2, W/2]
+    rows3 = [
+        [p("Text curent (fara diacritice)", S_TH),
+         p("Text corect (cu diacritice)", S_TH)],
+        [p('"statii plutitoare"', S_TWN),        p('"stati&#x0163;i plutitoare"', S_TOK)],
+        [p('"Cererea globala de energie creste"', S_TWN),
+         p('"Cererea global&#x0103; de energie cre&#x015F;te"', S_TOK)],
+        [p('"pozitionate", "eficienta"', S_TWN),
+         p('"pozi&#x021B;ionate", "eficien&#x021B;a"', S_TOK)],
+        [p('"Limitari cunoscute"', S_TWN),        p('"Limit&#x0103;ri cunoscute"', S_TOK)],
+        [p('"arhitectura orbitala"', S_TWN),      p('"arhitectur&#x0103; orbital&#x0103;"', S_TOK)],
     ]
-
-    col_w3 = [8*cm, 8*cm]
-    tbl3 = Table(data_diacritice, colWidths=col_w3, repeatRows=1)
-    tbl3.setStyle(tbl_style(C_WARN))
-    story.append(tbl3)
+    story.append(make_table(rows3, cw3, header_bg=colors.HexColor("#7b241c")))
     story.append(Spacer(1, 8))
 
-    story.append(Paragraph(
-        "⚠️  MINOR — Slide 18 (Concluzie) fara imagine/video", S_WARN))
-    story.append(Paragraph(
-        "Slide-ul 18 este text pur (type: statement). Ar castiga vizual "
-        "daca ar folosi Image C (Full System Panoramic) ca fundal dimmed.", S_BODY))
-    story.append(Spacer(1, 8))
-
-    story.append(Paragraph("✅  OK — Risc anti-plagiat scazut", S_OK))
-    story.append(Paragraph(
-        "Continutul este original si specific. Bibliografie Harvard cu 12 surse "
-        "verificate. Toate sursele accesibile online (aprilie 2026).", S_BODY))
-
-    # ── 5. Recomandare prioritara ─────────────────────────────────────────────
+    story.append(p("⚠  MINOR — Slide 18 (Concluzie) fara imagine de fundal", S_WARN))
+    story.append(p(
+        "Slide-ul 18 este text pur (type: statement, fara imagine/video). "
+        "Ar castiga vizual daca ar folosi Image C (Full System Panoramic) "
+        "ca fundal dimmed la 30-40%.", S_BODY))
     story.append(Spacer(1, 6))
-    story.append(hr(C_CYAN, 0.8))
-    story.append(Paragraph("5. RECOMANDARE PRIORITARA", S_SECTION))
-    story.append(Paragraph(
-        "Diacriticele reprezinta singura problema cu risc real de penalizare la "
-        "criteriul (e) — Claritate prezentare (15p, #4 departajare). "
-        "Corectarea lor in generate_pptx.py urmat de o regenerare PPTX este "
-        "pasul urmator recomandat.", S_BODY))
+
+    story.append(p("✅  OK — Risc anti-plagiat scazut", S_OK))
+    story.append(p(
+        "Continutul este original si specific arhitecturii POLARIS. "
+        "Bibliografie Harvard cu 12 surse verificate si accesibile online (aprilie 2026). "
+        "Stilul academic este consistent.", S_BODY))
+
+    # ── 5. Recomandare ────────────────────────────────────────────────────────
+    story.append(Spacer(1, 4))
+    story.append(hr(C_ACCENT_BAR, 1.0))
+    story.append(p("5. RECOMANDARE PRIORITARA", S_SECTION))
+    story.append(p(
+        "Diacriticele reprezinta singura problema cu risc real de penalizare. "
+        "Corectarea lor in <b>generate_pptx.py</b> urmata de o regenerare a ambelor "
+        "fisiere PPTX este pasul imediat urmator. "
+        "Toate celelalte criterii sunt acoperite la nivel excelent sau complet.", S_BODY))
 
     # ── Footer ────────────────────────────────────────────────────────────────
-    story.append(Spacer(1, 20))
-    story.append(hr(C_OUTLINE))
-    story.append(Paragraph(
+    story.append(Spacer(1, 16))
+    story.append(hr(C_GRID))
+    story.append(p(
         "P.O.L.A.R.I.S.  ·  Polaris Bears  ·  ONCS 2026  ·  "
         "Sectiunea A — Stiinte Exacte  ·  Generat automat cu Claude Code",
         S_FOOTER))
 
-    # ── Build ─────────────────────────────────────────────────────────────────
-    def on_page(canvas, doc):
-        canvas.saveState()
-        canvas.setFillColor(C_BG_DARK)
-        canvas.rect(0, 0, PAGE_W, PAGE_H, fill=1, stroke=0)
-        canvas.restoreState()
-
-    doc.build(story, onFirstPage=on_page, onLaterPages=on_page)
+    doc.build(story)
     size_kb = os.path.getsize(OUT_PDF) / 1024
     print(f"Gata! {size_kb:.0f} KB -> {OUT_PDF}")
 
