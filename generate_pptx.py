@@ -832,13 +832,11 @@ def build_billboard(prs, data):
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     set_bg(slide, C_BG)
 
-    if data.get("video"):
-        vid = add_video(slide, data["video"],
-                        Inches(0), Inches(0), Inches(13.33), Inches(7.5))
-        if vid is None and data.get("image"):
-            add_full_bleed_image(slide, data["image"], opacity_pct=65)
-    elif data.get("image"):
+    if data.get("image"):
         add_full_bleed_image(slide, data["image"], opacity_pct=65)
+    if data.get("video"):
+        add_video(slide, data["video"],
+                  Inches(0), Inches(0), Inches(13.33), Inches(7.5))
 
     accent = data.get("accent", C_PRIMARY)
 
@@ -971,13 +969,11 @@ def build_split(prs, data):
                  Inches(0.62), body_top, text_w, Inches(2.9),
                  font_size=body_sz, color=C_TEXT_DIM, line_spacing_pct=155)
 
-    # Video preferred over static image; fallback to image if video missing
-    if data.get("video"):
-        vid = add_video(slide, data["video"], img_l, img_top, img_w, img_h)
-        if vid is None and data.get("image"):
-            try_add_image(slide, data["image"], img_l, img_top, img_w, img_h)
-    elif data.get("image"):
+    # Image always added first (instant poster); video on top starts at delay=0
+    if data.get("image"):
         try_add_image(slide, data["image"], img_l, img_top, img_w, img_h)
+    if data.get("video"):
+        add_video(slide, data["video"], img_l, img_top, img_w, img_h)
 
     # Formula image below body text
     if data.get("formula"):
@@ -1277,12 +1273,11 @@ def build_kardashev(prs, data):
     img_l, img_t = Inches(7.0), Inches(1.0)
     img_w, img_h = Inches(5.9), Inches(4.2)
 
-    if data.get("video"):
-        vid = add_video(slide, data["video"], img_l, img_t, img_w, img_h)
-        if vid is None and data.get("image"):
-            try_add_image(slide, data["image"], img_l, img_t, img_w, img_h)
-    elif data.get("image"):
+    # Image always added first (instant poster); video on top starts at delay=0
+    if data.get("image"):
         try_add_image(slide, data["image"], img_l, img_t, img_w, img_h)
+    if data.get("video"):
+        add_video(slide, data["video"], img_l, img_t, img_w, img_h)
 
     # Kardashev bar diagram — full width strip at bottom
     if data.get("diagram"):
