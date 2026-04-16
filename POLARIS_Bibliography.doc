@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.5;
+            margin: 1in;
+            color: #000;
+        }
+        h1 {
+            text-align: center;
+            font-size: 24pt;
+            margin-bottom: 5pt;
+            font-family: 'Arial', sans-serif;
+            letter-spacing: 2pt;
+        }
+        h2 {
+            text-align: center;
+            font-size: 16pt;
+            margin-bottom: 30pt;
+            font-family: 'Arial', sans-serif;
+            color: #555;
+        }
+        .ref-item {
+            margin-bottom: 15pt;
+        }
+        .ref-index {
+            font-weight: bold;
+            font-size: 12pt;
+        }
+        .ref-text {
+            font-size: 11pt;
+        }
+        .ref-label {
+            display: block;
+            margin-left: 20pt;
+            font-style: italic;
+            font-size: 10pt;
+            color: #333;
+        }
+        .footer {
+            margin-top: 50pt;
+            text-align: right;
+            border-top: 1px solid #ccc;
+            padding-top: 10pt;
+        }
+        .collab {
+            font-weight: bold;
+            font-size: 11pt;
+        }
+        .command {
+            text-align: center;
+            margin-top: 40pt;
+            font-size: 10pt;
+            color: green;
+            font-family: 'Courier New', monospace;
+        }
+        @page {
+            size: A4;
+            margin: 1in;
+        }
+    </style>
+</head>
+<body>
+    <h1>POLARIS INDEX</h1>
+    <h2>Scientific References</h2>
+
+    <div class="ref-item">
+        <span class="ref-index">[01]</span>
+        <span class="ref-text">Glaser, P.E. , 1968. Power from the Sun: Its Future. Science , 162(3856), pp.857–861. doi.org/10.1126/science.162.3856.857</span>
+        <span class="ref-label">↳ FOUNDATIONAL — SBSP CONCEPT</span>
+    </div>
+
+    <div class="ref-item">
+        <span class="ref-index">[02]</span>
+        <span class="ref-text">International Energy Agency (IEA) , 2024. Electricity 2024: Analysis and forecast to 2026. iea.org/reports/electricity-2024</span>
+        <span class="ref-label">↳ GLOBAL ENERGY DATA — 3.36 TW REFERENCE</span>
+    </div>
+
+    <div class="ref-item">
+        <span class="ref-index">[03]</span>
+        <span class="ref-text">Japan Aerospace Exploration Agency (JAXA) , n.d. Space Solar Power Systems (SSPS). kenkai.jaxa.jp/eng/research/ssps</span>
+        <span class="ref-label">↳ MICROWAVE ENERGY TRANSMISSION — KW SCALE DEMO</span>
+    </div>
+
+    <div class="ref-item">
+        <span class="ref-index">[04]</span>
+        <span class="ref-text">Mankins, J.C. , 2011. SPS-ALPHA: The First Practical Solar Power Satellite via Arbitrarily Large Phased Array. NASA NIAC Phase I Report. ntrs.nasa.gov — NASA Technical Reports Server</span>
+        <span class="ref-label">↳ SPS ARCHITECTURE — PHASED ARRAY</span>
+    </div>
+
+    <div class="ref-item">
+        <span class="ref-index">[05]</span>
+        <span class="ref-text">NASA , n.d. Space-Based Solar Power. NASA Innovative Advanced Concepts (NIAC). nasa.gov/niac</span>
+        <span class="ref-label">↳ NASA SBSP PROGRAM</span>
+    </div>
+
+    <div class="ref-item">
+        <span class="ref-index">[06]</span>
+        <span class="ref-text">NASA Marshall Space Flight Center , n.d. Solar Physics — Total Solar Irradiance. solarscience.msfc.nasa.gov</span>
+        <span class="ref-label">↳ SOLAR CONSTANT — 1361 W/m² REFERENCE</span>
+    </div>
+
+    <div class="ref-item">
+        <span class="ref-index">[07]</span>
+        <span class="ref-text">NASA , n.d. What are Lagrange Points? NASA Science — Solar System Exploration. science.nasa.gov/solar-system/lagrange-points</span>
+        <span class="ref-label">↳ L4/L5 LAGRANGE NODES</span>
+    </div>
+
+    <div class="ref-item">
+        <span class="ref-index">[08]</span>
+        <span class="ref-text">NASA , 2018. Parker Solar Probe Mission Overview. science.nasa.gov/mission/parker-solar-probe</span>
+        <span class="ref-label">↳ PROOF — PROXIMITY TO SUN IS FEASIBLE (6.1M KM)</span>
+    </div>
+
+    <div class="ref-item">
+        <span class="ref-index">[09]</span>
+        <span class="ref-text">Brown, W.C. , 1984. The History of Power Transmission by Radio Waves. IEEE Transactions on Microwave Theory and Techniques , 32(9), pp.1230–1242.</span>
+        <span class="ref-label">↳ WIRELESS POWER TRANSMISSION — HISTORICAL BASIS</span>
+    </div>
+
+    <div class="ref-item">
+        <span class="ref-index">[10]</span>
+        <span class="ref-text">Shinohara, N. , 2014. Wireless Power Transfer via Radiowaves. London: ISTE Ltd.</span>
+        <span class="ref-label">↳ STAR POWER GRID — MICROWAVE TRANSMISSION BASIS</span>
+    </div>
+
+    <div class="ref-item">
+        <span class="ref-index">[11]</span>
+        <span class="ref-text">CERN , 2021. High-temperature superconductors for future accelerators. home.cern/science/engineering/superconductivity</span>
+        <span class="ref-label">↳ YBCO vs NbTi — CERN CONSULTATION BASIS</span>
+    </div>
+
+    <div class="ref-item">
+        <span class="ref-index">[12]</span>
+        <span class="ref-text">Larbalestier, D., Gurevich, A., Feldmann, D.M. and Polyanskii, A. , 2001. High-T c superconducting materials for electric power applications. Nature , 414(6861), pp.368–377. doi.org/10.1038/35104654</span>
+        <span class="ref-label">↳ HTS/YBCO MATERIALS SCIENCE</span>
+    </div>
+
+    <div class="footer">
+        <p class="collab">Collaboratori Polaris Bears // ONCS 2026<br>
+        Chelaru Ioan Cristian & Olariu David Albert</p>
+    </div>
+
+    <div class="command">
+        POLARIS COMMAND © 2026<br>
+        ALL SYSTEMS NOMINAL.
+    </div>
+</body>
+</html>

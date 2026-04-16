@@ -11,6 +11,7 @@ Run: py -3.14 generate_pptx.py
 
 import os
 import io
+import itertools
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
@@ -65,6 +66,7 @@ SLIDES = [
         ),
         "accent": C_SECONDARY,
         "image": "images/generated/Image A - Earth Energy Crisis.png",
+        "video": "videos/generated/Image A - Earth Energy Crisis - Video.mp4",
     },
     # 02 — VIZIUNEA + ACRONIM
     {
@@ -106,6 +108,8 @@ SLIDES = [
         ),
         "accent": C_PRIMARY,
         "image": "images/generated/Image B - Mirror and Sun.png",
+        "video": "videos/generated/Image B - Mirror and Sun.mp4",
+        "formula": "formula_power_incident.png",
     },
     # 05 — AVANTAJUL PROXIMITATII
     {
@@ -115,12 +119,11 @@ SLIDES = [
         "stat_label": "mai multa energie fata de orbita Pamantului",
         "body": (
             "La 7 milioane km fata de Soare,\n"
-            "intensitatea solara urmeaza legea inversului patratului:\n\n"
-            "I(r) = P_soare / 4 * pi * r2\n\n"
-            "Acesta este fundamentul fizic al intregului sistem."
+            "intensitatea solara urmeaza legea inversului patratului."
         ),
         "accent": C_PRIMARY,
         "image": "images/generated/01 Mirrors (v2).png",
+        "formula": "formula_inverse_square.png",
     },
     # 06 — CONVERSIA LASER
     {
@@ -150,7 +153,7 @@ SLIDES = [
             "eta_centralizare = 60%"
         ),
         "accent": C_TERTIARY,
-        "image": "images/generated/00 System Diagram.png",
+        "image": "assets/diagrams/diagram_lagrange.png",
     },
     # 08 — POZITIONAREA LAGRANGE (motivatie)
     {
@@ -177,11 +180,10 @@ SLIDES = [
         "chain": "I(r)  →  P_incident  →  eta_oglinzi  →  eta_laser  →  P_L4  →  eta_YBCO  →  P_livrata",
         "body": (
             "6 domenii integrate: fizica  ·  astronomie  ·  inginerie  ·  supraconductivitate  ·  criogenie  ·  mecanica fluidelor\n\n"
-            "Modele matematice inlantuite: oglinzi → sateliti → L4/L5 → baloane → YBCO → retea\n\n"
-            "Rezultat final: 1,6 TW livrati  (2 x 800 GW)\n"
             "Surse: IEA 2023, NASA NIAC, Parker Solar Probe, CERN, JAXA"
         ),
         "accent": C_SECONDARY,
+        "diagram": "diagram_methodology.png",
     },
     # 10 — SUPRACONDUCTORI YBCO
     {
@@ -193,11 +195,11 @@ SLIDES = [
             "Temperatura de operare: 77 K (azot lichid)\n"
             "vs. NbTi la CERN LHC: 1,9 K (heliu lichid)\n\n"
             "Masa per cablu: ~7 tone\n"
-            "Densitate curent: j <= j_c\n"
             "Pierderi de transmisie: aproape zero"
         ),
         "accent": C_SECONDARY,
         "image": "images/generated/05 Cablul YBCO (v2).png",
+        "formula": "formula_current.png",
     },
     # 11 — NUMERELE  (1.6 TW)
     {
@@ -206,13 +208,14 @@ SLIDES = [
         "stat": "1,6 TW",
         "stat_label": "livrati pe Pamant",
         "body": (
-            "2 statii polare x 800 GW fiecare\n"
-            "= 48% din consumul global de electricitate\n\n"
-            "Cerere globala: 17,7 TW  (IEA 2023)\n"
-            "Eficienta cumulata a lantului: eta = 11%"
+            "2 statii polare x 800 GW  =  48% din consumul electric global\n"
+            "Cerere globala: 17,7 TW  (IEA 2023)"
         ),
         "accent": C_TERTIARY,
         "image": "images/generated/Image D - Energy Mathematics.png",
+        "video": "videos/generated/Image D - Energy Mathematics.mp4",
+        "formula": "formula_efficiency.png",
+        "diagram": "diagram_energy_bar.png",
     },
     # 12 — STATIILE PLUTITOARE
     {
@@ -229,7 +232,8 @@ SLIDES = [
             "din calea fasciculului laser."
         ),
         "accent": C_PRIMARY,
-        "image": "images/generated/04 Polar Station (v2).png",
+        "image": "images/generated/Image H - Floating Station Stratosphere.png",
+        "video": "videos/generated/Image H - Floating Station Stratosphere - Video.mp4",
     },
     # 13 — STAR POWER GRID + VIITOR  (criteriu f — dezvoltare ulterioara)
     {
@@ -244,11 +248,12 @@ SLIDES = [
             "Orizont temporal: 30 – 50 ani"
         ),
         "accent": C_SECONDARY,
-        "image": "images/generated/Image E - Earth Grid Distribution.png",
+        "image": "images/generated/Image I - Star Power Grid GEO.png",
+        "video": "videos/generated/Image I - Star Power Grid GEO - Video.mp4",
     },
     # 14 — SCALA KARDASHEV
     {
-        "num": "14", "type": "split", "section": "CONTEXT CIVILIZATIONAL",
+        "num": "14", "type": "kardashev", "section": "CONTEXT CIVILIZATIONAL",
         "title": "SCALA\nKARDASHEV",
         "body": (
             "Tip 0: energie din materie organica moarta\n"
@@ -256,11 +261,12 @@ SLIDES = [
             "Tip II: toata energia unui sistem solar\n\n"
             "Omenirea se afla azi la ~0,73 pe scala.\n\n"
             "POLARIS este puntea spre Tipul I —\n"
-            "nu doar un proiect energetic,\n"
             "ci o tranzitie civilizationala."
         ),
         "accent": C_PRIMARY,
         "image": "images/generated/Image F - Kardashev Scale.png",
+        "video": "videos/generated/Image F - Kardashev Scale.mp4",
+        "diagram": "diagram_kardashev.png",
     },
     # 15 — ARHITECTURA ORIGINALA  (criteriu a — creativitate)
     {
@@ -292,6 +298,7 @@ SLIDES = [
         ),
         "accent": C_SECONDARY,
         "image": "images/generated/Image G - Science Lab meets Space.png",
+        "video": "videos/generated/Image G - Science Lab meets Space.mp4",
     },
     # 17 — LIMITARI  (maturitate stiintifica)
     {
@@ -517,6 +524,181 @@ def add_fade_transition(slide):
         'spd="slow"><p:fade/></p:transition>'
     )
     slide._element.append(etree.fromstring(transition_xml))
+
+
+# Global animation ID counter (reset per-presentation run)
+_anim_id = itertools.count(1)
+
+def _next_id():
+    return next(_anim_id)
+
+
+def add_entrance_animations(slide, shape_delay_pairs):
+    """
+    Add auto-play fade-in entrance animations for a list of shapes.
+    shape_delay_pairs: list of (shape, delay_ms) tuples.
+    Shapes appear automatically in sequence after slide loads.
+    """
+    if not shape_delay_pairs:
+        return
+
+    PPTX_NS = "http://schemas.openxmlformats.org/presentationml/2006/main"
+    A_NS    = "http://schemas.openxmlformats.org/drawingml/2006/main"
+
+    def el(tag, **attrib):
+        return etree.Element(f"{{{PPTX_NS}}}{tag}", **attrib)
+
+    def ael(tag, **attrib):
+        return etree.Element(f"{{{A_NS}}}{tag}", **attrib)
+
+    root_id  = _next_id()
+    seq_id   = _next_id()
+
+    timing   = el("timing")
+    tnLst    = el("tnLst")
+    bldLst   = el("bldLst")
+    timing.append(tnLst)
+    timing.append(bldLst)
+
+    par_root = el("par")
+    tnLst.append(par_root)
+    cTn_root = el("cTn", id=str(root_id), dur="indefin",
+                  restart="whenNotActive", nodeType="tmRoot")
+    par_root.append(cTn_root)
+    childTnLst_root = el("childTnLst")
+    cTn_root.append(childTnLst_root)
+
+    seq_el  = el("seq", concurrent="1", nextAc="seek")
+    childTnLst_root.append(seq_el)
+    cTn_seq = el("cTn", id=str(seq_id), dur="indefin", nodeType="mainSeq")
+    seq_el.append(cTn_seq)
+    childTnLst_seq = el("childTnLst")
+    cTn_seq.append(childTnLst_seq)
+
+    grp_id_counter = itertools.count(0)
+
+    for shape, delay_ms in shape_delay_pairs:
+        sp_id  = str(shape.shape_id)
+        p1_id  = _next_id()
+        ct1_id = _next_id()
+        ct2_id = _next_id()
+        _next_id()  # ae_id reserved for bldLst
+        grp_id = next(grp_id_counter)
+
+        par1  = el("par")
+        cTn1  = el("cTn", id=str(p1_id), fill="hold")
+        stC1  = el("stCondLst")
+        cond1 = el("cond", delay=str(delay_ms))
+        stC1.append(cond1)
+        cTn1.append(stC1)
+        ch1   = el("childTnLst")
+        cTn1.append(ch1)
+        par1.append(cTn1)
+
+        par2  = el("par")
+        cTn2  = el("cTn", id=str(ct1_id),
+                   presetID="10", presetClass="entr", presetSubtype="0",
+                   fill="hold", grpId=str(grp_id), nodeType="withEffect")
+        stC2  = el("stCondLst")
+        cond2 = el("cond", delay="0")
+        stC2.append(cond2)
+        cTn2.append(stC2)
+        ch2   = el("childTnLst")
+        cTn2.append(ch2)
+        par2.append(cTn2)
+        ch1.append(par2)
+
+        ae    = el("animEffect", transition="in", filter="fade")
+        cBhvr = el("cBhvr")
+        cTn3  = el("cTn", id=str(ct2_id), dur="600")
+        tgtEl = el("tgtEl")
+        spTgt = el("spTgt", spid=sp_id)
+        tgtEl.append(spTgt)
+        cBhvr.append(cTn3)
+        cBhvr.append(tgtEl)
+        ae.append(cBhvr)
+        ch2.append(ae)
+
+        childTnLst_seq.append(par1)
+
+        bld = el("bldP", spid=sp_id, grpId=str(grp_id))
+        bldLst.append(bld)
+
+    slide._element.append(timing)
+
+
+def add_video(slide, rel_path, left, top, width, height, autoplay=True):
+    """Embed mp4 video. Returns shape or None if file missing."""
+    full = os.path.join(BASE_DIR, rel_path)
+    if not os.path.exists(full):
+        print(f"  WARNING: Video not found: {rel_path}")
+        return None
+    try:
+        movie = slide.shapes.add_movie(
+            full, left, top, width, height,
+            mime_type="video/mp4"
+        )
+        if autoplay:
+            _set_video_autoplay(slide, movie)
+        return movie
+    except Exception as exc:
+        print(f"  WARNING: Could not embed video {rel_path}: {exc}")
+        return None
+
+
+def _set_video_autoplay(slide, movie_shape):
+    """Inject OOXML to auto-play video on slide show."""
+    PPTX_NS = "http://schemas.openxmlformats.org/presentationml/2006/main"
+    sp_id   = str(movie_shape.shape_id)
+
+    timing_xml = f"""<p:timing xmlns:p="{PPTX_NS}">
+  <p:tnLst>
+    <p:par>
+      <p:cTn id="1" dur="indefin" restart="whenNotActive" nodeType="tmRoot">
+        <p:childTnLst>
+          <p:seq concurrent="1" nextAc="seek">
+            <p:cTn id="2" dur="indefin" nodeType="mainSeq">
+              <p:childTnLst>
+                <p:par>
+                  <p:cTn id="3" fill="hold">
+                    <p:stCondLst><p:cond delay="0"/></p:stCondLst>
+                    <p:childTnLst>
+                      <p:par>
+                        <p:cTn id="4" fill="hold" nodeType="withEffect">
+                          <p:stCondLst><p:cond delay="0"/></p:stCondLst>
+                          <p:childTnLst>
+                            <p:cmd type="call" cmd="playFrom(0.0)">
+                              <p:cBhvr>
+                                <p:cTn id="5" dur="indefin" fill="hold"/>
+                                <p:tgtEl><p:spTgt spid="{sp_id}"/></p:tgtEl>
+                              </p:cBhvr>
+                            </p:cmd>
+                          </p:childTnLst>
+                        </p:cTn>
+                      </p:par>
+                    </p:childTnLst>
+                  </p:cTn>
+                </p:par>
+              </p:childTnLst>
+            </p:cTn>
+          </p:seq>
+        </p:childTnLst>
+      </p:cTn>
+    </p:par>
+  </p:tnLst>
+</p:timing>"""
+    # Only add if no timing exists yet
+    existing = slide._element.find(
+        "{http://schemas.openxmlformats.org/presentationml/2006/main}timing"
+    )
+    if existing is None:
+        slide._element.append(etree.fromstring(timing_xml))
+
+
+def try_add_diagram(slide, diag_name, left, top, max_w, max_h):
+    """Add a pre-generated diagram PNG from assets/diagrams/."""
+    rel = os.path.join("assets", "diagrams", diag_name)
+    return try_add_image(slide, rel, left, top, max_w, max_h)
 
 
 def add_chrome(slide, data, dark_mode=False):
@@ -775,9 +957,20 @@ def build_split(prs, data):
                  Inches(0.62), body_top, text_w, Inches(2.9),
                  font_size=body_sz, color=C_TEXT_DIM, line_spacing_pct=155)
 
-    # Image
-    if data.get("image"):
+    # Video preferred over static image; fallback to image if video missing
+    if data.get("video"):
+        vid = add_video(slide, data["video"], img_l, img_top, img_w, img_h)
+        if vid is None and data.get("image"):
+            try_add_image(slide, data["image"], img_l, img_top, img_w, img_h)
+    elif data.get("image"):
         try_add_image(slide, data["image"], img_l, img_top, img_w, img_h)
+
+    # Formula image below body text
+    if data.get("formula"):
+        f_top = Inches(6.0)
+        f_h   = Inches(1.1)
+        try_add_image(slide, os.path.join("assets", "diagrams", data["formula"]),
+                      Inches(0.42), f_top, Inches(6.2), f_h)
 
     return slide
 
@@ -819,8 +1012,18 @@ def build_data_hero(prs, data):
     body = data.get("body", "")
     if body:
         add_body(slide, body,
-                 Inches(0.62), Inches(5.2), Inches(11.5), Inches(1.6),
+                 Inches(0.62), Inches(5.2), Inches(7.5), Inches(1.5),
                  font_size=17, color=C_TEXT_DIM, line_spacing_pct=145)
+
+    # Formula image (right of body, under rule)
+    if data.get("formula"):
+        try_add_image(slide, os.path.join("assets", "diagrams", data["formula"]),
+                      Inches(7.8), Inches(5.1), Inches(5.2), Inches(1.5))
+
+    # Energy bar diagram (only for slide 11)
+    if data.get("diagram"):
+        try_add_diagram(slide, data["diagram"],
+                        Inches(0.42), Inches(1.0), Inches(12.5), Inches(3.8))
 
     return slide
 
@@ -848,12 +1051,24 @@ def build_methodology(prs, data):
                  font_name="Consolas", font_size=16, bold=True,
                  color=C_PRIMARY, align=PP_ALIGN.CENTER)
 
-    # Body
+    # Methodology diagram (replaces text list of 6 domains)
+    if data.get("diagram"):
+        try_add_diagram(slide, data["diagram"],
+                        Inches(0.42), Inches(4.0), Inches(12.5), Inches(2.9))
+    else:
+        # Fallback body text if no diagram
+        body = data.get("body", "")
+        if body:
+            add_body(slide, body,
+                     Inches(0.62), Inches(4.15), Inches(12.3), Inches(2.6),
+                     font_size=18, color=C_TEXT_DIM, line_spacing_pct=155)
+
+    # Short body above diagram
     body = data.get("body", "")
-    if body:
+    if body and data.get("diagram"):
         add_body(slide, body,
-                 Inches(0.62), Inches(4.15), Inches(12.3), Inches(2.6),
-                 font_size=18, color=C_TEXT_DIM, line_spacing_pct=155)
+                 Inches(0.62), Inches(3.2), Inches(12.3), Inches(0.75),
+                 font_size=16, color=C_TEXT_DIM, line_spacing_pct=130)
 
     return slide
 
@@ -946,44 +1161,65 @@ def build_credits(prs, data):
               Inches(0.62), Inches(0.65), Inches(6.5), Inches(1.5),
               font_size=38, color=accent)
 
-    # Team column header
+    # ── ECHIPA section ──────────────────────────────────────────────────────────
     add_text(slide, "ECHIPA",
              Inches(0.62), Inches(2.25), Inches(5), Inches(0.35),
              font_name=F_LABEL, font_size=9, bold=True, color=C_PRIMARY)
-    add_rect(slide, Inches(0.62), Inches(2.6), Inches(5.8), Inches(0.02), C_OUTLINE)
+    add_rect(slide, Inches(0.62), Inches(2.6), Inches(6.0), Inches(0.02), C_OUTLINE)
 
-    team_text = (
-        "Ioan CHELARU\n"
-        "  Arhitectura sistem, calcule energetice,\n"
-        "  supraconductori YBCO, dinamica orbitala\n\n"
-        "Albert OLARIU\n"
+    echipa_text = (
+        "Ioan Cristian CHELARU\n"
         "  Modelare vizuala, scala Kardashev,\n"
         "  reteaua Star Power Grid, prezentare\n\n"
-        "Colaboratori:\n"
-        "  — de completat —"
+        "Albert David OLARIU\n"
+        "  Arhitectura sistem, calcule energetice,\n"
+        "  supraconductori YBCO, dinamica orbitala"
     )
-    add_body(slide, team_text,
-             Inches(0.62), Inches(2.72), Inches(5.9), Inches(4.0),
-             font_size=14, color=C_TEXT_DIM, line_spacing_pct=140)
+    add_body(slide, echipa_text,
+             Inches(0.62), Inches(2.72), Inches(6.0), Inches(1.7),
+             font_size=13, color=C_TEXT_DIM, line_spacing_pct=128)
 
-    # Team photo
+    # ── COLABORATORI section ─────────────────────────────────────────────────────
+    add_text(slide, "COLABORATORI",
+             Inches(0.62), Inches(4.52), Inches(5), Inches(0.35),
+             font_name=F_LABEL, font_size=9, bold=True, color=C_SECONDARY)
+    add_rect(slide, Inches(0.62), Inches(4.85), Inches(6.0), Inches(0.02), C_OUTLINE)
+
+    colaboratori_text = (
+        "Daniel-Justinian ZELENSCHI\n"
+        "  Ing. chimic (UCL + Melbourne) · PhD(c) AI · NASA Ames Research Center\n"
+        "  Space Settlement Contest — Premiul II\n\n"
+        "Carlo Emilio MONTANARI\n"
+        "  Fizician aplicat · Doctorand Dinamica Fasciculelor, CERN / Univ. Bologna\n"
+        "  Consultanta: dinamica fasciculelor de inalta precizie (LHC -> POLARIS)\n\n"
+        "Coordonator: Prof. Aaron FRANCISC\n"
+        "  ICHB — Liceul Teoretic International de Informatica"
+    )
+    add_body(slide, colaboratori_text,
+             Inches(0.62), Inches(4.95), Inches(6.0), Inches(2.0),
+             font_size=12, color=C_TEXT_DIM, line_spacing_pct=120)
+
+    # Team photo (right col, top)
     if data.get("image"):
         try_add_image(slide, data["image"],
-                      Inches(6.8), Inches(1.0), Inches(3.8), Inches(5.0))
+                      Inches(7.0), Inches(1.0), Inches(5.9), Inches(3.5))
 
-    # Bibliography
+    # Bibliography (right col, under photo)
     add_text(slide, "BIBLIOGRAFIE — STIL HARVARD",
-             Inches(0.62), Inches(4.95),
-             Inches(12), Inches(0.3),
+             Inches(7.0), Inches(4.65),
+             Inches(5.9), Inches(0.3),
              font_name=F_LABEL, font_size=8, bold=True, color=C_SECONDARY)
+    add_rect(slide, Inches(7.0), Inches(4.97), Inches(5.9), Inches(0.02), C_OUTLINE)
 
     bib = (
-        "Mankins (2011) · ESA (2023) · Glaser (1968) · Benford & Benford (2015) · "
-        "Kardashev (1964) · NASA NIAC · Parker Solar Probe · Lagrange Points · JAXA SSPS · "
-        "IEA World Energy Outlook 2023 · Chou et al. (2019) · Aschenbrenner (2023)"
+        "Glaser (1968) Science · IEA (2024) Electricity Forecast · JAXA SSPS · "
+        "Mankins (2011) NASA NIAC SPS-ALPHA · NASA SBSP · NASA GSFC Solar Irradiance · "
+        "NASA Lagrange Points · NASA (2018) Parker Solar Probe · "
+        "Brown (1984) IEEE Microw. Theory · Shinohara (2014) Wireless Power Transfer · "
+        "CERN (2021) HTS Superconductors · Larbalestier et al. (2001) Nature 414"
     )
     add_text(slide, bib,
-             Inches(0.62), Inches(5.35), Inches(12.5), Inches(0.8),
+             Inches(7.0), Inches(5.08), Inches(5.9), Inches(1.85),
              font_name=F_LABEL, font_size=8, color=C_OUTLINE)
 
     # Bottom chrome
@@ -995,6 +1231,45 @@ def build_credits(prs, data):
              Inches(12.2), Inches(7.15), Inches(0.9), Inches(0.26),
              font_name=F_LABEL, font_size=7, bold=True,
              color=C_OUTLINE, align=PP_ALIGN.RIGHT)
+
+    return slide
+
+
+def build_kardashev(prs, data):
+    """Kardashev slide: video background left, Kardashev bar diagram right, text overlay."""
+    slide = prs.slides.add_slide(prs.slide_layouts[6])
+    set_bg(slide, C_BG)
+    add_chrome(slide, data)
+
+    accent = data.get("accent", C_PRIMARY)
+
+    # Title
+    add_title(slide, data["title"],
+              Inches(0.62), Inches(1.1), Inches(5.8), Inches(2.0),
+              font_size=52, color=accent)
+
+    # Body
+    body = data.get("body", "")
+    if body:
+        add_body(slide, body,
+                 Inches(0.62), Inches(3.2), Inches(5.8), Inches(3.5),
+                 font_size=17, color=C_TEXT_DIM, line_spacing_pct=150)
+
+    # Right panel: video (preferred) or static image
+    img_l, img_t = Inches(7.0), Inches(1.0)
+    img_w, img_h = Inches(5.9), Inches(4.2)
+
+    if data.get("video"):
+        vid = add_video(slide, data["video"], img_l, img_t, img_w, img_h)
+        if vid is None and data.get("image"):
+            try_add_image(slide, data["image"], img_l, img_t, img_w, img_h)
+    elif data.get("image"):
+        try_add_image(slide, data["image"], img_l, img_t, img_w, img_h)
+
+    # Kardashev bar diagram — full width strip at bottom
+    if data.get("diagram"):
+        try_add_diagram(slide, data["diagram"],
+                        Inches(0.42), Inches(5.55), Inches(12.5), Inches(1.55))
 
     return slide
 
@@ -1013,6 +1288,7 @@ def build_slide(prs, data):
         "split":       build_split,
         "data_hero":   build_data_hero,
         "methodology": build_methodology,
+        "kardashev":   build_kardashev,
         "center":      build_center,
         "statement":   build_statement,
         "credits":     build_credits,
@@ -1026,6 +1302,9 @@ def build_slide(prs, data):
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def generate(m365=False):
+    global _anim_id
+    _anim_id = itertools.count(1)   # reset per presentation
+
     prs = Presentation()
     prs.slide_width  = W
     prs.slide_height = H
