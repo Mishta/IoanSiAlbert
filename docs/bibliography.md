@@ -1,5 +1,5 @@
 # P.O.L.A.R.I.S. — Bibliografie (Harvard Style)
-> Top 12 referinte principale · Ultima actualizare: 2026-04-16
+> Top 12 referinte principale · Ultima actualizare: 2026-04-17
 
 ---
 
@@ -13,15 +13,15 @@ https://www.iea.org/reports/electricity-2024
 
 ## 3. JAXA — Space Solar Power Systems
 Japan Aerospace Exploration Agency (JAXA), n.d. Space Solar Power Systems (SSPS).
-https://www.kenkai.jaxa.jp/eng/research/ssps/
+https://www.kenkai.jaxa.jp/eng/research/ssps/ssps-index.html
 
 ## 4. Mankins (2011) — SPS-ALPHA / NASA NIAC
 Mankins, J.C., 2011. SPS-ALPHA: The First Practical Solar Power Satellite via Arbitrarily Large Phased Array. *NASA NIAC Phase I Report*.
-https://www.nasa.gov/sites/default/files/files/niac_2011_phaseI_mankins.pdf
+https://www.researchgate.net/publication/268573928_SPS-ALPHA_The_First_Practical_Solar_Power_Satellite_via_Arbitrarily_Large_Phased_Array_A_2011-2012_NIAC_Project
 
 ## 5. NASA — Space-Based Solar Power
 NASA, n.d. Space-Based Solar Power.
-https://www.nasa.gov/directorates/space-tech/niac/space-based-solar-power/
+https://www.nasa.gov/organizations/otps/space-based-solar-power-report/
 
 ## 6. NASA GSFC — Total Solar Irradiance
 NASA Goddard Space Flight Center, n.d. Total Solar Irradiance.
@@ -37,9 +37,11 @@ https://www.nasa.gov/content/goddard/parker-solar-probe
 
 ## 9. Brown (1984) — Wireless Power Transmission (Radio Waves)
 Brown, W.C., 1984. The History of Power Transmission by Radio Waves. *IEEE Transactions on Microwave Theory and Techniques*, 32(9), pp.1230–1242.
+https://doi.org/10.1109/TMTT.1984.1132833
 
 ## 10. Shinohara (2014) — Wireless Power Transfer
 Shinohara, N., 2014. *Wireless Power Transfer via Radiowaves*. London: ISTE Ltd.
+ISBN: 978-1-848-21518-1
 
 ## 11. CERN (2021) — Superconductori HTS
 CERN, 2021. High-temperature superconductors for future accelerators.
