@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 680" width="1400" height="680">
+<defs>
+  <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%"   stop-color="#070b14"/>
+    <stop offset="50%"  stop-color="#0d1b2e"/>
+    <stop offset="100%" stop-color="#070b14"/>
+  </linearGradient>
+
+  <!-- Node fill gradients -->
+  <radialGradient id="n1" cx="50%" cy="35%" r="55%">
+    <stop offset="0%" stop-color="#ffdd44"/><stop offset="100%" stop-color="#e65100"/>
+  </radialGradient>
+  <radialGradient id="n2" cx="50%" cy="35%" r="55%">
+    <stop offset="0%" stop-color="#ffa040"/><stop offset="100%" stop-color="#8a4000"/>
+  </radialGradient>
+  <radialGradient id="n3" cx="50%" cy="35%" r="55%">
+    <stop offset="0%" stop-color="#ffd740"/><stop offset="100%" stop-color="#b8860b"/>
+  </radialGradient>
+  <radialGradient id="n4" cx="50%" cy="35%" r="55%">
+    <stop offset="0%" stop-color="#80d8ff"/><stop offset="100%" stop-color="#0277bd"/>
+  </radialGradient>
+  <radialGradient id="n5" cx="50%" cy="35%" r="55%">
+    <stop offset="0%" stop-color="#00e5ff"/><stop offset="100%" stop-color="#006064"/>
+  </radialGradient>
+  <radialGradient id="n6" cx="50%" cy="35%" r="55%">
+    <stop offset="0%" stop-color="#ce93d8"/><stop offset="100%" stop-color="#4a148c"/>
+  </radialGradient>
+  <radialGradient id="n7" cx="50%" cy="35%" r="55%">
+    <stop offset="0%" stop-color="#4fc3f7"/><stop offset="100%" stop-color="#01579b"/>
+  </radialGradient>
+  <radialGradient id="n8" cx="50%" cy="35%" r="55%">
+    <stop offset="0%" stop-color="#69f0ae"/><stop offset="100%" stop-color="#1b5e20"/>
+  </radialGradient>
+  <radialGradient id="n9" cx="50%" cy="35%" r="55%">
+    <stop offset="0%" stop-color="#ffe066"/><stop offset="100%" stop-color="#1a3050"/>
+  </radialGradient>
+
+  <!-- Glow filters -->
+  <filter id="g3" x="-60%" y="-60%" width="220%" height="220%">
+    <feGaussianBlur stdDeviation="3" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="g6" x="-80%" y="-80%" width="260%" height="260%">
+    <feGaussianBlur stdDeviation="6" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="g10" x="-100%" y="-100%" width="300%" height="300%">
+    <feGaussianBlur stdDeviation="10" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+
+  <!-- Arrow markers -->
+  <marker id="arw" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+    <polygon points="0 0, 9 3, 0 6" fill="#4fc3f7" opacity="0.75"/>
+  </marker>
+  <marker id="arwL" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+    <polygon points="0 0, 9 3, 0 6" fill="#00e5ff" opacity="0.85"/>
+  </marker>
+  <marker id="arwG" markerWidth="9" markerHeight="6" refX="8" refY="3" orient="auto">
+    <polygon points="0 0, 9 3, 0 6" fill="#69f0ae" opacity="0.85"/>
+  </marker>
+</defs>
+
+<!-- ═══ BACKGROUND ═══ -->
+<rect width="1400" height="680" fill="url(#bg)"/>
+
+<!-- Grid texture -->
+<g stroke="#4fc3f7" stroke-width="0.25" opacity="0.06">
+  <line x1="0" y1="115" x2="1400" y2="115"/>
+  <line x1="0" y1="230" x2="1400" y2="230"/>
+  <line x1="0" y1="345" x2="1400" y2="345"/>
+  <line x1="0" y1="460" x2="1400" y2="460"/>
+  <line x1="0" y1="575" x2="1400" y2="575"/>
+  <line x1="155" y1="0" x2="155" y2="680"/>
+  <line x1="311" y1="0" x2="311" y2="680"/>
+  <line x1="467" y1="0" x2="467" y2="680"/>
+  <line x1="622" y1="0" x2="622" y2="680"/>
+  <line x1="778" y1="0" x2="778" y2="680"/>
+  <line x1="933" y1="0" x2="933" y2="680"/>
+  <line x1="1089" y1="0" x2="1089" y2="680"/>
+  <line x1="1244" y1="0" x2="1244" y2="680"/>
+</g>
+
+<!-- Stars -->
+<g fill="white" opacity="0.6">
+  <circle cx="28"   cy="22"  r="0.9"/>  <circle cx="110"  cy="55"  r="0.7"/>
+  <circle cx="200"  cy="18"  r="1"/>    <circle cx="1200" cy="25"  r="0.8"/>
+  <circle cx="1310" cy="60"  r="1.1"/>  <circle cx="1380" cy="20"  r="0.8"/>
+  <circle cx="40"   cy="640" r="0.9"/>  <circle cx="1360" cy="630" r="1"/>
+  <circle cx="700"  cy="15"  r="0.8"/>  <circle cx="700"  cy="660" r="0.7"/>
+</g>
+
+<!-- ═══ TITLE ═══ -->
+<text x="700" y="40" font-family="'Courier New',monospace" font-size="21" font-weight="bold"
+      fill="#c9a84c" text-anchor="middle" letter-spacing="4">LANȚ ENERGETIC P.O.L.A.R.I.S.</text>
+<text x="700" y="58" font-family="'Courier New',monospace" font-size="9.5"
+      fill="#4fc3f7" text-anchor="middle" letter-spacing="1" opacity="0.8">
+  Solar · Oglinzi · Captare · Conversie · LASER · L4/L5 · Transmisie · Recepție · Star Power Grid
+</text>
+<line x1="120" y1="67" x2="1280" y2="67" stroke="#4fc3f7" stroke-width="0.5" opacity="0.3"/>
+
+<!-- ═══ EFFICIENCY DEGRADATION BAR ═══ -->
+<rect x="75" y="80" width="1250" height="5" fill="#0a1628" rx="2"/>
+<rect x="75"   y="80" width="225" height="5" fill="#ff9a3c" rx="2" opacity="0.75"/>
+<rect x="300"  y="80" width="150" height="5" fill="#ffa040" opacity="0.7"/>
+<rect x="450"  y="80" width="150" height="5" fill="#c9a84c" opacity="0.7"/>
+<rect x="600"  y="80" width="125" height="5" fill="#4fc3f7" opacity="0.7"/>
+<rect x="725"  y="80" width="125" height="5" fill="#00e5ff" opacity="0.7"/>
+<rect x="850"  y="80" width="110" height="5" fill="#ce93d8" opacity="0.65"/>
+<rect x="960"  y="80" width="105" height="5" fill="#4fc3f7" opacity="0.7"/>
+<rect x="1065" y="80" width="100" height="5" fill="#69f0ae" opacity="0.7"/>
+<rect x="1165" y="80" width="160" height="5" fill="#ffe066" opacity="0.75"/>
+<text x="700" y="97" font-family="'Courier New',monospace" font-size="7.5"
+      fill="#4fc3f7" text-anchor="middle" opacity="0.45" letter-spacing="1">pierderi energetice cumulate  →</text>
+
+<!-- ═══════════════════════════════════════
+     NODE POSITIONS (y=290, r=42):
+     1: x=75   2: x=231  3: x=387  4: x=543
+     5: x=700  6: x=856  7: x=1012 8: x=1168  9: x=1324
+     ═══════════════════════════════════════ -->
+
+<!-- ── CONNECTORS ── (drawn before nodes so nodes sit on top) -->
+
+<!-- 1→2 standard -->
+<line x1="117" y1="290" x2="189" y2="290"
+      stroke="#ffa040" stroke-width="1.8" stroke-dasharray="6,3" marker-end="url(#arw)" opacity="0.7"/>
+<text x="153" y="280" font-family="'Courier New',monospace" font-size="7"
+      fill="#ffa040" text-anchor="middle" opacity="0.65">fotoni concentrați</text>
+
+<!-- 2→3 -->
+<line x1="273" y1="290" x2="345" y2="290"
+      stroke="#c9a84c" stroke-width="1.8" stroke-dasharray="6,3" marker-end="url(#arw)" opacity="0.7"/>
+<text x="309" y="280" font-family="'Courier New',monospace" font-size="7"
+      fill="#c9a84c" text-anchor="middle" opacity="0.65">flux IR/VIS</text>
+
+<!-- 3→4 -->
+<line x1="429" y1="290" x2="501" y2="290"
+      stroke="#4fc3f7" stroke-width="1.8" stroke-dasharray="6,3" marker-end="url(#arw)" opacity="0.7"/>
+<text x="465" y="280" font-family="'Courier New',monospace" font-size="7"
+      fill="#4fc3f7" text-anchor="middle" opacity="0.65">curent DC</text>
+
+<!-- 4→5 -->
+<line x1="585" y1="290" x2="658" y2="290"
+      stroke="#00e5ff" stroke-width="2" stroke-dasharray="5,2" marker-end="url(#arwL)" opacity="0.75"/>
+<text x="622" y="280" font-family="'Courier New',monospace" font-size="7"
+      fill="#00e5ff" text-anchor="middle" opacity="0.7">DC → LASER</text>
+
+<!-- 5→6 LASER beam (solid, glowing) -->
+<line x1="742" y1="290" x2="814" y2="290"
+      stroke="#00e5ff" stroke-width="3" marker-end="url(#arwL)" opacity="0.8" filter="url(#g3)"/>
+<line x1="742" y1="290" x2="814" y2="290"
+      stroke="white" stroke-width="0.8" opacity="0.6"/>
+<text x="778" y="280" font-family="'Courier New',monospace" font-size="7"
+      fill="#00e5ff" text-anchor="middle" opacity="0.8">LASER 1064nm</text>
+
+<!-- 6→7 stabilized beam -->
+<line x1="898" y1="290" x2="970" y2="290"
+      stroke="#4fc3f7" stroke-width="2.5" marker-end="url(#arwL)" opacity="0.75" filter="url(#g3)"/>
+<line x1="898" y1="290" x2="970" y2="290"
+      stroke="white" stroke-width="0.6" opacity="0.5"/>
+<text x="934" y="280" font-family="'Courier New',monospace" font-size="7"
+      fill="#4fc3f7" text-anchor="middle" opacity="0.75">fascicul stabil</text>
+
+<!-- 7→8 -->
+<line x1="1054" y1="290" x2="1126" y2="290"
+      stroke="#69f0ae" stroke-width="1.8" stroke-dasharray="6,3" marker-end="url(#arwG)" opacity="0.7"/>
+<text x="1090" y="280" font-family="'Courier New',monospace" font-size="7"
+      fill="#69f0ae" text-anchor="middle" opacity="0.65">recepționat</text>
+
+<!-- 8→9 YBCO cable -->
+<line x1="1210" y1="290" x2="1282" y2="290"
+      stroke="#ffe066" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arw)" opacity="0.8"/>
+<text x="1246" y="280" font-family="'Courier New',monospace" font-size="7"
+      fill="#ffe066" text-anchor="middle" opacity="0.75">cablu YBCO</text>
+
+<!-- ══════════════════════════════════════════════════════════
+     NODE 1 — SURSĂ SOLARĂ  x=75
+     ══════════════════════════════════════════════════════════ -->
+<g transform="translate(75,290)">
+  <circle cx="0" cy="0" r="44" fill="#0a1628" stroke="#ff9a3c" stroke-width="1.4" opacity="0.95"/>
+  <circle cx="0" cy="0" r="44" fill="url(#n1)" opacity="0.12" filter="url(#g10)"/>
+  <!-- Sun body -->
+  <circle cx="0" cy="0" r="20" fill="url(#n1)" opacity="0.92" filter="url(#g6)"/>
+  <!-- Rays -->
+  <g stroke="#ffdd44" stroke-width="2" opacity="0.7">
+    <line x1="0" y1="-27" x2="0" y2="-34"/>    <line x1="0" y1="27" x2="0" y2="34"/>
+    <line x1="-27" y1="0" x2="-34" y2="0"/>    <line x1="27" y1="0" x2="34" y2="0"/>
+    <line x1="-19" y1="-19" x2="-24" y2="-24"/> <line x1="19" y1="-19" x2="24" y2="-24"/>
+    <line x1="-19" y1="19" x2="-24" y2="24"/>   <line x1="19" y1="19" x2="24" y2="24"/>
+  </g>
+  <!-- Labels -->
+  <text x="0" y="60" font-family="'Courier New',monospace" font-size="9.5" font-weight="bold"
+        fill="#ff9a3c" text-anchor="middle">SURSĂ SOLARĂ</text>
+  <text x="0" y="73" font-family="'Courier New',monospace" font-size="8"
+        fill="#ff9a3c" text-anchor="middle" opacity="0.8">1361 W/m²</text>
+  <text x="0" y="85" font-family="'Courier New',monospace" font-size="7"
+        fill="#4fc3f7" text-anchor="middle" opacity="0.55">constanta solară</text>
+  <text x="0" y="-55" font-family="'Courier New',monospace" font-size="8.5"
+        fill="#ff9a3c" text-anchor="middle" opacity="0.5">01</text>
+</g>
+
+<!-- ══════════════════════════════════════════════════════════
+     NODE 2 — REFLEXIE OGLINZI  x=231
+     ══════════════════════════════════════════════════════════ -->
+<g transform="translate(231,290)">
+  <circle cx="0" cy="0" r="44" fill="#0a1628" stroke="#ffa040" stroke-width="1.4" opacity="0.95"/>
+  <circle cx="0" cy="0" r="44" fill="url(#n2)" opacity="0.10" filter="url(#g10)"/>
+  <!-- Mirror icon: tilted rectangle + reflected beam -->
+  <rect x="-5" y="-22" width="10" height="44" fill="#ffa040" opacity="0.75" rx="2" transform="rotate(-20,0,0)"/>
+  <!-- Incoming beam left -->
+  <line x1="-36" y1="-12" x2="-8" y2="2" stroke="#ffdd44" stroke-width="2" opacity="0.8"/>
+  <!-- Outgoing beam right-down -->
+  <line x1="8" y1="2" x2="36" y2="18" stroke="#ffdd44" stroke-width="2" opacity="0.8" filter="url(#g3)"/>
+  <!-- Reflection dot -->
+  <circle cx="0" cy="2" r="4" fill="white" opacity="0.85"/>
+
+  <text x="0" y="60" font-family="'Courier New',monospace" font-size="9.5" font-weight="bold"
+        fill="#ffa040" text-anchor="middle">OGLINZI SOLARE</text>
+  <text x="0" y="73" font-family="'Courier New',monospace" font-size="8"
+        fill="#ffa040" text-anchor="middle" opacity="0.8">30 oglinzi · Ø1km</text>
+  <text x="0" y="85" font-family="'Courier New',monospace" font-size="7"
+        fill="#4fc3f7" text-anchor="middle" opacity="0.55">la 7 mln km · η≈90%</text>
+  <text x="0" y="-55" font-family="'Courier New',monospace" font-size="8.5"
+        fill="#ffa040" text-anchor="middle" opacity="0.5">02</text>
+</g>
+
+<!-- ══════════════════════════════════════════════════════════
+     NODE 3 — CAPTARE ORBITALĂ  x=387
+     ══════════════════════════════════════════════════════════ -->
+<g transform="translate(387,290)">
+  <circle cx="0" cy="0" r="44" fill="#0a1628" stroke="#c9a84c" stroke-width="1.4" opacity="0.95"/>
+  <circle cx="0" cy="0" r="44" fill="url(#n3)" opacity="0.10" filter="url(#g10)"/>
+  <!-- Satellite body + panels -->
+  <rect x="-12" y="-9" width="24" height="18" fill="#c9a84c" opacity="0.85" rx="3"/>
+  <rect x="-32" y="-6" width="18" height="12" fill="#1565c0" opacity="0.9" rx="2"/>
+  <rect x="14"  y="-6" width="18" height="12" fill="#1565c0" opacity="0.9" rx="2"/>
+  <circle cx="0" cy="0" r="4.5" fill="white" opacity="0.9"/>
+
+  <text x="0" y="60" font-family="'Courier New',monospace" font-size="9.5" font-weight="bold"
+        fill="#c9a84c" text-anchor="middle">CAPTARE ORBITALĂ</text>
+  <text x="0" y="73" font-family="'Courier New',monospace" font-size="8"
+        fill="#c9a84c" text-anchor="middle" opacity="0.8">panou GaAs · η≈45%</text>
+  <text x="0" y="85" font-family="'Courier New',monospace" font-size="7"
+        fill="#4fc3f7" text-anchor="middle" opacity="0.55">fără pierderi atmosferice</text>
+  <text x="0" y="-55" font-family="'Courier New',monospace" font-size="8.5"
+        fill="#c9a84c" text-anchor="middle" opacity="0.5">03</text>
+</g>
+
+<!-- ══════════════════════════════════════════════════════════
+     NODE 4 — CONVERSIE  x=543
+     ══════════════════════════════════════════════════════════ -->
+<g transform="translate(543,290)">
+  <circle cx="0" cy="0" r="44" fill="#0a1628" stroke="#4fc3f7" stroke-width="1.4" opacity="0.95"/>
+  <circle cx="0" cy="0" r="44" fill="url(#n4)" opacity="0.10" filter="url(#g10)"/>
+  <!-- Lightning bolt -->
+  <polygon points="6,-22 -8,0 2,0 -6,22 8,0 -2,0" fill="#4fc3f7" opacity="0.9" filter="url(#g3)"/>
+  <!-- YBCO ring -->
+  <circle cx="0" cy="0" r="20" fill="none" stroke="#00e5ff" stroke-width="1.5" opacity="0.5" stroke-dasharray="4,3"/>
+
+  <text x="0" y="60" font-family="'Courier New',monospace" font-size="9.5" font-weight="bold"
+        fill="#4fc3f7" text-anchor="middle">CONVERSIE</text>
+  <text x="0" y="73" font-family="'Courier New',monospace" font-size="8"
+        fill="#4fc3f7" text-anchor="middle" opacity="0.8">diodă laser · η≈60%</text>
+  <text x="0" y="85" font-family="'Courier New',monospace" font-size="7"
+        fill="#4fc3f7" text-anchor="middle" opacity="0.55">YBCO supraconductor</text>
+  <text x="0" y="-55" font-family="'Courier New',monospace" font-size="8.5"
+        fill="#4fc3f7" text-anchor="middle" opacity="0.5">04</text>
+</g>
+
+<!-- ══════════════════════════════════════════════════════════
+     NODE 5 — EMISIE LASER  x=700
+     ══════════════════════════════════════════════════════════ -->
+<g transform="translate(700,290)">
+  <circle cx="0" cy="0" r="44" fill="#0a1628" stroke="#00e5ff" stroke-width="1.8" opacity="0.95"/>
+  <circle cx="0" cy="0" r="44" fill="url(#n5)" opacity="0.14" filter="url(#g10)"/>
+  <!-- Laser emitter body -->
+  <rect x="-18" y="-9" width="26" height="18" fill="#00b8d4" opacity="0.85" rx="4"/>
+  <!-- Lens -->
+  <circle cx="12" cy="0" r="7" fill="#00e5ff" opacity="0.9" filter="url(#g6)"/>
+  <!-- Beam lines right -->
+  <line x1="19" y1="0"  x2="40" y2="0"  stroke="#00e5ff" stroke-width="3" opacity="0.95" filter="url(#g3)"/>
+  <line x1="19" y1="-5" x2="40" y2="-8" stroke="#00e5ff" stroke-width="1.5" opacity="0.55"/>
+  <line x1="19" y1="5"  x2="40" y2="8"  stroke="#00e5ff" stroke-width="1.5" opacity="0.55"/>
+
+  <text x="0" y="60" font-family="'Courier New',monospace" font-size="9.5" font-weight="bold"
+        fill="#00e5ff" text-anchor="middle">EMISIE LASER</text>
+  <text x="0" y="73" font-family="'Courier New',monospace" font-size="8"
+        fill="#00e5ff" text-anchor="middle" opacity="0.8">1064 nm · IR</text>
+  <text x="0" y="85" font-family="'Courier New',monospace" font-size="7"
+        fill="#4fc3f7" text-anchor="middle" opacity="0.55">divergență &lt;0.001°</text>
+  <text x="0" y="-55" font-family="'Courier New',monospace" font-size="8.5"
+        fill="#00e5ff" text-anchor="middle" opacity="0.5">05</text>
+</g>
+
+<!-- ══════════════════════════════════════════════════════════
+     NODE 6 — LAGRANGE L4/L5  x=856  (SPECIAL — diamond shape)
+     ══════════════════════════════════════════════════════════ -->
+<g transform="translate(856,290)">
+  <!-- Diamond / hexagon border — special relay node -->
+  <circle cx="0" cy="0" r="44" fill="#0a1628" stroke="#ce93d8" stroke-width="1.8" opacity="0.95" stroke-dasharray="8,3"/>
+  <circle cx="0" cy="0" r="44" fill="url(#n6)" opacity="0.12" filter="url(#g10)"/>
+  <!-- Orbit arc symbols -->
+  <path d="M-30,-20 Q0,-38 30,-20" stroke="#ce93d8" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <path d="M-30, 20 Q0, 38 30, 20" stroke="#ce93d8" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <!-- Center star dot -->
+  <circle cx="0" cy="0" r="8" fill="#ce93d8" opacity="0.85" filter="url(#g6)"/>
+  <!-- L4/L5 text inside -->
+  <text x="0" y="4" font-family="'Courier New',monospace" font-size="8" font-weight="bold"
+        fill="white" text-anchor="middle" opacity="0.95">L4/L5</text>
+
+  <text x="0" y="60" font-family="'Courier New',monospace" font-size="9.5" font-weight="bold"
+        fill="#ce93d8" text-anchor="middle">NODUS LAGRANGE</text>
+  <text x="0" y="73" font-family="'Courier New',monospace" font-size="8"
+        fill="#ce93d8" text-anchor="middle" opacity="0.8">L4 / L5 · relay orbital</text>
+  <text x="0" y="85" font-family="'Courier New',monospace" font-size="7"
+        fill="#4fc3f7" text-anchor="middle" opacity="0.55">stabilizare · corecție</text>
+  <text x="0" y="-55" font-family="'Courier New',monospace" font-size="8.5"
+        fill="#ce93d8" text-anchor="middle" opacity="0.5">06</text>
+  <!-- Special badge -->
+  <rect x="-22" y="-58" width="44" height="14" rx="3" fill="#4a148c" opacity="0.75"/>
+  <text x="0" y="-48" font-family="'Courier New',monospace" font-size="7.5"
+        fill="#ce93d8" text-anchor="middle" font-weight="bold">LAGRANGE</text>
+</g>
+
+<!-- ══════════════════════════════════════════════════════════
+     NODE 7 — TRANSMISIE STABILIZATĂ  x=1012
+     ══════════════════════════════════════════════════════════ -->
+<g transform="translate(1012,290)">
+  <circle cx="0" cy="0" r="44" fill="#0a1628" stroke="#4fc3f7" stroke-width="1.4" opacity="0.95"/>
+  <circle cx="0" cy="0" r="44" fill="url(#n7)" opacity="0.10" filter="url(#g10)"/>
+  <!-- Laser + atmosphere arcs -->
+  <line x1="-38" y1="0" x2="38" y2="0" stroke="#00e5ff" stroke-width="3" opacity="0.85" filter="url(#g3)"/>
+  <!-- Atmosphere layers -->
+  <path d="M-28,-14 Q0,-20 28,-14" stroke="#4fc3f7" stroke-width="1.2" fill="none" opacity="0.55"/>
+  <path d="M-20,-8"  fill="none"/>
+  <path d="M-28,14 Q0,20 28,14"  stroke="#4fc3f7" stroke-width="1.2" fill="none" opacity="0.55"/>
+  <!-- Earth curve at bottom -->
+  <path d="M-38,24 Q0,30 38,24" stroke="#1565c0" stroke-width="2" fill="none" opacity="0.7"/>
+
+  <text x="0" y="60" font-family="'Courier New',monospace" font-size="9.5" font-weight="bold"
+        fill="#4fc3f7" text-anchor="middle">TRANSMISIE</text>
+  <text x="0" y="73" font-family="'Courier New',monospace" font-size="8"
+        fill="#4fc3f7" text-anchor="middle" opacity="0.8">atmosferă · η≈90%</text>
+  <text x="0" y="85" font-family="'Courier New',monospace" font-size="7"
+        fill="#4fc3f7" text-anchor="middle" opacity="0.55">1064nm transparent</text>
+  <text x="0" y="-55" font-family="'Courier New',monospace" font-size="8.5"
+        fill="#4fc3f7" text-anchor="middle" opacity="0.5">07</text>
+</g>
+
+<!-- ══════════════════════════════════════════════════════════
+     NODE 8 — RECEPȚIE TERESTRĂ  x=1168
+     ══════════════════════════════════════════════════════════ -->
+<g transform="translate(1168,290)">
+  <circle cx="0" cy="0" r="44" fill="#0a1628" stroke="#69f0ae" stroke-width="1.4" opacity="0.95"/>
+  <circle cx="0" cy="0" r="44" fill="url(#n8)" opacity="0.10" filter="url(#g10)"/>
+  <!-- Antenna/rectenna -->
+  <path d="M0,16 L0,-8 M-26,-6 Q0,-28 26,-6" stroke="#69f0ae" stroke-width="2.5" fill="none" opacity="0.9"/>
+  <circle cx="0" cy="-6" r="5.5" fill="#69f0ae" opacity="0.85" filter="url(#g3)"/>
+  <rect x="-5" y="16" width="10" height="7" fill="#69f0ae" opacity="0.65" rx="1"/>
+
+  <text x="0" y="60" font-family="'Courier New',monospace" font-size="9.5" font-weight="bold"
+        fill="#69f0ae" text-anchor="middle">RECEPȚIE</text>
+  <text x="0" y="73" font-family="'Courier New',monospace" font-size="8"
+        fill="#69f0ae" text-anchor="middle" opacity="0.8">rectenna · η≈85%</text>
+  <text x="0" y="85" font-family="'Courier New',monospace" font-size="7"
+        fill="#4fc3f7" text-anchor="middle" opacity="0.55">laser → curent DC</text>
+  <text x="0" y="-55" font-family="'Courier New',monospace" font-size="8.5"
+        fill="#69f0ae" text-anchor="middle" opacity="0.5">08</text>
+</g>
+
+<!-- ══════════════════════════════════════════════════════════
+     NODE 9 — STAR POWER GRID  x=1324  (SPECIAL — larger, gold)
+     ══════════════════════════════════════════════════════════ -->
+<g transform="translate(1324,290)">
+  <!-- Outer halo -->
+  <circle cx="0" cy="0" r="52" fill="#ffe066" opacity="0.04" filter="url(#g10)"/>
+  <circle cx="0" cy="0" r="46" fill="#0a1628" stroke="#ffe066" stroke-width="2" opacity="0.95"/>
+  <circle cx="0" cy="0" r="46" fill="url(#n9)" opacity="0.15" filter="url(#g10)"/>
+  <!-- Globe circle -->
+  <circle cx="0" cy="0" r="20" fill="none" stroke="#1565c0" stroke-width="1.5" opacity="0.7"/>
+  <!-- Equator line -->
+  <line x1="-20" y1="0" x2="20" y2="0" stroke="#4fc3f7" stroke-width="0.8" opacity="0.6"/>
+  <!-- Radial distribution lines -->
+  <line x1="0" y1="-20" x2="0"   y2="-42" stroke="#ffe066" stroke-width="1.5" opacity="0.8"/>
+  <line x1="0" y1="20"  x2="0"   y2="42"  stroke="#4fc3f7" stroke-width="1.5" opacity="0.8"/>
+  <line x1="20" y1="0"  x2="42"  y2="8"   stroke="#ffe066" stroke-width="1.2" opacity="0.65"/>
+  <line x1="20" y1="0"  x2="42"  y2="-8"  stroke="#ffe066" stroke-width="1.2" opacity="0.65"/>
+  <line x1="-20" y1="0" x2="-42" y2="8"   stroke="#4fc3f7" stroke-width="1.2" opacity="0.65"/>
+  <line x1="-20" y1="0" x2="-42" y2="-8"  stroke="#4fc3f7" stroke-width="1.2" opacity="0.65"/>
+  <!-- Hub dots at ends -->
+  <circle cx="0"   cy="-42" r="3" fill="#ffe066" opacity="0.9"/>
+  <circle cx="0"   cy="42"  r="3" fill="#4fc3f7" opacity="0.9"/>
+  <circle cx="42"  cy="8"   r="2.5" fill="#ffe066" opacity="0.8"/>
+  <circle cx="42"  cy="-8"  r="2.5" fill="#ffe066" opacity="0.8"/>
+  <circle cx="-42" cy="8"   r="2.5" fill="#4fc3f7" opacity="0.8"/>
+  <circle cx="-42" cy="-8"  r="2.5" fill="#4fc3f7" opacity="0.8"/>
+
+  <text x="0" y="63" font-family="'Courier New',monospace" font-size="10" font-weight="bold"
+        fill="#ffe066" text-anchor="middle">STAR POWER GRID</text>
+  <text x="0" y="76" font-family="'Courier New',monospace" font-size="7.5"
+        fill="#ffe066" text-anchor="middle" opacity="0.85">distribuție radiantă</text>
+  <text x="0" y="88" font-family="'Courier New',monospace" font-size="7"
+        fill="#4fc3f7" text-anchor="middle" opacity="0.6">poli → continente · HVDC</text>
+  <text x="0" y="-58" font-family="'Courier New',monospace" font-size="8.5"
+        fill="#ffe066" text-anchor="middle" opacity="0.5">09</text>
+  <!-- FINAL badge -->
+  <rect x="-28" y="-70" width="56" height="14" rx="3" fill="#1a3a0a" stroke="#69f0ae" stroke-width="0.8" opacity="0.9"/>
+  <text x="0" y="-60" font-family="'Courier New',monospace" font-size="7.5"
+        fill="#69f0ae" text-anchor="middle" font-weight="bold">1600 GW · GLOBAL</text>
+</g>
+
+<!-- ═══ EFFICIENCY SUMMARY ROW ═══ -->
+<line x1="75" y1="410" x2="1370" y2="410" stroke="#4fc3f7" stroke-width="0.4" opacity="0.2"/>
+<g font-family="'Courier New',monospace" font-size="8" text-anchor="middle">
+  <text x="75"   y="428" fill="#ff9a3c">1361 W/m²</text>
+  <text x="231"  y="428" fill="#ffa040">η ≈ 90%</text>
+  <text x="387"  y="428" fill="#c9a84c">η ≈ 45%</text>
+  <text x="543"  y="428" fill="#4fc3f7">η ≈ 60%</text>
+  <text x="700"  y="428" fill="#00e5ff">—</text>
+  <text x="856"  y="428" fill="#ce93d8">relay</text>
+  <text x="1012" y="428" fill="#4fc3f7">η ≈ 90%</text>
+  <text x="1168" y="428" fill="#69f0ae">η ≈ 85%</text>
+  <text x="1324" y="428" fill="#ffe066" font-weight="bold">~20%</text>
+  <text x="75"   y="441" fill="#ff9a3c" opacity="0.6">input</text>
+  <text x="231"  y="441" fill="#ffa040" opacity="0.6">oglinzi</text>
+  <text x="387"  y="441" fill="#c9a84c" opacity="0.6">GaAs PV</text>
+  <text x="543"  y="441" fill="#4fc3f7" opacity="0.6">laser</text>
+  <text x="700"  y="441" fill="#00e5ff" opacity="0.6">emisie</text>
+  <text x="856"  y="441" fill="#ce93d8" opacity="0.6">L4/L5</text>
+  <text x="1012" y="441" fill="#4fc3f7" opacity="0.6">atmosferă</text>
+  <text x="1168" y="441" fill="#69f0ae" opacity="0.6">rectenna</text>
+  <text x="1324" y="441" fill="#ffe066" opacity="0.6">global</text>
+</g>
+
+<!-- ═══ TOTAL EFFICIENCY BOX ═══ -->
+<rect x="420" y="468" width="560" height="44" rx="5" fill="#0a1628" stroke="#c9a84c" stroke-width="0.8" opacity="0.9"/>
+<text x="700" y="486" font-family="'Courier New',monospace" font-size="9.5"
+      fill="#c9a84c" text-anchor="middle">EFICIENȚĂ GLOBALĂ SISTEM</text>
+<text x="700" y="503" font-family="'Courier New',monospace" font-size="8.5"
+      fill="#4fc3f7" text-anchor="middle" opacity="0.85">
+  0.90 × 0.45 × 0.60 × 0.90 × 0.85 ≈ 18–20%  ·  captare 24/7  ·  fără intermitențe meteorologice
+</text>
+
+<!-- ═══ L4/L5 NOTE ═══ -->
+<rect x="755" y="530" width="290" height="32" rx="4" fill="#0a0818" stroke="#ce93d8" stroke-width="0.7" opacity="0.85"/>
+<text x="900" y="546" font-family="'Courier New',monospace" font-size="8"
+      fill="#ce93d8" text-anchor="middle">LAGRANGE L4/L5: puncte de echilibru gravitațional</text>
+<text x="900" y="558" font-family="'Courier New',monospace" font-size="7.5"
+      fill="#9c6aad" text-anchor="middle" opacity="0.8">Soare–Pământ · stabilitate pe termen lung fără propulsie</text>
+
+<!-- ═══ STAR POWER GRID NOTE ═══ -->
+<rect x="1070" y="530" width="310" height="32" rx="4" fill="#0a1a08" stroke="#69f0ae" stroke-width="0.7" opacity="0.85"/>
+<text x="1225" y="546" font-family="'Courier New',monospace" font-size="8"
+      fill="#69f0ae" text-anchor="middle">STAR POWER GRID: extensie terestră P.O.L.A.R.I.S.</text>
+<text x="1225" y="558" font-family="'Courier New',monospace" font-size="7.5"
+      fill="#4fc3f7" text-anchor="middle" opacity="0.8">distribuție radiantă de la Pol Nord + Pol Sud · HVDC YBCO</text>
+
+<!-- ═══ BRANDING ═══ -->
+<line x1="200" y1="648" x2="1200" y2="648" stroke="#c9a84c" stroke-width="0.4" opacity="0.22"/>
+<text x="700" y="660" font-family="'Courier New',monospace" font-size="9.5"
+      fill="#c9a84c" text-anchor="middle" opacity="0.5" letter-spacing="2">
+  POLARIS BEARS · ONCS 2026 · Inovăm prezentul. Alimentăm viitorul!
+</text>
+
+</svg>
