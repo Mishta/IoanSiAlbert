@@ -6,7 +6,7 @@ generate_all_docs.py  --  ONCS 2026 / P.O.L.A.R.I.S.
 Genereaza 5 documente DOCX separate in output/:
   01_Coperta.docx
   02_Cuprins.docx
-  03_Date_Identificare.docx
+  03_Anexa_2_Date_Identificare.docx
   04_Rezumat.docx
   05_Document_Principal.docx   (max 10 pagini, cu imagini)
 """
@@ -134,33 +134,32 @@ def doc1_coperta():
     tx(doc, "Sec\u021biunea: \u0218tiin\u021be fundamentale",
        sz=11, sa=10, al=WD_ALIGN_PARAGRAPH.CENTER)
 
-    tx(doc, "Echip\u0103: Polaris Bears",
+    tx(doc, "Echip\u0103: POLARIS Bears",
        bold=True, sz=13, sa=4, al=WD_ALIGN_PARAGRAPH.CENTER)
-    tx(doc, "Ioan Cristian CHELARU \u2014 clasa a VIII-a  [unitate \u015fcolar\u0103: de completat]",
+    tx(doc, "Ioan Cristian CHELARU | Albert David OLARIU",
        sz=11, sa=2, al=WD_ALIGN_PARAGRAPH.CENTER)
-    tx(doc, "Albert David OLARIU \u2014 clasa a VIII-a  [unitate \u015fcolar\u0103: de completat]",
-       sz=11, sa=6, al=WD_ALIGN_PARAGRAPH.CENTER)
-    tx(doc, "Mentor: Prof. Francisc Dionisie Aaron",
+    tx(doc, "clasa a VIII-a, ICHB \u2014 Liceul Teoretic Interna\u021bional de Informatic\u0103 Bucure\u015fti",
+       sz=10, sa=6, al=WD_ALIGN_PARAGRAPH.CENTER)
+    tx(doc, "Mentor: Prof. Francisc Dionisie AARON",
        sz=11, sa=1, al=WD_ALIGN_PARAGRAPH.CENTER)
     tx(doc, "ICHB \u2014 Liceul Teoretic Interna\u021bional de Informatic\u0103",
        sz=10, sa=6, al=WD_ALIGN_PARAGRAPH.CENTER)
 
     tx(doc, "Colaboratori:", bold=True, sz=11, sa=2,
        al=WD_ALIGN_PARAGRAPH.CENTER)
+    tx(doc, "Prof. Univ. Dr. Valentin BARNA \u2014 Facultatea de Fizic\u0103, Univ. Bucure\u015fti",
+       sz=10, sa=1, al=WD_ALIGN_PARAGRAPH.CENTER)
     tx(doc, "Carlo Emilio MONTANARI \u2014 Fizician aplicat, Doctorand CERN / Univ. Bologna",
        sz=10, sa=1, al=WD_ALIGN_PARAGRAPH.CENTER)
     tx(doc, "Daniel-Justinian ZELENSCHI \u2014 NASA Ames Research Center",
-       sz=10, sa=1, al=WD_ALIGN_PARAGRAPH.CENTER)
-    tx(doc, "Prof. Univ. Dr. Valentin BARNA \u2014 Facultatea de Fizic\u0103, Univ. Bucure\u015fti",
        sz=10, sa=8, al=WD_ALIGN_PARAGRAPH.CENTER)
 
     tx(doc, "Aprilie 2026",
        sz=11, bold=True, al=WD_ALIGN_PARAGRAPH.CENTER)
     doc.add_paragraph()
     tx(doc,
-       "\u26a0  C\u00e2mpuri de completat \u00eenainte de depunere: "
-       "unitatea \u015fcolar\u0103 a fiec\u0103rui elev, "
-       "num\u0103rul de telefon al mentorului, categoria ONCS 2026.",
+       "Toate datele de identificare sunt completate. "
+       "Verificati diacriticele si formatarea inainte de depunerea dosarului.",
        italic=True, sz=9, al=WD_ALIGN_PARAGRAPH.CENTER, sa=2)
 
     path = os.path.join(OUT, "01_Coperta.docx")
@@ -247,7 +246,7 @@ def doc2_cuprins():
 
 def doc3_identificare():
     doc = mkdoc()
-    hd(doc, "Date de Identificare \u2014 Dosar \u00censcricere ONCS 2026",
+    hd(doc, "Date de Identificare \u2014 Dosar \u00cens\u0063riere ONCS 2026",
        lvl=1, sz=14, sb=4, sa=6)
     tx(doc,
        "Anex\u0103 nr. 2 \u2014 Regulament ONCS 2026 | "
@@ -258,31 +257,37 @@ def doc3_identificare():
         ("Acronimul proiectului",   "P.O.L.A.R.I.S."),
         ("Titlul complet",
          "Platform\u0103 Orbital\u0103 Laser pentru Alimentare \u015fi Recep\u021bie Inovativ\u0103 Solar\u0103"),
-        ("Categoria ONCS 2026",     "\u26a0 De completat"),
+        ("Categoria ONCS 2026",     "Juniori"),
         ("Sec\u021biunea",          "\u0218tiin\u021be fundamentale"),
         ("Mentorul echipei",
-         "Prof. Francisc Dionisie Aaron\n"
-         "ICHB \u2014 Liceul Teoretic Interna\u021bional de Informatic\u0103\n"
-         "\u26a0 Nr. telefon: de completat"),
+         "Prof. Francisc Dionisie AARON\n"
+         "ICHB \u2014 Liceul Teoretic Interna\u021bional de Informatic\u0103 Bucure\u015fti\n"
+         "Nr. telefon: 0721 185 014"),
         ("Elev 1",
          "Ioan Cristian CHELARU\n"
-         "Clasa a VIII-a | \u26a0 Unitate \u015fcolar\u0103: de completat\n"
+         "Clasa a VIII-a | ICHB \u2014 Liceul Teoretic Interna\u021bional de Informatic\u0103 Bucure\u015fti\n"
          "Rol: Modelare vizual\u0103, scala Kardashev, re\u021beaua Star Power Grid, prezentare"),
         ("Elev 2",
          "Albert David OLARIU\n"
-         "Clasa a VIII-a | \u26a0 Unitate \u015fcolar\u0103: de completat\n"
+         "Clasa a VIII-a | ICHB \u2014 Liceul Teoretic Interna\u021bional de Informatic\u0103 Bucure\u015fti\n"
          "Rol: Arhitectur\u0103 sistem, calcule energetice, supraconductori YBCO, dinamic\u0103 orbital\u0103"),
         ("Colaborator 1",
-         "Daniel-Justinian ZELENSCHI\n"
-         "Ing. chimic (UCL + Melbourne) \u2022 PhD(c) AI \u2022 NASA Ames Research Center\n"
-         "Space Settlement Contest \u2014 Premiul II"),
+         "Prof. Univ. Dr. Valentin BARNA\n"
+         "Facultatea de Fizic\u0103, Univ. Bucure\u015fti\n"
+         "Specializare: Optic\u0103 \u015fi Fotonic\u0103, Fizica LASER-ilor\n"
+         "Consultan\u021b\u0103: principii de fotonic\u0103 \u015fi conversie radia\u021bie solar\u0103 \u2192 LASER"),
         ("Colaborator 2",
          "Carlo Emilio MONTANARI\n"
          "Fizician aplicat \u2022 Doctorand Dinamica Fasciculelor, CERN / Univ. Bologna\n"
          "Consultan\u021b\u0103: dinamica fasciculelor de \u00eenalt\u0103 precizie (LHC \u2192 POLARIS)"),
+        ("Colaborator 3",
+         "Daniel-Justinian ZELENSCHI\n"
+         "Ing. chimic (UCL + Melbourne) \u2022 PhD(c) AI \u2022 NASA Ames Research Center\n"
+         "Space Settlement Contest \u2014 Premiul II \u2022 implementare AI la scar\u0103 industrial\u0103 (Raiffeisen AI)\n"
+         "Consultan\u021b\u0103: algoritmi AI pentru controlul autonom al swarm-ului orbital \u015fi optimizarea Star Power Grid"),
         ("Coordonator \u015ftiin\u021bific",
-         "Prof. Francisc Dionisie Aaron\n"
-         "ICHB \u2014 Liceul Teoretic Interna\u021bional de Informatic\u0103"),
+         "Prof. Francisc Dionisie AARON\n"
+         "ICHB \u2014 Liceul Teoretic Interna\u021bional de Informatic\u0103 Bucure\u015fti"),
     ]
 
     tbl = doc.add_table(rows=len(rows), cols=2)
@@ -314,12 +319,12 @@ def doc3_identificare():
     doc.add_paragraph()
     tx(doc,
        "Not\u0103: Completarea datelor se va face cu denumiri corecte, cu diacritice, "
-       "f\u0103r\u0103 prescrurt\u0103ri. Documentul se va transmite \u00een format editabil \u015fi scanat.",
+       "f\u0103r\u0103 prescurt\u0103ri. Documentul se va transmite \u00een format editabil \u015fi scanat.",
        italic=True, sz=9, sa=2)
 
-    path = os.path.join(OUT, "03_Date_Identificare.docx")
+    path = os.path.join(OUT, "03_Anexa_2_Date_Identificare.docx")
     doc.save(path)
-    print("  [OK] 03_Date_Identificare.docx")
+    print("  [OK] 03_Anexa_2_Date_Identificare.docx")
 
 # ─── DOC 4: REZUMAT ───────────────────────────────────────────────────────────
 
@@ -383,7 +388,7 @@ def doc5_principal():
        bold=True, sz=20, al=WD_ALIGN_PARAGRAPH.CENTER, sa=1)
     tx(doc, "Platform\u0103 Orbital\u0103 Laser pentru Alimentare \u015fi Recep\u021bie Inovativ\u0103 Solar\u0103",
        italic=True, sz=10, al=WD_ALIGN_PARAGRAPH.CENTER, sa=1)
-    tx(doc, "Polaris Bears \u2022 ONCS 2026 \u2022 Sec\u021biunea: \u0218tiin\u021be fundamentale",
+    tx(doc, "POLARIS Bears \u2022 ONCS 2026 \u2022 Sec\u021biunea: \u0218tiin\u021be fundamentale",
        sz=9, al=WD_ALIGN_PARAGRAPH.CENTER, sa=6)
 
     hd(doc, "1. Introducere", lvl=1, sz=12, sb=4, sa=2)
@@ -729,14 +734,14 @@ def doc5_principal():
          "ICHB \u2014 Liceul Teoretic Interna\u021bional de Informatic\u0103\n"
          "\u26a0 Nr. telefon: de completat"),
         ("Daniel-Justinian ZELENSCHI\n(Colaborator)",
-         "Ing. chimic (UCL + Melbourne) \u2022 PhD(c) AI \u2022 NASA Ames Research Center\n"
-         "Space Settlement Contest \u2014 Premiul II"),
+         "Ing. chimic (UCL + Melbourne) \u2022 PhD(c) AI \u2022 implementare AI la scar\u0103 industrial\u0103 (Raiffeisen AI) \u2022 NASA Ames Research Center \u2014 Space Settlement Contest \u2014 Premiul II\n"
+         "Consultan\u021b\u0103: algoritmi AI pentru controlul autonom al swarm-ului orbital \u015fi optimizarea Star Power Grid"),
         ("Carlo Emilio MONTANARI\n(Colaborator)",
          "Fizician aplicat \u2022 Doctorand Dinamica Fasciculelor, CERN / Univ. Bologna\n"
          "Consultan\u021b\u0103: dinamica fasciculelor de \u00eenalt\u0103 precizie (LHC \u2192 POLARIS)"),
         ("Prof. Univ. Dr. Valentin BARNA\n(Colaborator)",
          "Facultatea de Fizic\u0103, Universitatea din Bucure\u015fti\n"
-         "Specializare: Optic\u0103 \u015fi Fotonic\u0103, Fizica laserilor\n"
+         "Specializare: Optic\u0103 \u015fi Fotonic\u0103, Fizica LASER-ilor\n"
          "Consultan\u021b\u0103: principii de fotonic\u0103 \u015fi conversie radia\u021bie solar\u0103 \u2192 LASER "
          "aplicabile lan\u021bului energetic"),
     ]
@@ -767,7 +772,7 @@ def doc5_principal():
 
     doc.add_paragraph()
     pic(doc, os.path.join(ASS, "team-hero.jpeg"), w=8.0,
-        cap="Echipa Polaris Bears \u2014 Ioan Cristian CHELARU \u015fi Albert David OLARIU")
+        cap="Echipa POLARIS Bears \u2014 Ioan Cristian CHELARU \u015fi Albert David OLARIU")
 
     path = os.path.join(OUT, "05_Document_Principal.docx")
     doc.save(path)
