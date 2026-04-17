@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="45%" r="65%">
+    <stop offset="0%" stop-color="#0d1b2e"/><stop offset="100%" stop-color="#070b14"/>
+  </radialGradient>
+  <radialGradient id="earthSphere" cx="42%" cy="38%" r="58%">
+    <stop offset="0%" stop-color="#1a3a5c"/><stop offset="55%" stop-color="#0e2844"/><stop offset="100%" stop-color="#05111f"/>
+  </radialGradient>
+  <radialGradient id="hubN" cx="50%" cy="35%" r="55%">
+    <stop offset="0%" stop-color="#ffe066"/><stop offset="100%" stop-color="#b8860b"/>
+  </radialGradient>
+  <radialGradient id="hubS" cx="50%" cy="35%" r="55%">
+    <stop offset="0%" stop-color="#ffe066"/><stop offset="100%" stop-color="#b8860b"/>
+  </radialGradient>
+  <filter id="g3" x="-60%" y="-60%" width="220%" height="220%">
+    <feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="g6" x="-80%" y="-80%" width="260%" height="260%">
+    <feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="g12" x="-100%" y="-100%" width="300%" height="300%">
+    <feGaussianBlur stdDeviation="12" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="earthShadow">
+    <feDropShadow dx="0" dy="0" stdDeviation="18" flood-color="#4fc3f7" flood-opacity="0.22"/>
+  </filter>
+  <clipPath id="ec"><circle cx="590" cy="405" r="236"/></clipPath>
+</defs>
+
+<!-- Background -->
+<rect width="1200" height="800" fill="url(#bg)"/>
+<g fill="white">
+  <circle cx="40" cy="28" r="1" opacity="0.85"/><circle cx="118" cy="65" r="0.8" opacity="0.65"/>
+  <circle cx="185" cy="14" r="1.2" opacity="0.9"/><circle cx="22" cy="290" r="1" opacity="0.8"/>
+  <circle cx="30" cy="730" r="1.1" opacity="0.85"/><circle cx="1110" cy="58" r="0.8" opacity="0.7"/>
+  <circle cx="1175" cy="135" r="1.2" opacity="0.85"/><circle cx="1170" cy="380" r="1" opacity="0.8"/>
+  <circle cx="1080" cy="720" r="1.1" opacity="0.85"/><circle cx="290" cy="775" r="0.8" opacity="0.7"/>
+</g>
+
+<!-- Earth atmosphere glow -->
+<circle cx="590" cy="405" r="258" fill="none" stroke="#4fc3f7" stroke-width="4" opacity="0.07" filter="url(#g12)"/>
+<circle cx="590" cy="405" r="248" fill="none" stroke="#4fc3f7" stroke-width="2" opacity="0.10" filter="url(#g6)"/>
+<!-- Earth body -->
+<circle cx="590" cy="405" r="236" fill="url(#earthSphere)" filter="url(#earthShadow)"/>
+
+<!-- Latitude/meridian lines (clipped) -->
+<g clip-path="url(#ec)" stroke="#4fc3f7" stroke-width="0.5" fill="none" opacity="0.15">
+  <line x1="354" y1="405" x2="826" y2="405"/>
+  <ellipse cx="590" cy="287" rx="204" ry="39"/>
+  <ellipse cx="590" cy="200" rx="118" ry="22"/>
+  <ellipse cx="590" cy="523" rx="204" ry="39"/>
+  <ellipse cx="590" cy="610" rx="118" ry="22"/>
+  <ellipse cx="590" cy="405" rx="236" ry="236"/>
+  <ellipse cx="590" cy="405" rx="118" ry="236"/>
+  <ellipse cx="590" cy="405" rx="39" ry="236"/>
+</g>
+<!-- Equator highlight -->
+<line x1="354" y1="405" x2="826" y2="405" stroke="#ff9a3c" stroke-width="0.8" opacity="0.30" stroke-dasharray="10,6" clip-path="url(#ec)"/>
+
+<!-- ═══ CONTINENTS — stylized realistic shapes, clipped to globe ═══ -->
+<g clip-path="url(#ec)" fill="#1c4020" opacity="0.82">
+
+  <!-- GREENLAND -->
+  <polygon points="
+    500,198 518,185 540,182 556,192 560,210
+    548,235 530,242 510,235 498,218"/>
+
+  <!-- NORTH AMERICA -->
+  <path d="
+    M 425,258 L 448,242 L 478,238 L 510,245 L 528,260
+    L 522,285 L 535,300 L 530,325 L 515,350
+    L 495,368 L 472,378 L 448,370 L 432,350
+    L 418,320 L 415,290 Z"/>
+
+  <!-- SOUTH AMERICA -->
+  <path d="
+    M 462,418 L 495,410 L 518,422 L 525,450
+    L 520,485 L 508,515 L 488,535 L 468,528
+    L 450,505 L 444,472 L 450,442 Z"/>
+
+  <!-- EUROPE (including Iberian, Scandinavia) -->
+  <path d="
+    M 558,255 L 572,245 L 592,242 L 612,248
+    L 628,260 L 635,278 L 628,295 L 618,308
+    L 602,314 L 585,312 L 568,300 L 558,282 Z"/>
+  <!-- Scandinavia bump -->
+  <polygon points="585,242 598,230 612,228 620,242 610,252 590,252"/>
+
+  <!-- AFRICA -->
+  <path d="
+    M 592,332 L 628,338 L 655,358 L 665,392
+    L 663,432 L 652,468 L 634,496 L 612,508
+    L 592,505 L 574,488 L 565,455 L 568,415
+    L 575,375 L 582,348 Z"/>
+  <!-- Madagascar -->
+  <polygon points="672,455 680,442 690,448 688,468 678,472"/>
+
+  <!-- ASIA (partial — Russia, Middle East, India visible) -->
+  <path d="
+    M 638,252 L 668,242 L 705,238 L 748,245
+    L 785,260 L 808,285 L 805,315 L 785,338
+    L 755,348 L 720,345 L 692,330 L 668,312
+    L 648,290 Z"/>
+  <!-- India sub-peninsula -->
+  <polygon points="698,335 718,328 728,350 718,368 700,362 690,348"/>
+  <!-- Arabian peninsula -->
+  <polygon points="648,355 668,348 678,365 672,382 652,380 640,368"/>
+
+  <!-- OCEANIA / AUSTRALIA -->
+  <path d="
+    M 718,462 L 752,455 L 782,462 L 798,482
+    L 792,505 L 768,515 L 742,512 L 720,498
+    L 710,478 Z"/>
+  <!-- New Zealand (tiny) -->
+  <polygon points="808,495 815,488 822,498 818,510 810,508"/>
+
+  <!-- ANTARCTICA arc at bottom -->
+  <path d="M 370,590 Q 590,655 810,590 Q 790,640 590,648 Q 390,640 370,590 Z" opacity="0.5"/>
+</g>
+
+<!-- ═══ DISTRIBUTION CABLES — drawn on top of globe ═══ -->
+
+<!-- ── NORTH POLE (gold #c9a84c) connections ── -->
+
+<!-- N → Europe: from pole curving left to Europe region then out to node -->
+<path d="M 590,169 C 572,220 562,260 568,295"
+      stroke="#c9a84c" stroke-width="2" fill="none" opacity="0.55" clip-path="url(#ec)"/>
+<path d="M 568,295 C 560,310 530,250 138,245"
+      stroke="#c9a84c" stroke-width="2.2" fill="none" opacity="0.8" filter="url(#g3)"/>
+<path d="M 590,169 C 572,220 562,260 568,295 C 560,310 530,250 138,245"
+      stroke="#ffe066" stroke-width="0.7" fill="none" opacity="0.85"/>
+
+<!-- N → Asia: from pole curving right to Asia region then out to node -->
+<path d="M 590,169 C 620,210 668,250 710,280"
+      stroke="#c9a84c" stroke-width="2" fill="none" opacity="0.55" clip-path="url(#ec)"/>
+<path d="M 710,280 C 760,295 900,220 1032,230"
+      stroke="#c9a84c" stroke-width="2.2" fill="none" opacity="0.8" filter="url(#g3)"/>
+<path d="M 590,169 C 620,210 668,250 710,280 C 760,295 900,220 1032,230"
+      stroke="#ffe066" stroke-width="0.7" fill="none" opacity="0.85"/>
+
+<!-- N → North America: from pole curving far left -->
+<path d="M 590,169 C 568,205 510,260 470,310"
+      stroke="#c9a84c" stroke-width="2" fill="none" opacity="0.55" clip-path="url(#ec)"/>
+<path d="M 470,310 C 420,330 260,350 90,420"
+      stroke="#c9a84c" stroke-width="2.2" fill="none" opacity="0.75" filter="url(#g3)"/>
+<path d="M 590,169 C 568,205 510,260 470,310 C 420,330 260,350 90,420"
+      stroke="#ffe066" stroke-width="0.7" fill="none" opacity="0.8"/>
+
+<!-- ── SOUTH POLE (cyan #4fc3f7) connections ── -->
+
+<!-- S → South America: curving left-down -->
+<path d="M 590,641 C 565,590 510,510 478,468"
+      stroke="#4fc3f7" stroke-width="2" fill="none" opacity="0.55" clip-path="url(#ec)"/>
+<path d="M 478,468 C 440,440 290,520 115,600"
+      stroke="#4fc3f7" stroke-width="2.2" fill="none" opacity="0.8" filter="url(#g3)"/>
+<path d="M 590,641 C 565,590 510,510 478,468 C 440,440 290,520 115,600"
+      stroke="#80d8ff" stroke-width="0.7" fill="none" opacity="0.85"/>
+
+<!-- S → Africa: curving slight right -->
+<path d="M 590,641 C 598,590 608,530 618,475"
+      stroke="#4fc3f7" stroke-width="2" fill="none" opacity="0.55" clip-path="url(#ec)"/>
+<path d="M 618,475 C 650,455 820,530 1010,555"
+      stroke="#4fc3f7" stroke-width="2.2" fill="none" opacity="0.8" filter="url(#g3)"/>
+<path d="M 590,641 C 598,590 608,530 618,475 C 650,455 820,530 1010,555"
+      stroke="#80d8ff" stroke-width="0.7" fill="none" opacity="0.85"/>
+
+<!-- S → Oceania: curving far right -->
+<path d="M 590,641 C 635,610 720,540 755,490"
+      stroke="#4fc3f7" stroke-width="2" fill="none" opacity="0.55" clip-path="url(#ec)"/>
+<path d="M 755,490 C 800,475 950,580 1055,680"
+      stroke="#4fc3f7" stroke-width="2.2" fill="none" opacity="0.7" filter="url(#g3)"/>
+<path d="M 590,641 C 635,610 720,540 755,490 C 800,475 950,580 1055,680"
+      stroke="#80d8ff" stroke-width="0.7" fill="none" opacity="0.8"/>
+
+<!-- ═══ POLAR HUBS ═══ -->
+<!-- North Pole -->
+<g transform="translate(590,169)">
+  <circle cx="0" cy="0" r="30" fill="#c9a84c" opacity="0.07" filter="url(#g12)"/>
+  <circle cx="0" cy="0" r="24" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.55" stroke-dasharray="5,3"/>
+  <circle cx="0" cy="0" r="17" fill="url(#hubN)" opacity="0.95" filter="url(#g6)"/>
+  <text x="0" y="6" font-family="'Courier New',monospace" font-size="14" font-weight="bold" fill="white" text-anchor="middle">N</text>
+  <text x="0" y="-30" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ffe066" text-anchor="middle">POLUL NORD</text>
+  <text x="0" y="-19" font-family="'Courier New',monospace" font-size="8" fill="#c9a84c" text-anchor="middle" opacity="0.85">HUB · 800 GW</text>
+</g>
+<!-- South Pole -->
+<g transform="translate(590,641)">
+  <circle cx="0" cy="0" r="30" fill="#4fc3f7" opacity="0.07" filter="url(#g12)"/>
+  <circle cx="0" cy="0" r="24" fill="none" stroke="#4fc3f7" stroke-width="1.2" opacity="0.55" stroke-dasharray="5,3"/>
+  <circle cx="0" cy="0" r="17" fill="url(#hubS)" opacity="0.95" filter="url(#g6)"/>
+  <text x="0" y="6" font-family="'Courier New',monospace" font-size="14" font-weight="bold" fill="white" text-anchor="middle">S</text>
+  <text x="0" y="29" font-family="'Courier New',monospace" font-size="10" font-weight="bold" fill="#ffe066" text-anchor="middle">POLUL SUD</text>
+  <text x="0" y="41" font-family="'Courier New',monospace" font-size="8" fill="#4fc3f7" text-anchor="middle" opacity="0.85">HUB · 800 GW</text>
+</g>
+<!-- Axis line (YBCO cable) -->
+<line x1="590" y1="186" x2="590" y2="624" stroke="#c9a84c" stroke-width="0.8" opacity="0.18" stroke-dasharray="6,5"/>
+
+<!-- ═══ CONTINENTAL NODES ═══ -->
+<!-- Europa (138,245) -->
+<g transform="translate(138,245)">
+  <rect x="-62" y="-25" width="124" height="50" rx="5" fill="#0d1a30" stroke="#c9a84c" stroke-width="1.2" opacity="0.95"/>
+  <text x="0" y="-7" font-family="'Courier New',monospace" font-size="11" font-weight="bold" fill="#c9a84c" text-anchor="middle">EUROPA</text>
+  <text x="0" y="8" font-family="'Courier New',monospace" font-size="8.5" fill="#4fc3f7" text-anchor="middle" opacity="0.8">~380 GW · 4 noduri</text>
+  <text x="0" y="20" font-family="'Courier New',monospace" font-size="7.5" fill="#ffffff" text-anchor="middle" opacity="0.45">HVDC Nord</text>
+  <circle cx="62" cy="0" r="4" fill="#c9a84c" opacity="0.9"/>
+</g>
+<!-- Asia/Pacific (1032,230) -->
+<g transform="translate(1032,230)">
+  <rect x="-66" y="-25" width="132" height="50" rx="5" fill="#0d1a30" stroke="#c9a84c" stroke-width="1.2" opacity="0.95"/>
+  <text x="0" y="-7" font-family="'Courier New',monospace" font-size="11" font-weight="bold" fill="#c9a84c" text-anchor="middle">ASIA / PACIFIC</text>
+  <text x="0" y="8" font-family="'Courier New',monospace" font-size="8.5" fill="#4fc3f7" text-anchor="middle" opacity="0.8">~420 GW · 6 noduri</text>
+  <text x="0" y="20" font-family="'Courier New',monospace" font-size="7.5" fill="#ffffff" text-anchor="middle" opacity="0.45">HVDC Nord</text>
+  <circle cx="-66" cy="0" r="4" fill="#c9a84c" opacity="0.9"/>
+</g>
+<!-- North America (90,420) -->
+<g transform="translate(90,420)">
+  <rect x="-62" y="-25" width="124" height="50" rx="5" fill="#0d1a30" stroke="#c9a84c" stroke-width="1.2" opacity="0.95"/>
+  <text x="0" y="-7" font-family="'Courier New',monospace" font-size="11" font-weight="bold" fill="#c9a84c" text-anchor="middle">AMERICA DE N.</text>
+  <text x="0" y="8" font-family="'Courier New',monospace" font-size="8.5" fill="#4fc3f7" text-anchor="middle" opacity="0.8">~320 GW · 3 noduri</text>
+  <text x="0" y="20" font-family="'Courier New',monospace" font-size="7.5" fill="#ffffff" text-anchor="middle" opacity="0.45">HVDC Nord</text>
+  <circle cx="62" cy="0" r="4" fill="#c9a84c" opacity="0.9"/>
+</g>
+<!-- South America (115,600) -->
+<g transform="translate(115,600)">
+  <rect x="-62" y="-25" width="124" height="50" rx="5" fill="#0d1a30" stroke="#4fc3f7" stroke-width="1.2" opacity="0.95"/>
+  <text x="0" y="-7" font-family="'Courier New',monospace" font-size="11" font-weight="bold" fill="#4fc3f7" text-anchor="middle">AMERICA DE S.</text>
+  <text x="0" y="8" font-family="'Courier New',monospace" font-size="8.5" fill="#80d8ff" text-anchor="middle" opacity="0.8">~260 GW · 3 noduri</text>
+  <text x="0" y="20" font-family="'Courier New',monospace" font-size="7.5" fill="#ffffff" text-anchor="middle" opacity="0.45">HVDC Sud</text>
+  <circle cx="62" cy="0" r="4" fill="#4fc3f7" opacity="0.9"/>
+</g>
+<!-- Africa (1010,555) -->
+<g transform="translate(1010,555)">
+  <rect x="-66" y="-25" width="132" height="50" rx="5" fill="#0d1a30" stroke="#4fc3f7" stroke-width="1.2" opacity="0.95"/>
+  <text x="0" y="-7" font-family="'Courier New',monospace" font-size="11" font-weight="bold" fill="#4fc3f7" text-anchor="middle">AFRICA / ORIENT</text>
+  <text x="0" y="8" font-family="'Courier New',monospace" font-size="8.5" fill="#80d8ff" text-anchor="middle" opacity="0.8">~300 GW · 4 noduri</text>
+  <text x="0" y="20" font-family="'Courier New',monospace" font-size="7.5" fill="#ffffff" text-anchor="middle" opacity="0.45">HVDC Sud</text>
+  <circle cx="-66" cy="0" r="4" fill="#4fc3f7" opacity="0.9"/>
+</g>
+<!-- Oceania (1055,680) -->
+<g transform="translate(1055,680)">
+  <rect x="-56" y="-25" width="112" height="50" rx="5" fill="#0d1a30" stroke="#4fc3f7" stroke-width="1.2" opacity="0.95"/>
+  <text x="0" y="-7" font-family="'Courier New',monospace" font-size="11" font-weight="bold" fill="#4fc3f7" text-anchor="middle">OCEANIA</text>
+  <text x="0" y="8" font-family="'Courier New',monospace" font-size="8.5" fill="#80d8ff" text-anchor="middle" opacity="0.8">~140 GW · 2 noduri</text>
+  <text x="0" y="20" font-family="'Courier New',monospace" font-size="7.5" fill="#ffffff" text-anchor="middle" opacity="0.45">HVDC Sud</text>
+  <circle cx="-56" cy="0" r="4" fill="#4fc3f7" opacity="0.9"/>
+</g>
+
+<!-- ═══ LEGEND ═══ -->
+<rect x="385" y="728" width="430" height="46" rx="4" fill="#07111f" stroke="#4fc3f7" stroke-width="0.6" opacity="0.85"/>
+<line x1="400" y1="745" x2="428" y2="745" stroke="#c9a84c" stroke-width="2"/><circle cx="432" cy="745" r="3" fill="#c9a84c"/>
+<text x="440" y="749" font-family="'Courier New',monospace" font-size="9" fill="#c9a84c">distribuție Pol Nord  ·  HVDC YBCO</text>
+<line x1="400" y1="763" x2="428" y2="763" stroke="#4fc3f7" stroke-width="2"/><circle cx="432" cy="763" r="3" fill="#4fc3f7"/>
+<text x="440" y="767" font-family="'Courier New',monospace" font-size="9" fill="#4fc3f7">distribuție Pol Sud  ·  HVDC YBCO</text>
+<text x="660" y="749" font-family="'Courier New',monospace" font-size="9" fill="#ffe066">TOTAL: 1600 GW</text>
+<text x="660" y="763" font-family="'Courier New',monospace" font-size="9" fill="#ffe066">6 continente · 22 noduri</text>
+
+<!-- ═══ ANNOTATIONS ═══ -->
+<rect x="25" y="488" width="152" height="58" rx="4" fill="#07111f" stroke="#c9a84c" stroke-width="0.6" opacity="0.8"/>
+<text x="101" y="507" font-family="'Courier New',monospace" font-size="8.5" fill="#c9a84c" text-anchor="middle">CABLU YBCO</text>
+<text x="101" y="521" font-family="'Courier New',monospace" font-size="8" fill="#4fc3f7" text-anchor="middle" opacity="0.8">pierderi ≈ 0.05%/1000km</text>
+<text x="101" y="534" font-family="'Courier New',monospace" font-size="7.5" fill="#fff" text-anchor="middle" opacity="0.45">vs HVDC clasic: 3%/1000km</text>
+<rect x="1023" y="365" width="152" height="56" rx="4" fill="#07111f" stroke="#69f0ae" stroke-width="0.6" opacity="0.8"/>
+<text x="1099" y="384" font-family="'Courier New',monospace" font-size="8.5" fill="#69f0ae" text-anchor="middle">SURPLUS</text>
+<text x="1099" y="400" font-family="'Courier New',monospace" font-size="22" font-weight="bold" fill="#69f0ae" text-anchor="middle">~53%</text>
+<text x="1099" y="414" font-family="'Courier New',monospace" font-size="7.5" fill="#4fc3f7" text-anchor="middle" opacity="0.75">pt. extindere viitoare</text>
+
+<!-- ═══ TITLE ═══ -->
+<text x="590" y="44" font-family="'Courier New',monospace" font-size="24" font-weight="bold" fill="#c9a84c" text-anchor="middle" letter-spacing="5">STAR POWER GRID</text>
+<text x="590" y="63" font-family="'Courier New',monospace" font-size="10.5" fill="#4fc3f7" text-anchor="middle" letter-spacing="1.5" opacity="0.85">Distribuție terestră radiantă de la poli spre continente · cabluri HVDC supraconductoare YBCO</text>
+<line x1="240" y1="73" x2="940" y2="73" stroke="#4fc3f7" stroke-width="0.5" opacity="0.3"/>
+
+<!-- ═══ BRANDING ═══ -->
+<line x1="200" y1="787" x2="980" y2="787" stroke="#c9a84c" stroke-width="0.4" opacity="0.25"/>
+<text x="590" y="798" font-family="'Courier New',monospace" font-size="9.5" fill="#c9a84c" text-anchor="middle" opacity="0.5" letter-spacing="2">POLARIS BEARS · ONCS 2026 · Inovăm prezentul. Alimentăm viitorul!</text>
+</svg>

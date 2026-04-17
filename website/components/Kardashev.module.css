@@ -1,0 +1,140 @@
+.section {
+  position: relative;
+  min-height: 80svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.bgWrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bgInner {
+  position: absolute;
+  inset: -20%;
+}
+
+.bgImg {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.12;
+  filter: hue-rotate(20deg) saturate(0.5);
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(8, 12, 26, 0.96) 0%,
+    rgba(8, 12, 26, 0.75) 60%,
+    rgba(8, 12, 26, 0.95) 100%
+  );
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 8rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  align-items: center;
+  text-align: center;
+}
+
+.label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.heading {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+}
+
+.highlight {
+  color: var(--gold);
+  display: block;
+}
+
+.body {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--warm);
+  max-width: 520px;
+}
+
+/* Kardashev scale bar */
+.scaleWrap {
+  width: 100%;
+  max-width: 500px;
+}
+
+.scaleTrack {
+  position: relative;
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.scaleFill {
+  position: absolute;
+  inset: 0;
+  width: 73%;
+  background: linear-gradient(to right, var(--gold-dark), var(--gold), var(--cyan));
+  border-radius: 2px;
+}
+
+.markerNow,
+.markerTarget {
+  position: absolute;
+  top: -2rem;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.markerLabel {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--warm);
+  white-space: nowrap;
+}
+
+.markerNow .markerLabel { color: var(--gold); }
+.markerTarget .markerLabel { color: var(--ice); }
+
+.markerLine {
+  width: 1px;
+  height: 1.5rem;
+  background: rgba(255,255,255,0.25);
+}
+
+.scaleLegend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .inner { padding: 5rem 1.5rem; }
+}

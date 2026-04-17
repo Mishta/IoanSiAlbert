@@ -1,8 +1,25 @@
+import StarField from '@/components/StarField'
+import Nav from '@/components/Nav'
+import Hero from '@/components/Hero'
+import Concept from '@/components/Concept'
+import Architecture from '@/components/Architecture'
+import Kardashev from '@/components/Kardashev'
+import Team from '@/components/Team'
+import Footer from '@/components/Footer'
+
 export default function Home() {
   return (
-    <main>
-      <h1>P.O.L.A.R.I.S.</h1>
-      <p>Polaris Bears – ONCS 2026</p>
-    </main>
+    <>
+      <StarField />
+      <Nav />
+      <main>
+        <Hero />
+        <Concept />
+        <Architecture />
+        <Kardashev />
+        <Team />
+      </main>
+      <Footer />
+    </>
   )
 }
