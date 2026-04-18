@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ro"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>P.O.L.A.R.I.S. - Platformă Orbitală Laser pentru Alimentare și Recepție Inovativă Solară</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#422d00",
+                        "surface": "#0f131f",
+                        "on-primary-fixed": "#271900",
+                        "secondary-fixed": "#b5ecf7",
+                        "surface-dim": "#0f131f",
+                        "surface-bright": "#353946",
+                        "surface-container-high": "#262a36",
+                        "on-primary-container": "#6d4c00",
+                        "inverse-primary": "#7c5800",
+                        "tertiary-fixed-dim": "#71de6c",
+                        "on-surface-variant": "#d5c4ac",
+                        "on-background": "#dfe2f3",
+                        "secondary-container": "#145059",
+                        "tertiary-container": "#71dd6c",
+                        "tertiary": "#8dfa85",
+                        "primary": "#ffdea7",
+                        "on-secondary": "#00363d",
+                        "error-container": "#93000a",
+                        "outline-variant": "#504533",
+                        "secondary": "#99cfda",
+                        "on-secondary-fixed-variant": "#114e57",
+                        "on-primary-fixed-variant": "#5e4200",
+                        "on-tertiary-fixed-variant": "#00530e",
+                        "primary-fixed-dim": "#ffba23",
+                        "inverse-surface": "#dfe2f3",
+                        "on-secondary-container": "#8bc1cc",
+                        "outline": "#9d8f79",
+                        "on-tertiary-container": "#006012",
+                        "on-secondary-fixed": "#001f24",
+                        "on-tertiary-fixed": "#002203",
+                        "secondary-fixed-dim": "#99cfda",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed": "#8dfb85",
+                        "surface-container": "#1b1f2c",
+                        "surface-container-highest": "#303442",
+                        "surface-container-low": "#171b28",
+                        "background": "#0f131f",
+                        "surface-tint": "#ffba23",
+                        "surface-container-lowest": "#0a0e1a",
+                        "inverse-on-surface": "#2c303d",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "primary-container": "#ffba20",
+                        "primary-fixed": "#ffdea8",
+                        "on-tertiary": "#003907",
+                        "surface-variant": "#303442",
+                        "on-surface": "#dfe2f3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #0f131f; color: #dfe2f3; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+        .font-label { font-family: 'Inter', sans-serif; }
+        .glass-panel { background: rgba(48, 52, 66, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(80, 69, 51, 0.15); }
+        .glass-panel-heavy { background: rgba(38, 42, 54, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(153, 207, 218, 0.2); }
+        .transmission-line-h { height: 1px; background: linear-gradient(90deg, rgba(153, 207, 218, 0.8) 0%, rgba(153, 207, 218, 0) 100%); }
+        .transmission-line-v { width: 1px; background: linear-gradient(180deg, rgba(153, 207, 218, 0.8) 0%, rgba(153, 207, 218, 0) 100%); }
+        .solar-gradient { background: linear-gradient(135deg, #ffdea7 0%, #ffba20 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .solar-bg-gradient { background: linear-gradient(135deg, #ffdea7 0%, #ffba20 100%); }
+        .tech-glow { box-shadow: 0 0 30px rgba(255, 186, 32, 0.15); }
+        
+        /* Starfield Effect (CSS Only approximation) */
+        .stars {
+            background-image: 
+                radial-gradient(1px 1px at 20px 30px, #dfe2f3, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, #dfe2f3, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 50px 160px, #dfe2f3, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 90px 40px, #dfe2f3, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 130px 80px, #dfe2f3, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 160px 120px, #dfe2f3, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 bg-[#0f131f]/60 backdrop-blur-xl z-50 border-b border-secondary/20 shadow-[0_0_20px_rgba(255,186,32,0.1)]">
+<div class="text-xl font-bold tracking-widest text-primary-container font-headline uppercase">ORBITAL_OBSERVATORY</div>
+<div class="hidden md:flex gap-8">
+<a class="font-headline uppercase tracking-[0.05em] text-sm text-slate-400 hover:text-white hover:bg-secondary/10 hover:text-primary-container transition-colors duration-300 ease-in-out px-2 py-1" href="#">TELEMETRY</a>
+<a class="font-headline uppercase tracking-[0.05em] text-sm text-slate-400 hover:text-white hover:bg-secondary/10 hover:text-primary-container transition-colors duration-300 ease-in-out px-2 py-1" href="#">MISSION_SPECS</a>
+<a class="font-headline uppercase tracking-[0.05em] text-sm text-slate-400 hover:text-white hover:bg-secondary/10 hover:text-primary-container transition-colors duration-300 ease-in-out px-2 py-1" href="#">ENGINEERING</a>
+<a class="font-headline uppercase tracking-[0.05em] text-sm text-primary-container border-b-2 border-secondary pb-1 hover:bg-secondary/10 transition-colors duration-300 ease-in-out px-2" href="#">POLARIS_BEARS</a>
+</div>
+<button class="bg-primary-container text-on-primary font-headline text-sm py-2 px-4 hover:border-b-2 hover:border-secondary transition-all duration-300 uppercase tracking-widest">
+            ESTABLISH_UPLINK
+        </button>
+</nav>
+<!-- HERO SECTION -->
+<section class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-surface">
+<div class="absolute inset-0 stars z-0"></div>
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-surface-container-low/50 via-surface to-surface z-0"></div>
+<!-- Blueprint Diagram Overlay -->
+<div class="absolute inset-0 z-10 flex items-center justify-center opacity-30 mix-blend-screen pointer-events-none">
+<img alt="Technical Blueprint" class="max-w-[120%] max-h-[120%] object-cover grayscale brightness-200 contrast-150" data-alt="Intricate cyan and gold vector technical line drawing of an orbital satellite system against a dark background, blueprint style, detailed nodes and laser beams" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmUp3nMtOfOi_RUX4yg6mZEX71-iVc7DnNHobq_56Wha7WWqtqo5zRhV7fom75s257K-K4T56hy8WUkuoBHlPiTBKeewda96_iObcVdSCsmyvYdivnNhojPJljPpJV0AlXkXVE0tyk5tyVlREVfi3ud4rrAWhtpuGmTLFXMUgLuZJUKbLe6k2q9hZMH_gD7-DsMBcZUqaQNPYs-tf--z8Wt0Lz2n5fIwSd-VMRhPNFrDIDz2kTmZCvJjZ-V1L8bjtn67B-bJBWVIHS" style="filter: sepia(100%) hue-rotate(180deg) saturate(300%) opacity(0.5);"/>
+</div>
+<div class="relative z-20 text-center px-4 max-w-7xl mx-auto flex flex-col items-center">
+<div class="font-label text-[10px] text-secondary tracking-[0.2em] mb-4 flex items-center gap-2">
+<span class="w-8 h-[1px] bg-secondary"></span>
+                SYSTEM INITIALIZED // SEC: 01A
+                <span class="w-8 h-[1px] bg-secondary"></span>
+</div>
+<h1 class="text-7xl md:text-9xl font-bold font-headline mb-6 tracking-tight">
+<span class="text-[#ffe3b7]">P<span class="text-[#00e5ff]">.</span>O<span class="text-[#00e5ff]">.</span>L<span class="text-[#00e5ff]">.</span>A<span class="text-[#00e5ff]">.</span>R<span class="text-[#00e5ff]">.</span>I<span class="text-[#00e5ff]">.</span>S<span class="text-[#00e5ff]">.</span></span>
+</h1>
+<p class="text-xl md:text-2xl font-body text-on-surface-variant max-w-3xl mx-auto font-light leading-relaxed mb-12">
+                Platformă Orbitală Laser pentru Alimentare și Recepție Inovativă Solară
+            </p>
+<div class="flex gap-4">
+<button class="solar-bg-gradient text-on-primary font-headline uppercase tracking-widest px-8 py-4 border-b-2 border-transparent hover:border-secondary transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">rocket_launch</span>
+                    INITIATE SEQUENCE
+                </button>
+<button class="border border-outline text-primary font-headline uppercase tracking-widest px-8 py-4 hover:bg-surface-variant/50 transition-all flex items-center gap-2 glass-panel">
+<span class="material-symbols-outlined">data_object</span>
+                    VIEW SCHEMATICS
+                </button>
+</div>
+</div>
+<!-- Micro-data corners for Hero -->
+<div class="absolute top-24 left-8 font-label text-[10px] text-secondary tracking-widest z-20 opacity-70">
+            COORD: 45.09 // 12.88
+        </div>
+<div class="absolute bottom-8 right-8 font-label text-[10px] text-secondary tracking-widest z-20 opacity-70">
+            SYS.STAT: NOMINAL
+        </div>
+</section>
+<!-- MISIUNEA SECTION -->
+<section class="py-24 px-8 bg-surface-container-low relative border-t border-surface-container-high">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 relative">
+<!-- Left Column: Text -->
+<div class="relative z-10 flex flex-col justify-center">
+<div class="font-label text-[10px] text-secondary mb-4 tracking-widest flex items-center gap-2">
+<span class="w-4 h-4 bg-tertiary"></span> DIRECTIVE ALPHA
+                </div>
+<h2 class="text-4xl md:text-5xl font-headline text-primary-fixed mb-6">MISIUNEA</h2>
+<div class="glass-panel p-8 relative">
+<div class="absolute top-2 right-2 font-label text-[10px] text-secondary">MOD: TRANSMIT</div>
+<p class="font-body text-on-surface-variant text-lg leading-relaxed mb-4">
+                        We engineer the infrastructure for a Type 1 civilization. By harvesting solar energy directly from orbit, free from atmospheric interference and diurnal cycles, P.O.L.A.R.I.S. provides an uninterrupted, high-density power stream to terrestrial receivers via precision microwave/laser transmission.
+                    </p>
+<p class="font-body text-on-surface-variant text-lg leading-relaxed">
+                        This is not iteration; it is an epochal shift in energy architecture, eliminating reliance on terrestrial landmass and fossil fuels.
+                    </p>
+<div class="transmission-line-h mt-8"></div>
+</div>
+</div>
+<!-- Right Column: Counters -->
+<div class="relative z-10 grid grid-cols-2 gap-8">
+<!-- Counter 1 -->
+<div class="glass-panel-heavy p-6 relative flex flex-col justify-between aspect-square group hover:bg-surface-variant transition-colors">
+<div class="font-label text-[10px] text-secondary absolute top-2 right-2">VAR: E_MULT</div>
+<div class="absolute bottom-0 left-0 w-full h-[2px] bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+<span class="material-symbols-outlined text-secondary text-3xl mb-4">bolt</span>
+<div>
+<div class="text-4xl font-headline solar-gradient font-bold mb-1">457x</div>
+<div class="font-label text-xs text-on-surface-variant tracking-wider uppercase">Energy Density</div>
+</div>
+</div>
+<!-- Counter 2 -->
+<div class="glass-panel-heavy p-6 relative flex flex-col justify-between aspect-square group hover:bg-surface-variant transition-colors mt-12">
+<div class="font-label text-[10px] text-secondary absolute top-2 right-2">VAR: CAP</div>
+<div class="absolute bottom-0 left-0 w-full h-[2px] bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+<span class="material-symbols-outlined text-secondary text-3xl mb-4">language</span>
+<div>
+<div class="text-4xl font-headline solar-gradient font-bold mb-1">1600 GW</div>
+<div class="font-label text-xs text-on-surface-variant tracking-wider uppercase">Array Capacity</div>
+</div>
+</div>
+<!-- Counter 3 -->
+<div class="glass-panel-heavy p-6 relative flex flex-col justify-between aspect-square group hover:bg-surface-variant transition-colors -mt-12">
+<div class="font-label text-[10px] text-secondary absolute top-2 right-2">VAR: EFF</div>
+<div class="absolute bottom-0 left-0 w-full h-[2px] bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+<span class="material-symbols-outlined text-secondary text-3xl mb-4">speed</span>
+<div>
+<div class="text-4xl font-headline solar-gradient font-bold mb-1">47%</div>
+<div class="font-label text-xs text-on-surface-variant tracking-wider uppercase">Transmission EFF</div>
+</div>
+</div>
+<!-- Counter 4 -->
+<div class="glass-panel-heavy p-6 relative flex flex-col justify-between aspect-square group hover:bg-surface-variant transition-colors">
+<div class="font-label text-[10px] text-secondary absolute top-2 right-2">VAR: LND</div>
+<div class="absolute bottom-0 left-0 w-full h-[2px] bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+<span class="material-symbols-outlined text-secondary text-3xl mb-4">map</span>
+<div>
+<div class="text-4xl font-headline solar-gradient font-bold mb-1">92K km²</div>
+<div class="font-label text-xs text-on-surface-variant tracking-wider uppercase">Land Area Saved</div>
+</div>
+</div>
+</div>
+<!-- Connecting Lines (Background) -->
+<div class="absolute top-1/2 left-1/2 w-1/2 transmission-line-h -translate-y-1/2 -z-10 hidden lg:block"></div>
+<div class="absolute top-1/4 right-1/4 h-1/2 transmission-line-v -z-10 hidden lg:block"></div>
+</div>
+</section>
+<!-- ARHITECTURA SECTION -->
+<section class="py-24 px-8 bg-surface relative">
+<div class="max-w-7xl mx-auto">
+<div class="mb-16 flex justify-between items-end border-b border-surface-container-high pb-4">
+<div>
+<div class="font-label text-[10px] text-secondary mb-2 tracking-widest">MODULE SCHEMATICS</div>
+<h2 class="text-4xl md:text-5xl font-headline text-primary-fixed">ARHITECTURA</h2>
+</div>
+<div class="font-label text-[10px] text-outline-variant hidden md:block">VER 4.2.1 // DEPLOYED</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 relative">
+<!-- Vertical Center Line -->
+<div class="absolute left-1/2 top-0 bottom-0 transmission-line-v hidden md:block -translate-x-1/2"></div>
+<!-- Card 1 (Left) -->
+<div class="glass-panel p-8 relative flex flex-col justify-between min-h-[300px] hover:border-secondary/50 transition-colors mr-0 md:mr-8 mt-0 md:mt-12">
+<div class="absolute top-2 right-2 font-label text-[10px] text-secondary">MOD: 01</div>
+<div class="absolute bottom-2 left-2 font-label text-[10px] text-outline-variant">STAT: ACTIVE</div>
+<span class="material-symbols-outlined text-primary text-4xl mb-6">scatter_plot</span>
+<h3 class="text-2xl font-headline text-on-surface mb-4">Dyson Swarm Elements</h3>
+<p class="font-body text-on-surface-variant text-sm flex-grow">Autonomous solar collector units operating in a synchronized constellation. Self-replicating manufacturing capabilities planned for Phase IV.</p>
+</div>
+<!-- Card 2 (Right) -->
+<div class="glass-panel p-8 relative flex flex-col justify-between min-h-[300px] hover:border-secondary/50 transition-colors ml-0 md:ml-8 mt-0 md:mt-48">
+<div class="absolute top-2 right-2 font-label text-[10px] text-secondary">MOD: 02</div>
+<div class="absolute bottom-2 left-2 font-label text-[10px] text-outline-variant">STAT: ALIGNED</div>
+<span class="material-symbols-outlined text-primary text-4xl mb-6">satellite_alt</span>
+<h3 class="text-2xl font-headline text-on-surface mb-4">Collector Satellites</h3>
+<p class="font-body text-on-surface-variant text-sm flex-grow">Geostationary nodes equipped with ultra-thin film photovoltaics and phase-conjugate microwave arrays for precise energy beaming to rectennas.</p>
+</div>
+<!-- Card 3 (Left) -->
+<div class="glass-panel p-8 relative flex flex-col justify-between min-h-[300px] hover:border-secondary/50 transition-colors mr-0 md:mr-8 mt-0 md:-mt-24">
+<div class="absolute top-2 right-2 font-label text-[10px] text-secondary">MOD: 03</div>
+<div class="absolute bottom-2 left-2 font-label text-[10px] text-outline-variant">STAT: STABLE</div>
+<span class="material-symbols-outlined text-primary text-4xl mb-6">share</span>
+<h3 class="text-2xl font-headline text-on-surface mb-4">Lagrange Nodes</h3>
+<p class="font-body text-on-surface-variant text-sm flex-grow">Deep space staging areas positioned at L4 and L5 for automated assembly, maintenance, and orbital trajectory calculations away from Earth's gravity well.</p>
+</div>
+<!-- Card 4 (Right) -->
+<div class="glass-panel p-8 relative flex flex-col justify-between min-h-[300px] hover:border-secondary/50 transition-colors ml-0 md:ml-8 mt-0 md:mt-12">
+<div class="absolute top-2 right-2 font-label text-[10px] text-secondary">MOD: 04</div>
+<div class="absolute bottom-2 left-2 font-label text-[10px] text-outline-variant">STAT: SYNCED</div>
+<span class="material-symbols-outlined text-primary text-4xl mb-6">electric_meter</span>
+<h3 class="text-2xl font-headline text-on-surface mb-4">Star Power Grid</h3>
+<p class="font-body text-on-surface-variant text-sm flex-grow">Terrestrial receiving stations (rectennas) integrated with smart-grid infrastructure, converting orbital microwave transmission back to high-voltage DC current.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- KARDASHEV SCALE SECTION -->
+<section class="py-16 bg-surface-container-highest border-y border-outline-variant/30">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex justify-between items-end mb-6">
+<h3 class="text-xl font-headline text-on-surface uppercase tracking-widest">Kardashev Scale Progression</h3>
+<span class="font-label text-sm text-secondary">0.73 / 1.0</span>
+</div>
+<div class="relative h-8 bg-surface border border-outline-variant/50 w-full overflow-hidden flex items-center p-1">
+<!-- Progress Bar -->
+<div class="h-full bg-gradient-to-r from-primary to-secondary w-[73%] relative">
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPSdub25lJyAvPgogIDxwYXRoIGQ9J00wLDEwIEwxMCwwJyBzdHJva2U9J3JnYmEoMCwwLDAsMC4yKScgc3Ryb2tlLXdpZHRoPScyJyAvPgo8L3N2Zz4=')] opacity-50"></div>
+</div>
+<!-- Milestones -->
+<div class="absolute top-0 bottom-0 left-[30%] w-[1px] bg-surface-variant/50 z-10"></div>
+<div class="absolute top-0 bottom-0 left-[73%] w-[2px] bg-white z-10 shadow-[0_0_10px_#fff]"></div>
+<div class="absolute top-0 bottom-0 left-[100%] w-[1px] bg-surface-variant/50 z-10"></div>
+</div>
+<div class="flex justify-between mt-4 font-label text-[10px] text-outline-variant tracking-widest uppercase">
+<span>Civilizația de Tip 0</span>
+<span class="text-primary-fixed font-bold">Civilizația de Tip 1 Target</span>
+</div>
+</div>
+</section>
+<!-- ECHIPA SECTION -->
+<section class="py-24 px-8 bg-surface relative">
+<div class="max-w-7xl mx-auto">
+<div class="mb-16 flex flex-col items-center text-center">
+<div class="font-label text-[10px] text-secondary mb-2 tracking-widest">PERSONNEL MANIFEST</div>
+<h2 class="text-4xl md:text-5xl font-headline text-primary-fixed mb-4">POLARIS BEARS</h2>
+<div class="transmission-line-h w-24"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+<!-- Member 1 -->
+<div class="glass-panel p-1 relative flex items-start gap-6 group hover:bg-surface-variant/30 transition-all">
+<div class="absolute top-0 left-0 w-2 h-full bg-secondary scale-y-0 group-hover:scale-y-100 transition-transform origin-top"></div>
+<div class="w-32 h-40 bg-surface-container-high border border-outline-variant/30 flex-shrink-0 flex items-center justify-center relative overflow-hidden">
+<span class="material-symbols-outlined text-outline-variant text-4xl">person</span>
+<!-- Fallback avatar if no image provided -->
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-container-highest to-surface-variant opacity-50 mix-blend-overlay"></div>
+</div>
+<div class="py-4 pr-6 flex flex-col justify-between h-full">
+<div>
+<div class="font-label text-[10px] text-secondary mb-1">ID: P-001 // LEAD ARCHITECT</div>
+<h3 class="text-2xl font-headline text-on-surface mb-1">Ioan CHELARU</h3>
+<div class="font-label text-xs text-outline-variant mb-4 flex gap-2">
+<span class="bg-surface-container px-2 py-1 border border-outline-variant/20">MSc. Astrophysics</span>
+<span class="bg-surface-container px-2 py-1 border border-outline-variant/20">L-5 Certified</span>
+</div>
+</div>
+<p class="font-body text-sm text-on-surface-variant line-clamp-3">Specialist in orbital mechanics and phase-conjugate microwave transmission. Lead designer of the Alpha Swarm deployment sequence.</p>
+</div>
+</div>
+<!-- Member 2 -->
+<div class="glass-panel p-1 relative flex items-start gap-6 group hover:bg-surface-variant/30 transition-all mt-0 md:mt-12">
+<div class="absolute top-0 right-0 w-2 h-full bg-primary scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom"></div>
+<div class="w-32 h-40 bg-surface-container-high border border-outline-variant/30 flex-shrink-0 flex items-center justify-center relative overflow-hidden order-last md:order-first">
+<span class="material-symbols-outlined text-outline-variant text-4xl">person</span>
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-container-highest to-surface-variant opacity-50 mix-blend-overlay"></div>
+</div>
+<div class="py-4 pl-6 md:pl-0 md:pr-6 flex flex-col justify-between h-full text-right md:text-left">
+<div>
+<div class="font-label text-[10px] text-primary mb-1">ID: P-002 // CHIEF ENGINEER</div>
+<h3 class="text-2xl font-headline text-on-surface mb-1">Albert OLARIU</h3>
+<div class="font-label text-xs text-outline-variant mb-4 flex gap-2 justify-end md:justify-start">
+<span class="bg-surface-container px-2 py-1 border border-outline-variant/20">PhD. Energy Sys</span>
+<span class="bg-surface-container px-2 py-1 border border-outline-variant/20">Class A Intel</span>
+</div>
+</div>
+<p class="font-body text-sm text-on-surface-variant line-clamp-3">Pioneered the terrestrial rectenna grid integration protocols. Currently overseeing the synchronization algorithms for the L4 staging nodes.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-12 px-10 flex flex-col items-center gap-4 bg-[#0f131f] border-t-2 border-t-[#ffba20] bg-gradient-to-r from-transparent via-[#ffba20]/10 to-transparent relative z-50">
+<div class="flex gap-8 mb-4">
+<a class="font-['Inter'] text-[10px] tracking-widest text-slate-600 hover:text-secondary transition-colors duration-500 uppercase" href="#">TERMINAL_ACCESS</a>
+<a class="font-['Inter'] text-[10px] tracking-widest text-slate-600 hover:text-secondary transition-colors duration-500 uppercase" href="#">DATA_PRIVACY</a>
+<a class="font-['Inter'] text-[10px] tracking-widest text-slate-600 hover:text-secondary transition-colors duration-500 uppercase" href="#">SIGNAL_SPECTRUM</a>
+</div>
+<div class="font-['Inter'] text-[10px] tracking-widest text-primary">
+            © 2144 ORBITAL ENGINEERING DIV. // POLARIS BEARS
+        </div>
+</footer>
+</body></html>

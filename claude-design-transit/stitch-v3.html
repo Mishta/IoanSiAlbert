@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>P.O.L.A.R.I.S. - Orbital Observatory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&amp;family=Manrope:wght@400;600&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-primary": "#422d00",
+                        "surface": "#0f131f",
+                        "on-primary-fixed": "#271900",
+                        "secondary-fixed": "#b5ecf7",
+                        "surface-dim": "#0f131f",
+                        "surface-bright": "#353946",
+                        "surface-container-high": "#262a36",
+                        "on-primary-container": "#6d4c00",
+                        "inverse-primary": "#7c5800",
+                        "tertiary-fixed-dim": "#71de6c",
+                        "on-surface-variant": "#d5c4ac",
+                        "on-background": "#dfe2f3",
+                        "secondary-container": "#145059",
+                        "tertiary-container": "#71dd6c",
+                        "tertiary": "#8dfa85",
+                        "primary": "#ffdea7",
+                        "on-secondary": "#00363d",
+                        "error-container": "#93000a",
+                        "outline-variant": "#504533",
+                        "secondary": "#99cfda",
+                        "on-secondary-fixed-variant": "#114e57",
+                        "on-primary-fixed-variant": "#5e4200",
+                        "on-tertiary-fixed-variant": "#00530e",
+                        "primary-fixed-dim": "#ffba23",
+                        "inverse-surface": "#dfe2f3",
+                        "on-secondary-container": "#8bc1cc",
+                        "outline": "#9d8f79",
+                        "on-tertiary-container": "#006012",
+                        "on-secondary-fixed": "#001f24",
+                        "on-tertiary-fixed": "#002203",
+                        "secondary-fixed-dim": "#99cfda",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed": "#8dfb85",
+                        "surface-container": "#1b1f2c",
+                        "surface-container-highest": "#303442",
+                        "surface-container-low": "#171b28",
+                        "background": "#0f131f",
+                        "surface-tint": "#ffba23",
+                        "surface-container-lowest": "#0a0e1a",
+                        "inverse-on-surface": "#2c303d",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "primary-container": "#ffba20",
+                        "primary-fixed": "#ffdea8",
+                        "on-tertiary": "#003907",
+                        "surface-variant": "#303442",
+                        "on-surface": "#dfe2f3"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .transmission-line-h {
+            background: linear-gradient(90deg, theme('colors.secondary') 0%, transparent 100%);
+            height: 1px;
+        }
+        .transmission-line-v {
+            background: linear-gradient(180deg, theme('colors.secondary') 0%, transparent 100%);
+            width: 1px;
+        }
+        .solar-gradient {
+            background: linear-gradient(135deg, theme('colors.primary') 0%, theme('colors.primary-container') 100%);
+        }
+        .glow-critical {
+            filter: drop-shadow(0 0 20px rgba(255, 180, 171, 0.2));
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased selection:bg-primary/30 selection:text-primary">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 bg-[#0f131f]/60 backdrop-blur-xl docked full-width top-0 z-50 border-b border-cyan-500/20 shadow-[0_0_20px_rgba(255,186,32,0.1)] transition-all duration-300 ease-in-out">
+<div class="text-xl font-bold tracking-widest text-[#ffba20] font-headline uppercase">ORBITAL_OBSERVATORY</div>
+<div class="hidden md:flex items-center gap-8 font-headline uppercase tracking-[0.05em] text-sm">
+<a class="text-slate-400 hover:text-white transition-colors hover:bg-cyan-500/10 hover:text-[#ffba20] px-3 py-2" href="#">TELEMETRY</a>
+<a class="text-[#ffba20] border-b-2 border-cyan-400 pb-1 px-3 py-2" href="#">MISSION_SPECS</a>
+<a class="text-slate-400 hover:text-white transition-colors hover:bg-cyan-500/10 hover:text-[#ffba20] px-3 py-2" href="#">ENGINEERING</a>
+<a class="text-slate-400 hover:text-white transition-colors hover:bg-cyan-500/10 hover:text-[#ffba20] px-3 py-2" href="#">POLARIS_BEARS</a>
+</div>
+<button class="hidden md:flex items-center gap-2 solar-gradient text-on-primary font-headline uppercase tracking-wider text-sm px-6 py-3 hover:border-b-2 hover:border-secondary transition-all relative group">
+            ESTABLISH_UPLINK
+            <span class="absolute bottom-0 left-0 w-full h-[2px] bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+</button>
+<button class="md:hidden text-[#ffba20]">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</nav>
+<!-- Side Navigation (Desktop only) -->
+<aside class="hidden xl:flex flex-col items-center py-10 gap-8 fixed left-0 top-16 h-full w-20 border-r border-cyan-500/15 bg-[#0f131f]/40 backdrop-blur-md tonal-nesting via surface-container-low flat no shadows transition-all duration-200 z-40">
+<div class="font-label text-[10px] tracking-tighter uppercase text-[#ffba20] writing-vertical transform -rotate-180 whitespace-nowrap mb-8 opacity-50">MISSION_CONTROL // SECTOR_7_OUTPOST</div>
+<a class="flex flex-col items-center gap-2 text-slate-500 hover:border-r-2 hover:border-cyan-400 p-2 w-full" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label text-[8px] uppercase tracking-wider">DASHBOARD</span>
+</a>
+<a class="flex flex-col items-center gap-2 text-cyan-400 scale-110 border-r-2 border-cyan-400 p-2 w-full bg-cyan-500/10" href="#">
+<span class="material-symbols-outlined">terminal</span>
+<span class="font-label text-[8px] uppercase tracking-wider text-[#ffba20]">SYSTEM_LOGS</span>
+</a>
+<a class="flex flex-col items-center gap-2 text-slate-500 hover:border-r-2 hover:border-cyan-400 p-2 w-full" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-label text-[8px] uppercase tracking-wider">VECTOR</span>
+</a>
+<a class="flex flex-col items-center gap-2 text-slate-500 hover:border-r-2 hover:border-cyan-400 p-2 w-full" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label text-[8px] uppercase tracking-wider">ARCHIVES</span>
+</a>
+</aside>
+<!-- Main Content Canvas -->
+<main class="xl:ml-20 pt-24 min-h-screen relative overflow-hidden">
+<!-- Background Grid Graphic -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-20" style="background-image: linear-gradient(theme('colors.secondary') 1px, transparent 1px), linear-gradient(90deg, theme('colors.secondary') 1px, transparent 1px); background-size: 100px 100px; background-position: center center;"></div>
+<!-- HERO SECTION -->
+<section class="relative min-h-[921px] flex items-center px-8 md:px-16 lg:px-24 py-20 z-10">
+<div class="absolute top-10 right-10 font-label text-sm text-secondary/50">COORD: 45.09 // 12.88</div>
+<div class="absolute bottom-10 left-10 font-label text-sm text-secondary/50">SYS.STAT: NOMINAL</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full max-w-7xl mx-auto">
+<div class="col-span-1 lg:col-span-7 flex flex-col justify-center relative z-20">
+<h1 class="font-headline text-6xl md:text-8xl lg:text-9xl font-bold uppercase tracking-[0.05em] text-primary mix-blend-screen leading-none mb-4 -ml-2">
+                        P.O.L.A.R.I.S.
+                    </h1>
+<h2 class="font-headline text-xl md:text-3xl text-secondary uppercase tracking-[0.1em] mb-8 font-bold border-l-2 border-secondary pl-4 py-2 bg-surface-container/50 backdrop-blur-sm w-max">
+                        Data-Rich Observatory Interface
+                    </h2>
+<p class="font-body text-on-surface-variant max-w-2xl text-lg md:text-xl leading-relaxed mb-10 p-6 bg-surface-container-low/80 backdrop-blur-md border-l border-outline-variant/30">
+                        Initiating telemetry sequence. Deep-space analytical framework online. Structural brutalism engaged for optimal data density and engineering precision.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="solar-gradient text-on-primary font-headline uppercase tracking-wider text-sm px-8 py-4 hover:border-b-2 hover:border-secondary transition-all relative group flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">rocket_launch</span>
+                            ENGAGE_SYSTEMS
+                            <span class="absolute bottom-0 left-0 w-full h-[2px] bg-secondary scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+</button>
+<button class="border border-outline text-primary font-headline uppercase tracking-wider text-sm px-8 py-4 hover:bg-surface-container transition-all flex items-center gap-2 bg-surface-container-lowest/50 backdrop-blur-sm">
+<span class="material-symbols-outlined text-lg">science</span>
+                            VIEW_SCHEMATICS
+                        </button>
+</div>
+</div>
+<div class="col-span-1 lg:col-span-5 relative h-[500px] lg:h-auto flex items-center justify-center">
+<div class="absolute inset-0 bg-surface-variant/40 backdrop-blur-[12px] border border-outline-variant/20 z-10 p-2">
+<div class="w-full h-full bg-surface-container-lowest relative overflow-hidden group">
+<!-- Image overlaying abstract graphic -->
+<img alt="Blueprint Details" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-luminosity group-hover:opacity-80 transition-opacity duration-700" data-alt="high contrast macro shot of complex metallic circuit board glowing with cyan light in deep shadow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnlhN4qI7GEzqdfWa5PFnZI8OOKswzgZ2julbF8c3fc-lVgymRx-ahlDWiGKK-SAWdzHoJhXFQdaaAroEJi3ufZX75O6wEf_du1gNT4U2pfiNy7F5_qG38mVXQKnSED7VpYaOc3IjmDei8bv547DrllmFNhKyPMfKZpyp1mKX-G3kAwuFgAuMel84IG3ouX9LRoJREF-f1XVA9bA8l6qUeeV5KSHkN778LJ43Trat-v_mWP5xwol5sve9jcmL40OC4q0jdN30g5keR"/>
+<div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-surface/80 via-transparent to-surface/80"></div>
+<!-- Tech overlays -->
+<div class="absolute top-4 right-4 font-label text-xs text-secondary bg-surface/80 px-2 py-1">IMG_SRC_01</div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<div class="w-2 h-2 bg-tertiary"></div>
+<span class="font-label text-xs text-on-surface">LINK_ACTIVE</span>
+</div>
+<!-- Scanner line effect -->
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary shadow-[0_0_10px_theme('colors.secondary')] opacity-50 animate-[scan_3s_ease-in-out_infinite]" style="animation: scan 4s linear infinite;"></div>
+</div>
+</div>
+<!-- Decorative elements around image -->
+<div class="absolute -top-4 -right-4 w-16 h-16 border-t-2 border-r-2 border-primary z-20"></div>
+<div class="absolute -bottom-4 -left-4 w-16 h-16 border-b-2 border-l-2 border-secondary z-20"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-10 flex flex-col items-center gap-4 bg-[#0f131f] text-[#ffba20] font-label text-[10px] tracking-widest docked full-width bottom-0 border-t-2 border-t-[#ffba20] bg-gradient-to-r from-transparent via-[#ffba20] to-transparent relative z-50 xl:ml-20">
+<div class="flex gap-8 mb-4 opacity-80 uppercase">
+<a class="text-slate-600 hover:text-cyan-400 transition-colors duration-500" href="#">TERMINAL_ACCESS</a>
+<a class="text-[#ffba20] hover:text-cyan-400 transition-colors duration-500 border-b border-cyan-400/50 pb-1" href="#">DATA_PRIVACY</a>
+<a class="text-slate-600 hover:text-cyan-400 transition-colors duration-500" href="#">SIGNAL_SPECTRUM</a>
+</div>
+<div class="opacity-60 uppercase">
+            © 2144 ORBITAL ENGINEERING DIV. // POLARIS BEARS
+        </div>
+</footer>
+<style>
+        @keyframes scan {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
+        }
+        .writing-vertical {
+            writing-mode: vertical-rl;
+        }
+    </style>
+</body></html>

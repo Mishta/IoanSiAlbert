@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>P.O.L.A.R.I.S. - Mission Control</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&amp;family=Manrope:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary": "#422d00",
+                      "surface": "#0f131f",
+                      "on-primary-fixed": "#271900",
+                      "secondary-fixed": "#b5ecf7",
+                      "surface-dim": "#0f131f",
+                      "surface-bright": "#353946",
+                      "surface-container-high": "#262a36",
+                      "on-primary-container": "#6d4c00",
+                      "inverse-primary": "#7c5800",
+                      "tertiary-fixed-dim": "#71de6c",
+                      "on-surface-variant": "#d5c4ac",
+                      "on-background": "#dfe2f3",
+                      "secondary-container": "#145059",
+                      "tertiary-container": "#71dd6c",
+                      "tertiary": "#8dfa85",
+                      "primary": "#ffdea7",
+                      "on-secondary": "#00363d",
+                      "error-container": "#93000a",
+                      "outline-variant": "#504533",
+                      "secondary": "#99cfda",
+                      "on-secondary-fixed-variant": "#114e57",
+                      "on-primary-fixed-variant": "#5e4200",
+                      "on-tertiary-fixed-variant": "#00530e",
+                      "primary-fixed-dim": "#ffba23",
+                      "inverse-surface": "#dfe2f3",
+                      "on-secondary-container": "#8bc1cc",
+                      "outline": "#9d8f79",
+                      "on-tertiary-container": "#006012",
+                      "on-secondary-fixed": "#001f24",
+                      "on-tertiary-fixed": "#002203",
+                      "secondary-fixed-dim": "#99cfda",
+                      "on-error-container": "#ffdad6",
+                      "tertiary-fixed": "#8dfb85",
+                      "surface-container": "#1b1f2c",
+                      "surface-container-highest": "#303442",
+                      "surface-container-low": "#171b28",
+                      "background": "#0f131f",
+                      "surface-tint": "#ffba23",
+                      "surface-container-lowest": "#0a0e1a",
+                      "inverse-on-surface": "#2c303d",
+                      "error": "#ffb4ab",
+                      "on-error": "#690005",
+                      "primary-container": "#ffba20",
+                      "primary-fixed": "#ffdea8",
+                      "on-tertiary": "#003907",
+                      "surface-variant": "#303442",
+                      "on-surface": "#dfe2f3"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0rem",
+                      "lg": "0rem",
+                      "xl": "0rem",
+                      "full": "0rem"
+              },
+              "spacing": {},
+              "fontFamily": {
+                      "headline": [
+                              "Space Grotesk"
+                      ],
+                      "body": [
+                              "Manrope"
+                      ],
+                      "label": [
+                              "Inter"
+                      ]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .transmission-line-b {
+            position: relative;
+        }
+        .transmission-line-b::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(153, 207, 218, 1) 0%, rgba(153, 207, 218, 0) 100%);
+        }
+        .glow-primary {
+            filter: drop-shadow(0 0 20px rgba(255, 186, 32, 0.15));
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen flex flex-col antialiased selection:bg-secondary selection:text-surface">
+<!-- Top Navigation Anchor -->
+<nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 bg-[#0f131f]/60 backdrop-blur-xl border-b border-cyan-500/20 shadow-[0_0_20px_rgba(255,186,32,0.1)] z-50">
+<div class="text-xl font-bold tracking-widest text-[#ffba20] font-headline uppercase">ORBITAL_OBSERVATORY</div>
+<div class="hidden md:flex gap-8 items-center font-headline uppercase tracking-[0.05em] text-sm">
+<a class="text-[#ffba20] border-b-2 border-cyan-400 pb-1" href="#">TELEMETRY</a>
+<a class="text-slate-400 hover:text-[#ffba20] hover:bg-cyan-500/10 transition-colors duration-300 ease-in-out px-2 py-1" href="#">MISSION_SPECS</a>
+<a class="text-slate-400 hover:text-[#ffba20] hover:bg-cyan-500/10 transition-colors duration-300 ease-in-out px-2 py-1" href="#">ENGINEERING</a>
+<a class="text-slate-400 hover:text-[#ffba20] hover:bg-cyan-500/10 transition-colors duration-300 ease-in-out px-2 py-1" href="#">POLARIS_BEARS</a>
+</div>
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary font-headline uppercase tracking-widest px-6 py-2 text-sm hover:after:bg-secondary relative hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:w-full hover:after:h-[2px] transition-all">ESTABLISH_UPLINK</button>
+</nav>
+<!-- Side Nav Indicator for structural logic -->
+<aside class="hidden xl:flex fixed left-0 top-16 h-full w-20 border-r border-cyan-500/15 bg-[#0f131f]/40 backdrop-blur-md flex-col items-center py-10 gap-8 z-40">
+<div class="font-label text-[10px] tracking-tighter uppercase text-slate-500 transform -rotate-90 whitespace-nowrap mt-20 opacity-50">SECTOR_7_OUTPOST</div>
+<div class="flex flex-col gap-12 mt-10">
+<a class="group flex flex-col items-center gap-2" href="#">
+<span class="material-symbols-outlined text-cyan-400 scale-110">grid_view</span>
+</a>
+<a class="group flex flex-col items-center gap-2 relative" href="#">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-cyan-400 transition-colors">terminal</span>
+<div class="absolute -right-5 top-0 h-full w-[2px] bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</a>
+<a class="group flex flex-col items-center gap-2 relative" href="#">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-cyan-400 transition-colors">query_stats</span>
+<div class="absolute -right-5 top-0 h-full w-[2px] bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</a>
+<a class="group flex flex-col items-center gap-2 relative" href="#">
+<span class="material-symbols-outlined text-slate-500 group-hover:text-cyan-400 transition-colors">inventory_2</span>
+<div class="absolute -right-5 top-0 h-full w-[2px] bg-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</a>
+</div>
+</aside>
+<main class="flex-1 ml-0 xl:ml-20 mt-20 flex flex-col">
+<!-- Hero Section: Vertical Tension -->
+<section class="relative min-h-[921px] flex items-center justify-center overflow-hidden px-4 md:px-12 py-20 border-b border-outline-variant/15">
+<!-- Asymmetric background element -->
+<div class="absolute top-0 right-0 w-1/2 h-full bg-surface-container-low/50 border-l border-secondary/20 transmission-line-b pointer-events-none -z-10"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full max-w-[1600px] items-center relative z-10">
+<!-- Vertical Typography Block -->
+<div class="lg:col-span-5 flex flex-col gap-4">
+<div class="flex items-start gap-4">
+<div class="w-1 h-full min-h-[200px] bg-gradient-to-b from-primary to-transparent"></div>
+<div class="flex flex-col">
+<span class="font-label text-secondary text-[10px] tracking-widest mb-2 uppercase">INITIATING SEQUENCE // 0x4B2A</span>
+<h1 class="font-headline text-5xl md:text-7xl lg:text-[8rem] font-bold text-on-surface leading-[0.85] tracking-tighter uppercase break-all flex flex-col text-transparent bg-clip-text bg-gradient-to-b from-on-surface to-surface-container-highest">
+<span>P.O.L</span>
+<span>.A.R</span>
+<span>.I.S.</span>
+</h1>
+</div>
+</div>
+<div class="mt-8 pl-5 max-w-md">
+<p class="font-label text-sm text-on-surface-variant font-mono bg-surface-container-highest/40 p-4 border-l-2 border-tertiary backdrop-blur-md">
+                            &gt; SYSTEM STATUS: NOMINAL<br/>
+                            &gt; ALIGNMENT: CONFIRMED<br/>
+                            &gt; DIRECTIVE: DEEP SPACE TELEMETRY ACQUISITION AND ANALYSIS PROBABILITY MATRIX ONLINE.
+                        </p>
+</div>
+</div>
+<!-- Blueprint Graphic -->
+<div class="lg:col-span-7 relative h-[500px] lg:h-[700px] bg-surface-variant/40 backdrop-blur-xl border border-outline-variant/30 glow-primary">
+<span class="absolute top-2 right-2 font-label text-[10px] text-slate-500">SYS.DIAG // 99.4</span>
+<span class="absolute bottom-2 left-2 font-label text-[10px] text-slate-500">COORD: 45.09 // 12.88</span>
+<div class="w-full h-full relative p-4">
+<img alt="Technical Blueprint" class="w-full h-full object-cover mix-blend-screen opacity-80" data-alt="high contrast technical blueprint schematic of a space satellite structure with glowing cyan and gold measurement lines overlaying a dark metallic background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBisC9IP3IDk9CaUJea3jMiC8_MxDytsM3mGjRDPH2CwW5q7sKaiG6mG1ByBgxEentUcyGIQJhEjFChDN_8yg3qXh32vgwy93zRMYOS5BccPzAJJv_2Znwf4EQDIFaEJYxP5soiLc4Oei6gNO8F7kTWFBjGBKu8zZfLCv_11dyxqKUqXATPjoa3Q4X9DBoGODdnus8kZHalZUwO_b7DbXcHkScg0FuIuktLMIknpEFxcwtQ34KyqveQBqrBu6X6g_zwB80tQYn3VA-T"/>
+<!-- Scanning Line Overlay -->
+<div class="absolute inset-0 bg-[linear-gradient(rgba(153,207,218,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(153,207,218,0.05)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none mix-blend-overlay"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission Stats: Constellation Pattern -->
+<section class="py-24 px-4 md:px-12 bg-surface-container-lowest relative overflow-hidden">
+<div class="absolute left-1/4 top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-secondary/30 to-transparent pointer-events-none"></div>
+<div class="max-w-[1400px] mx-auto">
+<div class="flex justify-between items-end mb-16 border-b border-outline-variant/20 pb-4">
+<h2 class="font-headline text-3xl md:text-5xl uppercase tracking-[0.05em] text-primary">MISIUNEA</h2>
+<span class="font-label text-xs text-on-surface-variant">DATA_SET_ALPHA</span>
+</div>
+<!-- Asymmetric Grid mimicking a constellation -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 relative">
+<!-- Connecting lines via pseudo-elements would go here ideally, using simple borders for now -->
+<div class="md:col-span-4 md:col-start-2 bg-surface-container/60 backdrop-blur-md p-6 border border-outline-variant/15 relative hover:border-secondary/50 transition-colors duration-300">
+<span class="absolute top-2 right-2 font-label text-[10px] text-tertiary flex items-center gap-1"><span class="w-2 h-2 bg-tertiary inline-block"></span>STABLE</span>
+<div class="text-4xl font-headline font-bold text-secondary mb-2">99.9%</div>
+<div class="font-label text-sm text-on-surface-variant uppercase">Uptime Reliability</div>
+</div>
+<div class="md:col-span-5 md:col-start-7 mt-0 md:mt-12 bg-surface-container/60 backdrop-blur-md p-6 border border-outline-variant/15 relative hover:border-secondary/50 transition-colors duration-300">
+<span class="absolute bottom-2 right-2 font-label text-[10px] text-slate-500">T-MINUS 12:00</span>
+<div class="text-5xl font-headline font-bold text-primary mb-2">14.2M</div>
+<div class="font-label text-sm text-on-surface-variant uppercase">Data Packets Processed</div>
+</div>
+<div class="md:col-span-3 md:col-start-4 mt-0 md:mt-[-2rem] bg-surface-container-high p-4 border border-outline-variant/15 relative">
+<div class="text-2xl font-headline text-on-surface mb-1">0.02ms</div>
+<div class="font-label text-xs text-slate-400 uppercase">Latency Average</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Anchor -->
+<footer class="w-full py-12 px-10 flex flex-col items-center gap-4 bg-[#0f131f] border-t-2 border-t-[#ffba20] bg-gradient-to-r from-transparent via-[#ffba20] to-transparent ml-0 xl:ml-20">
+<div class="flex gap-8 font-label text-[10px] tracking-widest text-slate-600">
+<a class="hover:text-cyan-400 duration-500 uppercase" href="#">TERMINAL_ACCESS</a>
+<a class="hover:text-cyan-400 duration-500 uppercase" href="#">DATA_PRIVACY</a>
+<a class="hover:text-cyan-400 duration-500 uppercase" href="#">SIGNAL_SPECTRUM</a>
+</div>
+<div class="font-label text-[10px] tracking-widest text-[#ffba20] mt-4">
+            © 2144 ORBITAL ENGINEERING DIV. // POLARIS BEARS
+        </div>
+</footer>
+</body></html>
