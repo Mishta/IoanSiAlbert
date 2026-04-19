@@ -6,124 +6,204 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body {
-    width: 1920px; height: 620px;
+    width: 1920px; height: 1080px;
     background: #0f131f;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     font-family: 'Space Grotesk', sans-serif;
-    padding: 48px 64px;
-  }
-  .title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #ffe3b7;
-    margin-bottom: 52px;
-  }
-  .boxes {
-    display: flex;
-    gap: 0;
-    align-items: stretch;
-    width: 100%;
-    margin-bottom: 40px;
-  }
-  .box {
-    flex: 1;
-    border: 1px solid transparent;
-    padding: 28px 20px 24px;
-    position: relative;
-    display: flex; flex-direction: column; align-items: center;
+    padding: 28px 40px 24px;
     gap: 16px;
   }
-  .box-1 { border-color: #ffba20; }
-  .box-2 { border-color: #00e5ff; }
-  .box-3 { border-color: #00e5ff; }
-  .box-4 { border-color: #00e5ff; }
-  .box-5 { border-color: #00ff88; }
-  .box-6 { border-color: #00ff88; }
 
-  .box-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-align: center;
-    line-height: 1.4;
-  }
-  .box-1 .box-title { color: #ffba20; }
-  .box-2 .box-title, .box-3 .box-title, .box-4 .box-title { color: #00e5ff; }
-  .box-5 .box-title, .box-6 .box-title { color: #00ff88; }
-
-  .box-body {
-    font-family: 'Manrope', sans-serif;
-    font-size: 11.5px;
-    color: rgba(223,226,243,0.65);
-    text-align: center;
-    line-height: 1.55;
-  }
-
-  .arrow {
-    display: flex; align-items: center; justify-content: center;
-    width: 28px; flex-shrink: 0; align-self: center;
-    color: rgba(0,229,255,0.4);
-    font-size: 20px;
-  }
-
-  .result {
-    border: 1px solid #00ff88;
-    padding: 22px 48px;
-    text-align: center;
-    width: 780px;
-  }
-  .result-text {
+  .title {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
     font-size: 18px;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(223,226,243,0.6);
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .title span { color: #00e5ff; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 14px;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .card {
+    border: 1px solid transparent;
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    background: rgba(255,255,255,0.025);
+    overflow: hidden;
+  }
+  .card::before {
+    content: attr(data-num);
+    position: absolute;
+    bottom: -10px; right: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 120px;
+    opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .card-1 { border-color: rgba(255,186,32,0.6); }
+  .card-1::before { color: #ffba20; }
+  .card-2 { border-color: rgba(0,229,255,0.5); }
+  .card-2::before { color: #00e5ff; }
+  .card-3 { border-color: rgba(0,229,255,0.5); }
+  .card-3::before { color: #00e5ff; }
+  .card-4 { border-color: rgba(0,229,255,0.5); }
+  .card-4::before { color: #00e5ff; }
+  .card-5 { border-color: rgba(0,255,136,0.5); }
+  .card-5::before { color: #00ff88; }
+  .card-6 { border-color: rgba(0,255,136,0.5); }
+  .card-6::before { color: #00ff88; }
+
+  .card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .card-1 .card-label { color: rgba(255,186,32,0.75); }
+  .card-2 .card-label, .card-3 .card-label, .card-4 .card-label { color: rgba(0,229,255,0.75); }
+  .card-5 .card-label, .card-6 .card-label { color: rgba(0,255,136,0.75); }
+
+  .card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.15;
+    color: #dfe2f3;
+  }
+
+  .card-law {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 500;
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.05);
+    border-left: 3px solid;
+    color: #dfe2f3;
+    line-height: 1.4;
+  }
+  .card-1 .card-law { border-color: #ffba20; }
+  .card-2 .card-law, .card-3 .card-law, .card-4 .card-law { border-color: #00e5ff; }
+  .card-5 .card-law, .card-6 .card-law { border-color: #00ff88; }
+
+  .card-detail {
+    font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    color: rgba(223,226,243,0.65);
+    line-height: 1.5;
+  }
+
+  .result {
+    flex-shrink: 0;
+    border: 2px solid #00ff88;
+    padding: 16px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    background: rgba(0,255,136,0.04);
+    width: 100%;
+  }
+  .result-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(0,255,136,0.6);
+  }
+  .result-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
     color: #00ff88;
+    letter-spacing: 0.04em;
+  }
+  .result-sep {
+    width: 1px; height: 44px;
+    background: rgba(0,255,136,0.3);
+  }
+  .result-eta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    color: rgba(0,255,136,0.8);
   }
 </style>
 </head>
 <body>
-  <div class="title">METODOLOGIE &nbsp;·&nbsp; 6 Domenii Integrate — Modele Matematice Înlănțuite</div>
+  <div class="title">METODOLOGIE &nbsp;<span>·</span>&nbsp; 6 Domenii Integrate — Modele Matematice Înlănțuite</div>
 
-  <div class="boxes">
-    <div class="box box-1">
-      <div class="box-title">FIZICA<br>ASTROFIZICA</div>
-      <div class="box-body">Legea<br>inversului<br>pătratului</div>
+  <div class="grid">
+
+    <div class="card card-1" data-num="1">
+      <div class="card-label">Domeniu 01 · Fundament</div>
+      <div class="card-title">Fizică & Astrofizică</div>
+      <div class="card-law">I(r) = P☉ / 4πr²</div>
+      <div class="card-detail">La 7,696M km de Soare — intensitate solară ~378× mai mare decât la orbita Pământului</div>
     </div>
-    <div class="arrow">→</div>
-    <div class="box box-2">
-      <div class="box-title">ASTRONOMIE<br>ORBITALA</div>
-      <div class="box-body">Mecanica<br>Lagrange<br>L4/L5</div>
+
+    <div class="card card-2" data-num="2">
+      <div class="card-label">Domeniu 02 · Orbital</div>
+      <div class="card-title">Astronomie Orbitală</div>
+      <div class="card-law">L4 / L5 · 60° · stabil</div>
+      <div class="card-detail">Echilibru gravitațional stabil Soare–Pământ — noduri energetice fără consum de combustibil</div>
     </div>
-    <div class="arrow">→</div>
-    <div class="box box-3">
-      <div class="box-title">INGINERIE<br>OPTICA</div>
-      <div class="box-body">Oglinzi km<br>Fascicule<br>laser</div>
+
+    <div class="card card-3" data-num="3">
+      <div class="card-label">Domeniu 03 · Conversie</div>
+      <div class="card-title">Inginerie Optică</div>
+      <div class="card-law">η_laser = 43%</div>
+      <div class="card-detail">30 oglinzi Ø1 km + 4 sateliți colectori — lumină concentrată convertită în laser (verde → albastru)</div>
     </div>
-    <div class="arrow">→</div>
-    <div class="box box-4">
-      <div class="box-title">SUPRACOND.<br>YBCO</div>
-      <div class="box-body">T=77K<br>j&lt;j<sub>c</sub><br>pierderi~0</div>
+
+    <div class="card card-4" data-num="4">
+      <div class="card-label">Domeniu 04 · Material</div>
+      <div class="card-title">Supraconductori YBCO</div>
+      <div class="card-law">j ≤ j_c · T = 77 K · ρ ≈ 0</div>
+      <div class="card-detail">YBa₂Cu₃O₇ la 77 K (azot lichid, nu heliu) — pierderi ≈0, masă ≈7 tone pe 30 km cablu</div>
     </div>
-    <div class="arrow">→</div>
-    <div class="box box-5">
-      <div class="box-title">CRIOGENIE<br>FLUIDE</div>
-      <div class="box-body">Azot lichid<br>Baloane He<br>30 km alt.</div>
+
+    <div class="card card-5" data-num="5">
+      <div class="card-label">Domeniu 05 · Termic</div>
+      <div class="card-title">Criogenie & Fluide</div>
+      <div class="card-law">LN₂ · −196°C · 1 atm</div>
+      <div class="card-detail">Azot lichid la −196°C, 1 atm — accesibil și sigur față de heliu la −269°C (NbTi clasic CERN)</div>
     </div>
-    <div class="arrow">→</div>
-    <div class="box box-6">
-      <div class="box-title">MECANICA<br>FLUIDE</div>
-      <div class="box-body">Arhimede<br>Plutire<br>stratosf.</div>
+
+    <div class="card card-6" data-num="6">
+      <div class="card-label">Domeniu 06 · Susținere</div>
+      <div class="card-title">Mecanică Fluide</div>
+      <div class="card-law">F_A = ρ_aer · V · g</div>
+      <div class="card-detail">Arhimede la 30 km — baloane He susțin 11 t (centrală + cablu YBCO), ρ_aer = 0,018 kg/m³</div>
     </div>
+
   </div>
 
   <div class="result">
-    <div class="result-text">REZULTAT: &nbsp; 1,6 TW livrati &nbsp; (η<sub>total</sub> = 13%)</div>
+    <div class="result-label">Rezultat integrat</div>
+    <div class="result-sep"></div>
+    <div class="result-value">1,6 TW livrati la Pământ</div>
+    <div class="result-sep"></div>
+    <div class="result-eta">η_total ≈ 13% &nbsp;·&nbsp; 48% din electricitatea globală</div>
   </div>
+
 </body>
 </html>
