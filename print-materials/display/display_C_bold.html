@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../claude-design-transit/corrected/assets/fonts.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 1800px; height: 900px;
+  background: #050810;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow: hidden;
+  display: flex;
+}
+
+.panel { position: relative; overflow: hidden; flex-shrink: 0; }
+.panel-left  { width: 450px; height: 900px; }
+.panel-center { width: 900px; height: 900px; }
+.panel-right { width: 450px; height: 900px; }
+
+.bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* ── LEFT — Identitate verticală bold ────────────── */
+.left-bg {
+  position: absolute; inset: 0;
+  background: #050810;
+}
+/* vertical gold stripe on right */
+.left-bg::after {
+  content: '';
+  position: absolute; top: 0; right: 0; bottom: 0; width: 2px;
+  background: linear-gradient(180deg,
+    transparent 0%, #ffba20 20%, #00e5ff 50%, #00ff88 80%, transparent 100%);
+}
+
+.left-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 48px 40px 40px;
+  justify-content: space-between;
+}
+.left-logo { width: 64px; height: 64px; object-fit: contain; }
+
+.left-vert-text {
+  flex: 1; display: flex; align-items: center;
+  justify-content: flex-start;
+  padding: 32px 0;
+}
+/* P.O.L.A.R.I.S. rotated */
+.left-big-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 76px;
+  letter-spacing: 0.22em;
+  color: #ffba20;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(255,186,32,0.35);
+}
+
+.left-kard {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.kard-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.2); text-transform: uppercase;
+}
+.kard-track {
+  width: 100%; height: 4px;
+  background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden;
+}
+.kard-fill {
+  height: 100%; width: 17%; /* Type I approaches */
+  background: linear-gradient(90deg, #ffba20, #00e5ff);
+  border-radius: 2px;
+}
+.kard-types {
+  display: flex; justify-content: space-between;
+}
+.kard-types span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em;
+}
+.kard-types span.active { color: #ffba20; }
+
+/* ── CENTER — Fullbleed image + stats ────────────── */
+.center-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(5,8,16,0.7) 0%,
+    rgba(5,8,16,0.1) 30%,
+    rgba(5,8,16,0.1) 60%,
+    rgba(5,8,16,0.9) 100%);
+}
+.center-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: space-between;
+  padding: 36px 56px 40px;
+}
+
+.center-top-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.3); text-transform: uppercase;
+}
+
+.center-mega-block { text-align: center; }
+.cmb-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.3em;
+  color: rgba(255,186,32,0.5); margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.cmb-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 130px;
+  color: #fff; line-height: 0.85;
+  text-shadow: 0 0 80px rgba(255,255,255,0.2), 0 0 120px rgba(255,186,32,0.15);
+}
+.cmb-unit {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 28px;
+  color: rgba(255,255,255,0.4); letter-spacing: 0.15em;
+  margin-top: 4px;
+}
+
+.center-bottom { width: 100%; }
+.cb-global {
+  text-align: center;
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px; color: rgba(223,226,243,0.5);
+  letter-spacing: 0.08em; margin-bottom: 18px;
+}
+.cb-global strong { color: #00ff88; font-weight: 700; font-size: 22px; }
+
+/* gradient separator */
+.cb-line {
+  height: 1px; width: 100%;
+  background: linear-gradient(90deg, transparent, #ffba20 25%, #00e5ff 50%, #00ff88 75%, transparent);
+  margin-bottom: 14px;
+}
+.cb-row {
+  display: flex; justify-content: space-between; align-items: flex-end;
+}
+.cb-stat { text-align: center; }
+.cb-stat .sv {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 28px; line-height: 1;
+}
+.cb-stat.gold .sv { color: #ffba20; }
+.cb-stat.cyan .sv { color: #00e5ff; }
+.cb-stat.green .sv { color: #00ff88; }
+.cb-stat .sl {
+  font-family: 'Manrope', sans-serif;
+  font-size: 9.5px; color: rgba(223,226,243,0.4);
+  margin-top: 3px;
+}
+
+/* ── RIGHT — Echipa + Quote ──────────────────────── */
+.right-bg { position: absolute; inset: 0; background: #050810; }
+/* vertical cyan stripe on left */
+.right-bg::before {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0; width: 2px;
+  background: linear-gradient(180deg,
+    transparent 0%, #00ff88 20%, #00e5ff 50%, #ffba20 80%, transparent 100%);
+}
+
+.right-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 48px 40px 40px 46px;
+  justify-content: space-between;
+}
+
+.right-mission {
+  font-family: 'Manrope', sans-serif;
+  font-size: 19px; font-weight: 700;
+  line-height: 1.45; color: #dfe2f3;
+  margin-bottom: 28px;
+}
+.right-mission em { color: #00ff88; font-style: normal; }
+
+.right-quote-block {
+  padding: 20px 20px;
+  border: 1px solid rgba(0,229,255,0.15);
+  border-radius: 6px;
+  background: rgba(0,229,255,0.03);
+  margin-bottom: 28px;
+}
+.rqb-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; line-height: 1.5;
+  color: rgba(223,226,243,0.7);
+  font-style: italic;
+}
+.rqb-text strong { color: #00e5ff; font-style: normal; font-weight: 700; }
+
+.right-sci {
+  display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px;
+}
+.sci-item {
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.sci-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: #00e5ff; margin-top: 5px; flex-shrink: 0;
+}
+.sci-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; color: rgba(223,226,243,0.35);
+  line-height: 1.5; letter-spacing: 0.04em;
+}
+
+.right-footer { display: flex; justify-content: space-between; align-items: flex-end; }
+.rf-team {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 14px;
+  color: rgba(223,226,243,0.55); line-height: 1.6;
+}
+.rf-team small {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; color: rgba(255,255,255,0.15);
+  letter-spacing: 0.18em; font-weight: 400;
+  margin-bottom: 2px;
+}
+.rf-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px; letter-spacing: 0.12em;
+  color: rgba(0,255,136,0.35);
+  text-align: right; line-height: 1.7;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ LEFT — Identitate verticală ═══ -->
+<div class="panel panel-left">
+  <div class="left-bg"></div>
+  <div class="left-content">
+    <img class="left-logo" src="../../assets/logo-no-ONCS-text-bright-highrez.png" alt="Logo">
+    <div class="left-vert-text">
+      <div class="left-big-title">P.O.L.A.R.I.S.</div>
+    </div>
+    <div class="left-kard">
+      <div class="kard-label">Scala Kardashev</div>
+      <div class="kard-track">
+        <div class="kard-fill"></div>
+      </div>
+      <div class="kard-types">
+        <span>Tip 0</span>
+        <span class="active">← Tip I</span>
+        <span>Tip II</span>
+        <span>Tip III</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CENTER — Bold number + fullbleed ═══ -->
+<div class="panel panel-center">
+  <img class="bg-img" src="../../images/generated/Image C - Full System Panoramic.png" alt="">
+  <div class="center-overlay"></div>
+  <div class="center-content">
+    <div class="center-top-tag">Proiect Orbital · ONCS 2026 · Echipa POLARIS Bears</div>
+    <div class="center-mega-block">
+      <div class="cmb-label">Putere livrată continuu</div>
+      <div class="cmb-number">1,6</div>
+      <div class="cmb-unit">TERAWAȚI</div>
+    </div>
+    <div class="center-bottom">
+      <div class="cb-global">≈ <strong>48%</strong> din electricitatea globală · zero emisii · continuu</div>
+      <div class="cb-line"></div>
+      <div class="cb-row">
+        <div class="cb-stat gold">
+          <div class="sv">378×</div>
+          <div class="sl">Intensitate solară</div>
+        </div>
+        <div class="cb-stat cyan">
+          <div class="sv">η 13%</div>
+          <div class="sl">Eficiență totală</div>
+        </div>
+        <div class="cb-stat green">
+          <div class="sv">5 niv.</div>
+          <div class="sl">Arhitectură</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RIGHT — Misiune + Echipa ═══ -->
+<div class="panel panel-right">
+  <div class="right-bg"></div>
+  <div class="right-content">
+    <div class="right-mission">
+      Captăm energia solară<br>direct la sursă și o<br>livrăm la <em>scara nevoilor</em><br>reale ale planetei.
+    </div>
+    <div class="right-quote-block">
+      <div class="rqb-text">
+        P.O.L.A.R.I.S. nu este o sursă de energie —
+        este o <strong>infrastructură civilizațională</strong>.
+        Primul sistem care operează fără combustibil,
+        fără emisii, fără intermitență.
+      </div>
+    </div>
+    <div class="right-sci">
+      <div class="sci-item">
+        <div class="sci-dot"></div>
+        <div class="sci-text">Distanță optimă: r = 7,696 × 10⁶ km · I = 5,14 × 10⁵ W/m²</div>
+      </div>
+      <div class="sci-item">
+        <div class="sci-dot"></div>
+        <div class="sci-text">P incident = 1,21 × 10¹³ W · η_total ≈ 13%</div>
+      </div>
+      <div class="sci-item">
+        <div class="sci-dot"></div>
+        <div class="sci-text">YBCO T_c = 93 K · azot lichid (nu heliu)</div>
+      </div>
+      <div class="sci-item">
+        <div class="sci-dot"></div>
+        <div class="sci-text">Dyson 1960 · Kardashev 1964 · Shockley-Queisser 1961</div>
+      </div>
+    </div>
+    <div class="right-footer">
+      <div class="rf-team">
+        <small>POLARIS BEARS</small>
+        Ioan Cristian<br>Albert David
+      </div>
+      <div class="rf-tag">
+        ONCS 2026<br>VARIANTA C<br>━━━━━<br>03/03
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

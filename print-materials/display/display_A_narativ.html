@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../claude-design-transit/corrected/assets/fonts.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 1800px; height: 900px;
+  background: #0a0d18;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow: hidden;
+  display: flex;
+}
+
+/* ── PANEL SHARED ───────────────────────────────── */
+.panel { position: relative; overflow: hidden; flex-shrink: 0; }
+
+/* panel dividers */
+.panel-left  { width: 450px; height: 900px; border-right: 1px solid rgba(255,186,32,0.25); }
+.panel-center { width: 900px; height: 900px; }
+.panel-right { width: 450px; height: 900px; border-left: 1px solid rgba(255,186,32,0.25); }
+
+/* full-bleed background image */
+.bg-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* gradient overlays per panel */
+.overlay-left {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg,
+    rgba(10,13,24,0.92) 0%,
+    rgba(10,13,24,0.65) 60%,
+    rgba(10,13,24,0.82) 100%);
+}
+.overlay-center {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(10,13,24,0.55) 0%,
+    rgba(10,13,24,0.15) 35%,
+    rgba(10,13,24,0.5) 65%,
+    rgba(10,13,24,0.92) 100%);
+}
+.overlay-right {
+  position: absolute; inset: 0;
+  background: linear-gradient(225deg,
+    rgba(10,13,24,0.92) 0%,
+    rgba(10,13,24,0.65) 55%,
+    rgba(10,13,24,0.88) 100%);
+}
+
+/* ── LEFT PANEL — PROVOCAREA ─────────────────────── */
+.left-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 40px 36px;
+}
+.left-act {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.3em;
+  color: rgba(255,186,32,0.55);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.left-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 28px;
+  color: #dfe2f3; line-height: 1.1;
+  margin-bottom: 20px;
+}
+.left-title span { color: #ffba20; }
+
+.stat-big {
+  display: flex; flex-direction: column;
+  margin-bottom: 18px;
+}
+.stat-big .val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 64px;
+  color: #ffba20; line-height: 1;
+  text-shadow: 0 0 30px rgba(255,186,32,0.4);
+}
+.stat-big .unit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  color: rgba(255,186,32,0.6);
+  text-transform: uppercase; margin-top: 4px;
+}
+
+.left-divider {
+  width: 40px; height: 1px;
+  background: rgba(255,186,32,0.35);
+  margin-bottom: 18px;
+}
+
+.left-body {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px; line-height: 1.6;
+  color: rgba(223,226,243,0.7);
+  margin-bottom: auto;
+}
+.left-body strong { color: #ffba20; font-weight: 600; }
+
+.corner-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+}
+
+/* ── CENTER PANEL — SOLUȚIA ──────────────────────── */
+.center-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center;
+}
+.center-top {
+  padding: 32px 48px 0;
+  text-align: center; z-index: 1; width: 100%;
+}
+.center-logo-row {
+  display: flex; align-items: center;
+  justify-content: center; gap: 16px;
+  margin-bottom: 10px;
+}
+.center-logo { width: 52px; height: 52px; object-fit: contain; }
+.center-brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.3em;
+  color: rgba(255,186,32,0.5);
+  text-align: left; line-height: 1.5;
+}
+.center-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 56px;
+  letter-spacing: 0.22em; color: #ffba20;
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(255,186,32,0.5);
+}
+.center-subtitle {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px; color: rgba(223,226,243,0.4);
+  letter-spacing: 0.08em; margin-top: 8px;
+}
+
+.center-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 28px 48px 32px;
+  display: flex; flex-direction: column; align-items: center;
+  background: linear-gradient(180deg, transparent 0%, rgba(10,13,24,0.9) 40%);
+}
+.center-mega {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 88px;
+  color: #ffffff; line-height: 1;
+  text-shadow: 0 0 50px rgba(255,255,255,0.3);
+  letter-spacing: 0.04em;
+}
+.center-mega-unit {
+  font-family: 'Manrope', sans-serif;
+  font-size: 15px; color: rgba(223,226,243,0.65);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-top: 6px;
+}
+.tri-bar {
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, #ffba20 0%, #00e5ff 50%, #00ff88 100%);
+  margin-top: 20px; border-radius: 1px;
+}
+
+/* ── RIGHT PANEL — IMPACTUL ──────────────────────── */
+.right-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 40px 36px;
+  justify-content: space-between;
+}
+.right-act {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.3em;
+  color: rgba(0,255,136,0.55);
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.right-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 28px;
+  color: #dfe2f3; line-height: 1.1;
+  margin-bottom: 20px;
+}
+.right-title span { color: #00ff88; }
+
+.impact-stats { display: flex; flex-direction: column; gap: 12px; }
+.istat {
+  background: rgba(0,255,136,0.05);
+  border: 1px solid rgba(0,255,136,0.2);
+  border-radius: 6px; padding: 12px 16px;
+}
+.istat .iv {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 36px;
+  color: #00ff88; line-height: 1;
+}
+.istat .il {
+  font-family: 'Manrope', sans-serif;
+  font-size: 10.5px; color: rgba(223,226,243,0.55);
+  margin-top: 3px; line-height: 1.3;
+}
+
+.right-quote {
+  padding: 14px 16px;
+  border-left: 3px solid #00ff88;
+  background: rgba(0,255,136,0.04);
+  border-radius: 0 4px 4px 0;
+}
+.right-quote-text {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11.5px; line-height: 1.55;
+  color: rgba(223,226,243,0.7);
+  font-style: italic;
+}
+.right-quote-text strong { color: #00ff88; font-style: normal; }
+
+.right-footer {
+  display: flex; align-items: flex-end;
+  justify-content: space-between;
+}
+.right-team {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 12px;
+  color: rgba(223,226,243,0.6); letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+.right-team small {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; color: rgba(255,255,255,0.2);
+  letter-spacing: 0.15em; font-weight: 400;
+}
+/* QR */
+.qr-mini svg { display: block; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ LEFT — PROVOCAREA ═══════════════ -->
+<div class="panel panel-left">
+  <img class="bg-img" src="../../images/generated/Image A - Earth Energy Crisis.png" alt="">
+  <div class="overlay-left"></div>
+  <div class="left-content">
+    <div class="left-act">ACT I — PROVOCAREA</div>
+    <div class="left-title">Cererea globală<br>depășește <span>orice</span><br>soluție terestră</div>
+    <div class="stat-big">
+      <span class="val">378×</span>
+      <span class="unit">Intensitate solară<br>la 7,7M km de Soare</span>
+    </div>
+    <div class="left-divider"></div>
+    <div class="left-body">
+      Sursa există. Este <strong>imediată</strong>, <strong>inepuizabilă</strong> și la
+      378 de ori mai intensă decât ce ajunge pe Pământ.
+      Singura limită a fost, până acum, distanța.
+    </div>
+    <div class="corner-tag">VARIANTA A · 01/03</div>
+  </div>
+</div>
+
+<!-- ═══════════════ CENTER — SOLUȚIA ════════════════ -->
+<div class="panel panel-center">
+  <img class="bg-img" src="../../images/generated/Image C - Full System Panoramic.png" alt="">
+  <div class="overlay-center"></div>
+  <div class="center-content">
+    <div class="center-top">
+      <div class="center-logo-row">
+        <img class="center-logo" src="../../assets/logo-no-ONCS-text-bright-highrez.png" alt="Logo">
+        <div class="center-brand">POLARIS Bears<br>ONCS 2026</div>
+      </div>
+      <div class="center-title">P.O.L.A.R.I.S.</div>
+      <div class="center-subtitle">Proiect Orbital de Livrare a Radiației Infraroșii pe Suprafața Planetei</div>
+    </div>
+    <div class="center-bottom">
+      <div class="center-mega">1,6 TW</div>
+      <div class="center-mega-unit">energie solară · livrată continuu · zero emisii</div>
+      <div class="tri-bar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ RIGHT — IMPACTUL ════════════════ -->
+<div class="panel panel-right">
+  <img class="bg-img" src="../../images/generated/Image I - Star Power Grid GEO.png" alt="">
+  <div class="overlay-right"></div>
+  <div class="right-content">
+    <div>
+      <div class="right-act">ACT III — IMPACTUL</div>
+      <div class="right-title">Energia unei<br><span>civilizații</span> întregi</div>
+      <div class="impact-stats">
+        <div class="istat">
+          <div class="iv">48%</div>
+          <div class="il">din electricitatea mondială acoperit</div>
+        </div>
+        <div class="istat">
+          <div class="iv">0 CO₂</div>
+          <div class="il">emisii în operare · combustibil zero</div>
+        </div>
+        <div class="istat">
+          <div class="iv">2 poli</div>
+          <div class="il">800 GW/cablu YBCO superconductor</div>
+        </div>
+      </div>
+    </div>
+    <div class="right-quote">
+      <div class="right-quote-text">
+        Nu o sursă de energie —<br>o <strong>infrastructură civilizațională</strong>.
+      </div>
+    </div>
+    <div class="right-footer">
+      <div class="right-team">
+        <small>ECHIPA</small>
+        Ioan Cristian<br>Albert David
+      </div>
+      <div class="qr-mini">
+        <svg width="54" height="54" viewBox="0 0 54 54" fill="none">
+          <rect x="1" y="1" width="17" height="17" rx="2" fill="none" stroke="#dfe2f3" stroke-width="1.5"/>
+          <rect x="5" y="5" width="9" height="9" rx="1" fill="#dfe2f3"/>
+          <rect x="36" y="1" width="17" height="17" rx="2" fill="none" stroke="#dfe2f3" stroke-width="1.5"/>
+          <rect x="40" y="5" width="9" height="9" rx="1" fill="#dfe2f3"/>
+          <rect x="1" y="36" width="17" height="17" rx="2" fill="none" stroke="#dfe2f3" stroke-width="1.5"/>
+          <rect x="5" y="40" width="9" height="9" rx="1" fill="#dfe2f3"/>
+          <rect x="22" y="3" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".8"/>
+          <rect x="26" y="3" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".5"/>
+          <rect x="30" y="3" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".9"/>
+          <rect x="22" y="7" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".7"/>
+          <rect x="26" y="7" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".6"/>
+          <rect x="30" y="7" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".8"/>
+          <rect x="22" y="11" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".5"/>
+          <rect x="26" y="11" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".9"/>
+          <rect x="30" y="11" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".6"/>
+          <rect x="22" y="22" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".7"/>
+          <rect x="26" y="22" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".5"/>
+          <rect x="30" y="22" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".8"/>
+          <rect x="34" y="22" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".6"/>
+          <rect x="38" y="22" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".9"/>
+          <rect x="42" y="22" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".5"/>
+          <rect x="46" y="22" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".8"/>
+          <rect x="50" y="22" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".6"/>
+          <rect x="22" y="26" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".9"/>
+          <rect x="26" y="26" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".7"/>
+          <rect x="30" y="26" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".6"/>
+          <rect x="34" y="26" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".8"/>
+          <rect x="42" y="26" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".5"/>
+          <rect x="46" y="26" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".9"/>
+          <rect x="22" y="30" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".8"/>
+          <rect x="30" y="30" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".6"/>
+          <rect x="38" y="30" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".7"/>
+          <rect x="46" y="30" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".5"/>
+          <rect x="22" y="34" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".9"/>
+          <rect x="26" y="34" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".6"/>
+          <rect x="34" y="34" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".8"/>
+          <rect x="42" y="34" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".7"/>
+          <rect x="50" y="34" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".5"/>
+          <rect x="22" y="38" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".7"/>
+          <rect x="30" y="38" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".8"/>
+          <rect x="38" y="38" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".6"/>
+          <rect x="46" y="38" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".9"/>
+          <rect x="22" y="42" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".5"/>
+          <rect x="26" y="42" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".8"/>
+          <rect x="34" y="42" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".7"/>
+          <rect x="42" y="42" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".9"/>
+          <rect x="50" y="42" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".6"/>
+          <rect x="22" y="46" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".8"/>
+          <rect x="30" y="46" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".5"/>
+          <rect x="38" y="46" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".7"/>
+          <rect x="46" y="46" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".9"/>
+          <rect x="22" y="50" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".6"/>
+          <rect x="26" y="50" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".8"/>
+          <rect x="34" y="50" width="2.5" height="2.5" rx=".4" fill="#00ff88" opacity=".5"/>
+          <rect x="42" y="50" width="2.5" height="2.5" rx=".4" fill="#ffba20" opacity=".9"/>
+          <rect x="50" y="50" width="2.5" height="2.5" rx=".4" fill="#00e5ff" opacity=".7"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
