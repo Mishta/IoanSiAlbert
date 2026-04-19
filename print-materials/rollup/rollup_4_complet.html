@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../claude-design-transit/corrected/assets/fonts.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 850px; height: 2000px;
+  background: #0a0d18;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow: hidden;
+}
+
+/* ── HEADER ─────────────────────────────────────── */
+.header {
+  width: 100%; height: 134px;
+  background: linear-gradient(180deg, #0f131f 0%, #0a0d18 100%);
+  display: flex; align-items: center;
+  padding: 0 36px;
+  gap: 20px;
+  position: relative;
+}
+.header::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, #ffba20 0%, #00e5ff 50%, #00ff88 100%);
+}
+.logo {
+  width: 74px; height: 74px;
+  border-radius: 4px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.header-text { flex: 1; }
+.header-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,186,32,0.55);
+  margin-bottom: 3px;
+}
+.header-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  letter-spacing: 0.16em;
+  color: #ffba20;
+  line-height: 1;
+}
+.header-sub {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11.5px;
+  color: rgba(223,226,243,0.45);
+  margin-top: 5px;
+  letter-spacing: 0.04em;
+}
+.header-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  color: rgba(0,229,255,0.5);
+  text-align: right;
+  line-height: 1.6;
+  flex-shrink: 0;
+}
+
+/* ── GRAND HERO ──────────────────────────────────── */
+.grand-hero {
+  width: 100%; height: 330px;
+  position: relative;
+  overflow: hidden;
+}
+.grand-hero img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+.grand-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(10,13,24,0.1) 0%,
+    rgba(10,13,24,0.0) 30%,
+    rgba(10,13,24,0.55) 75%,
+    rgba(10,13,24,1.0) 100%);
+}
+.grand-hero-stat {
+  position: absolute;
+  bottom: 22px; left: 0; right: 0;
+  text-align: center;
+}
+.grand-hero-stat .mega {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 72px;
+  letter-spacing: 0.06em;
+  color: #ffba20;
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(255,186,32,0.6);
+}
+.grand-hero-stat .mega-sub {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  color: rgba(255,186,32,0.7);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ── ACT SEPARATOR ───────────────────────────────── */
+.act-sep {
+  display: flex; align-items: center;
+  padding: 0 36px;
+  height: 40px;
+  gap: 14px;
+}
+.act-sep .act-line { flex: 1; height: 1px; }
+.act-sep .act-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+.act-sep.gold .act-line { background: linear-gradient(90deg, transparent, #ffba20 40%, #ffba20 60%, transparent); }
+.act-sep.gold .act-label { color: #ffba20; }
+.act-sep.cyan .act-line { background: linear-gradient(90deg, transparent, #00e5ff 40%, #00e5ff 60%, transparent); }
+.act-sep.cyan .act-label { color: #00e5ff; }
+.act-sep.green .act-line { background: linear-gradient(90deg, transparent, #00ff88 40%, #00ff88 60%, transparent); }
+.act-sep.green .act-label { color: #00ff88; }
+
+/* ── ACT I — VIZIUNEA ────────────────────────────── */
+.act1 {
+  padding: 0 36px 0;
+}
+.act1-row {
+  display: flex; gap: 16px; align-items: stretch;
+}
+.act1-problem {
+  flex: 1;
+  position: relative; overflow: hidden;
+  border-radius: 6px;
+  height: 160px;
+  border: 1px solid rgba(255,186,32,0.15);
+}
+.act1-problem img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.act1-problem-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(10,13,24,0.75) 0%, rgba(10,13,24,0.2) 100%);
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+}
+.act1-problem-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.25em;
+  color: rgba(255,186,32,0.6);
+  text-transform: uppercase; margin-bottom: 4px;
+}
+.act1-problem-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 16px;
+  color: #dfe2f3; line-height: 1.25;
+}
+.act1-problem-text span { color: #ffba20; }
+.act1-stats {
+  display: flex; flex-direction: column;
+  gap: 10px; justify-content: center;
+  padding: 0 4px;
+  width: 170px; flex-shrink: 0;
+}
+.stat-v {
+  background: rgba(255,186,32,0.06);
+  border: 1px solid rgba(255,186,32,0.18);
+  border-radius: 6px;
+  padding: 10px 14px;
+  text-align: center;
+}
+.stat-v .sv-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 26px;
+  color: #ffba20; line-height: 1;
+}
+.stat-v .sv-unit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: rgba(255,186,32,0.55);
+  letter-spacing: 0.15em; margin-top: 2px;
+}
+.act1-vision {
+  margin-top: 12px;
+  padding: 14px 18px;
+  background: rgba(255,186,32,0.04);
+  border-left: 3px solid #ffba20;
+  border-radius: 0 4px 4px 0;
+}
+.act1-vision-text {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12.5px; line-height: 1.55;
+  color: rgba(223,226,243,0.8);
+}
+.act1-vision-text strong { color: #ffba20; font-weight: 600; }
+
+/* ── ACT II — TEHNOLOGIA ─────────────────────────── */
+.act2 { padding: 0 36px; }
+
+.tech-hero {
+  width: 100%; height: 200px;
+  position: relative; overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid rgba(0,229,255,0.15);
+  margin-bottom: 14px;
+}
+.tech-hero img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+.tech-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg,
+    rgba(10,13,24,0.8) 0%,
+    rgba(10,13,24,0.0) 60%);
+}
+.tech-hero-label {
+  position: absolute; left: 18px; bottom: 18px;
+}
+.tech-hero-label .thl-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.25em;
+  color: rgba(0,229,255,0.6);
+  text-transform: uppercase; margin-bottom: 4px;
+}
+.tech-hero-label .thl-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 18px;
+  color: #dfe2f3; line-height: 1.2;
+}
+
+/* 5 niveluri condensat — grid 5 col */
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.level-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px;
+  padding: 10px 8px;
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  gap: 6px;
+}
+.level-card.cyan { border-color: rgba(0,229,255,0.25); }
+.level-card.gold { border-color: rgba(255,186,32,0.25); }
+.level-card.green { border-color: rgba(0,255,136,0.25); }
+.level-card .lc-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.3);
+}
+.level-card .lc-icon {
+  width: 44px; height: 32px;
+  object-fit: cover; border-radius: 3px;
+}
+.level-card .lc-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 9.5px;
+  color: #dfe2f3; line-height: 1.25;
+}
+.level-card .lc-stat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px; font-weight: 700;
+  line-height: 1;
+}
+.level-card.cyan .lc-stat { color: #00e5ff; }
+.level-card.gold .lc-stat { color: #ffba20; }
+.level-card.green .lc-stat { color: #00ff88; }
+
+/* flux chain */
+.flux-chain {
+  display: flex; align-items: center;
+  gap: 0; margin-bottom: 10px;
+}
+.flux-node {
+  flex: 1; text-align: center; padding: 8px 4px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 4px;
+}
+.flux-node .fn-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5px; letter-spacing: 0.1em;
+  color: rgba(223,226,243,0.45);
+  display: block; margin-bottom: 2px;
+}
+.flux-node .fn-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 11px;
+  color: #00e5ff;
+}
+.flux-arrow {
+  color: rgba(0,229,255,0.3);
+  font-size: 12px;
+  padding: 0 2px;
+  flex-shrink: 0;
+}
+.eta-bar {
+  background: rgba(0,229,255,0.05);
+  border: 1px solid rgba(0,229,255,0.15);
+  border-radius: 4px;
+  padding: 8px 14px;
+  display: flex; align-items: center;
+  gap: 14px;
+}
+.eta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; color: rgba(0,229,255,0.5);
+  letter-spacing: 0.15em;
+}
+.eta-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; font-weight: 700;
+  color: #00e5ff; letter-spacing: 0.05em;
+}
+.eta-track {
+  flex: 1; height: 5px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px; overflow: hidden;
+}
+.eta-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00e5ff, #00ff88);
+  border-radius: 3px;
+}
+
+/* ── ACT III — IMPACTUL ──────────────────────────── */
+.act3 { padding: 0 36px; }
+
+.impact-hero {
+  width: 100%; height: 180px;
+  position: relative; overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid rgba(0,255,136,0.15);
+  margin-bottom: 14px;
+}
+.impact-hero img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.impact-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg,
+    rgba(10,13,24,0.82) 0%,
+    rgba(10,13,24,0.0) 60%);
+}
+.impact-hero-label {
+  position: absolute; left: 18px; top: 50%;
+  transform: translateY(-50%);
+}
+.ihl-top {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.25em;
+  color: rgba(0,255,136,0.6);
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.ihl-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 44px;
+  color: #00ff88; line-height: 1;
+  text-shadow: 0 0 30px rgba(0,255,136,0.4);
+}
+.ihl-unit {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px; color: rgba(0,255,136,0.7);
+  letter-spacing: 0.12em;
+  margin-top: 3px;
+}
+
+.impact-trio {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10px; margin-bottom: 12px;
+}
+.itrio-card {
+  background: rgba(0,255,136,0.04);
+  border: 1px solid rgba(0,255,136,0.15);
+  border-radius: 6px;
+  padding: 12px 10px; text-align: center;
+}
+.itrio-card .it-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 24px;
+  color: #00ff88; line-height: 1; margin-bottom: 4px;
+}
+.itrio-card .it-label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 9.5px; color: rgba(223,226,243,0.55);
+  line-height: 1.3;
+}
+
+.impact-quote {
+  padding: 12px 18px;
+  background: rgba(0,255,136,0.04);
+  border-left: 3px solid #00ff88;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 12px;
+}
+.impact-quote-text {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px; line-height: 1.55;
+  color: rgba(223,226,243,0.75);
+  font-style: italic;
+}
+.impact-quote-text strong { color: #00ff88; font-style: normal; font-weight: 700; }
+
+/* ── VALIDATION STRIP ────────────────────────────── */
+.valid-strip {
+  margin: 0 36px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  padding: 10px 16px;
+  display: flex; gap: 20px; align-items: center;
+}
+.vs-item {
+  display: flex; align-items: center; gap: 7px;
+  flex: 1;
+}
+.vs-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #00e5ff; flex-shrink: 0;
+}
+.vs-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; color: rgba(223,226,243,0.4);
+  letter-spacing: 0.06em; line-height: 1.3;
+}
+.vs-sep { width: 1px; height: 24px; background: rgba(255,255,255,0.07); flex-shrink: 0; }
+
+/* ── FOOTER ──────────────────────────────────────── */
+.footer {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 138px;
+  background: linear-gradient(180deg, rgba(10,13,24,0) 0%, #0a0d18 30%);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center;
+  padding: 0 36px;
+  gap: 20px;
+}
+.footer-team { flex: 1; }
+.footer-team-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.25);
+  text-transform: uppercase; margin-bottom: 5px;
+}
+.footer-team-names {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 16px;
+  color: #dfe2f3; letter-spacing: 0.04em;
+}
+.footer-team-caption {
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  color: rgba(223,226,243,0.35);
+  margin-top: 3px;
+}
+.footer-qr { flex-shrink: 0; text-align: center; }
+.footer-qr-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7px; letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase; margin-top: 4px;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- HEADER                                          -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="header">
+  <img class="logo" src="../../assets/logo-no-ONCS-text-bright-highrez.png" alt="POLARIS Bears Logo">
+  <div class="header-text">
+    <div class="header-brand">POLARIS Bears · ONCS 2026</div>
+    <div class="header-title">P.O.L.A.R.I.S.</div>
+    <div class="header-sub">Proiect Orbital de Livrare a Radiației Infraroșii pe Suprafața Planetei</div>
+  </div>
+  <div class="header-tag">
+    EDIȚIE<br>COMPLETĂ<br>━━━━━<br>3 ÎN 1
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- GRAND HERO — Full System                        -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="grand-hero">
+  <img src="../../images/generated/Image C - Full System Panoramic.png" alt="POLARIS Full System">
+  <div class="grand-hero-overlay"></div>
+  <div class="grand-hero-stat">
+    <div class="mega">1,6 TW</div>
+    <div class="mega-sub">livrat continuu · ≈ 48% din electricitatea globală</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ACT I — VIZIUNEA                                -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="act-sep gold">
+  <div class="act-line"></div>
+  <div class="act-label">ACT I — VIZIUNEA</div>
+  <div class="act-line"></div>
+</div>
+
+<div class="act1">
+  <div class="act1-row">
+    <div class="act1-problem">
+      <img src="../../images/generated/Image A - Earth Energy Crisis.png" alt="Criza energetică">
+      <div class="act1-problem-overlay">
+        <div class="act1-problem-label">PROVOCAREA</div>
+        <div class="act1-problem-text">Cererea globală crește<br><span>exponențial.</span> Soluțiile<br>terestre nu sunt suficiente.</div>
+      </div>
+    </div>
+    <div class="act1-stats">
+      <div class="stat-v">
+        <div class="sv-num">378×</div>
+        <div class="sv-unit">INTENSITATE SOLARĂ<br>VS. PĂMÂNT</div>
+      </div>
+      <div class="stat-v">
+        <div class="sv-num">1,6 TW</div>
+        <div class="sv-unit">PUTERE LIVRATĂ</div>
+      </div>
+      <div class="stat-v">
+        <div class="sv-num">48%</div>
+        <div class="sv-unit">ELECTRICITATE<br>GLOBALĂ</div>
+      </div>
+    </div>
+  </div>
+  <div class="act1-vision">
+    <div class="act1-vision-text">
+      La 7,7 milioane km de Soare, intensitatea radiației solare este de
+      <strong>378 de ori</strong> mai mare decât la suprafața Pământului.
+      P.O.L.A.R.I.S. captează această energie direct la sursă și o transmite
+      prin <strong>fascicule laser</strong> până la cei doi poli ai planetei.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ACT II — TEHNOLOGIA                             -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="act-sep cyan" style="margin-top:16px;">
+  <div class="act-line"></div>
+  <div class="act-label">ACT II — TEHNOLOGIA</div>
+  <div class="act-line"></div>
+</div>
+
+<div class="act2">
+  <div class="tech-hero">
+    <img src="../../images/generated/Image B - Mirror and Sun.png" alt="Mirror and Sun">
+    <div class="tech-hero-overlay"></div>
+    <div class="tech-hero-label">
+      <div class="thl-tag">ARHITECTURA ÎN 5 NIVELURI</div>
+      <div class="thl-title">De la Soare la rețeaua<br>electrică terestră</div>
+    </div>
+  </div>
+
+  <div class="levels-grid">
+    <div class="level-card gold">
+      <span class="lc-num">N1</span>
+      <img class="lc-icon" src="../../images/generated/Image K - Solar Mirror Dyson.png" alt="Dyson Ring">
+      <div class="lc-name">Dyson Ring</div>
+      <div class="lc-stat">30 oglinzi<br>Ø 1 km</div>
+    </div>
+    <div class="level-card cyan">
+      <span class="lc-num">N2</span>
+      <img class="lc-icon" src="../../images/generated/Image L - Collector Satellite Laser.png" alt="Colector">
+      <div class="lc-name">Satelit Colector</div>
+      <div class="lc-stat">η 43%<br>→ laser verde</div>
+    </div>
+    <div class="level-card cyan">
+      <span class="lc-num">N3</span>
+      <img class="lc-icon" src="../../images/generated/Image M - Lagrange Relay Node.png" alt="Lagrange">
+      <div class="lc-name">Nod L4/L5</div>
+      <div class="lc-stat">2,34 TW<br>per nod</div>
+    </div>
+    <div class="level-card cyan">
+      <span class="lc-num">N4</span>
+      <img class="lc-icon" src="../../images/generated/Image H - Floating Station Stratosphere.png" alt="Statie Polara">
+      <div class="lc-name">Stație Polară</div>
+      <div class="lc-stat">30 km alt.<br>baloane He</div>
+    </div>
+    <div class="level-card green">
+      <span class="lc-num">N5</span>
+      <img class="lc-icon" src="../../images/generated/Image J - YBCO Superconductor Crystal.png" alt="YBCO">
+      <div class="lc-name">Cabluri YBCO</div>
+      <div class="lc-stat">800 GW<br>per cablu</div>
+    </div>
+  </div>
+
+  <div class="flux-chain">
+    <div class="flux-node">
+      <span class="fn-label">Soare</span>
+      <span class="fn-val">100%</span>
+    </div>
+    <div class="flux-arrow">→</div>
+    <div class="flux-node">
+      <span class="fn-label">Oglinzi</span>
+      <span class="fn-val">η 90%</span>
+    </div>
+    <div class="flux-arrow">→</div>
+    <div class="flux-node">
+      <span class="fn-label">Laser</span>
+      <span class="fn-val">η 43%</span>
+    </div>
+    <div class="flux-arrow">→</div>
+    <div class="flux-node">
+      <span class="fn-label">L4/L5</span>
+      <span class="fn-val">η 95%</span>
+    </div>
+    <div class="flux-arrow">→</div>
+    <div class="flux-node">
+      <span class="fn-label">Poli</span>
+      <span class="fn-val">η 95%</span>
+    </div>
+    <div class="flux-arrow">→</div>
+    <div class="flux-node">
+      <span class="fn-label">YBCO</span>
+      <span class="fn-val">η 99%</span>
+    </div>
+  </div>
+
+  <div class="eta-bar">
+    <div class="eta-label">η TOTAL</div>
+    <div class="eta-formula">≈ 13%</div>
+    <div class="eta-track"><div class="eta-fill" style="width:13%;"></div></div>
+    <div style="font-family:'JetBrains Mono',monospace; font-size:9px; color:rgba(0,229,255,0.4);">
+      1,21×10¹³ W incident → <strong style="color:#00e5ff;">1,6 TW livrat</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ACT III — IMPACTUL                              -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="act-sep green" style="margin-top:16px;">
+  <div class="act-line"></div>
+  <div class="act-label">ACT III — IMPACTUL</div>
+  <div class="act-line"></div>
+</div>
+
+<div class="act3">
+  <div class="impact-hero">
+    <img src="../../images/generated/Image I - Star Power Grid GEO.png" alt="Star Power Grid">
+    <div class="impact-hero-overlay"></div>
+    <div class="impact-hero-label">
+      <div class="ihl-top">STAR POWER GRID</div>
+      <div class="ihl-num">1,6 TW</div>
+      <div class="ihl-unit">CONTINUU · FIABIL · ZERO EMISII</div>
+    </div>
+  </div>
+
+  <div class="impact-trio">
+    <div class="itrio-card">
+      <div class="it-val">48%</div>
+      <div class="it-label">din electricitatea<br>mondială acoperit</div>
+    </div>
+    <div class="itrio-card">
+      <div class="it-val">2×</div>
+      <div class="it-label">800 GW / cablu<br>YBCO T<sub>c</sub> = 93 K</div>
+    </div>
+    <div class="itrio-card">
+      <div class="it-val">0</div>
+      <div class="it-label">emisii CO₂<br>în operare</div>
+    </div>
+  </div>
+
+  <div class="impact-quote">
+    <div class="impact-quote-text">
+      P.O.L.A.R.I.S. nu este o sursă de energie — este o <strong>infrastructură civilizațională</strong>.
+      Primul sistem de putere care operează la scara nevoilor reale ale planetei,
+      fără combustibil, fără emisii, fără intermitență.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- VALIDATION STRIP                                -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="valid-strip">
+  <div class="vs-item">
+    <div class="vs-dot"></div>
+    <div class="vs-text">Mecanică orbitală<br>Kepleriană verificată</div>
+  </div>
+  <div class="vs-sep"></div>
+  <div class="vs-item">
+    <div class="vs-dot"></div>
+    <div class="vs-text">Superconductori YBCO<br>T<sub>c</sub> = 93 K (publicat)</div>
+  </div>
+  <div class="vs-sep"></div>
+  <div class="vs-item">
+    <div class="vs-dot"></div>
+    <div class="vs-text">Limita Shockley-Queisser<br>respectată în calcule</div>
+  </div>
+  <div class="vs-sep"></div>
+  <div class="vs-item">
+    <div class="vs-dot"></div>
+    <div class="vs-text">Scala Kardashev I<br>Dyson 1960 / Kardashev 1964</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- FOOTER                                          -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="footer">
+  <div class="footer-team">
+    <div class="footer-team-label">Echipa</div>
+    <div class="footer-team-names">Ioan Cristian &amp; Albert David</div>
+    <div class="footer-team-caption">POLARIS Bears · Olimpiadă Națională de Cosmonautică și Științe Spațiale 2026</div>
+  </div>
+  <div class="footer-qr">
+    <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- TL finder -->
+      <rect x="2" y="2" width="22" height="22" rx="3" fill="none" stroke="#dfe2f3" stroke-width="2"/>
+      <rect x="7" y="7" width="12" height="12" rx="1.5" fill="#dfe2f3"/>
+      <!-- TR finder -->
+      <rect x="46" y="2" width="22" height="22" rx="3" fill="none" stroke="#dfe2f3" stroke-width="2"/>
+      <rect x="51" y="7" width="12" height="12" rx="1.5" fill="#dfe2f3"/>
+      <!-- BL finder -->
+      <rect x="2" y="46" width="22" height="22" rx="3" fill="none" stroke="#dfe2f3" stroke-width="2"/>
+      <rect x="7" y="51" width="12" height="12" rx="1.5" fill="#dfe2f3"/>
+      <!-- data dots — gradient palette -->
+      <rect x="28" y="4" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.8"/>
+      <rect x="33" y="4" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.5"/>
+      <rect x="38" y="4" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.9"/>
+      <rect x="28" y="9" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.6"/>
+      <rect x="38" y="9" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.8"/>
+      <rect x="33" y="14" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.7"/>
+      <rect x="28" y="19" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.5"/>
+      <rect x="33" y="19" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.9"/>
+      <rect x="38" y="14" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.6"/>
+      <rect x="38" y="19" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.7"/>
+      <rect x="4" y="28" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.6"/>
+      <rect x="9" y="28" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.9"/>
+      <rect x="14" y="28" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.5"/>
+      <rect x="4" y="33" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.7"/>
+      <rect x="14" y="33" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.8"/>
+      <rect x="9" y="38" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.6"/>
+      <rect x="4" y="43" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.5"/>
+      <rect x="14" y="43" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.9"/>
+      <rect x="28" y="28" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.8"/>
+      <rect x="33" y="28" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.6"/>
+      <rect x="38" y="28" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.9"/>
+      <rect x="43" y="28" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.5"/>
+      <rect x="48" y="28" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.7"/>
+      <rect x="53" y="28" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.6"/>
+      <rect x="58" y="28" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.8"/>
+      <rect x="63" y="28" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.5"/>
+      <rect x="28" y="33" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.7"/>
+      <rect x="38" y="33" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.9"/>
+      <rect x="43" y="33" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.6"/>
+      <rect x="53" y="33" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.8"/>
+      <rect x="63" y="33" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.5"/>
+      <rect x="28" y="38" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.8"/>
+      <rect x="33" y="38" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.5"/>
+      <rect x="48" y="38" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.7"/>
+      <rect x="58" y="38" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.9"/>
+      <rect x="28" y="43" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.6"/>
+      <rect x="38" y="43" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.8"/>
+      <rect x="43" y="43" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.5"/>
+      <rect x="53" y="43" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.7"/>
+      <rect x="63" y="43" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.6"/>
+      <rect x="28" y="48" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.9"/>
+      <rect x="33" y="48" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.5"/>
+      <rect x="38" y="48" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.8"/>
+      <rect x="43" y="48" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.6"/>
+      <rect x="48" y="48" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.9"/>
+      <rect x="58" y="48" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.7"/>
+      <rect x="28" y="53" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.6"/>
+      <rect x="38" y="53" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.8"/>
+      <rect x="48" y="53" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.5"/>
+      <rect x="53" y="53" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.9"/>
+      <rect x="63" y="53" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.7"/>
+      <rect x="28" y="58" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.8"/>
+      <rect x="33" y="58" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.6"/>
+      <rect x="43" y="58" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.5"/>
+      <rect x="48" y="58" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.9"/>
+      <rect x="58" y="58" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.7"/>
+      <rect x="63" y="58" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.8"/>
+      <rect x="28" y="63" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.6"/>
+      <rect x="38" y="63" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.8"/>
+      <rect x="48" y="63" width="3" height="3" rx="0.5" fill="#00e5ff" opacity="0.5"/>
+      <rect x="53" y="63" width="3" height="3" rx="0.5" fill="#00ff88" opacity="0.7"/>
+      <rect x="63" y="63" width="3" height="3" rx="0.5" fill="#ffba20" opacity="0.9"/>
+    </svg>
+    <div class="footer-qr-label">VIDEO PREZENTARE</div>
+  </div>
+</div>
+
+</body>
+</html>
