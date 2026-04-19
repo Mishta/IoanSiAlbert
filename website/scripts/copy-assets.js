@@ -62,6 +62,24 @@ async function main() {
     path.join(imgDst, 'desk-display')
   )
   console.log('✓ images/generated/desk-display/ copied')
+
+  // videos/generated/ — copy only files <25MB (larger ones are on YouTube)
+  const videoSrc = path.join(repoRoot, 'videos', 'generated')
+  const videoDst = path.resolve(__dirname, '../public/videos')
+  if (fs.existsSync(videoSrc)) {
+    if (!fs.existsSync(videoDst)) fs.mkdirSync(videoDst, { recursive: true })
+    for (const entry of fs.readdirSync(videoSrc, { withFileTypes: true })) {
+      if (entry.isDirectory()) continue
+      const s = path.join(videoSrc, entry.name)
+      const stat = fs.statSync(s)
+      if (stat.size > MAX_BYTES) {
+        console.log(`  ⚠ skipped (>24MB, use YouTube): ${entry.name}`)
+        continue
+      }
+      fs.copyFileSync(s, path.join(videoDst, entry.name))
+    }
+    console.log('✓ videos/ copied (excl. >24MB)')
+  }
 }
 
 main().catch(err => { console.error(err); process.exit(1) })

@@ -2,6 +2,7 @@ import StarField from '@/components/StarField'
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import Concept from '@/components/Concept'
+import Stats from '@/components/Stats'
 import Architecture from '@/components/Architecture'
 import Kardashev from '@/components/Kardashev'
 import Team from '@/components/Team'
@@ -15,6 +16,7 @@ export default function Home() {
       <main>
         <Hero />
         <Concept />
+        <Stats />
         <Architecture />
         <Kardashev />
         <Team />

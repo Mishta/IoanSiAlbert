@@ -77,15 +77,17 @@ export default function Hero() {
       {/* Radial glow */}
       <div className={styles.glow} aria-hidden />
 
-      {/* Satellite exploded view */}
+      {/* Video background */}
+      <video
+        autoPlay muted loop playsInline
+        className={styles.videoBg}
+        poster="/images/generated/Image%20C%20-%20Full%20System%20Panoramic.png"
+      >
+        <source src="/videos/Image%20C%20-%20Full%20System%20Panoramic%20-%20Video.mp4" type="video/mp4" />
+      </video>
+
+      {/* Satellite exploded view (fallback / overlay) */}
       <div ref={satelliteRef} className={styles.satellite}>
-        <Image
-          src="/images/generated/Image%20C%20-%20Full%20System%20Panoramic.png"
-          alt="Vedere desfășurată satelit POLARIS"
-          width={1100} height={620}
-          priority
-          className={styles.satelliteImg}
-        />
         <div className={styles.satelliteOverlay} aria-hidden />
       </div>
 
