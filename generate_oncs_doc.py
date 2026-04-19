@@ -123,7 +123,7 @@ def build():
 
     p_sec = doc.add_paragraph()
     p_sec.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p_sec.add_run("Secțiunea A — Științe Exacte").font.size = Pt(11)
+    p_sec.add_run("Secțiunea A — Științe Fundamentale").font.size = Pt(11)
 
     for _ in range(2):
         doc.add_paragraph()
@@ -197,7 +197,7 @@ def build():
         ("Categorie",
          "[De completat conform categoriei ONCS 2026]"),
         ("Secțiune",
-         "Secțiunea A — Științe Exacte"),
+         "Secțiunea A — Științe Fundamentale"),
         ("Mentorul echipei",
          "Prof. Aaron FRANCISC\n"
          "ICHB — Liceul Teoretic Internațional de Informatică București\n"

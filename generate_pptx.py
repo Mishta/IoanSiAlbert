@@ -49,14 +49,14 @@ SLIDES = [
         "num": "00", "type": "cover",
         "title": "P.O.L.A.R.I.S.",
         "subtitle": "Platforma Orbitala Laser pt.\nAlimentare si Receptie Inovativa Solara",
-        "body": "Ioan CHELARU  ·  Albert OLARIU\nONCS 2026  ·  Sectiunea A  ·  Stiinte Exacte",
+        "body": "Ioan CHELARU  ·  Albert OLARIU\nONCS 2026  ·  Secțiunea A  ·  Științe Fundamentale",
         "accent": C_PRIMARY,
         "image": "images/generated/06 POLARIS System General View (v2).png",
     },
     # 01a — SECVENTA KLING (clip_sequence — fullscreen autoplay, fara chrome)
     {
         "num": "01a", "type": "clip_sequence",
-        "video": "videos/generated/CLIP_POLARIS_Sequence.mp4",
+        "video": "videos/generated/CLIP_POLARIS_Sequence_audio.mp4",
         "accent": C_PRIMARY,
     },
     # 01 — PROBLEMA  (criteriu a — relevanta practica)

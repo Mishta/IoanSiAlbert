@@ -280,7 +280,7 @@ def build_pdf():
     story.append(hr(C_GRID))
     story.append(p(
         "P.O.L.A.R.I.S.  ·  Polaris Bears  ·  ONCS 2026  ·  "
-        "Sectiunea A — Stiinte Exacte  ·  Generat automat cu Claude Code",
+        "Secțiunea A — Științe Fundamentale  ·  Generat automat cu Claude Code",
         S_FOOTER))
 
     doc.build(story)

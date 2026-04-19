@@ -50,7 +50,7 @@ export default function Team() {
             'Olimpici Informatică',
             'ONCS 2026',
             'Secțiunea A',
-            'Științe Exacte',
+            'Științe Fundamentale',
           ].map(b => (
             <span key={b} className={styles.badge}>{b}</span>
           ))}
