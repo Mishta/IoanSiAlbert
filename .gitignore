@@ -1,3 +1,5 @@
 ~$*.pptx
+*.pptx
+output/*.docx
 print-materials/**/*.pdf
 __pycache__/
