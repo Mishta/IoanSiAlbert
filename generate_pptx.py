@@ -53,6 +53,12 @@ SLIDES = [
         "accent": C_PRIMARY,
         "image": "images/generated/06 POLARIS System General View (v2).png",
     },
+    # 01a — SECVENTA KLING (clip_sequence — fullscreen autoplay, fara chrome)
+    {
+        "num": "01a", "type": "clip_sequence",
+        "video": "videos/generated/CLIP_POLARIS_Sequence.mp4",
+        "accent": C_PRIMARY,
+    },
     # 01 — PROBLEMA  (criteriu a — relevanta practica)
     {
         "num": "01", "type": "full_bleed", "section": "CONTEXT",
@@ -1249,6 +1255,15 @@ def build_credits(prs, data):
     return slide
 
 
+def build_clip_sequence(prs, data):
+    """Fullscreen autoplay video slide — no chrome, no text. For Kling sequence clips."""
+    slide = prs.slides.add_slide(prs.slide_layouts[6])
+    set_bg(slide, C_BG)
+    if data.get("video"):
+        add_video(slide, data["video"], Inches(0), Inches(0), W, H, autoplay=True)
+    return slide
+
+
 def build_kardashev(prs, data):
     """Kardashev slide: video background left, Kardashev bar diagram right, text overlay."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
@@ -1294,8 +1309,9 @@ def build_kardashev(prs, data):
 def build_slide(prs, data):
     stype = data.get("type", "split")
     dispatch = {
-        "cover":       build_cover,
-        "full_bleed":  build_full_bleed,
+        "cover":         build_cover,
+        "clip_sequence": build_clip_sequence,
+        "full_bleed":    build_full_bleed,
         "billboard":   build_billboard,
         "objectives":  build_objectives,
         "split":       build_split,
