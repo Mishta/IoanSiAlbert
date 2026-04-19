@@ -103,7 +103,7 @@ def build_pdf():
         leftMargin=2*cm, rightMargin=2*cm,
         topMargin=2.2*cm, bottomMargin=2*cm,
         title="POLARIS Cross-Check Report — ONCS 2026",
-        author="Polaris Bears / Claude Code",
+        author="Polaris Bears",
     )
 
     W = PAGE_W - 4*cm   # latime utila
@@ -280,7 +280,7 @@ def build_pdf():
     story.append(hr(C_GRID))
     story.append(p(
         "P.O.L.A.R.I.S.  ·  Polaris Bears  ·  ONCS 2026  ·  "
-        "Secțiunea A — Științe Fundamentale  ·  Generat automat cu Claude Code",
+        "Secțiunea A — Științe Fundamentale",
         S_FOOTER))
 
     doc.build(story)
