@@ -92,7 +92,8 @@ export default function Architecture() {
       gsap.registerPlugin(ScrollTrigger)
 
       // Header reveal
-      gsap.from(sectionRef.current?.querySelector('[data-header]'), {
+      const headerEl = sectionRef.current?.querySelector('[data-header]')
+      if (headerEl) gsap.from(headerEl, {
         opacity: 0, y: 50, duration: 1, ease: 'power3.out',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
       })
