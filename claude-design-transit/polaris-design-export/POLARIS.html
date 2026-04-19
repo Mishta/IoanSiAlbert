@@ -1,0 +1,1464 @@
+<!doctype html>
+<html lang="ro" class="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1440"/>
+<title>P.O.L.A.R.I.S. — Platformă Orbitală Laser pentru Alimentare și Recepție Inovativă Solară</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script>
+/*EDITMODE-BEGIN*/ const TWEAKS_JSON = {
+  "layout_variant": "observatory",
+  "accent_hue": 75,
+  "data_intensity": "rich",
+  "show_grid": true,
+  "show_mission_badge": true
+} /*EDITMODE-END*/;
+
+tailwind.config = {
+  darkMode: "class",
+  theme: { extend: {
+    colors: {
+      surface:"#0f131f","surface-low":"#121624","surface-container":"#1b1f2c","surface-high":"#262a36",
+      "surface-highest":"#303442","surface-bright":"#353946","surface-lowest":"#0a0e1a",
+      primary:"#ffba20","primary-soft":"#ffe3b7","on-primary":"#422d00",
+      cyan:"#00e5ff",green:"#00ff88",
+      "on-surface":"#dfe2f3","on-surface-variant":"#b8beca",
+      outline:"#9d8f79","outline-variant":"#504533",
+    },
+    borderRadius:{DEFAULT:"0px",sm:"0px",md:"0px",lg:"0px",xl:"0px","2xl":"0px",full:"0px"},
+    fontFamily:{
+      headline:["Space Grotesk","sans-serif"],
+      body:["Manrope","sans-serif"],
+      mono:["JetBrains Mono","ui-monospace","monospace"],
+      label:["Inter","sans-serif"],
+    },
+  }}
+};
+</script>
+<style>
+  :root { --cyan:#00e5ff; --green:#00ff88; --gold:#ffba20; --gold-soft:#ffe3b7; }
+  html,body{background:#0f131f;color:#dfe2f3;}
+  body{font-family:'Manrope',sans-serif;font-weight:400;}
+  h1,h2,h3,h4,h5,h6,.headline{font-family:'Space Grotesk',sans-serif;letter-spacing:0.02em;}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;}
+  .label{font-family:'Inter',sans-serif;letter-spacing:0.2em;text-transform:uppercase;}
+
+  .glass{background:rgba(26,30,44,0.55);backdrop-filter:blur(14px) saturate(120%);-webkit-backdrop-filter:blur(14px) saturate(120%);border:1px solid rgba(0,229,255,.08);}
+  .glass-heavy{background:rgba(26,30,44,0.75);backdrop-filter:blur(20px) saturate(120%);-webkit-backdrop-filter:blur(20px) saturate(120%);border:1px solid rgba(0,229,255,.12);}
+
+  .tx-h{height:1px;background:linear-gradient(90deg,rgba(0,229,255,0) 0%,rgba(0,229,255,.6) 50%,rgba(0,229,255,0) 100%);}
+  .tx-h-gold{height:1px;background:linear-gradient(90deg,rgba(255,186,32,0) 0%,rgba(255,186,32,.7) 50%,rgba(255,186,32,0) 100%);}
+  .tx-h-green{height:1px;background:linear-gradient(90deg,rgba(0,255,136,0) 0%,rgba(0,255,136,.7) 50%,rgba(0,255,136,0) 100%);}
+  .tx-v{width:1px;background:linear-gradient(180deg,rgba(0,229,255,0) 0%,rgba(0,229,255,.6) 50%,rgba(0,229,255,0) 100%);}
+
+  .ghost{border:1px solid rgba(157,143,121,.18);}
+  .ghost-b{border-bottom:1px solid rgba(157,143,121,.18);}
+
+  .solar-text{background:linear-gradient(135deg,#ffe3b7 0%,#ffba20 60%,#ffe3b7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;}
+  .solar-bg{background:linear-gradient(135deg,#ffe3b7 0%,#ffc041 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 0 30px rgba(255,186,32,.2);}
+  .cyan-glow{color:#00e5ff;text-shadow:0 0 12px rgba(0,229,255,.45);}
+  .green-glow{color:#00ff88;text-shadow:0 0 12px rgba(0,255,136,.45);}
+
+  .brackets{position:relative;}
+  .brackets::before,.brackets::after{content:"";position:absolute;width:10px;height:10px;border-color:var(--cyan);}
+  .brackets::before{top:-1px;left:-1px;border-top:1px solid;border-left:1px solid;}
+  .brackets::after{top:-1px;right:-1px;border-top:1px solid;border-right:1px solid;}
+  .brackets>.br-bl{position:absolute;bottom:-1px;left:-1px;width:10px;height:10px;border-bottom:1px solid var(--cyan);border-left:1px solid var(--cyan);}
+  .brackets>.br-br{position:absolute;bottom:-1px;right:-1px;width:10px;height:10px;border-bottom:1px solid var(--cyan);border-right:1px solid var(--cyan);}
+
+  .stars{background-image:
+    radial-gradient(1px 1px at 13% 22%,#dfe2f3 50%,transparent 51%),
+    radial-gradient(1px 1px at 47% 71%,#dfe2f3 50%,transparent 51%),
+    radial-gradient(1px 1px at 81% 34%,#dfe2f3 50%,transparent 51%),
+    radial-gradient(1px 1px at 22% 82%,#00e5ff 50%,transparent 51%),
+    radial-gradient(1px 1px at 66% 11%,#dfe2f3 50%,transparent 51%),
+    radial-gradient(2px 2px at 90% 60%,#ffe3b7 50%,transparent 51%),
+    radial-gradient(1px 1px at 8% 50%,#dfe2f3 50%,transparent 51%),
+    radial-gradient(1px 1px at 55% 40%,#dfe2f3 50%,transparent 51%);
+    background-size:360px 360px;background-repeat:repeat;opacity:.55;}
+
+  @keyframes pulse-cy{0%,100%{opacity:.95;filter:brightness(1.1)}50%{opacity:.35;filter:brightness(.8)}}
+  .pulse-cy{animation:pulse-cy 2.4s ease-in-out infinite;}
+  @keyframes pulse-gn{0%,100%{opacity:.95}50%{opacity:.4}}
+  .pulse-gn{animation:pulse-gn 1.8s ease-in-out infinite;}
+
+  .tick-track{display:flex;gap:56px;animation:tick 70s linear infinite;}
+  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  .bp-grid{background-image:
+    linear-gradient(rgba(0,229,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,229,255,.04) 1px,transparent 1px);
+    background-size:80px 80px;}
+
+  .bar{position:relative;height:2px;background:rgba(80,69,51,.5);}
+  .bar>span{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#ffe3b7,#ffba20);}
+
+  .sec-tag{display:inline-flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);}
+  .sec-tag .dot{width:6px;height:6px;background:var(--cyan);box-shadow:0 0 8px var(--cyan);}
+
+  .tw-panel{position:fixed;right:16px;bottom:16px;z-index:100;width:300px;display:none;}
+  .tw-panel.on{display:block;}
+
+  .laser-input{background:transparent;border:none;border-bottom:1px solid rgba(80,69,51,.6);color:#dfe2f3;outline:none;transition:border-color .2s,box-shadow .2s;padding:8px 2px;font-family:'JetBrains Mono',monospace;font-size:12px;width:100%;}
+  .laser-input:focus{border-bottom-color:var(--green);box-shadow:0 1px 0 var(--green);}
+
+  .laser-link{position:relative;}
+  .laser-link::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:1px;background:var(--cyan);box-shadow:0 0 8px var(--cyan);transition:right 280ms cubic-bezier(.2,.7,.2,1);}
+  .laser-link:hover::after,.laser-link.active::after{right:0;}
+
+  .no-scrollbar::-webkit-scrollbar{display:none;}
+  .no-scrollbar{scrollbar-width:none;}
+
+  /* Hero */
+  .hero-bg{position:absolute;inset:0;background-image:url('assets/A5_overview.png');background-size:cover;background-position:center 60%;opacity:.55;}
+  .hero-vignette{position:absolute;inset:0;background:
+    radial-gradient(1400px 900px at 50% 65%, transparent 0%, rgba(15,19,31,.5) 55%, #0f131f 90%),
+    linear-gradient(180deg, rgba(15,19,31,.3) 0%, transparent 30%, transparent 60%, rgba(15,19,31,.95) 100%);}
+  .hero-scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg, transparent 0 3px, rgba(0,229,255,.02) 3px 4px);pointer-events:none;}
+
+  /* Exploded view card */
+  .arch-card{
+    --lift:0;
+    position:relative;
+    overflow:hidden;
+    transition:transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+  .arch-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 900ms cubic-bezier(.2,.7,.2,1),filter 900ms;}
+  .arch-card:hover .arch-img{transform:scale(1.08);filter:brightness(1.1) saturate(1.15);}
+  .arch-scan{position:absolute;left:0;right:0;height:2px;top:-4px;background:linear-gradient(90deg,transparent,#00e5ff,transparent);opacity:0;transition:opacity .3s;filter:blur(.6px);}
+  .arch-card:hover .arch-scan{opacity:1;animation:scanMove 2.2s linear infinite;}
+  @keyframes scanMove{0%{top:-4px}100%{top:100%}}
+  .explode-layer{position:absolute;inset:0;pointer-events:none;}
+  .explode-tag{position:absolute;padding:4px 8px;background:rgba(15,19,31,.85);border:1px solid rgba(0,229,255,.35);color:#00e5ff;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;opacity:0;transition:opacity .6s,transform .6s cubic-bezier(.2,.7,.2,1);}
+  .arch-card:hover .explode-tag{opacity:1;}
+  .explode-line{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,.9),transparent);transform-origin:left;opacity:0;transition:opacity .5s,width .6s;}
+  .arch-card:hover .explode-line{opacity:1;}
+
+  /* Animated arrow / particle flow */
+  @keyframes flow{0%{transform:translateX(-100%)}100%{transform:translateX(120%)}}
+  .particle-flow{position:absolute;top:50%;left:0;right:0;height:2px;overflow:hidden;opacity:.6;}
+  .particle-flow::before{content:"";position:absolute;top:0;left:0;width:40%;height:100%;background:linear-gradient(90deg,transparent,#ffba20,transparent);animation:flow 2.2s linear infinite;}
+
+  /* Layout variant visibility */
+  body.lv-observatory .v-blueprint,
+  body.lv-observatory .v-control,
+  body.lv-blueprint .v-observatory,
+  body.lv-blueprint .v-control,
+  body.lv-control .v-observatory,
+  body.lv-control .v-blueprint { display: none !important; }
+
+  /* Kardashev track */
+  .kard-track{position:relative;height:26px;background:linear-gradient(90deg,#ff6a2b 0%,#ffba20 22%,#00ff88 50%,rgba(80,69,51,.45) 60%,rgba(80,69,51,.25) 100%);border:1px solid rgba(157,143,121,.25);}
+  .kard-marker{position:absolute;top:-10px;bottom:-10px;width:2px;}
+
+  /* Methodology flow arrows */
+  .flow-arrow{width:10px;height:10px;border-top:1px solid var(--cyan);border-right:1px solid var(--cyan);transform:rotate(45deg);}
+
+  .count-up{font-variant-numeric:tabular-nums;}
+
+  .fx-underline{background-image:linear-gradient(currentColor,currentColor);background-size:0 1px;background-repeat:no-repeat;background-position:0 100%;transition:background-size .3s;}
+  .fx-underline:hover{background-size:100% 1px;}
+
+  .hex{clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);}
+
+  .img-fade-edges{
+    -webkit-mask-image:radial-gradient(ellipse at center, #000 55%, transparent 95%);
+            mask-image:radial-gradient(ellipse at center, #000 55%, transparent 95%);
+  }
+
+  /* Hero parallax layer */
+  .parallax{will-change:transform;}
+
+  /* Control-room tile */
+  .tile{background:rgba(38,42,54,.6);border:1px solid rgba(0,229,255,.14);}
+</style>
+</head>
+<body class="lv-observatory bg-surface text-on-surface antialiased">
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20">
+  <div class="mx-auto max-w-[1440px] px-8 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-6 h-6 relative">
+        <div class="absolute inset-0 border border-primary rounded-full"></div>
+        <div class="absolute inset-0 border border-cyan/40 rounded-full" style="transform:rotate(35deg) scaleY(.3)"></div>
+        <div class="absolute left-1/2 top-1/2 w-1.5 h-1.5 bg-primary -translate-x-1/2 -translate-y-1/2"></div>
+      </div>
+      <div>
+        <div class="headline text-[13px] font-semibold tracking-[0.22em] text-on-surface">POLARIS</div>
+        <div class="label text-[9px] text-on-surface-variant/70">OBSERVATOR ORBITAL · ONCS 2026</div>
+      </div>
+    </div>
+
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#misiune"     class="laser-link active label text-[10px] text-on-surface">Misiune</a>
+      <a href="#arhitectura" class="laser-link label text-[10px] text-on-surface-variant">Arhitectură</a>
+      <a href="#stiinta"     class="laser-link label text-[10px] text-on-surface-variant">Fizică</a>
+      <a href="#kardashev"   class="laser-link label text-[10px] text-on-surface-variant">Kardashev</a>
+      <a href="#echipa"      class="laser-link label text-[10px] text-on-surface-variant">Echipa</a>
+      <a href="#contact"     class="laser-link label text-[10px] text-on-surface-variant">Contact</a>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <div class="hidden lg:flex items-center gap-2 mono text-[10px] text-on-surface-variant/80">
+        <span class="w-1.5 h-1.5 bg-green pulse-cy"></span>
+        <span id="clock">00:00:00 UTC</span>
+      </div>
+      <button class="solar-bg px-5 py-2.5 label text-[10px] text-on-primary hover:brightness-110 transition">
+        Uplink →
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section id="hero" class="relative min-h-screen overflow-hidden pt-24">
+  <div class="hero-bg parallax" id="heroBg"></div>
+  <div class="absolute inset-0 stars pointer-events-none"></div>
+  <div id="gridOverlay" class="absolute inset-0 bp-grid pointer-events-none"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-scan"></div>
+
+  <!-- corner telemetry -->
+  <div class="absolute top-28 left-8 mono text-[10px] text-cyan/80 z-20 space-y-1">
+    <div>45.09° N · 12.88° E</div>
+    <div class="text-on-surface-variant/50">COORDONATE BAZĂ · RO</div>
+  </div>
+  <div class="absolute top-28 right-8 mono text-[10px] text-cyan/80 z-20 text-right space-y-1">
+    <div>L4 / L5 · LOCK <span class="text-green">NOMINAL</span></div>
+    <div class="text-on-surface-variant/50">ROI DYSON · 30 OGLINZI</div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-20 mx-auto max-w-[1440px] px-8 pt-10 pb-40 grid grid-cols-12 gap-8">
+    <div class="col-span-12 lg:col-span-8">
+      <div class="sec-tag mb-8">
+        <span class="dot"></span>
+        <span>ONCS 2026 · OLIMPIADA NAȚIONALĂ DE CREATIVITATE ȘTIINȚIFICĂ</span>
+        <span class="tx-h w-16 ml-2"></span>
+      </div>
+
+      <h1 class="headline font-bold leading-[0.86] mb-8" style="font-size: clamp(72px, 10.5vw, 156px);">
+        <span class="solar-text" id="heroTitle">P<span class="text-cyan">·</span>O<span class="text-cyan">·</span>L<span class="text-cyan">·</span>A<span class="text-cyan">·</span>R<span class="text-cyan">·</span>I<span class="text-cyan">·</span>S</span>
+      </h1>
+
+      <p class="headline uppercase text-sm md:text-base tracking-[0.28em] text-primary-soft mb-6 max-w-3xl">
+        Platformă Orbitală Laser pentru Alimentare și Recepție Inovativă Solară
+      </p>
+      <p class="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed max-w-2xl mb-10">
+        O infrastructură energetică spațială pentru o civilizație de Tip I: captăm
+        radiația Soarelui la 7 milioane de kilometri, o transmitem prin lanț
+        laser prin punctele Lagrange și o distribuim de la cei doi poli către
+        întreaga rețea terestră.
+      </p>
+
+      <!-- BIG HEADLINE NUMBER -->
+      <div class="glass-heavy brackets relative inline-flex flex-col md:flex-row items-start md:items-center gap-6 p-6 md:p-7 mb-10">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div>
+          <div class="label text-[9px] text-cyan/80 mb-2">PUTERE LIVRATĂ · FAZA 1</div>
+          <div class="flex items-baseline gap-3">
+            <div class="headline font-bold green-glow count-up" style="font-size:88px;line-height:.9;">1,6<span class="text-5xl"> TW</span></div>
+          </div>
+          <div class="label text-[10px] text-on-surface-variant mt-2">2 stații polare × 800 GW</div>
+        </div>
+        <div class="hidden md:block w-px self-stretch bg-outline-variant/30"></div>
+        <div>
+          <div class="label text-[9px] text-cyan/80 mb-2">RAPORT GLOBAL</div>
+          <div class="headline font-bold text-primary" style="font-size:60px;line-height:.9;">48<span class="text-3xl">%</span></div>
+          <div class="label text-[10px] text-on-surface-variant mt-2">din electricitatea globală (IEA 2023)</div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-4">
+        <button class="solar-bg px-6 py-3.5 label text-[10px] text-on-primary hover:brightness-110 transition flex items-center gap-3">
+          <span>Inițiază secvența</span><span class="mono text-[10px]">▶ 001</span>
+        </button>
+        <button class="glass px-6 py-3.5 label text-[10px] text-cyan hover:bg-surface-high transition flex items-center gap-3">
+          <span>Vezi arhitectura</span><span class="mono text-[10px]">◇</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- HUD card -->
+    <div class="col-span-12 lg:col-span-4 lg:mt-24">
+      <div class="glass brackets relative p-5">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="flex items-center justify-between mb-4">
+          <div class="label text-[9px] text-cyan/80">BRIEF MISIUNE · DOSAR 002</div>
+          <div class="mono text-[9px] text-on-surface-variant/60">LIVE</div>
+        </div>
+        <div class="space-y-3 mono text-[11px]">
+          <div class="flex justify-between ghost-b pb-2">
+            <span class="text-on-surface-variant">Roi Dyson</span>
+            <span class="text-primary">30 oglinzi · 7 M km</span>
+          </div>
+          <div class="flex justify-between ghost-b pb-2">
+            <span class="text-on-surface-variant">Laser colector</span>
+            <span class="text-green">1064 nm · η 41%</span>
+          </div>
+          <div class="flex justify-between ghost-b pb-2">
+            <span class="text-on-surface-variant">Nod Lagrange</span>
+            <span class="text-cyan">L4 / L5 · relay</span>
+          </div>
+          <div class="flex justify-between ghost-b pb-2">
+            <span class="text-on-surface-variant">Stații polare</span>
+            <span class="text-primary">N + S · 800 GW</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-on-surface-variant">η total lanț</span>
+            <span class="text-green">≈ 11%</span>
+          </div>
+        </div>
+        <div class="tx-h my-4"></div>
+        <div class="mono text-[9px] text-on-surface-variant/50">Sincronizare: <span id="syncAgo">acum</span></div>
+      </div>
+
+      <div class="glass brackets relative p-4 mt-4">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="label text-[9px] text-cyan/80 mb-3">LANȚ ENERGETIC · RAPID</div>
+        <div class="flex items-center gap-2 text-[10px] mono">
+          <span class="w-3 h-3 bg-primary hex"></span>
+          <span class="text-primary">SOL</span>
+          <span class="flex-1 h-px bg-primary/50"></span>
+          <span class="w-3 h-3 bg-green hex"></span>
+          <span class="text-green">L4</span>
+          <span class="flex-1 h-px bg-green/50"></span>
+          <span class="w-3 h-3 bg-cyan hex"></span>
+          <span class="text-cyan">POL</span>
+        </div>
+        <div class="particle-flow mt-3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Telemetry ticker -->
+  <div class="absolute bottom-0 left-0 right-0 z-20 border-t border-outline-variant/25 bg-surface/80 backdrop-blur">
+    <div class="mx-auto max-w-[1440px] px-8 py-3 flex items-center gap-8 overflow-hidden">
+      <div class="label text-[9px] text-cyan flex-shrink-0 flex items-center gap-2">
+        <span class="w-1.5 h-1.5 bg-green pulse-cy"></span> TELEMETRIE LIVE
+      </div>
+      <div class="flex-1 overflow-hidden no-scrollbar">
+        <div class="tick-track mono text-[11px] text-on-surface-variant whitespace-nowrap">
+          <span>ROI DYSON · 30 OGLINZI · <span class="text-green">SINCRON</span></span>
+          <span>LASER L4 → POL N · 800 GW · <span class="text-green">NOMINAL</span></span>
+          <span>LASER L5 → POL S · 800 GW · <span class="text-green">NOMINAL</span></span>
+          <span>CABLU YBCO · T = 77 K · <span class="text-cyan">SUPRACOND.</span></span>
+          <span>FLUX INCIDENT · 6,22×10⁵ W/m²</span>
+          <span>η LANȚ · 11%</span>
+          <span>SCARĂ KARDASHEV · 0,73 → TIP I</span>
+          <span>ROI DYSON · 30 OGLINZI · <span class="text-green">SINCRON</span></span>
+          <span>LASER L4 → POL N · 800 GW · <span class="text-green">NOMINAL</span></span>
+          <span>LASER L5 → POL S · 800 GW · <span class="text-green">NOMINAL</span></span>
+          <span>CABLU YBCO · T = 77 K · <span class="text-cyan">SUPRACOND.</span></span>
+          <span>FLUX INCIDENT · 6,22×10⁵ W/m²</span>
+          <span>η LANȚ · 11%</span>
+          <span>SCARĂ KARDASHEV · 0,73 → TIP I</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ MISIUNE ═══════════════════ -->
+<section id="misiune" class="relative py-28 bg-surface-low">
+  <div class="mx-auto max-w-[1440px] px-8">
+    <div class="grid grid-cols-12 gap-8 items-end mb-16">
+      <div class="col-span-12 md:col-span-6">
+        <div class="sec-tag mb-4"><span class="dot"></span> DIRECTIVA ALPHA · DOSAR 003</div>
+        <h2 class="headline uppercase text-6xl md:text-7xl font-semibold text-primary leading-none">Misiunea</h2>
+      </div>
+      <div class="col-span-12 md:col-span-6 md:pl-12 md:border-l md:border-outline-variant/20">
+        <p class="text-lg text-on-surface-variant leading-relaxed font-light">
+          Construim infrastructura energetică a unei civilizații de Tip I.
+          Captăm radiația solară direct de lângă Soare printr-un roi Dyson de
+          30 oglinzi aflate la 7 milioane de kilometri, o convertim în laser
+          coerent, o releează prin punctele Lagrange L4/L5 și o livrăm la cei
+          doi poli ai Pământului, unde este distribuită prin supraconductori
+          YBCO spre continente.
+        </p>
+        <p class="mono text-[11px] text-cyan/80 mt-5">→ Nu este o iterație. Este o schimbare de epocă.</p>
+      </div>
+    </div>
+
+    <!-- Counter grid -->
+    <div class="grid grid-cols-12 gap-6">
+      <div class="col-span-12 md:col-span-5 glass-heavy p-8 brackets relative min-h-[260px] flex flex-col justify-between">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="flex items-start justify-between">
+          <div class="label text-[9px] text-cyan/80">PUTERE LIVRATĂ</div>
+          <div class="mono text-[10px] text-on-surface-variant/60">2 × 800 GW</div>
+        </div>
+        <div>
+          <div class="headline font-bold green-glow count-up" style="font-size:92px;line-height:.95;">1,6 TW</div>
+          <div class="label text-[10px] text-on-surface-variant mt-3">continuu · din L4 + L5 spre poli</div>
+          <div class="bar mt-4"><span style="width:48%;background:linear-gradient(90deg,#00ff88,#00e5ff)"></span></div>
+          <div class="mono text-[10px] text-on-surface-variant/60 mt-3">48% din cererea globală · fără ciclu zi/noapte</div>
+        </div>
+      </div>
+
+      <div class="col-span-6 md:col-span-4 glass p-6 brackets relative md:mt-12">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="label text-[9px] text-cyan/80 mb-4">ROI DYSON · α</div>
+        <div class="headline font-bold text-primary count-up" style="font-size:54px;line-height:1;">30 <span class="text-on-surface-variant text-2xl align-top">oglinzi</span></div>
+        <div class="label text-[10px] text-on-surface-variant mt-3">Hexagoane orbitând Soarele la 7 M km</div>
+        <div class="tx-h mt-5"></div>
+        <div class="mono text-[10px] text-on-surface-variant/70 mt-3">η oglinzi ≈ 85% · A_total = 2,36×10⁷ m²</div>
+      </div>
+
+      <div class="col-span-6 md:col-span-3 glass p-6 brackets relative">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="label text-[9px] text-cyan/80 mb-4">η LANȚ</div>
+        <div class="headline font-bold green-glow count-up" style="font-size:54px;line-height:1;">≈ 11<span class="text-2xl align-top">%</span></div>
+        <div class="label text-[10px] text-on-surface-variant mt-3">Eficiență cumulată end-to-end</div>
+        <div class="bar mt-4"><span style="width:11%;background:linear-gradient(90deg,#00ff88,#00e5ff)"></span></div>
+      </div>
+
+      <div class="col-span-12 md:col-span-7 glass p-6 brackets relative md:-mt-6">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="flex items-center justify-between gap-6">
+          <div>
+            <div class="label text-[9px] text-cyan/80 mb-3">COMPARAȚIE CU CEREREA GLOBALĂ</div>
+            <div class="flex items-baseline gap-3">
+              <div class="headline font-bold text-primary count-up" style="font-size:54px;line-height:1;">17,7 TW</div>
+              <div class="headline text-on-surface-variant text-2xl">cerere · IEA 2023</div>
+            </div>
+            <div class="label text-[10px] text-on-surface-variant mt-3">POLARIS Faza 1 = 1,6 TW → 48% din total</div>
+          </div>
+          <div class="flex items-end gap-2 h-[80px]">
+            <div class="w-5 bg-green" style="height:100%"></div>
+            <div class="w-5 bg-primary" style="height:9%"></div>
+          </div>
+        </div>
+        <div class="tx-h mt-5"></div>
+        <div class="mono text-[10px] text-on-surface-variant/70 mt-3 flex gap-6">
+          <span class="text-green">● POLARIS Faza 1: 1,6 TW</span>
+          <span class="text-primary">● Cerere globală: 17,7 TW</span>
+          <span>potențial maxim: 420 TW</span>
+        </div>
+      </div>
+
+      <div class="col-span-12 md:col-span-5 glass-heavy p-6 brackets relative flex flex-col justify-center">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="flex items-center justify-between mb-3">
+          <div class="label text-[9px] text-cyan/80">PROGRES KARDASHEV</div>
+          <div class="mono text-[11px] text-primary">0,73 → 1,00</div>
+        </div>
+        <div class="kard-track">
+          <div class="kard-marker bg-cyan" style="left:73%;box-shadow:0 0 8px #00e5ff;"></div>
+          <div class="kard-marker bg-green" style="left:50%;box-shadow:0 0 8px #00ff88;"></div>
+        </div>
+        <div class="flex justify-between mono text-[10px] text-on-surface-variant/70 mt-3">
+          <span>TIP 0</span><span class="text-cyan">AZI 0,73</span><span class="text-green">TIP I · POLARIS</span><span>TIP II</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ARHITECTURA ═══════════════════ -->
+<section id="arhitectura" class="relative py-28 bg-surface">
+  <div class="mx-auto max-w-[1440px] px-8">
+    <div class="flex items-end justify-between ghost-b pb-5 mb-12">
+      <div>
+        <div class="sec-tag mb-3"><span class="dot"></span> DOSAR 004 · 5 SUBSISTEME</div>
+        <h2 class="headline uppercase text-6xl md:text-7xl font-semibold text-primary leading-none">Arhitectura</h2>
+      </div>
+      <div class="hidden md:flex flex-col items-end">
+        <div class="mono text-[10px] text-on-surface-variant/70">LANȚ COMPLET · SOARE → PRIZĂ</div>
+        <div class="mono text-[10px] text-on-surface-variant/50">REV 4.2.1 · HOVER PENTRU DETALII</div>
+      </div>
+    </div>
+
+    <!-- Variant selector -->
+    <div class="glass brackets relative p-3 mb-10 flex items-center gap-2">
+      <span class="br-bl"></span><span class="br-br"></span>
+      <div class="label text-[9px] text-on-surface-variant/70 mr-3 pl-2">VARIANTĂ</div>
+      <button data-v="observatory" class="arch-v-btn label text-[10px] px-4 py-2 bg-surface-high text-on-surface">01 · Observator</button>
+      <button data-v="blueprint"   class="arch-v-btn label text-[10px] px-4 py-2 bg-surface-high text-on-surface-variant">02 · Blueprint</button>
+      <button data-v="control"     class="arch-v-btn label text-[10px] px-4 py-2 bg-surface-high text-on-surface-variant">03 · Control</button>
+      <div class="flex-1"></div>
+      <div class="mono text-[9px] text-on-surface-variant/50 pr-2" id="arch-v-desc">Vitrina: imagini mari, titluri evidente, descriere narativă.</div>
+    </div>
+
+    <!-- System overview -->
+    <div class="glass-heavy mb-12 brackets relative overflow-hidden">
+      <span class="br-bl"></span><span class="br-br"></span>
+      <div class="grid grid-cols-12">
+        <div class="col-span-12 lg:col-span-7 relative min-h-[460px]">
+          <img src="assets/A5_overview.png" alt="Sistem complet POLARIS" class="absolute inset-0 w-full h-full object-cover"/>
+          <div class="absolute inset-0" style="background:linear-gradient(90deg,rgba(15,19,31,0) 50%,rgba(15,19,31,.5) 100%)"></div>
+          <div class="absolute top-3 left-3 mono text-[9px] text-cyan/80 bg-surface/70 px-2 py-1">A5 · VEDERE GENERALĂ</div>
+          <div class="absolute bottom-3 right-3 mono text-[9px] text-cyan/80 bg-surface/70 px-2 py-1">SCARĂ 1:10⁶</div>
+        </div>
+        <div class="col-span-12 lg:col-span-5 p-10 flex flex-col justify-center">
+          <div class="label text-[9px] text-cyan/80 mb-3">PRIVIRE DE ANSAMBLU</div>
+          <h3 class="headline uppercase text-3xl text-on-surface mb-4">De la Soare la priză · 5 verigi</h3>
+          <p class="text-on-surface-variant leading-relaxed mb-6">
+            Roiul Dyson captează lumina. Un satelit colector o transformă în laser.
+            Nodurile Lagrange o releează fără pierderi gravitaționale. Stațiile
+            polare aduc fasciculul la sol. Rețeaua Star Power Grid o distribuie
+            prin cabluri YBCO pe toate continentele.
+          </p>
+          <div class="grid grid-cols-2 gap-3 mono text-[10px] text-on-surface-variant/80">
+            <div class="ghost p-3"><span class="text-cyan">01 →</span> Roi Dyson</div>
+            <div class="ghost p-3"><span class="text-cyan">02 →</span> Colector</div>
+            <div class="ghost p-3"><span class="text-cyan">03 →</span> Lagrange</div>
+            <div class="ghost p-3"><span class="text-cyan">04 →</span> Stație polară</div>
+            <div class="ghost p-3 col-span-2"><span class="text-cyan">05 →</span> Star Power Grid</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== VARIANT A : OBSERVATORY (big cards, hover exploded) ========== -->
+    <div class="v-observatory">
+      <div class="grid grid-cols-12 gap-6">
+        <!-- 01 Dyson -->
+        <article class="col-span-12 lg:col-span-6 arch-card glass-heavy brackets relative h-[440px]">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="arch-img" style="background-image:url('assets/A1_dyson.png')"></div>
+          <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(15,19,31,.25) 0%,rgba(15,19,31,0) 40%,rgba(15,19,31,.88) 85%)"></div>
+          <div class="arch-scan"></div>
+
+          <!-- explode tags -->
+          <div class="explode-layer">
+            <div class="explode-tag" style="top:22%;left:30%;" data-d="0,0">01 OGLINDĂ HEXAGON · film subțire</div>
+            <div class="explode-tag" style="top:55%;left:52%;transition-delay:.08s" data-d="0,0">02 CADRU TENSIONAT · Kevlar</div>
+            <div class="explode-tag" style="top:40%;left:75%;transition-delay:.16s" data-d="0,0">03 LANSARE · hub central</div>
+          </div>
+
+          <div class="absolute top-4 left-4 right-4 flex justify-between items-start">
+            <div class="label text-[9px] text-cyan/80 bg-surface/70 px-2 py-1">A1 · MODUL 01</div>
+            <div class="mono text-[10px] text-green bg-surface/70 px-2 py-1">● ACTIV</div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="label text-[9px] text-cyan/70 mb-2">COMPONENTA 01</div>
+            <h3 class="headline uppercase text-3xl text-on-surface mb-2">Roiul Dyson</h3>
+            <p class="text-on-surface-variant text-sm mb-3 max-w-md">
+              30 oglinzi hexagonale în film subțire, orbitând Soarele la
+              7 milioane de km. Captează și concentrează radiația solară directă.
+            </p>
+            <div class="flex flex-wrap gap-4 mono text-[10px] text-on-surface-variant/70">
+              <span>η_oglinzi ≈ 85%</span>
+              <span>A = 2,36×10⁷ m²</span>
+              <span class="text-primary">I = 6,22×10⁵ W/m²</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02 Colector -->
+        <article class="col-span-12 lg:col-span-6 arch-card glass-heavy brackets relative h-[440px]">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="arch-img" style="background-image:url('assets/A2_colector.png')"></div>
+          <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(15,19,31,.25) 0%,rgba(15,19,31,0) 40%,rgba(15,19,31,.88) 85%)"></div>
+          <div class="arch-scan"></div>
+          <div class="explode-layer">
+            <div class="explode-tag" style="top:25%;left:20%;" data-d="0,0">PANOU GaAs · η 41%</div>
+            <div class="explode-tag" style="top:45%;left:60%;transition-delay:.1s" data-d="0,0">DIODĂ LASER · 1064 nm</div>
+            <div class="explode-tag" style="top:62%;left:30%;transition-delay:.2s" data-d="0,0">RADIATOR · 420 K</div>
+          </div>
+          <div class="absolute top-4 left-4 right-4 flex justify-between items-start">
+            <div class="label text-[9px] text-cyan/80 bg-surface/70 px-2 py-1">A2 · MODUL 02</div>
+            <div class="mono text-[10px] text-green bg-surface/70 px-2 py-1">● ALINIAT</div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="label text-[9px] text-cyan/70 mb-2">COMPONENTA 02</div>
+            <h3 class="headline uppercase text-3xl text-on-surface mb-2">Satelit Colector</h3>
+            <p class="text-on-surface-variant text-sm mb-3 max-w-md">
+              Panouri fotovoltaice cu joncțiune GaAs convertesc lumina
+              concentrată în laser coerent la 1064 nm, propagat spre L4/L5.
+            </p>
+            <div class="flex flex-wrap gap-4 mono text-[10px] text-on-surface-variant/70">
+              <span>η_laser ≈ 41%</span>
+              <span>λ = 1064 nm</span>
+              <span class="text-green">P_ieșire ≈ 2,55 TW</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03 Lagrange -->
+        <article class="col-span-12 lg:col-span-4 arch-card glass-heavy brackets relative h-[380px]">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="arch-img" style="background-image:url('assets/A3_lagrange.png')"></div>
+          <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(15,19,31,.3) 0%,rgba(15,19,31,0) 40%,rgba(15,19,31,.92) 85%)"></div>
+          <div class="arch-scan"></div>
+          <div class="explode-layer">
+            <div class="explode-tag" style="top:20%;left:10%;" data-d="0,0">L4 · relay verde</div>
+            <div class="explode-tag" style="top:55%;left:60%;transition-delay:.1s" data-d="0,0">L5 · relay albastru</div>
+          </div>
+          <div class="absolute top-4 left-4 right-4 flex justify-between items-start">
+            <div class="label text-[9px] text-cyan/80 bg-surface/70 px-2 py-1">A3 · MODUL 03</div>
+            <div class="mono text-[10px] text-green bg-surface/70 px-2 py-1">● STABIL</div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-5">
+            <div class="label text-[9px] text-cyan/70 mb-2">COMPONENTA 03</div>
+            <h3 class="headline uppercase text-2xl text-on-surface mb-2">Nod Lagrange</h3>
+            <p class="text-on-surface-variant text-xs mb-3">
+              Stații de relay la L4 și L5 — puncte de echilibru gravitațional
+              Soare–Pământ la 60°. Recepție laser verde, retransmisie spre Pământ.
+            </p>
+            <div class="flex flex-wrap gap-3 mono text-[10px] text-on-surface-variant/70">
+              <span>L4 + L5</span><span>η ≥ 90%</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 04 Stație Polară -->
+        <article class="col-span-12 lg:col-span-4 arch-card glass-heavy brackets relative h-[380px]">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="arch-img" style="background-image:url('assets/A4_polara.png')"></div>
+          <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(15,19,31,.3) 0%,rgba(15,19,31,0) 40%,rgba(15,19,31,.92) 85%)"></div>
+          <div class="arch-scan"></div>
+          <div class="explode-layer">
+            <div class="explode-tag" style="top:18%;left:20%;" data-d="0,0">BALON He · 30 km</div>
+            <div class="explode-tag" style="top:48%;left:55%;transition-delay:.1s" data-d="0,0">CAPTATOR LASER</div>
+            <div class="explode-tag" style="top:72%;left:30%;transition-delay:.2s" data-d="0,0">CABLU YBCO · 77 K</div>
+          </div>
+          <div class="absolute top-4 left-4 right-4 flex justify-between items-start">
+            <div class="label text-[9px] text-cyan/80 bg-surface/70 px-2 py-1">A4 · MODUL 04</div>
+            <div class="mono text-[10px] text-green bg-surface/70 px-2 py-1">● PLUTIND</div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-5">
+            <div class="label text-[9px] text-cyan/70 mb-2">COMPONENTA 04</div>
+            <h3 class="headline uppercase text-2xl text-on-surface mb-2">Stație Polară</h3>
+            <p class="text-on-surface-variant text-xs mb-3">
+              Două stații suspendate de baloane de heliu la 30 km altitudine,
+              deasupra Polilor N și S. Recepție laser + cablu supraconductor YBCO.
+            </p>
+            <div class="flex flex-wrap gap-3 mono text-[10px] text-on-surface-variant/70">
+              <span>2 × 800 GW</span><span>T = 77 K</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 05 Star Power Grid -->
+        <article class="col-span-12 lg:col-span-4 arch-card glass-heavy brackets relative h-[380px]">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="arch-img" style="background-image:url('assets/star_power_grid.png')"></div>
+          <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(15,19,31,.3) 0%,rgba(15,19,31,0) 40%,rgba(15,19,31,.92) 85%)"></div>
+          <div class="arch-scan"></div>
+          <div class="explode-layer">
+            <div class="explode-tag" style="top:22%;left:15%;" data-d="0,0">HUB POL N · 800 GW</div>
+            <div class="explode-tag" style="top:55%;left:55%;transition-delay:.1s" data-d="0,0">22 NODURI GLOBAL</div>
+          </div>
+          <div class="absolute top-4 left-4 right-4 flex justify-between items-start">
+            <div class="label text-[9px] text-cyan/80 bg-surface/70 px-2 py-1">A6 · MODUL 05</div>
+            <div class="mono text-[10px] text-green bg-surface/70 px-2 py-1">● ONLINE</div>
+          </div>
+          <div class="absolute bottom-0 left-0 right-0 p-5">
+            <div class="label text-[9px] text-cyan/70 mb-2">COMPONENTA 05</div>
+            <h3 class="headline uppercase text-2xl text-on-surface mb-2">Star Power Grid</h3>
+            <p class="text-on-surface-variant text-xs mb-3">
+              Rețeaua terestră radiantă de la poli spre continente. Cabluri HVDC
+              supraconductoare YBCO cu pierderi de 0,35% la 1000 km.
+            </p>
+            <div class="flex flex-wrap gap-3 mono text-[10px] text-on-surface-variant/70">
+              <span>22 noduri</span><span>6 continente</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- ========== VARIANT B : BLUEPRINT ========== -->
+    <div class="v-blueprint">
+      <div class="bp-grid glass-heavy brackets relative p-8">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="grid grid-cols-12 gap-8">
+          <div class="col-span-12">
+            <div class="label text-[9px] text-cyan/80 mb-2">SCHEMĂ SISTEM · BLUEPRINT 4.2.1</div>
+            <div class="headline uppercase text-xl text-on-surface">Diagramă de ansamblu · lanț energetic complet</div>
+            <div class="tx-h my-4"></div>
+          </div>
+
+          <div class="col-span-12">
+            <img src="assets/diag_energy_flow.png" alt="Flux energetic" class="w-full border border-outline-variant/20"/>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-12 gap-6 mt-10">
+          <!-- Each module as a blueprint sheet -->
+          <div class="col-span-6 md:col-span-4 xl:col-span-3 ghost p-4">
+            <div class="flex items-center justify-between mb-3">
+              <div class="label text-[9px] text-cyan/80">SHEET A1 · 01</div>
+              <div class="mono text-[10px] text-primary">DYSON</div>
+            </div>
+            <img src="assets/A1_dyson.png" alt="Roiul Dyson" class="w-full aspect-video object-cover border border-outline-variant/20"/>
+            <div class="mt-3 headline uppercase text-base text-on-surface">Roiul Dyson</div>
+            <div class="mono text-[10px] text-on-surface-variant/70 mt-1">30 oglinzi · A=2,36×10⁷ m² · η≈85%</div>
+          </div>
+          <div class="col-span-6 md:col-span-4 xl:col-span-3 ghost p-4">
+            <div class="flex items-center justify-between mb-3">
+              <div class="label text-[9px] text-cyan/80">SHEET A2 · 02</div>
+              <div class="mono text-[10px] text-primary">COLECTOR</div>
+            </div>
+            <img src="assets/A2_colector.png" alt="Colector" class="w-full aspect-video object-cover border border-outline-variant/20"/>
+            <div class="mt-3 headline uppercase text-base text-on-surface">Satelit Colector</div>
+            <div class="mono text-[10px] text-on-surface-variant/70 mt-1">GaAs · 1064 nm · η_laser≈41%</div>
+          </div>
+          <div class="col-span-6 md:col-span-4 xl:col-span-3 ghost p-4">
+            <div class="flex items-center justify-between mb-3">
+              <div class="label text-[9px] text-cyan/80">SHEET A3 · 03</div>
+              <div class="mono text-[10px] text-primary">LAGRANGE</div>
+            </div>
+            <img src="assets/A3_lagrange.png" alt="Lagrange" class="w-full aspect-video object-cover border border-outline-variant/20"/>
+            <div class="mt-3 headline uppercase text-base text-on-surface">Nod Lagrange</div>
+            <div class="mono text-[10px] text-on-surface-variant/70 mt-1">L4 + L5 · η≥90% · relay</div>
+          </div>
+          <div class="col-span-6 md:col-span-4 xl:col-span-3 ghost p-4">
+            <div class="flex items-center justify-between mb-3">
+              <div class="label text-[9px] text-cyan/80">SHEET A4 · 04</div>
+              <div class="mono text-[10px] text-primary">POLARĂ</div>
+            </div>
+            <img src="assets/A4_polara.png" alt="Stație polară" class="w-full aspect-video object-cover border border-outline-variant/20"/>
+            <div class="mt-3 headline uppercase text-base text-on-surface">Stație Polară</div>
+            <div class="mono text-[10px] text-on-surface-variant/70 mt-1">2 × 800 GW · YBCO · 77 K</div>
+          </div>
+          <div class="col-span-12 md:col-span-8 xl:col-span-6 ghost p-4">
+            <div class="flex items-center justify-between mb-3">
+              <div class="label text-[9px] text-cyan/80">SHEET A5 · 05</div>
+              <div class="mono text-[10px] text-primary">STAR POWER GRID</div>
+            </div>
+            <img src="assets/diag_star_power_grid.png" alt="Topologia rețelei" class="w-full object-contain border border-outline-variant/20 bg-surface-low"/>
+            <div class="mt-3 headline uppercase text-base text-on-surface">Rețea terestră radiantă</div>
+            <div class="mono text-[10px] text-on-surface-variant/70 mt-1">22 noduri · 6 continente · HVDC YBCO</div>
+          </div>
+          <div class="col-span-12 md:col-span-4 xl:col-span-6 ghost p-4 flex flex-col">
+            <div class="label text-[9px] text-cyan/80 mb-3">LEGENDĂ · FLUXURI</div>
+            <div class="space-y-2 mono text-[11px] flex-1">
+              <div class="flex items-center gap-3"><span class="w-6 h-[2px] bg-primary"></span> radiație solară directă</div>
+              <div class="flex items-center gap-3"><span class="w-6 h-[2px] bg-green"></span> laser coerent 1064 nm</div>
+              <div class="flex items-center gap-3"><span class="w-6 h-[2px] bg-cyan"></span> laser albastru (relay)</div>
+              <div class="flex items-center gap-3"><span class="w-6 h-[2px] bg-primary-soft"></span> HVDC YBCO supracond.</div>
+            </div>
+            <div class="tx-h-gold my-3"></div>
+            <div class="mono text-[10px] text-on-surface-variant/70">REV 4.2.1 · AUTORI: Olariu · Chelaru</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== VARIANT C : CONTROL ROOM ========== -->
+    <div class="v-control">
+      <div class="grid grid-cols-12 gap-4">
+        <!-- big monitor -->
+        <div class="col-span-12 lg:col-span-8 tile brackets relative overflow-hidden">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="flex items-center justify-between p-4 border-b border-outline-variant/20">
+            <div class="label text-[9px] text-cyan/80">MONITOR PRINCIPAL · LANȚ COMPLET</div>
+            <div class="mono text-[10px] text-green flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green pulse-cy"></span> LIVE · 02</div>
+          </div>
+          <img src="assets/A5_overview.png" alt="Sistem complet" class="w-full h-[380px] object-cover"/>
+          <div class="p-4 grid grid-cols-5 gap-3 mono text-[10px]">
+            <div class="ghost p-2"><div class="text-cyan/70 text-[9px]">01 DYSON</div><div class="text-on-surface">30 ogl</div></div>
+            <div class="ghost p-2"><div class="text-cyan/70 text-[9px]">02 COLECTOR</div><div class="text-on-surface">2,55 TW</div></div>
+            <div class="ghost p-2"><div class="text-cyan/70 text-[9px]">03 L4/L5</div><div class="text-on-surface">relay</div></div>
+            <div class="ghost p-2"><div class="text-cyan/70 text-[9px]">04 POLARĂ</div><div class="text-on-surface">2×800 GW</div></div>
+            <div class="ghost p-2"><div class="text-cyan/70 text-[9px]">05 GRID</div><div class="text-on-surface">22 noduri</div></div>
+          </div>
+        </div>
+
+        <!-- right stack: mini monitors -->
+        <div class="col-span-12 lg:col-span-4 flex flex-col gap-4">
+          <div class="tile brackets relative p-3">
+            <span class="br-bl"></span><span class="br-br"></span>
+            <div class="flex justify-between items-center mb-2">
+              <div class="label text-[9px] text-cyan/80">MON 01 · DYSON</div>
+              <div class="mono text-[10px] text-green">● ACTIV</div>
+            </div>
+            <img src="assets/A1_dyson.png" alt="" class="w-full h-24 object-cover"/>
+            <div class="mono text-[10px] text-on-surface-variant/70 mt-2">A = 2,36×10⁷ m² · η 85%</div>
+          </div>
+          <div class="tile brackets relative p-3">
+            <span class="br-bl"></span><span class="br-br"></span>
+            <div class="flex justify-between items-center mb-2">
+              <div class="label text-[9px] text-cyan/80">MON 02 · COLECTOR</div>
+              <div class="mono text-[10px] text-green">● LASER</div>
+            </div>
+            <img src="assets/A2_colector.png" alt="" class="w-full h-24 object-cover"/>
+            <div class="mono text-[10px] text-on-surface-variant/70 mt-2">λ 1064 nm · η 41%</div>
+          </div>
+          <div class="tile brackets relative p-3">
+            <span class="br-bl"></span><span class="br-br"></span>
+            <div class="flex justify-between items-center mb-2">
+              <div class="label text-[9px] text-cyan/80">MON 03 · L4/L5</div>
+              <div class="mono text-[10px] text-green">● STABIL</div>
+            </div>
+            <img src="assets/A3_lagrange.png" alt="" class="w-full h-24 object-cover"/>
+            <div class="mono text-[10px] text-on-surface-variant/70 mt-2">60° · η ≥ 90%</div>
+          </div>
+        </div>
+
+        <div class="col-span-12 lg:col-span-6 tile brackets relative p-3">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="flex justify-between items-center mb-2">
+            <div class="label text-[9px] text-cyan/80">MON 04 · STAȚIE POLARĂ</div>
+            <div class="mono text-[10px] text-green">● PLUTIND · 30 km</div>
+          </div>
+          <img src="assets/A4_polara.png" alt="" class="w-full h-60 object-cover"/>
+          <div class="mono text-[10px] text-on-surface-variant/70 mt-2 flex justify-between">
+            <span>2 × 800 GW · YBCO · 77 K</span>
+            <span class="text-primary">POL N + POL S</span>
+          </div>
+        </div>
+        <div class="col-span-12 lg:col-span-6 tile brackets relative p-3">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="flex justify-between items-center mb-2">
+            <div class="label text-[9px] text-cyan/80">MON 05 · STAR POWER GRID</div>
+            <div class="mono text-[10px] text-green">● 22/22 ONLINE</div>
+          </div>
+          <img src="assets/star_power_grid.png" alt="" class="w-full h-60 object-cover"/>
+          <div class="mono text-[10px] text-on-surface-variant/70 mt-2 flex justify-between">
+            <span>6 continente · HVDC YBCO</span>
+            <span class="text-primary">SURPLUS ~53%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ȘTIINȚĂ / FIZICĂ ═══════════════════ -->
+<section id="stiinta" class="relative py-28 bg-surface-low">
+  <div class="mx-auto max-w-[1440px] px-8">
+    <div class="flex items-end justify-between ghost-b pb-5 mb-14">
+      <div>
+        <div class="sec-tag mb-3"><span class="dot"></span> DOSAR 005 · FUNDAMENT FIZIC</div>
+        <h2 class="headline uppercase text-6xl md:text-7xl font-semibold text-primary leading-none">Știința din spate</h2>
+      </div>
+      <div class="hidden md:block mono text-[10px] text-on-surface-variant/70 text-right">
+        5 FORMULE · 6 DOMENII · 1 SISTEM INTEGRAT
+      </div>
+    </div>
+
+    <!-- Methodology diagram -->
+    <div class="glass-heavy brackets relative p-8 mb-12">
+      <span class="br-bl"></span><span class="br-br"></span>
+      <div class="flex items-center justify-between mb-4">
+        <div class="label text-[9px] text-cyan/80">METODOLOGIE · 6 DOMENII INTEGRATE</div>
+        <div class="mono text-[10px] text-green">REZULTAT: 1,6 TW · η_total = 11%</div>
+      </div>
+      <img src="assets/diag_methodology.png" alt="Metodologie" class="w-full"/>
+    </div>
+
+    <!-- Formulas grid -->
+    <div class="mb-12">
+      <div class="sec-tag mb-4"><span class="dot"></span> ECUAȚII GUVERNANTE</div>
+      <div class="grid grid-cols-12 gap-4">
+        <div class="col-span-12 md:col-span-6 glass brackets relative p-5">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="label text-[9px] text-cyan/80 mb-2">FUNDAMENT · LEGEA INVERSULUI PĂTRATULUI</div>
+          <img src="assets/f_inverse_square.png" alt="I(r) = P☉ / 4πr²" class="w-full object-contain bg-surface-low/60 p-4"/>
+          <div class="mono text-[10px] text-on-surface-variant/70 mt-3">Intensitatea radiației scade cu 1/r² — justifică plasarea roiului Dyson cât mai aproape de Soare.</div>
+        </div>
+        <div class="col-span-12 md:col-span-6 glass brackets relative p-5">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="label text-[9px] text-cyan/80 mb-2">PUTERE INCIDENTĂ · ROI DYSON 7 M km</div>
+          <img src="assets/f_power_incident.png" alt="P_incident" class="w-full object-contain bg-surface-low/60 p-4"/>
+          <div class="mono text-[10px] text-on-surface-variant/70 mt-3">La 7 M km, fiecare m² primește 6,22×10⁵ W — aprox. 457× mai mult decât la sol.</div>
+        </div>
+        <div class="col-span-12 md:col-span-4 glass brackets relative p-5">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="label text-[9px] text-cyan/80 mb-2">SUPRACONDUCTORI YBCO</div>
+          <img src="assets/f_current.png" alt="j ≤ jc · T_op=77K · ρ≈0" class="w-full object-contain bg-surface-low/60 p-3"/>
+          <div class="mono text-[10px] text-on-surface-variant/70 mt-3">Sub 77 K (N₂ lichid), rezistivitatea YBCO scade la zero.</div>
+        </div>
+        <div class="col-span-12 md:col-span-4 glass brackets relative p-5">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="label text-[9px] text-cyan/80 mb-2">EFICIENȚĂ CUMULATĂ · LANȚ COMPLET</div>
+          <img src="assets/f_efficiency.png" alt="η_total ≈ 11%" class="w-full object-contain bg-surface-low/60 p-3"/>
+          <div class="mono text-[10px] text-on-surface-variant/70 mt-3">Produsul eficiențelor: oglinzi · laser · L4 · YBCO ≈ 11%.</div>
+        </div>
+        <div class="col-span-12 md:col-span-4 glass brackets relative p-5">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="label text-[9px] text-cyan/80 mb-2">PUTERE LIVRATĂ LA SOL</div>
+          <img src="assets/f_delivered.png" alt="P_livrat = 1,6 TW" class="w-full object-contain bg-surface-low/60 p-3"/>
+          <div class="mono text-[10px] text-green mt-3">Rezultatul final: 1,6 TW la priză.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flow + Lagrange diagrams -->
+    <div class="grid grid-cols-12 gap-6 mb-12">
+      <div class="col-span-12 lg:col-span-8 glass-heavy brackets relative p-6">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <div class="label text-[9px] text-cyan/80 mb-1">DIAGRAMĂ FLUX · LANȚ ENERGETIC COMPLET</div>
+            <div class="headline uppercase text-xl text-on-surface">De la Soare la priză · 9 etape · η = 11%</div>
+          </div>
+          <div class="mono text-[10px] text-on-surface-variant/70">HORIZONTAL SCHEMATIC</div>
+        </div>
+        <img src="assets/diag_energy_flow.png" alt="Flux energetic" class="w-full"/>
+      </div>
+      <div class="col-span-12 lg:col-span-4 glass-heavy brackets relative p-6">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="label text-[9px] text-cyan/80 mb-2">GEOMETRIA LAGRANGE</div>
+        <div class="headline uppercase text-xl text-on-surface mb-4">L4 · L5 · 60°</div>
+        <img src="assets/diag_lagrange.png" alt="Diagramă Lagrange" class="w-full"/>
+        <div class="tx-h mt-4"></div>
+        <div class="mono text-[10px] text-on-surface-variant/70 mt-3">Puncte de echilibru gravitațional Soare–Pământ. Stabilitate pe termen lung fără propulsie.</div>
+      </div>
+    </div>
+
+    <!-- Star Power Grid + Earth -->
+    <div class="grid grid-cols-12 gap-6">
+      <div class="col-span-12 lg:col-span-7 glass-heavy brackets relative p-6">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="flex items-center justify-between mb-4">
+          <div class="label text-[9px] text-cyan/80">TOPOLOGIE · STAR POWER GRID</div>
+          <div class="mono text-[10px] text-green">1600 GW · 22 noduri · 6 continente</div>
+        </div>
+        <img src="assets/diag_star_power_grid.png" alt="Star Power Grid" class="w-full"/>
+      </div>
+      <div class="col-span-12 lg:col-span-5 glass-heavy brackets relative overflow-hidden">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="absolute top-3 left-3 right-3 flex justify-between items-center z-10">
+          <div class="label text-[9px] text-cyan/80 bg-surface/70 px-2 py-1">DISTRIBUȚIE GLOBALĂ</div>
+          <div class="mono text-[10px] text-primary bg-surface/70 px-2 py-1">POL N ↔ POL S</div>
+        </div>
+        <img src="assets/earth_grid.png" alt="Distribuție globală" class="w-full h-full object-cover min-h-[420px]"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ KARDASHEV + ENERGY BAR ═══════════════════ -->
+<section id="kardashev" class="relative py-28 bg-surface">
+  <div class="mx-auto max-w-[1440px] px-8">
+    <div class="flex items-end justify-between ghost-b pb-5 mb-14">
+      <div>
+        <div class="sec-tag mb-3"><span class="dot"></span> DOSAR 006 · IMPACT CIVILIZAȚIONAL</div>
+        <h2 class="headline uppercase text-6xl md:text-7xl font-semibold text-primary leading-none">Kardashev</h2>
+      </div>
+      <div class="hidden md:block mono text-[10px] text-on-surface-variant/70 text-right">
+        TRANZIȚIA CIVILIZAȚIONALĂ · TIP 0 → TIP I
+      </div>
+    </div>
+
+    <div class="glass-heavy brackets relative p-8 mb-10">
+      <span class="br-bl"></span><span class="br-br"></span>
+      <div class="flex items-center justify-between mb-5">
+        <div class="label text-[9px] text-cyan/80">SCALA KARDASHEV · TRANZIȚIA CIVILIZAȚIONALĂ</div>
+        <div class="mono text-[10px] text-green">POLARIS = PUNTE TIP 0 → TIP I</div>
+      </div>
+      <img src="assets/diag_kardashev.png" alt="Scala Kardashev" class="w-full"/>
+    </div>
+
+    <!-- Energy bar diagram + headline -->
+    <div class="grid grid-cols-12 gap-6 mb-10">
+      <div class="col-span-12 lg:col-span-5 flex flex-col justify-center">
+        <div class="sec-tag mb-3"><span class="dot"></span> COMPARAȚIE ENERGETICĂ</div>
+        <h3 class="headline uppercase text-4xl md:text-5xl text-on-surface mb-6 leading-tight">Cifra care deschide orice prezentare.</h3>
+        <div class="glass-heavy brackets relative p-6 mb-5">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="flex items-baseline gap-3">
+            <div class="headline font-bold green-glow count-up" style="font-size:72px;line-height:.9;">1,6 TW</div>
+            <div class="headline text-on-surface-variant text-2xl">livrați</div>
+          </div>
+          <div class="mono text-[11px] text-primary mt-3">= 48% din electricitatea globală (IEA 2023: 17,7 TW)</div>
+        </div>
+        <p class="text-on-surface-variant leading-relaxed">
+          Faza 1 — 2 stații polare × 800 GW — alimentează aproape jumătate
+          din rețeaua electrică mondială. Potențialul maxim al arhitecturii
+          POLARIS este de 420,5 TW: suficient pentru cel puțin douăsprezece
+          civilizații ca a noastră.
+        </p>
+      </div>
+      <div class="col-span-12 lg:col-span-7 glass-heavy brackets relative p-6">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <img src="assets/diag_energy_bar.png" alt="Comparație energetică" class="w-full"/>
+      </div>
+    </div>
+
+    <!-- Three comparison cards -->
+    <div class="grid grid-cols-12 gap-6">
+      <div class="col-span-12 md:col-span-4 glass p-6 brackets relative">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="label text-[9px] text-cyan/80 mb-4">IEA 2023 · CERERE GLOBALĂ</div>
+        <div class="headline font-bold text-cyan count-up" style="font-size:48px;line-height:1;">17,7 TW</div>
+        <div class="bar mt-4"><span style="width:100%;background:linear-gradient(90deg,#00e5ff,#00e5ff)"></span></div>
+        <div class="mono text-[10px] text-on-surface-variant/70 mt-3">Referință · 100%</div>
+      </div>
+      <div class="col-span-12 md:col-span-4 glass-heavy p-6 brackets relative">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="label text-[9px] text-green mb-4">POLARIS · FAZA 1</div>
+        <div class="headline font-bold green-glow count-up" style="font-size:48px;line-height:1;">1,6 TW</div>
+        <div class="bar mt-4"><span style="width:48%;background:linear-gradient(90deg,#00ff88,#00e5ff)"></span></div>
+        <div class="mono text-[10px] text-green mt-3">48% din consumul electric global</div>
+      </div>
+      <div class="col-span-12 md:col-span-4 glass p-6 brackets relative">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="label text-[9px] text-cyan/80 mb-4">POLARIS · POTENȚIAL MAXIM</div>
+        <div class="headline font-bold solar-text count-up" style="font-size:48px;line-height:1;">420,5 TW</div>
+        <div class="bar mt-4"><span style="width:100%"></span></div>
+        <div class="mono text-[10px] text-on-surface-variant/70 mt-3">~23× cererea globală · tranziție Tip I completă</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ECHIPA ═══════════════════ -->
+<section id="echipa" class="relative py-28 bg-surface-low overflow-hidden">
+  <div class="absolute inset-0 stars opacity-40 pointer-events-none"></div>
+  <div class="mx-auto max-w-[1440px] px-8 relative">
+    <div class="flex flex-col items-center text-center mb-14">
+      <div class="sec-tag mb-4"><span class="dot"></span> DOSAR 007 · ECHIPA</div>
+      <h2 class="headline uppercase text-6xl md:text-7xl font-semibold leading-none mb-5">
+        <span class="solar-text">Polaris Bears</span>
+      </h2>
+      <div class="tx-h w-24 mb-5"></div>
+      <p class="max-w-2xl text-on-surface-variant leading-relaxed">
+        Doi elevi de clasa a VIII-a, olimpici la informatică și astrofizică,
+        care semnează conceptul P.O.L.A.R.I.S. pentru ONCS 2026.
+        Numele echipei vine de la Ursa Mică — constelația care găzduiește
+        Steaua Polară, punctul fix de reper al proiectului.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-12 gap-8">
+      <!-- Team photo -->
+      <div class="col-span-12 lg:col-span-6 glass-heavy brackets relative overflow-hidden">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="relative">
+          <img src="assets/team-hero.jpg" alt="Albert Olariu și Ioan Chelaru" class="w-full object-cover" style="aspect-ratio:1200/1425;"/>
+          <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(180deg,rgba(15,19,31,.15) 0%,rgba(15,19,31,0) 30%,rgba(15,19,31,.5) 100%)"></div>
+          <div class="absolute top-4 left-4 right-4 flex justify-between">
+            <div class="label text-[9px] text-cyan bg-surface/75 px-2 py-1">POLARIS BEARS · ONCS 2026</div>
+            <div class="mono text-[10px] text-green bg-surface/75 px-2 py-1">● FAZA ARDERE</div>
+          </div>
+          <!-- Name overlays -->
+          <div class="absolute bottom-4 left-4 bg-surface/80 backdrop-blur px-3 py-2 border border-cyan/30">
+            <div class="label text-[9px] text-cyan">STÂNGA · P-001</div>
+            <div class="headline text-sm text-on-surface">Albert Olariu</div>
+            <div class="mono text-[10px] text-on-surface-variant/70">prezintă proiectul</div>
+          </div>
+          <div class="absolute bottom-4 right-4 bg-surface/80 backdrop-blur px-3 py-2 border border-primary/30">
+            <div class="label text-[9px] text-primary">DREAPTA · P-002</div>
+            <div class="headline text-sm text-on-surface">Ioan Chelaru</div>
+            <div class="mono text-[10px] text-on-surface-variant/70">inginer șef</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bios -->
+      <div class="col-span-12 lg:col-span-6 flex flex-col gap-6">
+        <div class="glass p-7 brackets relative flex-1">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="flex items-start justify-between mb-3">
+            <div class="label text-[9px] text-cyan/80">PREZENTATOR · ARHITECT FIZICĂ</div>
+            <div class="mono text-[10px] text-cyan">ID · P-001</div>
+          </div>
+          <h3 class="headline text-3xl text-on-surface mb-1">Albert Olariu</h3>
+          <div class="mono text-[11px] text-on-surface-variant/70 mb-4">Clasa a VIII-a · Olimpic informatică + astrofizică</div>
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-on-surface-variant border border-outline-variant/20">Astrofizică</span>
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-on-surface-variant border border-outline-variant/20">Mecanică orbitală</span>
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-on-surface-variant border border-outline-variant/20">Optică laser</span>
+          </div>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            A proiectat configurația roiului Dyson și lanțul optic până la
+            punctele Lagrange. Responsabil de modelele matematice ale eficienței
+            cumulate și de derivarea celor 1,6 TW livrați. Prezintă oral proiectul
+            în fața juriului ONCS.
+          </p>
+          <div class="tx-h my-4"></div>
+          <div class="mono text-[10px] text-on-surface-variant/70 flex justify-between">
+            <span>CONTRIBUȚIE · 01 / 02 / 03</span>
+            <span>STÂNGA · ochelari</span>
+          </div>
+        </div>
+
+        <div class="glass p-7 brackets relative flex-1">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="flex items-start justify-between mb-3">
+            <div class="label text-[9px] text-primary/90">INGINER ȘEF · SISTEME ENERGETICE</div>
+            <div class="mono text-[10px] text-primary">ID · P-002</div>
+          </div>
+          <h3 class="headline text-3xl text-on-surface mb-1">Ioan Chelaru</h3>
+          <div class="mono text-[11px] text-on-surface-variant/70 mb-4">Clasa a VIII-a · Olimpic informatică + astrofizică</div>
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-on-surface-variant border border-outline-variant/20">Supraconductori</span>
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-on-surface-variant border border-outline-variant/20">Criogenie</span>
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-on-surface-variant border border-outline-variant/20">Star Power Grid</span>
+          </div>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            A dezvoltat stațiile polare cu baloane de heliu și topologia
+            rețelei terestre — 22 de noduri alimentate prin cabluri HVDC
+            supraconductoare YBCO. Se ocupă de termodinamica la 77 K și de
+            balanța energetică a celor 6 continente.
+          </p>
+          <div class="tx-h my-4"></div>
+          <div class="mono text-[10px] text-on-surface-variant/70 flex justify-between">
+            <span>CONTRIBUȚIE · 04 / 05</span>
+            <span>DREAPTA · brațe încrucișate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 text-center">
+      <div class="mono text-[10px] text-cyan/70 mb-3">URSA MINOR · α · POLARIS</div>
+      <div class="flex items-center justify-center gap-5">
+        <span class="tx-h w-24"></span>
+        <div class="headline uppercase text-sm tracking-[0.4em] text-on-surface-variant">inovăm prezentul · alimentăm viitorul</div>
+        <span class="tx-h w-24"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<section id="contact" class="relative py-28 bg-surface">
+  <div class="mx-auto max-w-[1440px] px-8 grid grid-cols-12 gap-8">
+    <div class="col-span-12 md:col-span-5">
+      <div class="sec-tag mb-4"><span class="dot"></span> DOSAR 008 · STABILIRE UPLINK</div>
+      <h2 class="headline uppercase text-6xl font-semibold text-primary leading-none mb-6">Contact</h2>
+      <p class="text-on-surface-variant leading-relaxed mb-8">
+        Pentru întrebări legate de proiect, demonstrații live sau invitații
+        la prezentări școlare și concursuri, folosește formularul alăturat.
+        Mesajele ajung direct la echipa Polaris Bears.
+      </p>
+      <div class="space-y-6 mono text-[11px]">
+        <div class="flex items-start gap-4 ghost-b pb-4">
+          <span class="text-cyan">→</span>
+          <div><div class="text-on-surface-variant/60">EDIȚIE</div><div class="text-on-surface">ONCS 2026 · Creativitate Științifică</div></div>
+        </div>
+        <div class="flex items-start gap-4 ghost-b pb-4">
+          <span class="text-cyan">→</span>
+          <div><div class="text-on-surface-variant/60">ECHIPĂ</div><div class="text-on-surface">Olariu · Chelaru · Clasa a VIII-a</div></div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-cyan">→</span>
+          <div><div class="text-on-surface-variant/60">CATEGORIE</div><div class="text-on-surface">Astrofizică / Energetică</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 md:col-span-7 glass-heavy p-8 brackets relative">
+      <span class="br-bl"></span><span class="br-br"></span>
+      <div class="flex items-center justify-between mb-6">
+        <div class="label text-[9px] text-cyan/80">CERERE SECURIZATĂ · FORMULAR 003</div>
+        <div class="mono text-[10px] text-green flex items-center gap-2">
+          <span class="w-1.5 h-1.5 bg-green pulse-cy"></span> CANAL DISPONIBIL
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <label class="label text-[9px] text-on-surface-variant/70">NUME</label>
+          <input type="text" class="laser-input mt-1" placeholder="ex: prof. Popescu"/>
+        </div>
+        <div>
+          <label class="label text-[9px] text-on-surface-variant/70">INSTITUȚIE</label>
+          <input type="text" class="laser-input mt-1" placeholder="școală / liceu / universitate"/>
+        </div>
+        <div class="col-span-2">
+          <label class="label text-[9px] text-on-surface-variant/70">EMAIL</label>
+          <input type="text" class="laser-input mt-1" placeholder="adresa@domeniu.ro"/>
+        </div>
+        <div class="col-span-2">
+          <label class="label text-[9px] text-on-surface-variant/70">MESAJ</label>
+          <textarea class="laser-input mt-1" rows="3" placeholder="Scrie un mesaj · max. 2048 caractere"></textarea>
+        </div>
+      </div>
+      <div class="tx-h my-6"></div>
+      <div class="flex items-center justify-between">
+        <div class="mono text-[10px] text-on-surface-variant/60">ÎNCĂRCARE · 0 / 2.048 B</div>
+        <button class="solar-bg px-6 py-3 label text-[10px] text-on-primary hover:brightness-110 transition flex items-center gap-3">
+          Trimite <span class="mono text-[10px]">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="relative bg-surface-lowest border-t border-outline-variant/20">
+  <div class="h-px solar-bg opacity-70"></div>
+  <div class="mx-auto max-w-[1440px] px-8 py-12">
+    <div class="grid grid-cols-12 gap-8 mb-10">
+      <div class="col-span-12 md:col-span-4">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-5 h-5 border border-primary rounded-full relative">
+            <div class="absolute inset-0 border border-cyan/40 rounded-full" style="transform:rotate(35deg) scaleY(.3)"></div>
+          </div>
+          <div>
+            <div class="headline text-[13px] tracking-[0.22em] text-on-surface">POLARIS</div>
+            <div class="label text-[9px] text-on-surface-variant/70">OBSERVATOR ORBITAL</div>
+          </div>
+        </div>
+        <p class="mono text-[11px] text-on-surface-variant/70 leading-relaxed">
+          Platformă Orbitală Laser pentru Alimentare și Recepție Inovativă Solară.
+          Proiect pentru ONCS 2026 · Creativitate Științifică.
+        </p>
+      </div>
+
+      <div class="col-span-6 md:col-span-2">
+        <div class="label text-[9px] text-cyan/80 mb-4">SISTEM</div>
+        <ul class="space-y-2 mono text-[11px] text-on-surface-variant">
+          <li><a href="#misiune" class="fx-underline">Misiune</a></li>
+          <li><a href="#arhitectura" class="fx-underline">Arhitectură</a></li>
+          <li><a href="#stiinta" class="fx-underline">Fizică</a></li>
+          <li><a href="#kardashev" class="fx-underline">Kardashev</a></li>
+        </ul>
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <div class="label text-[9px] text-cyan/80 mb-4">ECHIPĂ</div>
+        <ul class="space-y-2 mono text-[11px] text-on-surface-variant">
+          <li><a href="#echipa" class="fx-underline">Polaris Bears</a></li>
+          <li><a href="#contact" class="fx-underline">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-span-12 md:col-span-4">
+        <div class="label text-[9px] text-cyan/80 mb-4">STARE ORBITALĂ</div>
+        <div class="glass p-4">
+          <div class="flex justify-between mono text-[10px] mb-2">
+            <span class="text-on-surface-variant/70">KARDASHEV</span>
+            <span class="text-primary">0,73 → 1,00</span>
+          </div>
+          <div class="bar mb-4"><span style="width:73%"></span></div>
+          <div class="flex justify-between mono text-[10px]">
+            <span class="text-on-surface-variant/70">TOATE SISTEMELE</span>
+            <span class="text-green">NOMINAL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tx-h-gold mb-6"></div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 mono text-[10px] text-on-surface-variant/60">
+      <div>© 2026 · POLARIS BEARS · Inovăm prezentul. Alimentăm viitorul.</div>
+      <div class="flex items-center gap-6">
+        <span>COORD 45,09° / 12,88°</span>
+        <span>ONCS 2026</span>
+        <span id="clock2">UTC 00:00:00</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════ TWEAKS PANEL ═══════════════════ -->
+<div id="twPanel" class="tw-panel glass-heavy p-5 brackets">
+  <span class="br-bl"></span><span class="br-br"></span>
+  <div class="flex items-center justify-between mb-4">
+    <div class="label text-[10px] text-cyan">TWEAKS</div>
+    <div class="mono text-[10px] text-on-surface-variant/60">live</div>
+  </div>
+  <div class="space-y-4">
+    <div>
+      <div class="label text-[9px] text-on-surface-variant/70 mb-2">VARIANTĂ ARHITECTURĂ</div>
+      <div class="grid grid-cols-3 gap-1.5" id="tw-lv">
+        <button data-v="observatory" class="label text-[9px] py-2 bg-surface-high text-on-surface">Observator</button>
+        <button data-v="blueprint"   class="label text-[9px] py-2 bg-surface-high text-on-surface-variant">Blueprint</button>
+        <button data-v="control"     class="label text-[9px] py-2 bg-surface-high text-on-surface-variant">Control</button>
+      </div>
+    </div>
+    <div>
+      <div class="label text-[9px] text-on-surface-variant/70 mb-1">NUANȚĂ ACCENT · <span id="hueVal">75</span>°</div>
+      <input id="tw-hue" type="range" min="0" max="360" step="1" class="w-full accent-primary"/>
+    </div>
+    <div>
+      <div class="label text-[9px] text-on-surface-variant/70 mb-2">INTENSITATE DATE</div>
+      <div class="grid grid-cols-3 gap-1.5" id="tw-data">
+        <button data-v="calm" class="label text-[9px] py-2 bg-surface-high text-on-surface-variant">Calm</button>
+        <button data-v="mid"  class="label text-[9px] py-2 bg-surface-high text-on-surface-variant">Mediu</button>
+        <button data-v="rich" class="label text-[9px] py-2 bg-surface-high text-on-surface">Bogat</button>
+      </div>
+    </div>
+    <div>
+      <div class="label text-[9px] text-on-surface-variant/70 mb-2">GRILĂ BLUEPRINT HERO</div>
+      <div class="grid grid-cols-2 gap-1.5" id="tw-grid">
+        <button data-v="true"  class="label text-[9px] py-2 bg-surface-high text-on-surface">Activ</button>
+        <button data-v="false" class="label text-[9px] py-2 bg-surface-high text-on-surface-variant">Oprit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating ONCS badge -->
+<div id="oncsBadge" class="fixed left-5 bottom-5 z-40 glass-heavy px-4 py-3 brackets">
+  <span class="br-bl"></span><span class="br-br"></span>
+  <div class="flex items-center gap-3">
+    <div class="headline text-xl text-primary leading-none">ONCS</div>
+    <div class="mono text-[9px] text-on-surface-variant/80 leading-tight">
+      OLIMPIADA NAȚIONALĂ DE<br/>CREATIVITATE ȘTIINȚIFICĂ<br/><span class="text-primary">EDIȚIA 2026</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Clock ──
+function tickClock(){
+  const now = new Date();
+  const h=String(now.getUTCHours()).padStart(2,'0');
+  const m=String(now.getUTCMinutes()).padStart(2,'0');
+  const s=String(now.getUTCSeconds()).padStart(2,'0');
+  const c1=document.getElementById('clock'); const c2=document.getElementById('clock2');
+  if(c1) c1.textContent = `${h}:${m}:${s} UTC`;
+  if(c2) c2.textContent = `UTC ${h}:${m}:${s}`;
+  const sa = document.getElementById('syncAgo');
+  if(sa) sa.textContent = (Math.floor(now.getSeconds()/5)*5)+'s în urmă';
+}
+tickClock(); setInterval(tickClock,1000);
+
+// ── Hero parallax ──
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  const el = document.getElementById('heroBg');
+  if (el && y < 1100) el.style.transform = `translateY(${y*0.25}px) scale(${1 + y*0.00015})`;
+}, { passive: true });
+
+// ── Nav scroll-spy ──
+(function(){
+  const links=[...document.querySelectorAll('nav .laser-link')];
+  const sections=links.map(l=>document.querySelector(l.getAttribute('href'))).filter(Boolean);
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){const id='#'+e.target.id;links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')===id));}});
+  },{rootMargin:'-40% 0px -55% 0px'});
+  sections.forEach(s=>obs.observe(s));
+})();
+
+// ── Count-up on scroll-in ──
+(function(){
+  const els = document.querySelectorAll('.count-up');
+  const io = new IntersectionObserver((ents)=>{
+    ents.forEach(e=>{
+      if(!e.isIntersecting || e.target.dataset.counted) return;
+      e.target.dataset.counted = '1';
+      const t = e.target; const orig = t.innerHTML;
+      // only animate if simple numeric head
+      const m = t.textContent.match(/^([\d,\.]+)/);
+      if(!m) return;
+      const num = parseFloat(m[1].replace(',', '.'));
+      if(isNaN(num) || num < 1) return;
+      const dur = 900; const start = performance.now();
+      const after = t.textContent.slice(m[1].length);
+      const hasDec = m[1].includes(',') || m[1].includes('.');
+      const targetText = m[1];
+      function step(now){
+        const p = Math.min(1,(now-start)/dur);
+        const ease = 1 - Math.pow(1-p,3);
+        const v = num * ease;
+        let disp = hasDec ? v.toFixed(1).replace('.',',') : Math.round(v).toLocaleString('ro-RO');
+        t.innerHTML = t.innerHTML.replace(/^[^<]*/, disp + after);
+        if(p<1) requestAnimationFrame(step);
+        else t.innerHTML = orig;
+      }
+      requestAnimationFrame(step);
+    });
+  },{rootMargin:'-10% 0px'});
+  els.forEach(el=>io.observe(el));
+})();
+
+// ── Arch variant selector ──
+(function(){
+  const btns = document.querySelectorAll('.arch-v-btn');
+  const desc = document.getElementById('arch-v-desc');
+  const DESC = {
+    observatory: 'Vitrina: imagini mari, titluri evidente, descriere narativă.',
+    blueprint:   'Blueprint tehnic: schemă + sheet-uri cu cote, grilă de caiet.',
+    control:     'Panou control: monitor principal + sub-monitoare cu status.',
+  };
+  function set(v){
+    document.body.className = document.body.className.replace(/lv-\w+/,'') + ' lv-'+v;
+    btns.forEach(b=>{
+      const active = b.dataset.v===v;
+      b.classList.toggle('text-on-surface',active);
+      b.classList.toggle('text-on-surface-variant',!active);
+      b.style.boxShadow = active ? 'inset 0 -2px 0 #00e5ff' : 'none';
+    });
+    if(desc) desc.textContent = DESC[v];
+    state.layout_variant = v;
+    try{window.parent.postMessage({type:'__edit_mode_set_keys',edits:{layout_variant:v}},'*');}catch{}
+    // also sync the Tweaks mini buttons
+    document.querySelectorAll('#tw-lv button').forEach(b=>{
+      const a = b.dataset.v===v;
+      b.classList.toggle('text-on-surface',a);
+      b.classList.toggle('text-on-surface-variant',!a);
+      b.style.boxShadow = a ? 'inset 0 -2px 0 #00e5ff' : 'none';
+    });
+  }
+  btns.forEach(b=>b.addEventListener('click',()=>set(b.dataset.v)));
+  window.__setArchVariant = set;
+})();
+
+// ── Exploded tag positions (random radial offsets seeded) ──
+(function(){
+  document.querySelectorAll('.arch-card').forEach(card=>{
+    const tags = card.querySelectorAll('.explode-tag');
+    tags.forEach((t,i)=>{
+      const ang = (i/tags.length)*Math.PI*2 + (Math.random()-0.5)*0.6;
+      const dx = Math.cos(ang)*40; const dy = Math.sin(ang)*30;
+      t.style.transform = `translate(${-dx*0.6}px,${-dy*0.6}px)`;
+      card.addEventListener('mouseenter', ()=>{ t.style.transform = `translate(${dx}px,${dy}px)`; });
+      card.addEventListener('mouseleave', ()=>{ t.style.transform = `translate(${-dx*0.6}px,${-dy*0.6}px)`; });
+    });
+  });
+})();
+
+// ── TWEAKS ──
+let state = {...TWEAKS_JSON};
+
+function hueRotate(hex,deg){
+  const r=parseInt(hex.slice(1,3),16)/255,g=parseInt(hex.slice(3,5),16)/255,b=parseInt(hex.slice(5,7),16)/255;
+  const mx=Math.max(r,g,b),mn=Math.min(r,g,b); let h,s,l=(mx+mn)/2;
+  if(mx===mn){h=0;s=0;} else {const d=mx-mn; s=l>0.5?d/(2-mx-mn):d/(mx+mn);
+    switch(mx){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;case b:h=(r-g)/d+4;break;} h/=6;}
+  h=(h*360+deg+720)%360/360;
+  const q=l<0.5?l*(1+s):l+s-l*s,p=2*l-q;
+  const h2=(p,q,t)=>{if(t<0)t+=1;if(t>1)t-=1;if(t<1/6)return p+(q-p)*6*t;if(t<1/2)return q;if(t<2/3)return p+(q-p)*(2/3-t)*6;return p;};
+  return `rgb(${Math.round(h2(p,q,h+1/3)*255)},${Math.round(h2(p,q,h)*255)},${Math.round(h2(p,q,h-1/3)*255)})`;
+}
+
+function applyTweaks(s){
+  if(window.__setArchVariant) window.__setArchVariant(s.layout_variant);
+
+  const cy=hueRotate('#00e5ff',s.accent_hue-75);
+  document.documentElement.style.setProperty('--cyan',cy);
+
+  const grid=document.getElementById('gridOverlay');
+  if(grid) grid.style.display = (s.show_grid) ? 'block':'none';
+
+  document.querySelectorAll('.tick-track').forEach(t=>{
+    t.style.animationDuration = s.data_intensity==='calm'?'140s':s.data_intensity==='mid'?'90s':'70s';
+    t.style.opacity = s.data_intensity==='calm'?'0.55':'1';
+  });
+
+  ['lv','data','grid'].forEach(g=>{
+    const key = ({lv:'layout_variant',data:'data_intensity',grid:'show_grid'})[g];
+    document.querySelectorAll(`#tw-${g} button`).forEach(b=>{
+      const v = b.dataset.v;
+      const active = String(s[key])===v;
+      b.classList.toggle('text-on-surface',active);
+      b.classList.toggle('text-on-surface-variant',!active);
+      b.style.boxShadow = active ? 'inset 0 -2px 0 #00e5ff' : 'none';
+    });
+  });
+  const hv=document.getElementById('hueVal'); if(hv) hv.textContent=s.accent_hue;
+  const hs=document.getElementById('tw-hue'); if(hs && document.activeElement!==hs) hs.value=s.accent_hue;
+}
+
+function setTweak(k,v){ state={...state,[k]:v}; applyTweaks(state); try{window.parent.postMessage({type:'__edit_mode_set_keys',edits:{[k]:v}},'*');}catch{} }
+
+document.getElementById('tw-hue').addEventListener('input',e=>setTweak('accent_hue',parseInt(e.target.value)));
+['lv','data','grid'].forEach(g=>{
+  const key=({lv:'layout_variant',data:'data_intensity',grid:'show_grid'})[g];
+  document.querySelectorAll(`#tw-${g} button`).forEach(b=>{
+    b.addEventListener('click',()=>{ let v=b.dataset.v; if(key==='show_grid') v=v==='true'; setTweak(key,v); });
+  });
+});
+
+applyTweaks(state);
+
+window.addEventListener('message',(e)=>{
+  if(!e.data||typeof e.data!=='object') return;
+  if(e.data.type==='__activate_edit_mode') document.getElementById('twPanel').classList.add('on');
+  else if(e.data.type==='__deactivate_edit_mode') document.getElementById('twPanel').classList.remove('on');
+});
+try{window.parent.postMessage({type:'__edit_mode_available'},'*');}catch{}
+</script>
+</body>
+</html>

@@ -1,0 +1,1426 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=1280"/>
+<title>P.O.L.A.R.I.S. — Orbital Observatory</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<script>
+/*EDITMODE-BEGIN*/ const TWEAKS_JSON = {
+  "accent_hue": 75,
+  "hero_variant": "constellation",
+  "language": "mixed",
+  "data_intensity": "rich",
+  "show_grid": true
+} /*EDITMODE-END*/;
+
+// Celestial Command tokens
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        surface:                 "#0f131f",
+        "surface-low":           "#171b28",
+        "surface-container":     "#1b1f2c",
+        "surface-high":          "#262a36",
+        "surface-highest":       "#303442",
+        "surface-bright":        "#353946",
+        "surface-lowest":        "#0a0e1a",
+
+        primary:                 "#ffe3b7",
+        "primary-strong":        "#ffba20",
+        "on-primary":            "#422d00",
+
+        secondary:               "#bdf4ff",   // laser cyan
+        tertiary:                "#91ff89",   // laser green
+        error:                   "#ffb4ab",
+
+        "on-surface":            "#dfe2f3",
+        "on-surface-variant":    "#d5c4ac",
+        outline:                 "#9d8f79",
+        "outline-variant":       "#504533",
+      },
+      borderRadius: { DEFAULT: "0px", sm: "0px", md: "0px", lg: "0px", xl: "0px", "2xl": "0px", full: "0px" },
+      fontFamily: {
+        headline: ["Space Grotesk", "sans-serif"],
+        body:     ["Manrope", "sans-serif"],
+        mono:     ["JetBrains Mono", "ui-monospace", "monospace"],
+        label:    ["Inter", "sans-serif"],
+      },
+    }
+  }
+};
+</script>
+<style>
+  :root {
+    --accent-h: 75;
+    --accent-gold-a: #ffe3b7;
+    --accent-gold-b: #ffba20;
+    --cyan: #bdf4ff;
+    --green: #91ff89;
+  }
+  html, body { background:#0f131f; color:#dfe2f3; }
+  body { font-family: 'Manrope', sans-serif; font-weight: 400; }
+  h1,h2,h3,h4,h5,h6,.headline { font-family:'Space Grotesk', sans-serif; letter-spacing: 0.02em; }
+  .mono { font-family:'JetBrains Mono', ui-monospace, monospace; }
+  .label { font-family:'Inter', sans-serif; letter-spacing: 0.18em; text-transform: uppercase; }
+
+  /* Glass — per spec */
+  .glass {
+    background: rgba(48,52,66,0.32);
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+    border: 1px solid rgba(157,143,121,0.12);
+  }
+  .glass-heavy {
+    background: rgba(38,42,54,0.55);
+    backdrop-filter: blur(28px) saturate(120%);
+    -webkit-backdrop-filter: blur(28px) saturate(120%);
+    border: 1px solid rgba(189,244,255,0.14);
+  }
+
+  /* Transmission lines */
+  .tx-h { height:1px; background: linear-gradient(90deg, rgba(189,244,255,0) 0%, rgba(189,244,255,0.7) 50%, rgba(189,244,255,0) 100%); }
+  .tx-h-gold { height:1px; background: linear-gradient(90deg, rgba(255,186,32,0) 0%, rgba(255,186,32,0.6) 50%, rgba(255,186,32,0) 100%); }
+  .tx-v { width:1px; background: linear-gradient(180deg, rgba(189,244,255,0) 0%, rgba(189,244,255,0.7) 50%, rgba(189,244,255,0) 100%); }
+
+  /* Ghost border */
+  .ghost { border: 1px solid rgba(157,143,121,0.15); }
+  .ghost-b { border-bottom: 1px solid rgba(157,143,121,0.15); }
+
+  /* Solar gold gradient for headlines + CTAs */
+  .solar-text {
+    background: linear-gradient(135deg, #ffe3b7 0%, #ffba20 60%, #ffe3b7 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+  .solar-bg {
+    background: linear-gradient(135deg, #ffe3b7 0%, #ffc041 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 0 30px rgba(255,186,32,0.18);
+  }
+
+  /* Corner brackets */
+  .brackets { position: relative; }
+  .brackets::before, .brackets::after,
+  .brackets > .br-tl, .brackets > .br-br {
+    content:""; position:absolute; width:10px; height:10px; border-color: var(--cyan);
+  }
+  .brackets::before { top:-1px; left:-1px;  border-top:1px solid; border-left:1px solid; }
+  .brackets::after  { top:-1px; right:-1px; border-top:1px solid; border-right:1px solid; }
+  .brackets > .br-bl { position:absolute; bottom:-1px; left:-1px;  width:10px; height:10px; border-bottom:1px solid var(--cyan); border-left:1px solid var(--cyan); }
+  .brackets > .br-br { position:absolute; bottom:-1px; right:-1px; border-bottom:1px solid; border-right:1px solid; }
+
+  /* Starfield (CSS only, small repeating tile) */
+  .stars {
+    background-image:
+      radial-gradient(1px 1px at 13% 22%,  #dfe2f3 50%, transparent 51%),
+      radial-gradient(1px 1px at 47% 71%,  #dfe2f3 50%, transparent 51%),
+      radial-gradient(1px 1px at 81% 34%,  #dfe2f3 50%, transparent 51%),
+      radial-gradient(1px 1px at 22% 82%,  #bdf4ff 50%, transparent 51%),
+      radial-gradient(1px 1px at 66% 11%,  #dfe2f3 50%, transparent 51%),
+      radial-gradient(2px 2px at 90% 60%,  #ffe3b7 50%, transparent 51%),
+      radial-gradient(1px 1px at 8%  50%,  #dfe2f3 50%, transparent 51%),
+      radial-gradient(1px 1px at 55% 40%,  #dfe2f3 50%, transparent 51%);
+    background-size: 360px 360px;
+    background-repeat: repeat;
+    opacity: 0.55;
+  }
+
+  /* Orbital canvas for hero */
+  .ring { position:absolute; border:1px solid rgba(189,244,255,0.14); border-radius:50%; }
+  .ring-dashed { border-style: dashed; border-color: rgba(189,244,255,0.18); }
+  .orbit-spin { animation: spin 80s linear infinite; transform-origin: center; }
+  .orbit-spin-rev { animation: spin 140s linear infinite reverse; transform-origin: center; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .sat { position:absolute; width:8px; height:8px; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+  .sat-gold { background: #ffba20; box-shadow: 0 0 14px rgba(255,186,32,0.7); }
+
+  /* Pulse */
+  @keyframes pulse-cy { 0%,100%{opacity:0.9} 50%{opacity:0.35} }
+  .pulse-cy { animation: pulse-cy 2.4s ease-in-out infinite; }
+
+  /* Telemetry ticker */
+  .tick-track { display:flex; gap:72px; animation: tick 50s linear infinite; }
+  @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* Hatch fill */
+  .hatch {
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(255,186,32,0.18) 0 2px,
+      transparent 2px 8px
+    );
+  }
+  .hatch-cy {
+    background-image: repeating-linear-gradient(
+      135deg,
+      rgba(189,244,255,0.14) 0 2px,
+      transparent 2px 8px
+    );
+  }
+
+  /* Placeholder frames (per default-aesthetic rule: no hand-drawn SVGs) */
+  .placeholder {
+    background:
+      linear-gradient(135deg, rgba(255,186,32,0.05), rgba(189,244,255,0.03)),
+      repeating-linear-gradient(135deg, rgba(157,143,121,0.08) 0 1px, transparent 1px 14px);
+    color: rgba(213,196,172,0.7);
+  }
+
+  /* Grid overlay (toggleable) */
+  .bp-grid {
+    background-image:
+      linear-gradient(rgba(189,244,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(189,244,255,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  /* Data bar */
+  .bar { position:relative; height:2px; background: rgba(80,69,51,0.4); }
+  .bar > span { position:absolute; left:0; top:0; bottom:0; background: linear-gradient(90deg, #ffe3b7, #ffba20); }
+
+  /* Micro-crosshair */
+  .crosshair::before, .crosshair::after {
+    content:""; position:absolute; background: rgba(189,244,255,0.5);
+  }
+  .crosshair::before { left:50%; top:-6px; bottom:-6px; width:1px; transform: translateX(-50%); }
+  .crosshair::after  { top:50%; left:-6px; right:-6px; height:1px; transform: translateY(-50%); }
+
+  /* Nav link underline laser */
+  .laser-link { position:relative; }
+  .laser-link::after {
+    content:""; position:absolute; left:0; right:100%; bottom:-4px; height:1px;
+    background: var(--cyan); box-shadow: 0 0 8px var(--cyan);
+    transition: right 280ms cubic-bezier(.2,.7,.2,1);
+  }
+  .laser-link:hover::after, .laser-link.active::after { right: 0; }
+
+  /* Section-label tag */
+  .sec-tag {
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Inter', sans-serif; font-size:10px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--cyan);
+  }
+  .sec-tag .dot { width:6px; height:6px; background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+
+  /* Tweaks panel */
+  .tw-panel { position: fixed; right: 16px; bottom: 16px; z-index: 100; width: 280px; display: none; }
+  .tw-panel.on { display: block; }
+
+  /* Hide scrollbar on ticker */
+  .no-scrollbar::-webkit-scrollbar { display:none; }
+  .no-scrollbar { scrollbar-width:none; }
+
+  /* Input focus laser */
+  .laser-input {
+    background: transparent;
+    border: none; border-bottom: 1px solid rgba(80,69,51,0.6);
+    color: #dfe2f3; outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    padding: 8px 2px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  }
+  .laser-input:focus { border-bottom-color: var(--green); box-shadow: 0 1px 0 var(--green); }
+
+  /* Orbit icon (pure geometry) */
+  .orbit-icon {
+    display:inline-block; width:20px; height:20px; position:relative;
+  }
+  .orbit-icon::before, .orbit-icon::after{
+    content:""; position:absolute; inset:0; border:1px solid currentColor;
+    border-radius:50%;
+  }
+  .orbit-icon::after { transform: rotate(35deg) scaleY(0.35); }
+
+  /* Marker dot with ring */
+  .marker { width:10px; height:10px; position:relative; }
+  .marker::before{ content:""; position:absolute; inset:3px; background: currentColor; }
+  .marker::after { content:""; position:absolute; inset:0; border:1px solid currentColor; opacity:.5; }
+
+</style>
+</head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary-strong/30">
+
+<!-- ════════════════════════════════════════════════════════════════════
+     TOP NAV
+     ════════════════════════════════════════════════════════════════════ -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/20">
+  <div class="mx-auto max-w-[1440px] px-8 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <span class="orbit-icon text-primary-strong"></span>
+      <div>
+        <div class="headline text-[13px] font-semibold tracking-[0.22em] text-on-surface">POLARIS</div>
+        <div class="label text-[9px] text-on-surface-variant/70">ORBITAL_OBSERVATORY / v4.2.1</div>
+      </div>
+    </div>
+
+    <div class="hidden md:flex items-center gap-10">
+      <a href="#mission"     class="laser-link active label text-[10px] text-on-surface">Mission</a>
+      <a href="#architecture" class="laser-link label text-[10px] text-on-surface-variant">Architecture</a>
+      <a href="#telemetry"   class="laser-link label text-[10px] text-on-surface-variant">Telemetry</a>
+      <a href="#bears"       class="laser-link label text-[10px] text-on-surface-variant">Bears</a>
+      <a href="#uplink"      class="laser-link label text-[10px] text-on-surface-variant">Uplink</a>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <div class="hidden lg:flex items-center gap-2 mono text-[10px] text-on-surface-variant/80">
+        <span class="w-1.5 h-1.5 bg-tertiary pulse-cy"></span>
+        <span id="clock">00:00:00 UTC</span>
+      </div>
+      <button class="solar-bg on-primary-text px-5 py-2.5 label text-[10px] text-on-primary hover:brightness-110 transition">
+        Establish uplink →
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     HERO
+     ════════════════════════════════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen pt-28 pb-20 overflow-hidden">
+  <!-- Layered background -->
+  <div class="absolute inset-0 stars pointer-events-none"></div>
+  <div id="gridOverlay" class="absolute inset-0 bp-grid pointer-events-none"></div>
+  <div class="absolute inset-0 pointer-events-none"
+       style="background: radial-gradient(1200px 700px at 65% 40%, rgba(255,186,32,0.08), transparent 60%),
+                          radial-gradient(900px 600px at 20% 80%, rgba(189,244,255,0.06), transparent 60%);"></div>
+
+  <!-- Corner telemetry -->
+  <div class="absolute top-24 left-8 mono text-[10px] text-secondary/80 z-20">
+    LAT 45.09° / LON 12.88° // MODE: TRANSMIT
+  </div>
+  <div class="absolute top-24 right-8 mono text-[10px] text-secondary/80 z-20 text-right">
+    ALT 35,786 km / GEO <br/> ORBITAL LOCK: <span class="text-tertiary">NOMINAL</span>
+  </div>
+
+  <!-- Orbital visual (right side, absolute) -->
+  <div id="orbitStage" class="absolute top-1/2 right-[-220px] -translate-y-1/2 w-[900px] h-[900px] pointer-events-none z-10 opacity-90">
+    <!-- rings -->
+    <div class="ring absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style="width:900px;height:900px;"></div>
+    <div class="ring ring-dashed absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style="width:700px;height:700px;"></div>
+    <div class="ring absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style="width:540px;height:540px; border-color:rgba(255,186,32,0.18);"></div>
+    <div class="ring ring-dashed absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style="width:380px;height:380px;"></div>
+
+    <!-- earth placeholder -->
+    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px]"
+         style="background:
+           radial-gradient(circle at 30% 30%, rgba(189,244,255,0.7), rgba(189,244,255,0.1) 40%, rgba(15,19,31,0) 70%),
+           radial-gradient(circle at 70% 70%, rgba(255,186,32,0.25), transparent 50%);
+           border: 1px solid rgba(189,244,255,0.35);
+           border-radius: 50%;
+           box-shadow: inset 0 0 60px rgba(15,19,31,0.8), 0 0 80px rgba(189,244,255,0.08);">
+      <div class="absolute inset-0 rounded-full"
+           style="background: repeating-linear-gradient(90deg, transparent 0 14px, rgba(189,244,255,0.06) 14px 15px);
+                  border-radius:50%;"></div>
+      <div class="absolute inset-0 rounded-full"
+           style="background: repeating-linear-gradient(0deg, transparent 0 14px, rgba(189,244,255,0.06) 14px 15px);
+                  border-radius:50%;"></div>
+    </div>
+
+    <!-- rotating satellites on rings -->
+    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 orbit-spin" style="width:540px;height:540px;">
+      <div class="sat sat-gold" style="left:50%; top:0; transform: translate(-50%, -50%);"></div>
+    </div>
+    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 orbit-spin-rev" style="width:700px;height:700px;">
+      <div class="sat" style="right:0; top:50%; transform: translate(50%, -50%);"></div>
+    </div>
+    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 orbit-spin" style="width:900px;height:900px; animation-duration: 180s;">
+      <div class="sat" style="left:12%; top:18%; transform: translate(-50%, -50%);"></div>
+      <div class="sat" style="right:8%; bottom:22%; transform: translate(50%, 50%); background:#91ff89; box-shadow: 0 0 10px #91ff89;"></div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-20 mx-auto max-w-[1440px] px-8 grid grid-cols-12 gap-8 mt-16">
+    <div class="col-span-12 lg:col-span-7">
+      <div class="sec-tag mb-8">
+        <span class="dot"></span>
+        <span>SYSTEM INITIALIZED / SEQ-01A</span>
+        <span class="tx-h w-16 ml-2"></span>
+      </div>
+
+      <h1 class="headline font-bold leading-[0.88] mb-6" style="font-size: clamp(72px, 11vw, 168px);">
+        <span class="solar-text">P<span class="text-secondary">·</span>O<span class="text-secondary">·</span>L<span class="text-secondary">·</span>A<span class="text-secondary">·</span>R<span class="text-secondary">·</span>I<span class="text-secondary">·</span>S</span>
+      </h1>
+
+      <div class="grid grid-cols-12 gap-6 items-start">
+        <div class="col-span-12 md:col-span-7">
+          <p class="text-xl text-on-surface-variant font-light leading-relaxed mb-6">
+            <span data-lang="ro">Platformă Orbitală Laser pentru Alimentare și Recepție Inovativă Solară —</span>
+            <span data-lang="en">Orbital Laser Platform for Innovative Solar Power and Reception —</span>
+            infrastructure for a Type I civilization. Uninterrupted solar harvest from geostationary orbit, beamed to Earth via phase-conjugate microwave relay.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <button class="solar-bg px-6 py-3.5 label text-[10px] text-on-primary hover:brightness-110 transition flex items-center gap-3">
+              <span>Initiate sequence</span>
+              <span class="mono text-[10px]">▶ 001</span>
+            </button>
+            <button class="glass px-6 py-3.5 label text-[10px] text-secondary hover:bg-surface-high transition flex items-center gap-3">
+              <span>View schematics</span>
+              <span class="mono text-[10px]">◇</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mission brief card -->
+        <div class="col-span-12 md:col-span-5 glass p-5 brackets relative">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="label text-[9px] text-secondary/80 mb-3">MISSION BRIEF / FILE 002</div>
+          <div class="space-y-3">
+            <div class="flex justify-between items-baseline ghost-b pb-2">
+              <span class="mono text-[11px] text-on-surface-variant">Deployment</span>
+              <span class="mono text-[11px] text-primary">PHASE III / 73%</span>
+            </div>
+            <div class="flex justify-between items-baseline ghost-b pb-2">
+              <span class="mono text-[11px] text-on-surface-variant">Collector count</span>
+              <span class="mono text-[11px] text-primary">1,284 / 8,000</span>
+            </div>
+            <div class="flex justify-between items-baseline ghost-b pb-2">
+              <span class="mono text-[11px] text-on-surface-variant">Lagrange node</span>
+              <span class="mono text-[11px] text-tertiary">L-4 · LOCKED</span>
+            </div>
+            <div class="flex justify-between items-baseline">
+              <span class="mono text-[11px] text-on-surface-variant">Rectenna grid</span>
+              <span class="mono text-[11px] text-tertiary">12 / 24 ONLINE</span>
+            </div>
+          </div>
+          <div class="tx-h mt-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom telemetry strip -->
+  <div class="absolute bottom-0 left-0 right-0 z-20 border-t border-outline-variant/20 bg-surface-low/70 backdrop-blur">
+    <div class="mx-auto max-w-[1440px] px-8 py-3 flex items-center gap-8 overflow-hidden">
+      <div class="label text-[9px] text-secondary flex-shrink-0 flex items-center gap-2">
+        <span class="w-1.5 h-1.5 bg-tertiary pulse-cy"></span> LIVE TELEMETRY
+      </div>
+      <div class="flex-1 overflow-hidden no-scrollbar">
+        <div class="tick-track mono text-[11px] text-on-surface-variant whitespace-nowrap">
+          <span>BEAM_01 · 487.3 MW · <span class="text-tertiary">OK</span></span>
+          <span>BEAM_02 · 512.1 MW · <span class="text-tertiary">OK</span></span>
+          <span>BEAM_03 · 498.7 MW · <span class="text-tertiary">OK</span></span>
+          <span>SWARM_α · 1,284 nodes · <span class="text-tertiary">SYNCED</span></span>
+          <span>L4 STATION · T−04:21:18 · <span class="text-primary">BURN</span></span>
+          <span>RECTENNA_ATLANTIC · 94.2% EFF</span>
+          <span>SOLAR FLUX · 1.361 kW/m²</span>
+          <span>KARDASHEV INDEX · 0.734</span>
+          <!-- duplicate for seamless loop -->
+          <span>BEAM_01 · 487.3 MW · <span class="text-tertiary">OK</span></span>
+          <span>BEAM_02 · 512.1 MW · <span class="text-tertiary">OK</span></span>
+          <span>BEAM_03 · 498.7 MW · <span class="text-tertiary">OK</span></span>
+          <span>SWARM_α · 1,284 nodes · <span class="text-tertiary">SYNCED</span></span>
+          <span>L4 STATION · T−04:21:18 · <span class="text-primary">BURN</span></span>
+          <span>RECTENNA_ATLANTIC · 94.2% EFF</span>
+          <span>SOLAR FLUX · 1.361 kW/m²</span>
+          <span>KARDASHEV INDEX · 0.734</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     MISSION / DIRECTIVE
+     ════════════════════════════════════════════════════════════════════ -->
+<section id="mission" class="relative py-28 bg-surface-low">
+  <div class="mx-auto max-w-[1440px] px-8">
+    <!-- Header row -->
+    <div class="grid grid-cols-12 gap-8 items-end mb-16">
+      <div class="col-span-12 md:col-span-6">
+        <div class="sec-tag mb-4"><span class="dot"></span> DIRECTIVA ALPHA / FILE 003</div>
+        <h2 class="headline uppercase text-6xl md:text-7xl font-semibold text-primary leading-none">
+          Misiunea
+        </h2>
+      </div>
+      <div class="col-span-12 md:col-span-6 md:pl-12 md:border-l md:border-outline-variant/20">
+        <p class="text-lg text-on-surface-variant leading-relaxed font-light">
+          We engineer infrastructure for a Type I civilization. By harvesting solar energy
+          directly from orbit — free from atmospheric interference and diurnal cycles — P.O.L.A.R.I.S.
+          delivers an uninterrupted, high-density power stream to terrestrial receivers via precision
+          microwave and laser transmission.
+        </p>
+        <p class="mono text-[11px] text-secondary/80 mt-5 flex items-center gap-2">
+          <span>→</span> This is not iteration. It is epochal shift in energy architecture.
+        </p>
+      </div>
+    </div>
+
+    <!-- Counter grid (asymmetric, with transmission lines between) -->
+    <div class="relative grid grid-cols-12 gap-6">
+      <!-- 457x energy density -->
+      <div class="col-span-12 md:col-span-5 glass-heavy p-8 brackets relative min-h-[260px] flex flex-col justify-between">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="flex items-start justify-between">
+          <div class="label text-[9px] text-secondary/80">VAR / E_MULT</div>
+          <div class="mono text-[10px] text-on-surface-variant/60">Δt = 8760h</div>
+        </div>
+        <div>
+          <div class="headline font-semibold solar-text" style="font-size:88px; line-height:1;">457<span class="text-primary-strong text-5xl align-top">×</span></div>
+          <div class="label text-[10px] text-on-surface-variant mt-3">Energy density · orbital vs terrestrial</div>
+          <div class="bar mt-4"><span style="width:94%"></span></div>
+        </div>
+      </div>
+
+      <!-- 1600 GW array -->
+      <div class="col-span-6 md:col-span-4 glass p-6 brackets relative md:mt-12">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="label text-[9px] text-secondary/80 mb-4">VAR / CAP</div>
+        <div class="headline font-semibold text-primary" style="font-size:54px; line-height:1;">1,600 <span class="text-secondary text-2xl align-top">GW</span></div>
+        <div class="label text-[10px] text-on-surface-variant mt-3">Array capacity · peak</div>
+        <div class="tx-h mt-5"></div>
+        <div class="mono text-[10px] text-on-surface-variant/70 mt-3">≈ 1.6 TW continuous</div>
+      </div>
+
+      <!-- Efficiency -->
+      <div class="col-span-6 md:col-span-3 glass p-6 brackets relative">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="label text-[9px] text-secondary/80 mb-4">VAR / η</div>
+        <div class="headline font-semibold text-tertiary" style="font-size:54px; line-height:1;">47<span class="text-2xl align-top">%</span></div>
+        <div class="label text-[10px] text-on-surface-variant mt-3">Transmission efficiency</div>
+        <div class="bar mt-4"><span style="width:47%; background: linear-gradient(90deg, #91ff89, #bdf4ff);"></span></div>
+      </div>
+
+      <!-- Land saved -->
+      <div class="col-span-12 md:col-span-7 glass p-6 brackets relative md:-mt-6">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="label text-[9px] text-secondary/80 mb-3">VAR / LND</div>
+            <div class="flex items-baseline gap-3">
+              <div class="headline font-semibold text-primary" style="font-size:54px; line-height:1;">92,400</div>
+              <div class="headline text-secondary text-2xl">km²</div>
+            </div>
+            <div class="label text-[10px] text-on-surface-variant mt-3">Terrestrial land area preserved / no PV farm, no wind</div>
+          </div>
+          <!-- comparator column chart -->
+          <div class="flex items-end gap-2 h-[80px]">
+            <div class="w-5 hatch" style="height:100%"></div>
+            <div class="w-5 hatch-cy" style="height:62%"></div>
+            <div class="w-5 hatch" style="height:41%"></div>
+            <div class="w-5 hatch-cy" style="height:28%"></div>
+            <div class="w-5 bg-tertiary/70" style="height:6%"></div>
+          </div>
+        </div>
+        <div class="tx-h mt-5"></div>
+        <div class="mono text-[10px] text-on-surface-variant/70 mt-3 flex gap-6">
+          <span>PV: 100%</span><span>WIND: 62%</span><span>HYDRO: 41%</span><span>NUCLEAR: 28%</span><span class="text-tertiary">POLARIS: 6%</span>
+        </div>
+      </div>
+
+      <!-- Kardashev pill -->
+      <div class="col-span-12 md:col-span-5 glass-heavy p-6 brackets relative flex flex-col justify-center">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="flex items-center justify-between mb-3">
+          <div class="label text-[9px] text-secondary/80">KARDASHEV PROGRESSION</div>
+          <div class="mono text-[11px] text-primary">0.734 / 1.000</div>
+        </div>
+        <div class="relative h-2.5 bg-surface-high">
+          <div class="absolute inset-y-0 left-0 solar-bg" style="width:73.4%;"></div>
+          <!-- milestones -->
+          <div class="absolute top-[-6px] bottom-[-6px] w-px bg-outline-variant" style="left: 15%;"></div>
+          <div class="absolute top-[-6px] bottom-[-6px] w-px bg-outline-variant" style="left: 40%;"></div>
+          <div class="absolute top-[-8px] bottom-[-8px] w-0.5 bg-white" style="left: 73.4%; box-shadow: 0 0 8px #fff;"></div>
+          <div class="absolute top-[-6px] bottom-[-6px] w-px bg-outline-variant" style="left: 100%;"></div>
+        </div>
+        <div class="flex justify-between mono text-[10px] text-on-surface-variant/70 mt-3">
+          <span>TYPE 0</span><span>Δ+0.15</span><span>Δ+0.40</span><span class="text-primary">NOW</span><span>TYPE I</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     ARCHITECTURE
+     ════════════════════════════════════════════════════════════════════ -->
+<section id="architecture" class="relative py-28 bg-surface">
+  <div class="mx-auto max-w-[1440px] px-8">
+    <div class="flex items-end justify-between ghost-b pb-5 mb-16">
+      <div>
+        <div class="sec-tag mb-3"><span class="dot"></span> MODULE SCHEMATICS / FILE 004</div>
+        <h2 class="headline uppercase text-6xl md:text-7xl font-semibold text-primary leading-none">Arhitectura</h2>
+      </div>
+      <div class="hidden md:flex flex-col items-end">
+        <div class="mono text-[10px] text-on-surface-variant/70">04 SYSTEMS · 4 LAYER STACK</div>
+        <div class="mono text-[10px] text-on-surface-variant/50">REV 4.2.1 · DEPLOYED 2141-03-08</div>
+      </div>
+    </div>
+
+    <!-- Stack diagram -->
+    <div class="grid grid-cols-12 gap-8">
+      <!-- Left: index -->
+      <div class="col-span-12 md:col-span-3">
+        <ol class="space-y-5 mono text-[11px]">
+          <li class="flex items-start gap-4">
+            <span class="text-primary-strong">01</span>
+            <div>
+              <div class="text-on-surface">SWARM</div>
+              <div class="text-on-surface-variant/60">Dyson elements</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="text-primary-strong">02</span>
+            <div>
+              <div class="text-on-surface">COLLECTORS</div>
+              <div class="text-on-surface-variant/60">Geostationary</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="text-primary-strong">03</span>
+            <div>
+              <div class="text-on-surface">LAGRANGE</div>
+              <div class="text-on-surface-variant/60">L4 / L5 nodes</div>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="text-primary-strong">04</span>
+            <div>
+              <div class="text-on-surface">GRID</div>
+              <div class="text-on-surface-variant/60">Rectenna array</div>
+            </div>
+          </li>
+        </ol>
+
+        <div class="tx-h my-8"></div>
+
+        <div class="label text-[9px] text-secondary/80 mb-3">LEGEND</div>
+        <div class="space-y-2 mono text-[10px] text-on-surface-variant/70">
+          <div class="flex items-center gap-2"><span class="w-3 h-3 hatch"></span> energy flow</div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 hatch-cy"></span> data channel</div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 bg-tertiary/70"></span> control</div>
+        </div>
+      </div>
+
+      <!-- Right: 4 modules stacked with transmission-line connectors -->
+      <div class="col-span-12 md:col-span-9 relative">
+        <!-- Module 01 -->
+        <div class="glass p-8 brackets relative mb-8">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="grid grid-cols-12 gap-6">
+            <div class="col-span-2 flex flex-col">
+              <div class="label text-[9px] text-secondary/80 mb-1">MOD / 01</div>
+              <div class="headline text-6xl text-primary-strong/80 font-light leading-none">α</div>
+              <div class="mt-auto mono text-[10px] text-tertiary">STAT · ACTIVE</div>
+            </div>
+            <div class="col-span-6">
+              <h3 class="headline uppercase text-2xl text-on-surface mb-3">Dyson Swarm Elements</h3>
+              <p class="text-on-surface-variant text-sm leading-relaxed">
+                Autonomous solar collector units operating as a synchronized constellation.
+                Self-replicating manufacturing fabrics scheduled for Phase IV deployment.
+              </p>
+              <div class="tx-h my-4"></div>
+              <div class="mono text-[10px] text-on-surface-variant/70 flex gap-5">
+                <span>COUNT · 1,284</span>
+                <span>TGT · 8,000</span>
+                <span class="text-primary">ETA · 2148-Q2</span>
+              </div>
+            </div>
+            <div class="col-span-4 placeholder h-[180px] brackets relative flex items-center justify-center">
+              <span class="br-bl"></span><span class="br-br"></span>
+              <div class="mono text-[10px] text-center leading-5">
+                [ 3D RENDER ]<br/>
+                <span class="text-on-surface-variant/50">swarm_array_001.glb</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connector -->
+        <div class="flex justify-center my-2">
+          <div class="tx-v h-10"></div>
+        </div>
+
+        <!-- Module 02 -->
+        <div class="glass p-8 brackets relative mb-8 md:ml-16">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="grid grid-cols-12 gap-6">
+            <div class="col-span-2 flex flex-col">
+              <div class="label text-[9px] text-secondary/80 mb-1">MOD / 02</div>
+              <div class="headline text-6xl text-primary-strong/80 font-light leading-none">β</div>
+              <div class="mt-auto mono text-[10px] text-tertiary">STAT · ALIGNED</div>
+            </div>
+            <div class="col-span-6">
+              <h3 class="headline uppercase text-2xl text-on-surface mb-3">Collector Satellites</h3>
+              <p class="text-on-surface-variant text-sm leading-relaxed">
+                Geostationary nodes equipped with ultra-thin-film photovoltaics and phase-conjugate
+                microwave arrays. Beam-steering is accomplished via retro-directive pilot signal.
+              </p>
+              <div class="tx-h my-4"></div>
+              <div class="mono text-[10px] text-on-surface-variant/70 flex gap-5">
+                <span>η · 47%</span>
+                <span>f · 5.8 GHz</span>
+                <span class="text-primary">ALT · 35,786 km</span>
+              </div>
+            </div>
+            <div class="col-span-4 placeholder h-[180px] brackets relative flex items-center justify-center">
+              <span class="br-bl"></span><span class="br-br"></span>
+              <div class="mono text-[10px] text-center leading-5">
+                [ SCHEMATIC ]<br/>
+                <span class="text-on-surface-variant/50">collector_sat_β.dwg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-center my-2">
+          <div class="tx-v h-10"></div>
+        </div>
+
+        <!-- Module 03 -->
+        <div class="glass p-8 brackets relative mb-8">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="grid grid-cols-12 gap-6">
+            <div class="col-span-2 flex flex-col">
+              <div class="label text-[9px] text-secondary/80 mb-1">MOD / 03</div>
+              <div class="headline text-6xl text-primary-strong/80 font-light leading-none">γ</div>
+              <div class="mt-auto mono text-[10px] text-tertiary">STAT · STABLE</div>
+            </div>
+            <div class="col-span-6">
+              <h3 class="headline uppercase text-2xl text-on-surface mb-3">Lagrange Nodes</h3>
+              <p class="text-on-surface-variant text-sm leading-relaxed">
+                Deep-space staging areas positioned at L4 and L5 for automated assembly,
+                maintenance, and orbital trajectory resolution — outside Earth's gravity well.
+              </p>
+              <div class="tx-h my-4"></div>
+              <div class="mono text-[10px] text-on-surface-variant/70 flex gap-5">
+                <span>STATIONS · 2</span>
+                <span>CREW · 0 (auto)</span>
+                <span class="text-primary">Δv · 3.1 km/s</span>
+              </div>
+            </div>
+            <div class="col-span-4 placeholder h-[180px] brackets relative flex items-center justify-center">
+              <span class="br-bl"></span><span class="br-br"></span>
+              <div class="mono text-[10px] text-center leading-5">
+                [ ORBITAL MAP ]<br/>
+                <span class="text-on-surface-variant/50">L4_L5_nodes.svg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-center my-2">
+          <div class="tx-v h-10"></div>
+        </div>
+
+        <!-- Module 04 -->
+        <div class="glass p-8 brackets relative md:ml-16">
+          <span class="br-bl"></span><span class="br-br"></span>
+          <div class="grid grid-cols-12 gap-6">
+            <div class="col-span-2 flex flex-col">
+              <div class="label text-[9px] text-secondary/80 mb-1">MOD / 04</div>
+              <div class="headline text-6xl text-primary-strong/80 font-light leading-none">δ</div>
+              <div class="mt-auto mono text-[10px] text-tertiary">STAT · SYNCED</div>
+            </div>
+            <div class="col-span-6">
+              <h3 class="headline uppercase text-2xl text-on-surface mb-3">Star Power Grid</h3>
+              <p class="text-on-surface-variant text-sm leading-relaxed">
+                Terrestrial rectennas integrated with smart-grid infrastructure, converting
+                orbital microwave transmission back to high-voltage DC current for continental distribution.
+              </p>
+              <div class="tx-h my-4"></div>
+              <div class="mono text-[10px] text-on-surface-variant/70 flex gap-5">
+                <span>SITES · 24</span>
+                <span>AVG EFF · 94%</span>
+                <span class="text-primary">LOAD · 1.42 TW</span>
+              </div>
+            </div>
+            <div class="col-span-4 placeholder h-[180px] brackets relative flex items-center justify-center">
+              <span class="br-bl"></span><span class="br-br"></span>
+              <div class="mono text-[10px] text-center leading-5">
+                [ GRID MAP ]<br/>
+                <span class="text-on-surface-variant/50">rectenna_global.geo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     LIVE TELEMETRY / DATA ROOM
+     ════════════════════════════════════════════════════════════════════ -->
+<section id="telemetry" class="relative py-28 bg-surface-low">
+  <div class="mx-auto max-w-[1440px] px-8">
+    <div class="grid grid-cols-12 gap-8 mb-12 items-end">
+      <div class="col-span-12 md:col-span-7">
+        <div class="sec-tag mb-3"><span class="dot"></span> FILE 005 / REAL-TIME</div>
+        <h2 class="headline uppercase text-6xl md:text-7xl font-semibold text-primary leading-none">Telemetry</h2>
+      </div>
+      <div class="col-span-12 md:col-span-5 flex justify-end">
+        <div class="glass px-5 py-3 flex items-center gap-4">
+          <span class="w-2 h-2 bg-tertiary pulse-cy"></span>
+          <span class="mono text-[11px] text-tertiary">ALL CHANNELS NOMINAL</span>
+          <span class="mono text-[10px] text-on-surface-variant/60">· sync 180ms</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-6">
+      <!-- Big beam monitor -->
+      <div class="col-span-12 md:col-span-8 glass-heavy p-6 brackets relative">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="flex items-start justify-between mb-5">
+          <div>
+            <div class="label text-[9px] text-secondary/80 mb-1">BEAM POWER · LAST 60s</div>
+            <div class="headline text-4xl text-primary">1.498 TW</div>
+          </div>
+          <div class="flex gap-2">
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-secondary">α</span>
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-secondary">β</span>
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-tertiary">γ</span>
+          </div>
+        </div>
+
+        <!-- Faux live chart (bars) -->
+        <div class="flex items-end gap-[4px] h-[180px]" id="beamChart">
+          <!-- filled by JS -->
+        </div>
+
+        <div class="tx-h my-4"></div>
+        <div class="flex justify-between mono text-[10px] text-on-surface-variant/70">
+          <span>T−60s</span>
+          <span>T−45s</span>
+          <span>T−30s</span>
+          <span>T−15s</span>
+          <span class="text-tertiary">NOW</span>
+        </div>
+      </div>
+
+      <!-- Rectenna map (data-grid placeholder) -->
+      <div class="col-span-12 md:col-span-4 glass p-6 brackets relative">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="flex items-start justify-between mb-5">
+          <div class="label text-[9px] text-secondary/80">RECTENNA STATUS · 24 SITES</div>
+          <div class="mono text-[10px] text-tertiary">12 ONLINE</div>
+        </div>
+        <!-- 6x4 grid of cells -->
+        <div class="grid grid-cols-6 gap-1.5" id="rectGrid"></div>
+        <div class="tx-h my-4"></div>
+        <div class="space-y-1.5 mono text-[10px]">
+          <div class="flex justify-between"><span class="text-on-surface-variant">ATL-04</span><span class="text-tertiary">ONLINE · 94%</span></div>
+          <div class="flex justify-between"><span class="text-on-surface-variant">PAC-11</span><span class="text-tertiary">ONLINE · 88%</span></div>
+          <div class="flex justify-between"><span class="text-on-surface-variant">EUR-02</span><span class="text-primary">CALIBRATING</span></div>
+          <div class="flex justify-between"><span class="text-on-surface-variant">AFR-07</span><span class="text-on-surface-variant/50">STANDBY</span></div>
+        </div>
+      </div>
+
+      <!-- Swarm geometry mini -->
+      <div class="col-span-6 md:col-span-3 glass p-5 brackets relative">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="label text-[9px] text-secondary/80 mb-2">SWARM GEOMETRY</div>
+        <div class="relative h-[120px] crosshair">
+          <!-- concentric small rings -->
+          <div class="ring absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style="width:100px;height:100px;"></div>
+          <div class="ring ring-dashed absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style="width:70px;height:70px;"></div>
+          <div class="ring absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style="width:40px;height:40px; border-color:rgba(255,186,32,0.35);"></div>
+          <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[12px] h-[12px] solar-bg"></div>
+          <div class="sat" style="left:75%; top:30%;"></div>
+          <div class="sat sat-gold" style="left:20%; top:65%;"></div>
+          <div class="sat" style="left:50%; top:12%;"></div>
+        </div>
+        <div class="mono text-[10px] text-on-surface-variant/70 mt-2">φ · 35,786 km · GEO</div>
+      </div>
+
+      <!-- Beam spectrum (faux) -->
+      <div class="col-span-6 md:col-span-3 glass p-5 brackets relative">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="label text-[9px] text-secondary/80 mb-2">SPECTRUM / BAND</div>
+        <div class="flex items-end gap-[2px] h-[120px]" id="spectrum"></div>
+        <div class="flex justify-between mono text-[10px] text-on-surface-variant/70 mt-2">
+          <span>2 GHz</span><span>5.8</span><span>24</span>
+        </div>
+      </div>
+
+      <!-- Counters stack -->
+      <div class="col-span-12 md:col-span-6 glass p-6 brackets relative">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="grid grid-cols-3 gap-6">
+          <div>
+            <div class="label text-[9px] text-secondary/80 mb-1">UPTIME</div>
+            <div class="headline text-3xl text-on-surface">2,847 <span class="label text-[10px] text-on-surface-variant">d</span></div>
+            <div class="tx-h mt-3"></div>
+          </div>
+          <div>
+            <div class="label text-[9px] text-secondary/80 mb-1">FLARES DEFLECTED</div>
+            <div class="headline text-3xl text-tertiary">113</div>
+            <div class="tx-h mt-3"></div>
+          </div>
+          <div>
+            <div class="label text-[9px] text-secondary/80 mb-1">CO₂ OFFSET · 2146</div>
+            <div class="headline text-3xl text-primary">4.2 <span class="label text-[10px] text-on-surface-variant">Gt</span></div>
+            <div class="tx-h mt-3"></div>
+          </div>
+        </div>
+        <div class="mt-6 mono text-[11px] text-on-surface-variant/80 leading-relaxed">
+          Cumulative operational data since first-light of the α-swarm on 2141-03-08.
+          All metrics verified by independent orbital observer stations.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     BEARS / PERSONNEL
+     ════════════════════════════════════════════════════════════════════ -->
+<section id="bears" class="relative py-28 bg-surface">
+  <div class="mx-auto max-w-[1440px] px-8">
+    <div class="flex flex-col items-center text-center mb-20">
+      <div class="sec-tag mb-4"><span class="dot"></span> PERSONNEL MANIFEST / FILE 006</div>
+      <h2 class="headline uppercase text-6xl md:text-7xl font-semibold leading-none mb-5">
+        <span class="solar-text">Polaris Bears</span>
+      </h2>
+      <div class="tx-h w-24 mb-5"></div>
+      <p class="max-w-xl text-on-surface-variant text-sm leading-relaxed">
+        Two-person engineering crew responsible for orbital deployment, phase-conjugate transmission
+        calibration, and L-node trajectory resolution. Call-sign inherited from the constellation
+        above the project's original observatory.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-12 gap-6">
+      <!-- Card: Chelaru -->
+      <div class="col-span-12 md:col-span-6 glass brackets relative flex">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <!-- Portrait frame -->
+        <div class="w-[200px] flex-shrink-0 placeholder border-r border-outline-variant/15 relative flex items-center justify-center">
+          <div class="mono text-[10px] text-on-surface-variant/50 text-center leading-5">
+            [ PORTRAIT ]<br/>chelaru_i.jpg
+          </div>
+          <div class="absolute top-3 left-3 label text-[9px] text-secondary">P-001</div>
+          <div class="absolute bottom-3 left-3 right-3 mono text-[9px] text-on-surface-variant/60 flex justify-between">
+            <span>45.09° N</span><span>12.88° E</span>
+          </div>
+        </div>
+        <div class="flex-1 p-6 flex flex-col">
+          <div class="flex items-start justify-between mb-3">
+            <div class="label text-[9px] text-secondary/80">LEAD ARCHITECT</div>
+            <div class="mono text-[10px] text-primary">ID · P-001</div>
+          </div>
+          <h3 class="headline text-2xl text-on-surface mb-1">Ioan Chelaru</h3>
+          <div class="mono text-[11px] text-on-surface-variant/70 mb-4">Orbital Mechanics · Phase-Conjugate Systems</div>
+
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-on-surface-variant border border-outline-variant/20">MSc · Astrophysics</span>
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-on-surface-variant border border-outline-variant/20">L-5 Certified</span>
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-on-surface-variant border border-outline-variant/20">EVA Clearance</span>
+          </div>
+
+          <p class="text-sm text-on-surface-variant leading-relaxed flex-1">
+            Specialist in orbital mechanics and phase-conjugate microwave transmission.
+            Lead designer of the α-swarm deployment sequence; authored the retro-directive
+            pilot signal protocol currently in use across the constellation.
+          </p>
+
+          <div class="tx-h my-4"></div>
+          <div class="mono text-[10px] text-on-surface-variant/70 flex justify-between">
+            <span>MISSIONS · 14</span>
+            <span>LAST UPLINK · T−00:12:41</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Olariu -->
+      <div class="col-span-12 md:col-span-6 glass brackets relative flex md:mt-12">
+        <span class="br-bl"></span><span class="br-br"></span>
+        <div class="w-[200px] flex-shrink-0 placeholder border-r border-outline-variant/15 relative flex items-center justify-center">
+          <div class="mono text-[10px] text-on-surface-variant/50 text-center leading-5">
+            [ PORTRAIT ]<br/>olariu_a.jpg
+          </div>
+          <div class="absolute top-3 left-3 label text-[9px] text-primary">P-002</div>
+          <div class="absolute bottom-3 left-3 right-3 mono text-[9px] text-on-surface-variant/60 flex justify-between">
+            <span>44.43° N</span><span>26.10° E</span>
+          </div>
+        </div>
+        <div class="flex-1 p-6 flex flex-col">
+          <div class="flex items-start justify-between mb-3">
+            <div class="label text-[9px] text-primary/90">CHIEF ENGINEER</div>
+            <div class="mono text-[10px] text-primary">ID · P-002</div>
+          </div>
+          <h3 class="headline text-2xl text-on-surface mb-1">Albert Olariu</h3>
+          <div class="mono text-[11px] text-on-surface-variant/70 mb-4">Energy Systems · Grid Integration</div>
+
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-on-surface-variant border border-outline-variant/20">PhD · Energy Sys</span>
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-on-surface-variant border border-outline-variant/20">Class A Intel</span>
+            <span class="label text-[9px] px-2 py-1 bg-surface-high text-on-surface-variant border border-outline-variant/20">Rectenna Ops</span>
+          </div>
+
+          <p class="text-sm text-on-surface-variant leading-relaxed flex-1">
+            Pioneered the terrestrial rectenna grid integration protocols. Currently
+            overseeing synchronization algorithms for the L4 staging nodes, with a focus
+            on auto-calibration of the Atlantic and Pacific rectenna fields.
+          </p>
+
+          <div class="tx-h my-4"></div>
+          <div class="mono text-[10px] text-on-surface-variant/70 flex justify-between">
+            <span>MISSIONS · 11</span>
+            <span>LAST UPLINK · T−00:04:08</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Constellation motto -->
+    <div class="mt-20 text-center">
+      <div class="mono text-[10px] text-secondary/70 mb-3">CONSTELLATION POLARIS · α · URSA MINOR</div>
+      <div class="flex items-center justify-center gap-5">
+        <span class="tx-h w-24"></span>
+        <div class="headline uppercase text-sm tracking-[0.4em] text-on-surface-variant">— guiding star, fixed point —</div>
+        <span class="tx-h w-24"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     UPLINK / CONTACT
+     ════════════════════════════════════════════════════════════════════ -->
+<section id="uplink" class="relative py-28 bg-surface-low">
+  <div class="mx-auto max-w-[1440px] px-8 grid grid-cols-12 gap-8">
+    <div class="col-span-12 md:col-span-5">
+      <div class="sec-tag mb-4"><span class="dot"></span> FILE 007 / ESTABLISH UPLINK</div>
+      <h2 class="headline uppercase text-6xl font-semibold text-primary leading-none mb-6">Connect</h2>
+      <p class="text-on-surface-variant leading-relaxed mb-8">
+        Access to orbital observatory telemetry is gated. Submit credentials to request
+        a secure channel to the Polaris Bears operations desk.
+      </p>
+
+      <div class="space-y-6 mono text-[11px]">
+        <div class="flex items-start gap-4 ghost-b pb-4">
+          <span class="text-secondary">→</span>
+          <div>
+            <div class="text-on-surface-variant/60">CHANNEL</div>
+            <div class="text-on-surface">uplink.polaris.ursa</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-4 ghost-b pb-4">
+          <span class="text-secondary">→</span>
+          <div>
+            <div class="text-on-surface-variant/60">LATENCY</div>
+            <div class="text-on-surface">124ms · geosync</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-secondary">→</span>
+          <div>
+            <div class="text-on-surface-variant/60">ENCRYPTION</div>
+            <div class="text-on-surface">QKD · BB84</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 md:col-span-7 glass-heavy p-8 brackets relative">
+      <span class="br-bl"></span><span class="br-br"></span>
+      <div class="flex items-center justify-between mb-6">
+        <div class="label text-[9px] text-secondary/80">SECURE REQUEST / FORM 003</div>
+        <div class="mono text-[10px] text-tertiary flex items-center gap-2">
+          <span class="w-1.5 h-1.5 bg-tertiary pulse-cy"></span> CHANNEL READY
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <label class="label text-[9px] text-on-surface-variant/70">CALL SIGN</label>
+          <input type="text" class="laser-input w-full mt-1" placeholder="e.g. OBSERVER-07"/>
+        </div>
+        <div>
+          <label class="label text-[9px] text-on-surface-variant/70">AFFILIATION</label>
+          <input type="text" class="laser-input w-full mt-1" placeholder="orbital / terrestrial"/>
+        </div>
+        <div class="col-span-2">
+          <label class="label text-[9px] text-on-surface-variant/70">RELAY ADDRESS</label>
+          <input type="text" class="laser-input w-full mt-1" placeholder="addr@channel.orb"/>
+        </div>
+        <div class="col-span-2">
+          <label class="label text-[9px] text-on-surface-variant/70">TRANSMISSION</label>
+          <textarea class="laser-input w-full mt-1" rows="3" placeholder="Message body · 2048 byte limit"></textarea>
+        </div>
+      </div>
+
+      <div class="tx-h my-6"></div>
+
+      <div class="flex items-center justify-between">
+        <div class="mono text-[10px] text-on-surface-variant/60">PAYLOAD · 0 / 2,048 bytes</div>
+        <button class="solar-bg px-6 py-3 label text-[10px] text-on-primary hover:brightness-110 transition flex items-center gap-3">
+          Transmit <span class="mono text-[10px]">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════════════════════════ -->
+<footer class="relative bg-surface-lowest border-t border-outline-variant/20">
+  <!-- Solar gold hairline -->
+  <div class="h-px solar-bg opacity-70"></div>
+  <div class="mx-auto max-w-[1440px] px-8 py-12">
+    <div class="grid grid-cols-12 gap-8 mb-10">
+      <div class="col-span-12 md:col-span-4">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="orbit-icon text-primary-strong"></span>
+          <div>
+            <div class="headline text-[13px] tracking-[0.22em] text-on-surface">POLARIS</div>
+            <div class="label text-[9px] text-on-surface-variant/70">ORBITAL_OBSERVATORY</div>
+          </div>
+        </div>
+        <p class="mono text-[11px] text-on-surface-variant/70 leading-relaxed">
+          Platformă Orbitală Laser pentru Alimentare și Recepție Inovativă Solară.
+          Operated under the Type-I Civilization Charter, Article 4.
+        </p>
+      </div>
+
+      <div class="col-span-6 md:col-span-2">
+        <div class="label text-[9px] text-secondary/80 mb-4">SYSTEM</div>
+        <ul class="space-y-2 mono text-[11px] text-on-surface-variant">
+          <li><a href="#mission" class="laser-link">Mission</a></li>
+          <li><a href="#architecture" class="laser-link">Architecture</a></li>
+          <li><a href="#telemetry" class="laser-link">Telemetry</a></li>
+        </ul>
+      </div>
+      <div class="col-span-6 md:col-span-2">
+        <div class="label text-[9px] text-secondary/80 mb-4">CREW</div>
+        <ul class="space-y-2 mono text-[11px] text-on-surface-variant">
+          <li><a href="#bears" class="laser-link">Bears</a></li>
+          <li><a href="#uplink" class="laser-link">Uplink</a></li>
+          <li><a href="#" class="laser-link">Archive</a></li>
+        </ul>
+      </div>
+      <div class="col-span-12 md:col-span-4">
+        <div class="label text-[9px] text-secondary/80 mb-4">ORBITAL STATUS</div>
+        <div class="glass p-4">
+          <div class="flex justify-between mono text-[10px] mb-2">
+            <span class="text-on-surface-variant/70">KARDASHEV</span>
+            <span class="text-primary">0.734</span>
+          </div>
+          <div class="bar mb-4"><span style="width:73.4%"></span></div>
+          <div class="flex justify-between mono text-[10px]">
+            <span class="text-on-surface-variant/70">ALL SYSTEMS</span>
+            <span class="text-tertiary">NOMINAL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tx-h-gold mb-6"></div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 mono text-[10px] text-on-surface-variant/60">
+      <div>© 2144 · ORBITAL ENGINEERING DIV · POLARIS BEARS</div>
+      <div class="flex items-center gap-6">
+        <span>COORD 45.09° / 12.88°</span>
+        <span>SIG ENCR · QKD</span>
+        <span id="clock2">UTC 00:00:00</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     TWEAKS PANEL (hidden unless host toggles on)
+     ════════════════════════════════════════════════════════════════════ -->
+<div id="twPanel" class="tw-panel glass-heavy p-5 brackets">
+  <span class="br-bl"></span><span class="br-br"></span>
+  <div class="flex items-center justify-between mb-4">
+    <div class="label text-[10px] text-secondary">TWEAKS</div>
+    <div class="mono text-[10px] text-on-surface-variant/60">live</div>
+  </div>
+
+  <div class="space-y-4">
+    <div>
+      <div class="label text-[9px] text-on-surface-variant/70 mb-1">ACCENT HUE · <span id="hueVal">75</span>°</div>
+      <input id="tw-hue" type="range" min="0" max="360" step="1" class="w-full accent-primary-strong"/>
+    </div>
+
+    <div>
+      <div class="label text-[9px] text-on-surface-variant/70 mb-2">HERO VARIANT</div>
+      <div class="grid grid-cols-3 gap-1.5" id="tw-hero">
+        <button data-v="constellation" class="label text-[9px] py-2 bg-surface-high text-on-surface">Const</button>
+        <button data-v="blueprint"     class="label text-[9px] py-2 bg-surface-high text-on-surface-variant">Blueprint</button>
+        <button data-v="minimal"       class="label text-[9px] py-2 bg-surface-high text-on-surface-variant">Minimal</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="label text-[9px] text-on-surface-variant/70 mb-2">LANGUAGE</div>
+      <div class="grid grid-cols-3 gap-1.5" id="tw-lang">
+        <button data-v="en"     class="label text-[9px] py-2 bg-surface-high text-on-surface-variant">EN</button>
+        <button data-v="ro"     class="label text-[9px] py-2 bg-surface-high text-on-surface-variant">RO</button>
+        <button data-v="mixed"  class="label text-[9px] py-2 bg-surface-high text-on-surface">Mix</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="label text-[9px] text-on-surface-variant/70 mb-2">DATA INTENSITY</div>
+      <div class="grid grid-cols-3 gap-1.5" id="tw-data">
+        <button data-v="calm"  class="label text-[9px] py-2 bg-surface-high text-on-surface-variant">Calm</button>
+        <button data-v="mid"   class="label text-[9px] py-2 bg-surface-high text-on-surface-variant">Mid</button>
+        <button data-v="rich"  class="label text-[9px] py-2 bg-surface-high text-on-surface">Rich</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="label text-[9px] text-on-surface-variant/70 mb-2">BLUEPRINT GRID</div>
+      <div class="grid grid-cols-2 gap-1.5" id="tw-grid">
+        <button data-v="true"  class="label text-[9px] py-2 bg-surface-high text-on-surface">On</button>
+        <button data-v="false" class="label text-[9px] py-2 bg-surface-high text-on-surface-variant">Off</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     SCRIPTS
+     ════════════════════════════════════════════════════════════════════ -->
+<script>
+// ──────────────────────────────────────────────────────────────────
+// Live UTC clock
+// ──────────────────────────────────────────────────────────────────
+function tickClock() {
+  const now = new Date();
+  const h = String(now.getUTCHours()).padStart(2,'0');
+  const m = String(now.getUTCMinutes()).padStart(2,'0');
+  const s = String(now.getUTCSeconds()).padStart(2,'0');
+  const t = `${h}:${m}:${s} UTC`;
+  const c1 = document.getElementById('clock');
+  const c2 = document.getElementById('clock2');
+  if (c1) c1.textContent = t;
+  if (c2) c2.textContent = `UTC ${h}:${m}:${s}`;
+}
+tickClock(); setInterval(tickClock, 1000);
+
+// ──────────────────────────────────────────────────────────────────
+// Beam chart (random walk)
+// ──────────────────────────────────────────────────────────────────
+(function buildBeamChart(){
+  const host = document.getElementById('beamChart');
+  if (!host) return;
+  const N = 60;
+  let val = 0.55;
+  const bars = [];
+  for (let i=0;i<N;i++){
+    val = Math.max(0.2, Math.min(1, val + (Math.random()-0.5)*0.12));
+    const h = Math.round(val * 100);
+    const bar = document.createElement('div');
+    bar.className = 'flex-1';
+    const isRecent = i > N-8;
+    bar.style.cssText = `height:${h}%; background: ${isRecent ? 'linear-gradient(180deg,#ffe3b7,#ffba20)' : 'rgba(189,244,255,' + (0.25 + val*0.35) + ')'};`;
+    bars.push(bar); host.appendChild(bar);
+  }
+  // gentle live update
+  setInterval(() => {
+    const first = host.firstElementChild; if (!first) return;
+    host.removeChild(first);
+    val = Math.max(0.2, Math.min(1, val + (Math.random()-0.5)*0.12));
+    const h = Math.round(val*100);
+    const bar = document.createElement('div');
+    bar.className = 'flex-1';
+    bar.style.cssText = `height:${h}%; background: linear-gradient(180deg,#ffe3b7,#ffba20);`;
+    // demote previous "recent" bars
+    [...host.children].slice(-7).forEach(b => {
+      const m = b.style.height.match(/(\d+)%/);
+      const hh = m ? parseInt(m[1]) : 50;
+      b.style.background = `rgba(189,244,255,${0.25 + (hh/100)*0.35})`;
+    });
+    host.appendChild(bar);
+  }, 900);
+})();
+
+// ──────────────────────────────────────────────────────────────────
+// Rectenna grid
+// ──────────────────────────────────────────────────────────────────
+(function buildRectGrid(){
+  const host = document.getElementById('rectGrid');
+  if (!host) return;
+  const states = ['on','on','on','on','on','on','on','on','on','on','on','on','cal','cal','off','off','off','off','off','off','off','off','off','off'];
+  // shuffle once
+  for (let i=states.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [states[i],states[j]]=[states[j],states[i]]; }
+  states.forEach(s => {
+    const cell = document.createElement('div');
+    cell.className = 'aspect-square ghost flex items-center justify-center';
+    const dot = document.createElement('span');
+    dot.style.width = '6px'; dot.style.height = '6px';
+    if (s==='on') { dot.style.background = '#91ff89'; dot.style.boxShadow = '0 0 6px #91ff89'; }
+    else if (s==='cal') { dot.style.background = '#ffba20'; dot.style.boxShadow = '0 0 6px #ffba20'; }
+    else { dot.style.background = '#504533'; }
+    cell.appendChild(dot); host.appendChild(cell);
+  });
+})();
+
+// ──────────────────────────────────────────────────────────────────
+// Spectrum
+// ──────────────────────────────────────────────────────────────────
+(function buildSpectrum(){
+  const host = document.getElementById('spectrum');
+  if (!host) return;
+  const N = 48;
+  for (let i=0;i<N;i++){
+    const bar = document.createElement('div');
+    bar.className = 'flex-1';
+    // two spikes around idx 20 and 36
+    const base = 10 + Math.random()*20;
+    let v = base;
+    v += 60 * Math.exp(-Math.pow((i-20)/3, 2));
+    v += 40 * Math.exp(-Math.pow((i-36)/2, 2));
+    v = Math.min(100, v);
+    const color = (i>=17 && i<=23) ? 'linear-gradient(180deg,#ffe3b7,#ffba20)'
+                 : (i>=34 && i<=38) ? 'rgba(145,255,137,0.8)'
+                 : 'rgba(189,244,255,0.35)';
+    bar.style.cssText = `height:${v}%; background:${color};`;
+    host.appendChild(bar);
+  }
+})();
+
+// ──────────────────────────────────────────────────────────────────
+// Nav scroll-spy (simple)
+// ──────────────────────────────────────────────────────────────────
+(function navSpy(){
+  const links = [...document.querySelectorAll('nav .laser-link')];
+  const map = new Map(links.map(l => [l.getAttribute('href'), l]));
+  const sections = [...map.keys()].map(k => document.querySelector(k)).filter(Boolean);
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = '#' + e.target.id;
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px' });
+  sections.forEach(s => obs.observe(s));
+})();
+
+// ──────────────────────────────────────────────────────────────────
+// TWEAKS
+// ──────────────────────────────────────────────────────────────────
+const defaults = TWEAKS_JSON;
+let state = { ...defaults };
+
+function applyTweaks(s) {
+  // Accent hue: rotate the cyan/green decoration via CSS filter
+  document.documentElement.style.setProperty('--accent-h', s.accent_hue);
+  // We shift only the cyan-ish decorations via a filter on .stars + rings via CSS var
+  // (keep gold stable — per spec it's the signature)
+  const cy = hueRotateColor('#bdf4ff', s.accent_hue - 75);
+  const gr = hueRotateColor('#91ff89', s.accent_hue - 75);
+  document.documentElement.style.setProperty('--cyan', cy);
+  document.documentElement.style.setProperty('--green', gr);
+  // replace inline rgba stops used by .tx-h etc — simpler: set a class
+  document.querySelectorAll('.sat:not(.sat-gold)').forEach(el => {
+    el.style.background = cy; el.style.boxShadow = `0 0 10px ${cy}`;
+  });
+
+  // Hero variant
+  const orbit = document.getElementById('orbitStage');
+  const grid = document.getElementById('gridOverlay');
+  if (orbit) orbit.style.opacity = s.hero_variant === 'minimal' ? '0' : (s.hero_variant === 'blueprint' ? '0.35' : '0.9');
+  if (grid)  grid.style.opacity  = s.hero_variant === 'blueprint' ? '1' : (s.show_grid ? '1' : '0');
+
+  // Blueprint grid toggle (independent)
+  if (grid) grid.style.display = (s.show_grid || s.hero_variant === 'blueprint') ? 'block' : 'none';
+
+  // Language toggle
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    const lang = el.getAttribute('data-lang');
+    if (s.language === 'mixed') { el.style.display = ''; }
+    else { el.style.display = (s.language === lang) ? '' : 'none'; }
+  });
+
+  // Data intensity
+  const tickers = document.querySelectorAll('.tick-track');
+  tickers.forEach(t => {
+    t.style.animationDuration = s.data_intensity === 'calm' ? '120s' : s.data_intensity === 'mid' ? '80s' : '50s';
+    t.style.opacity = s.data_intensity === 'calm' ? '0.5' : '1';
+  });
+  const telemetry = document.querySelector('#telemetry');
+  if (telemetry) telemetry.style.display = s.data_intensity === 'calm' ? 'none' : '';
+
+  // Sync button active states
+  ['hero','lang','data','grid'].forEach(g => {
+    const key = ({hero:'hero_variant', lang:'language', data:'data_intensity', grid:'show_grid'})[g];
+    document.querySelectorAll(`#tw-${g} button`).forEach(b => {
+      const v = b.dataset.v;
+      const active = String(s[key]) === v;
+      b.classList.toggle('text-on-surface', active);
+      b.classList.toggle('text-on-surface-variant', !active);
+      b.style.boxShadow = active ? 'inset 0 -2px 0 #bdf4ff' : 'none';
+    });
+  });
+  const hv = document.getElementById('hueVal'); if (hv) hv.textContent = s.accent_hue;
+  const hueSlider = document.getElementById('tw-hue'); if (hueSlider && document.activeElement !== hueSlider) hueSlider.value = s.accent_hue;
+}
+
+function hueRotateColor(hex, deg) {
+  // minimal HSL rotate
+  const r = parseInt(hex.slice(1,3),16)/255, g = parseInt(hex.slice(3,5),16)/255, b = parseInt(hex.slice(5,7),16)/255;
+  const max = Math.max(r,g,b), min = Math.min(r,g,b);
+  let h, s, l = (max+min)/2;
+  if (max===min){ h=0; s=0; }
+  else {
+    const d = max-min;
+    s = l>0.5 ? d/(2-max-min) : d/(max+min);
+    switch(max){
+      case r: h = (g-b)/d + (g<b?6:0); break;
+      case g: h = (b-r)/d + 2; break;
+      case b: h = (r-g)/d + 4; break;
+    }
+    h /= 6;
+  }
+  h = (h*360 + deg + 720) % 360 / 360;
+  function hue2rgb(p,q,t){ if(t<0)t+=1; if(t>1)t-=1; if(t<1/6)return p+(q-p)*6*t; if(t<1/2)return q; if(t<2/3)return p+(q-p)*(2/3-t)*6; return p; }
+  const q = l<0.5 ? l*(1+s) : l+s-l*s, p = 2*l-q;
+  const rr = Math.round(hue2rgb(p,q,h+1/3)*255);
+  const gg = Math.round(hue2rgb(p,q,h)*255);
+  const bb = Math.round(hue2rgb(p,q,h-1/3)*255);
+  return `rgb(${rr},${gg},${bb})`;
+}
+
+function setTweak(key, val) {
+  state = { ...state, [key]: val };
+  applyTweaks(state);
+  // persist via host
+  try {
+    window.parent.postMessage({type:'__edit_mode_set_keys', edits:{[key]: val}}, '*');
+  } catch {}
+}
+
+// Wire controls
+document.getElementById('tw-hue').addEventListener('input', e => setTweak('accent_hue', parseInt(e.target.value)));
+['hero','lang','data','grid'].forEach(g => {
+  const key = ({hero:'hero_variant', lang:'language', data:'data_intensity', grid:'show_grid'})[g];
+  document.querySelectorAll(`#tw-${g} button`).forEach(b => {
+    b.addEventListener('click', () => {
+      let v = b.dataset.v;
+      if (key === 'show_grid') v = v === 'true';
+      setTweak(key, v);
+    });
+  });
+});
+
+// Initial apply
+applyTweaks(state);
+
+// ──────────────────────────────────────────────────────────────────
+// Edit mode protocol
+// ──────────────────────────────────────────────────────────────────
+window.addEventListener('message', (e) => {
+  if (!e.data || typeof e.data !== 'object') return;
+  if (e.data.type === '__activate_edit_mode') {
+    document.getElementById('twPanel').classList.add('on');
+  } else if (e.data.type === '__deactivate_edit_mode') {
+    document.getElementById('twPanel').classList.remove('on');
+  }
+});
+try { window.parent.postMessage({type:'__edit_mode_available'}, '*'); } catch {}
+</script>
+</body>
+</html>
