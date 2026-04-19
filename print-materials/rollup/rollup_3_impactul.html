@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../claude-design-transit/corrected/assets/fonts.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 850px; height: 2000px;
+  background: #0a0d18;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow: hidden;
+}
+
+/* ── HEADER ─────────────────────────────────────── */
+.header {
+  width: 100%; height: 148px;
+  background: linear-gradient(180deg, #0f131f 0%, #0a0d18 100%);
+  display: flex; align-items: center;
+  padding: 0 40px; gap: 22px;
+  border-bottom: 2px solid #00ff88;
+}
+.logo { width: 80px; height: 80px; object-fit: contain; flex-shrink: 0; }
+.header-brand {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 13px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(0,255,136,0.6); margin-bottom: 4px;
+}
+.header-title {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 52px; letter-spacing: 0.18em; color: #00ff88; line-height: 1;
+}
+.header-subtitle {
+  font-family: 'Manrope', sans-serif; font-size: 12px;
+  color: rgba(223,226,243,0.5); margin-top: 5px; letter-spacing: 0.05em;
+}
+
+/* ── HERO STAT ─────────────────────────────────── */
+.hero-stat {
+  width: 100%; height: 240px; position: relative; overflow: hidden;
+}
+.hero-stat img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center 40%;
+}
+.hero-stat-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(10,13,24,0.88) 0%, rgba(10,13,24,0.55) 60%, rgba(10,13,24,0.8) 100%);
+}
+.hero-stat-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: flex-start; justify-content: center;
+  padding: 0 50px;
+}
+.mega-stat {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 96px; color: #00ff88; letter-spacing: 0.02em; line-height: 1;
+}
+.mega-label {
+  font-family: 'Manrope', sans-serif; font-size: 18px;
+  color: rgba(0,255,136,0.75); margin-top: 6px;
+}
+
+/* ── STAT TRIO ─────────────────────────────────── */
+.stat-trio {
+  display: flex; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.stat-box {
+  flex: 1; padding: 20px 24px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.05);
+}
+.stat-box:last-child { border-right: none; }
+.stat-val {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 32px; line-height: 1; margin-bottom: 5px;
+}
+.stat-desc {
+  font-family: 'Manrope', sans-serif; font-size: 12px;
+  color: rgba(223,226,243,0.55); line-height: 1.4;
+}
+
+/* ── SECTION ───────────────────────────────────── */
+.section { padding: 24px 40px 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.section-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 6px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 22px; color: #dfe2f3; line-height: 1.2; margin-bottom: 12px;
+}
+.body-text {
+  font-family: 'Manrope', sans-serif; font-size: 14px;
+  color: rgba(223,226,243,0.68); line-height: 1.65;
+}
+.highlight { color: #00ff88; font-weight: 600; }
+.highlight-gold { color: #ffba20; font-weight: 600; }
+.highlight-cyan { color: #00e5ff; font-weight: 600; }
+
+/* ── STAR POWER GRID ───────────────────────────── */
+.spg {
+  display: flex; gap: 20px; padding: 24px 40px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.spg-img {
+  width: 260px; height: 190px; flex-shrink: 0;
+  object-fit: cover; border: 1px solid rgba(0,229,255,0.2);
+}
+.spg-text { flex: 1; }
+
+/* ── INOVATIE GRID ─────────────────────────────── */
+.innov {
+  padding: 22px 40px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.innov-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 8px; margin-top: 12px;
+}
+.innov-item {
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.03);
+  border-left: 2px solid rgba(0,255,136,0.4);
+  font-family: 'Manrope', sans-serif; font-size: 13px;
+  color: rgba(223,226,243,0.72); line-height: 1.45;
+}
+.innov-item strong { color: #00ff88; display: block; font-size: 12px; margin-bottom: 2px; font-family: 'JetBrains Mono', monospace; }
+
+/* ── STATEMENT ─────────────────────────────────── */
+.statement {
+  padding: 22px 40px 18px;
+  background: rgba(0,255,136,0.03);
+  border-top: 1px solid rgba(0,255,136,0.15);
+  border-bottom: 1px solid rgba(0,255,136,0.15);
+}
+.statement-quote {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 16px; color: #dfe2f3; line-height: 1.55;
+  border-left: 3px solid #00ff88; padding-left: 16px;
+}
+
+/* ── REFERINTE ─────────────────────────────────── */
+.refs {
+  padding: 16px 40px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.refs-title {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(0,229,255,0.5); margin-bottom: 8px;
+}
+.refs-list {
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+  color: rgba(223,226,243,0.4); line-height: 1.8;
+}
+.refs-list span { color: rgba(0,229,255,0.55); }
+
+/* ── FOOTER ─────────────────────────────────────── */
+.footer {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+  background: #0f131f; border-top: 2px solid rgba(0,255,136,0.3);
+  display: flex; align-items: center; padding: 0 40px; gap: 24px;
+}
+.footer-team { flex: 1; }
+.footer-team-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(0,255,136,0.5); margin-bottom: 5px;
+}
+.footer-team-names {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+  font-size: 17px; color: #dfe2f3;
+}
+.footer-brand {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 13px; letter-spacing: 0.2em; color: rgba(0,255,136,0.7); margin-top: 4px;
+}
+.qr-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  color: rgba(0,255,136,0.5); letter-spacing: 0.12em; margin-top: 5px; text-align: center;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 22% 9%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 18%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 42% 34%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65% 52%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 72%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 86%, rgba(255,255,255,0.25) 0%, transparent 100%);
+  pointer-events: none; z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <img class="logo" src="../../assets/logo-no-ONCS-text-bright-highrez.png" alt="POLARIS Bears Logo">
+  <div>
+    <div class="header-brand">POLARIS Bears · ONCS 2026</div>
+    <div class="header-title">IMPACTUL</div>
+    <div class="header-subtitle">Rezultate · Originalitate · Viitor</div>
+  </div>
+  <div style="margin-left:auto;text-align:right;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:rgba(0,255,136,0.5);text-transform:uppercase;margin-bottom:4px;">IMPACT</div>
+    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:#00ff88;letter-spacing:0.1em;">03 / 03</div>
+  </div>
+</div>
+
+<!-- HERO STAT -->
+<div class="hero-stat">
+  <img src="../../images/generated/Image D - Energy Mathematics.png" alt="Energy">
+  <div class="hero-stat-overlay"></div>
+  <div class="hero-stat-content">
+    <div class="mega-stat">1,6 TW</div>
+    <div class="mega-label">livrat continuu spre Pământ</div>
+  </div>
+</div>
+
+<!-- STAT TRIO -->
+<div class="stat-trio">
+  <div class="stat-box">
+    <div class="stat-val" style="color:#00ff88;">48%</div>
+    <div class="stat-desc">din consumul global<br>de electricitate 2023</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-val" style="color:#ffba20;">2 × 800 GW</div>
+    <div class="stat-desc">Nord + Sud<br>poli magnetici</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-val" style="color:#00e5ff;">η = 13%</div>
+    <div class="stat-desc">eficiență cumulată<br>Soare → Pământ</div>
+  </div>
+</div>
+
+<!-- IMPACT GLOBAL -->
+<div class="section">
+  <div class="section-tag" style="color:rgba(0,255,136,0.6);">Impactul Energetic Global</div>
+  <div class="section-title">De ce contează acești <span class="highlight">1,6 TW</span>?</div>
+  <div class="body-text">Consumul global de electricitate în 2023 a fost de <span class="highlight-gold">≈3,36 TW</span> (IEA). P.O.L.A.R.I.S. ar livra continuu <strong style="color:#dfe2f3;">jumătate din această cantitate</strong>, echivalentul a zeci de centrale nucleare, fără emisii, fără combustibil, 24 de ore din 24.</div>
+</div>
+
+<!-- STAR POWER GRID -->
+<div class="spg">
+  <img class="spg-img" src="../../images/generated/Image I - Star Power Grid GEO.png" alt="Star Power Grid">
+  <div class="spg-text">
+    <div class="section-tag" style="color:rgba(0,229,255,0.6);">Extensia viitorului</div>
+    <div class="section-title" style="font-size:20px;">Star Power Grid</div>
+    <div class="body-text" style="font-size:13.5px;">Surplusul de <span class="highlight-cyan">53% din energia disponibilă</span> la L4/L5 nu se pierde. Prin transmisie GEO cu microunde, alimentează regiuni îndepărtate, fără infrastructură la sol.<br><br>
+    Orizont: <strong style="color:#dfe2f3;">30–50 de ani</strong></div>
+  </div>
+</div>
+
+<!-- ORIGINALITATE -->
+<div class="innov">
+  <div class="section-tag" style="color:rgba(0,255,136,0.6);">De ce este original</div>
+  <div class="section-title">Arhitectură Unică</div>
+  <div class="body-text" style="margin-bottom:10px;">Nicio lucrare existentă nu combină simultan toate cele patru elemente:</div>
+  <div class="innov-grid">
+    <div class="innov-item">
+      <strong>Roi Dyson circumsolar</strong>
+      30 oglinzi la 7,696 mln km de Soare
+    </div>
+    <div class="innov-item">
+      <strong>Noduri energetice L4/L5</strong>
+      Releu gravitațional stabil Soare–Pământ
+    </div>
+    <div class="innov-item">
+      <strong>Supraconductori YBCO</strong>
+      77K · azot lichid · validat CERN
+    </div>
+    <div class="innov-item">
+      <strong>Stații polare balonistice</strong>
+      Arhimede la scară planetară · 30 km
+    </div>
+  </div>
+</div>
+
+<!-- STATEMENT -->
+<div class="statement">
+  <div class="statement-quote">
+    „P.O.L.A.R.I.S. nu este doar un concept — este un model teoretic coerent care demonstrează că energia solară spațială ar putea deveni coloana vertebrală a infrastructurii energetice globale a umanității în secolul XXI."
+  </div>
+</div>
+
+<!-- VALIDARE STIINTIFICA -->
+<div class="section">
+  <div class="section-tag" style="color:rgba(0,229,255,0.6);">Bazat pe știință reală</div>
+  <div class="section-title" style="font-size:18px;">Fundament Științific</div>
+  <div class="body-text" style="font-size:13.5px;">
+    <span class="highlight-gold">NASA Parker Solar Probe</span> — a ajuns la 6,1 mln km de Soare ·
+    <span class="highlight-cyan">CERN</span> — cercetare YBCO și consultare directă ·
+    <span class="highlight-gold">JAXA</span> — transmisie wireless de energie prin microunde ·
+    <span class="highlight-cyan">NASA NIAC</span> — studii de fezabilitate SBSP
+  </div>
+</div>
+
+<!-- REFERINTE -->
+<div class="refs">
+  <div class="refs-title">Referințe principale</div>
+  <div class="refs-list">
+    <span>Glaser (1968)</span> Science · <span>IEA (2024)</span> Electricity Forecast · <span>JAXA</span> SSPS · <span>NASA NIAC</span> SPS-ALPHA ·
+    <span>NASA</span> Parker Solar Probe · <span>CERN (2021)</span> HTS Superconductors · <span>Larbalestier et al. (2001)</span> Nature 414
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-team">
+    <div class="footer-team-label">Echipa</div>
+    <div class="footer-team-names">Ioan CHELARU · Albert OLARIU</div>
+    <div class="footer-brand">POLARIS Bears</div>
+  </div>
+  <div style="text-align:center;">
+    <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+      <rect x="1" y="1" width="70" height="70" rx="3" stroke="rgba(0,255,136,0.4)" stroke-width="1.5" fill="rgba(15,19,31,0.8)"/>
+      <rect x="8" y="8" width="18" height="18" rx="1.5" stroke="#00ff88" stroke-width="1.5" fill="none"/>
+      <rect x="11" y="11" width="12" height="12" rx="1" fill="#00ff88" opacity="0.8"/>
+      <rect x="46" y="8" width="18" height="18" rx="1.5" stroke="#00ff88" stroke-width="1.5" fill="none"/>
+      <rect x="49" y="11" width="12" height="12" rx="1" fill="#00ff88" opacity="0.8"/>
+      <rect x="8" y="46" width="18" height="18" rx="1.5" stroke="#00ff88" stroke-width="1.5" fill="none"/>
+      <rect x="11" y="49" width="12" height="12" rx="1" fill="#00ff88" opacity="0.8"/>
+      <rect x="32" y="9" width="4" height="4" fill="#00ff88" opacity="0.6"/>
+      <rect x="38" y="9" width="4" height="4" fill="#00ff88" opacity="0.4"/>
+      <rect x="32" y="15" width="4" height="4" fill="#00ff88" opacity="0.8"/>
+      <rect x="38" y="15" width="4" height="4" fill="#00ff88" opacity="0.5"/>
+      <rect x="32" y="21" width="4" height="4" fill="#00ff88" opacity="0.7"/>
+      <rect x="9" y="32" width="4" height="4" fill="#00ff88" opacity="0.4"/>
+      <rect x="15" y="32" width="4" height="4" fill="#00ff88" opacity="0.7"/>
+      <rect x="27" y="32" width="4" height="4" fill="#00ff88" opacity="0.9"/>
+      <rect x="33" y="32" width="4" height="4" fill="#00ff88" opacity="0.6"/>
+      <rect x="39" y="32" width="4" height="4" fill="#00ff88" opacity="0.4"/>
+      <rect x="45" y="32" width="4" height="4" fill="#00ff88" opacity="0.8"/>
+      <rect x="51" y="32" width="4" height="4" fill="#00ff88" opacity="0.5"/>
+      <rect x="57" y="32" width="4" height="4" fill="#00ff88" opacity="0.7"/>
+      <rect x="9" y="38" width="4" height="4" fill="#00ff88" opacity="0.6"/>
+      <rect x="21" y="38" width="4" height="4" fill="#00ff88" opacity="0.8"/>
+      <rect x="39" y="38" width="4" height="4" fill="#00ff88" opacity="0.9"/>
+      <rect x="51" y="38" width="4" height="4" fill="#00ff88" opacity="0.6"/>
+      <rect x="57" y="38" width="4" height="4" fill="#00ff88" opacity="0.3"/>
+      <rect x="33" y="44" width="4" height="4" fill="#00ff88" opacity="0.7"/>
+      <rect x="45" y="44" width="4" height="4" fill="#00ff88" opacity="0.5"/>
+      <rect x="33" y="50" width="4" height="4" fill="#00ff88" opacity="0.4"/>
+      <rect x="39" y="50" width="4" height="4" fill="#00ff88" opacity="0.7"/>
+      <rect x="51" y="50" width="4" height="4" fill="#00ff88" opacity="0.6"/>
+      <rect x="33" y="56" width="4" height="4" fill="#00ff88" opacity="0.9"/>
+      <rect x="45" y="56" width="4" height="4" fill="#00ff88" opacity="0.4"/>
+      <rect x="57" y="56" width="4" height="4" fill="#00ff88" opacity="0.5"/>
+    </svg>
+    <div class="qr-label">Video · Website</div>
+  </div>
+</div>
+
+</body>
+</html>

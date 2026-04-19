@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../claude-design-transit/corrected/assets/fonts.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 850px; height: 2000px;
+  background: #0a0d18;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow: hidden;
+}
+
+/* ── HEADER ─────────────────────────────────────── */
+.header {
+  width: 100%; height: 148px;
+  background: linear-gradient(180deg, #0f131f 0%, #0a0d18 100%);
+  display: flex; align-items: center;
+  padding: 0 40px; gap: 22px;
+  border-bottom: 2px solid #00e5ff;
+}
+.logo { width: 80px; height: 80px; object-fit: contain; flex-shrink: 0; }
+.header-text { flex: 1; }
+.header-brand {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 13px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: rgba(0,229,255,0.6); margin-bottom: 4px;
+}
+.header-title {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 52px; letter-spacing: 0.18em; color: #00e5ff; line-height: 1;
+}
+.header-subtitle {
+  font-family: 'Manrope', sans-serif; font-size: 12px;
+  color: rgba(223,226,243,0.5); margin-top: 5px; letter-spacing: 0.05em;
+}
+
+/* ── HERO ──────────────────────────────────────── */
+.hero {
+  width: 100%; height: 300px; position: relative; overflow: hidden;
+}
+.hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,13,24,0.1) 0%, rgba(10,13,24,0) 40%, rgba(10,13,24,0.75) 85%, rgba(10,13,24,1) 100%);
+}
+.hero-label {
+  position: absolute; bottom: 16px; left: 40px;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: rgba(0,229,255,0.7);
+}
+
+/* ── INTRO ─────────────────────────────────────── */
+.intro {
+  padding: 22px 40px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.intro-title {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 24px; color: #dfe2f3; margin-bottom: 8px;
+}
+.intro-text {
+  font-family: 'Manrope', sans-serif; font-size: 14px;
+  color: rgba(223,226,243,0.65); line-height: 1.6;
+}
+
+/* ── NIVEL CARDS ───────────────────────────────── */
+.nivel {
+  display: flex; gap: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+}
+.nivel-num {
+  width: 52px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 28px; color: rgba(255,255,255,0.08);
+  border-right: 1px solid rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.015);
+}
+.nivel-img {
+  width: 180px; height: 140px; flex-shrink: 0;
+  object-fit: cover; object-position: center;
+}
+.nivel-content {
+  flex: 1; padding: 16px 18px 16px 20px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.nivel-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 4px;
+}
+.nivel-title {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 17px; color: #dfe2f3; margin-bottom: 6px; line-height: 1.2;
+}
+.nivel-stat {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  padding: 5px 10px; margin-bottom: 7px;
+  background: rgba(255,255,255,0.04); border-left: 2px solid;
+  display: inline-block;
+}
+.nivel-text {
+  font-family: 'Manrope', sans-serif; font-size: 12.5px;
+  color: rgba(223,226,243,0.6); line-height: 1.5;
+}
+
+/* color per nivel */
+.n1 .nivel-tag { color: rgba(255,186,32,0.75); }
+.n1 .nivel-stat { border-color: #ffba20; color: #ffe3b7; }
+.n2 .nivel-tag { color: rgba(0,229,255,0.75); }
+.n2 .nivel-stat { border-color: #00e5ff; color: #bdf4ff; }
+.n3 .nivel-tag { color: rgba(0,229,255,0.75); }
+.n3 .nivel-stat { border-color: #00e5ff; color: #bdf4ff; }
+.n4 .nivel-tag { color: rgba(0,229,255,0.75); }
+.n4 .nivel-stat { border-color: #00e5ff; color: #bdf4ff; }
+.n5 .nivel-tag { color: rgba(0,255,136,0.75); }
+.n5 .nivel-stat { border-color: #00ff88; color: #91ff89; }
+
+/* ── ETA FORMULA BAR ───────────────────────────── */
+.formula-bar {
+  padding: 20px 40px;
+  background: rgba(0,255,136,0.04);
+  border-top: 1px solid rgba(0,255,136,0.2);
+  border-bottom: 1px solid rgba(0,255,136,0.2);
+  text-align: center;
+}
+.formula-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(0,255,136,0.5); margin-bottom: 8px;
+}
+.formula-eq {
+  font-family: 'JetBrains Mono', monospace; font-size: 18px;
+  color: #00ff88; letter-spacing: 0.06em;
+}
+
+/* ── FLUX ARROW ────────────────────────────────── */
+.flux {
+  padding: 18px 40px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.flux-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 10px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(0,229,255,0.5); margin-bottom: 10px;
+}
+.flux-chain {
+  display: flex; align-items: center; gap: 0;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  flex-wrap: nowrap; overflow: hidden;
+}
+.flux-node {
+  text-align: center; flex: 1;
+  padding: 8px 4px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.flux-node-name { color: #dfe2f3; font-size: 10px; display: block; }
+.flux-node-val { color: rgba(0,229,255,0.7); font-size: 9px; display: block; margin-top: 2px; }
+.flux-arrow {
+  color: rgba(0,255,136,0.6); font-size: 16px; padding: 0 2px; flex-shrink: 0;
+}
+
+/* ── FOOTER ─────────────────────────────────────── */
+.footer {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+  background: #0f131f; border-top: 2px solid rgba(0,229,255,0.3);
+  display: flex; align-items: center; padding: 0 40px; gap: 24px;
+}
+.footer-team { flex: 1; }
+.footer-team-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(0,229,255,0.5); margin-bottom: 5px;
+}
+.footer-team-names {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+  font-size: 17px; color: #dfe2f3;
+}
+.footer-brand {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+  font-size: 13px; letter-spacing: 0.2em; color: rgba(0,229,255,0.7); margin-top: 4px;
+}
+.qr-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  color: rgba(0,229,255,0.5); letter-spacing: 0.12em; margin-top: 5px; text-align: center;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 18% 6%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 82% 12%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 28%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 76% 68%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 8% 85%, rgba(255,255,255,0.25) 0%, transparent 100%);
+  pointer-events: none; z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <img class="logo" src="../../assets/logo-no-ONCS-text-bright-highrez.png" alt="POLARIS Bears Logo">
+  <div class="header-text">
+    <div class="header-brand">POLARIS Bears · ONCS 2026</div>
+    <div class="header-title">TEHNOLOGIA</div>
+    <div class="header-subtitle">Arhitectura în 5 niveluri — de la Soare la Pământ</div>
+  </div>
+  <div style="text-align:right;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;color:rgba(0,229,255,0.5);text-transform:uppercase;margin-bottom:4px;">ARHITECTURA</div>
+    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;color:#00e5ff;letter-spacing:0.1em;">02 / 03</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="../../images/generated/Image B - Mirror and Sun.png" alt="Roi Dyson">
+  <div class="hero-overlay"></div>
+  <div class="hero-label">Roiul Dyson de oglinzi la 7,696 milioane km de Soare</div>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <div class="intro-title">Un lanț energetic coerent</div>
+  <div class="intro-text">5 niveluri interdependente transformă radiația solară brută în electricitate livrată la sol — cu coerență fizică verificabilă și materiale la frontiera cercetării actuale.</div>
+</div>
+
+<!-- NIVEL 1 — Roi Dyson -->
+<div class="nivel n1">
+  <div class="nivel-num">01</div>
+  <img class="nivel-img" src="../../images/generated/Image K - Solar Mirror Dyson.png" alt="Roi Dyson">
+  <div class="nivel-content">
+    <div class="nivel-tag">Nivel Solar · Roi Dyson</div>
+    <div class="nivel-title">Oglindile Circumsolare</div>
+    <div class="nivel-stat">30 oglinzi · Ø1 km · reflectivitate 90%</div>
+    <div class="nivel-text">La 7,696 mln km de Soare, I = 5,14 × 10⁵ W/m² (378× față de Pământ). Putere interceptată totală: <strong style="color:#ffe3b7;">≈ 1,21 × 10¹³ W</strong></div>
+  </div>
+</div>
+
+<!-- NIVEL 2 — Colectori Laser -->
+<div class="nivel n2">
+  <div class="nivel-num">02</div>
+  <img class="nivel-img" src="../../images/generated/Image L - Collector Satellite Laser.png" alt="Colector Laser">
+  <div class="nivel-content">
+    <div class="nivel-tag">Nivel Orbital · Colectori Laser</div>
+    <div class="nivel-title">Sateliți Colectori</div>
+    <div class="nivel-stat">η = 43% · P_laser = 1,17 × 10¹² W/sat</div>
+    <div class="nivel-text">4 sateliți la ~10 mln km convertesc lumina concentrată în fascicule laser de înaltă putere (verde → L4/L5).</div>
+  </div>
+</div>
+
+<!-- NIVEL 3 — Lagrange -->
+<div class="nivel n3">
+  <div class="nivel-num">03</div>
+  <img class="nivel-img" src="../../images/generated/Image M - Lagrange Relay Node.png" alt="Nod Lagrange">
+  <div class="nivel-content">
+    <div class="nivel-tag">Nivel Gravitațional · Noduri Lagrange</div>
+    <div class="nivel-title">L4 și L5 — Noduri Energetice</div>
+    <div class="nivel-stat">60° stabil · P = 2,34 × 10¹² W/nod</div>
+    <div class="nivel-text">Puncte de echilibru gravitațional stabil Soare–Pământ. Surplusul de 53% din energie alimentează <strong style="color:#bdf4ff;">Star Power Grid</strong>.</div>
+  </div>
+</div>
+
+<!-- NIVEL 4 — Stații Polare -->
+<div class="nivel n4">
+  <div class="nivel-num">04</div>
+  <img class="nivel-img" src="../../images/generated/Image H - Floating Station Stratosphere.png" alt="Statie Polara">
+  <div class="nivel-content">
+    <div class="nivel-tag">Nivel Stratosfera · Stații Polare</div>
+    <div class="nivel-title">Centrale Polare Flotante</div>
+    <div class="nivel-stat">30 km altitudine · He · 11 t total</div>
+    <div class="nivel-text">Suspendate de baloane cu heliu — principiul lui Arhimede la scară planetară. 800 GW per stație, deasupra polilor magnetici.</div>
+  </div>
+</div>
+
+<!-- NIVEL 5 — YBCO -->
+<div class="nivel n5">
+  <div class="nivel-num">05</div>
+  <img class="nivel-img" src="../../images/generated/Image J - YBCO Superconductor Crystal.png" alt="YBCO">
+  <div class="nivel-content">
+    <div class="nivel-tag">Nivel Material · Supraconductori YBCO</div>
+    <div class="nivel-title">Cabluri YBCO</div>
+    <div class="nivel-stat">77 K · azot lichid · ρ ≈ 0 · 7 tone</div>
+    <div class="nivel-text">YBa₂Cu₃O₇ la 77 K față de NbTi (CERN) la 4 K. Criogenie 20× mai simplă, pierderi de transmisie aproape zero. Validat cu fizicieni CERN.</div>
+  </div>
+</div>
+
+<!-- FLUX -->
+<div class="flux">
+  <div class="flux-label">Lanțul energetic complet</div>
+  <div class="flux-chain">
+    <div class="flux-node">
+      <span class="flux-node-name">Soare</span>
+      <span class="flux-node-val">5,14×10⁵ W/m²</span>
+    </div>
+    <div class="flux-arrow">→</div>
+    <div class="flux-node">
+      <span class="flux-node-name">Oglinzi</span>
+      <span class="flux-node-val">1,21×10¹³ W</span>
+    </div>
+    <div class="flux-arrow">→</div>
+    <div class="flux-node">
+      <span class="flux-node-name">Laser</span>
+      <span class="flux-node-val">η=43%</span>
+    </div>
+    <div class="flux-arrow">→</div>
+    <div class="flux-node">
+      <span class="flux-node-name">L4/L5</span>
+      <span class="flux-node-val">2,34 TW/nod</span>
+    </div>
+    <div class="flux-arrow">→</div>
+    <div class="flux-node">
+      <span class="flux-node-name">YBCO</span>
+      <span class="flux-node-val">800 GW/pol</span>
+    </div>
+    <div class="flux-arrow">→</div>
+    <div class="flux-node" style="background:rgba(0,255,136,0.06);border-color:rgba(0,255,136,0.2);">
+      <span class="flux-node-name" style="color:#00ff88;">Pământ</span>
+      <span class="flux-node-val" style="color:#00ff88;">1,6 TW</span>
+    </div>
+  </div>
+</div>
+
+<!-- ETA -->
+<div class="formula-bar">
+  <div class="formula-label">Eficiență cumulată · Lanț complet de conversie</div>
+  <div class="formula-eq">η_total = η_oglinzi · η_laser · η_L4 · η_YBCO ≈ 13%</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-team">
+    <div class="footer-team-label">Echipa</div>
+    <div class="footer-team-names">Ioan CHELARU · Albert OLARIU</div>
+    <div class="footer-brand">POLARIS Bears</div>
+  </div>
+  <div style="text-align:center;">
+    <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+      <rect x="1" y="1" width="70" height="70" rx="3" stroke="rgba(0,229,255,0.4)" stroke-width="1.5" fill="rgba(15,19,31,0.8)"/>
+      <rect x="8" y="8" width="18" height="18" rx="1.5" stroke="#00e5ff" stroke-width="1.5" fill="none"/>
+      <rect x="11" y="11" width="12" height="12" rx="1" fill="#00e5ff" opacity="0.8"/>
+      <rect x="46" y="8" width="18" height="18" rx="1.5" stroke="#00e5ff" stroke-width="1.5" fill="none"/>
+      <rect x="49" y="11" width="12" height="12" rx="1" fill="#00e5ff" opacity="0.8"/>
+      <rect x="8" y="46" width="18" height="18" rx="1.5" stroke="#00e5ff" stroke-width="1.5" fill="none"/>
+      <rect x="11" y="49" width="12" height="12" rx="1" fill="#00e5ff" opacity="0.8"/>
+      <rect x="32" y="9" width="4" height="4" fill="#00e5ff" opacity="0.6"/>
+      <rect x="38" y="9" width="4" height="4" fill="#00e5ff" opacity="0.4"/>
+      <rect x="32" y="15" width="4" height="4" fill="#00e5ff" opacity="0.8"/>
+      <rect x="38" y="15" width="4" height="4" fill="#00e5ff" opacity="0.5"/>
+      <rect x="32" y="21" width="4" height="4" fill="#00e5ff" opacity="0.7"/>
+      <rect x="9" y="32" width="4" height="4" fill="#00e5ff" opacity="0.4"/>
+      <rect x="15" y="32" width="4" height="4" fill="#00e5ff" opacity="0.7"/>
+      <rect x="21" y="32" width="4" height="4" fill="#00e5ff" opacity="0.5"/>
+      <rect x="27" y="32" width="4" height="4" fill="#00e5ff" opacity="0.9"/>
+      <rect x="33" y="32" width="4" height="4" fill="#00e5ff" opacity="0.6"/>
+      <rect x="39" y="32" width="4" height="4" fill="#00e5ff" opacity="0.4"/>
+      <rect x="45" y="32" width="4" height="4" fill="#00e5ff" opacity="0.8"/>
+      <rect x="51" y="32" width="4" height="4" fill="#00e5ff" opacity="0.5"/>
+      <rect x="57" y="32" width="4" height="4" fill="#00e5ff" opacity="0.7"/>
+      <rect x="9" y="38" width="4" height="4" fill="#00e5ff" opacity="0.6"/>
+      <rect x="21" y="38" width="4" height="4" fill="#00e5ff" opacity="0.8"/>
+      <rect x="27" y="38" width="4" height="4" fill="#00e5ff" opacity="0.4"/>
+      <rect x="39" y="38" width="4" height="4" fill="#00e5ff" opacity="0.9"/>
+      <rect x="51" y="38" width="4" height="4" fill="#00e5ff" opacity="0.6"/>
+      <rect x="57" y="38" width="4" height="4" fill="#00e5ff" opacity="0.3"/>
+      <rect x="33" y="44" width="4" height="4" fill="#00e5ff" opacity="0.7"/>
+      <rect x="45" y="44" width="4" height="4" fill="#00e5ff" opacity="0.5"/>
+      <rect x="57" y="44" width="4" height="4" fill="#00e5ff" opacity="0.8"/>
+      <rect x="33" y="50" width="4" height="4" fill="#00e5ff" opacity="0.4"/>
+      <rect x="39" y="50" width="4" height="4" fill="#00e5ff" opacity="0.7"/>
+      <rect x="51" y="50" width="4" height="4" fill="#00e5ff" opacity="0.6"/>
+      <rect x="33" y="56" width="4" height="4" fill="#00e5ff" opacity="0.9"/>
+      <rect x="45" y="56" width="4" height="4" fill="#00e5ff" opacity="0.4"/>
+      <rect x="57" y="56" width="4" height="4" fill="#00e5ff" opacity="0.5"/>
+    </svg>
+    <div class="qr-label">Video · Website</div>
+  </div>
+</div>
+
+</body>
+</html>
