@@ -101,11 +101,11 @@ SLIDES = [
         "title": "ROIURI\nDYSON",
         "body": (
             "30 oglinzi orbitale, fiecare cu diametrul de 1 km,\n"
-            "pozitionate la 7 milioane km fata de Soare.\n\n"
+            "pozitionate la 7,696 milioane km fata de Soare.\n\n"
             "Intensitate solara la aceasta distanta:\n"
-            "I7m = 6,22 x 10^5 W/m2\n\n"
+            "I = 5,14 x 10^5 W/m2\n\n"
             "Putere incidenta totala:\n"
-            "P_incident = 1,46 x 10^13 W"
+            "P_incident = 1,21 x 10^13 W"
         ),
         "accent": C_PRIMARY,
         "image": "images/generated/Image B - Mirror and Sun.png",
@@ -116,11 +116,12 @@ SLIDES = [
     {
         "num": "05", "type": "data_hero", "section": "FIZICA",
         "title": "AVANTAJUL\nPROXIMITATII",
-        "stat": "450x",
+        "stat": "378x",
         "stat_label": "mai multa energie fata de orbita Pamantului",
         "body": (
-            "La 7 milioane km fata de Soare,\n"
-            "intensitatea solara urmeaza legea inversului patratului."
+            "La 7,696 milioane km fata de Soare,\n"
+            "intensitatea solara urmeaza legea inversului patratului.\n"
+            "I = 5,14 x 10^5 W/m2  vs.  1361 W/m2 la 1 UA"
         ),
         "accent": C_PRIMARY,
         "image": "images/generated/Image K - Solar Mirror Dyson.png",
@@ -151,9 +152,8 @@ SLIDES = [
             "L4 si L5 — puncte gravitational stabile\n"
             "in sistemul Soare-Pamant.\n\n"
             "POLARIS le foloseste ca noduri de releu energetic:\n"
-            "P_L4 = 2,83 TW per nod\n\n"
-            "Eficienta receptiei la Lagrange:\n"
-            "eta_centralizare = 60%"
+            "P_L4 = 2,34 TW per nod\n\n"
+            "47% livrat polilor · 53% surplus → Star Power Grid"
         ),
         "accent": C_TERTIARY,
         "image": "assets/diagrams/diagram_lagrange.png",
@@ -313,7 +313,7 @@ SLIDES = [
             "·  Fabricarea si lansarea oglinzilor de 1 km la 7 milioane km\n"
             "   — tehnologie inexistenta in prezent\n\n"
             "·  Mententa robotica la distante extreme — nerezolvata\n\n"
-            "·  Eficienta cumulata eta = 11% — necesita verificare experimentala\n\n"
+            "·  Eficienta cumulata eta = 13% — necesita verificare experimentala\n\n"
             "·  Impactul fasciculelor laser de mare putere asupra atmosferei — partial neevaluat\n\n"
             "Recunoasterea limitarilor este parte integranta a abordarii stiintifice rigoroase."
         ),
@@ -1196,14 +1196,14 @@ def build_credits(prs, data):
     add_rect(slide, Inches(0.62), Inches(4.85), Inches(6.0), Inches(0.02), C_OUTLINE)
 
     colaboratori_text = (
-        "Daniel-Justinian ZELENSCHI\n"
-        "  Ing. chimic (UCL + Melbourne) · PhD(c) AI · NASA Ames Research Center\n"
-        "  Space Settlement Contest — Premiul II\n\n"
+        "Prof. Francisc Dionisie AARON — Mentor & Coordonator\n"
+        "  ICHB — Liceul Teoretic International de Informatica\n\n"
         "Carlo Emilio MONTANARI\n"
-        "  Fizician aplicat · Doctorand Dinamica Fasciculelor, CERN / Univ. Bologna\n"
-        "  Consultanta: dinamica fasciculelor de inalta precizie (LHC -> POLARIS)\n\n"
-        "Coordonator: Prof. Aaron FRANCISC\n"
-        "  ICHB — Liceul Teoretic International de Informatica"
+        "  Fizician · Doctorand Dinamica Fasciculelor, CERN / Univ. Bologna\n\n"
+        "Prof. Univ. Dr. Valentin BARNA\n"
+        "  Fac. Fizica UB — Optica & Fotonica · conversie solara→laser\n\n"
+        "Daniel-Justinian ZELENSCHI\n"
+        "  Ing. chimic (UCL + Melbourne) · PhD(c) AI · NASA Ames Research Center"
     )
     add_body(slide, colaboratori_text,
              Inches(0.62), Inches(4.95), Inches(6.0), Inches(2.0),
