@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<script defer src="assets/katex/katex.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1920px; height: 420px;
+    background: #0f131f;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .wrap { width: 100%; text-align: center; padding: 0 80px; }
+  .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(176,163,140,0.65);
+    margin-bottom: 40px;
+  }
+  .math { color: #00ff88; }
+  .math .katex { font-size: 3.2rem; color: #00ff88; }
+  .math .katex * { color: #00ff88 !important; }
+  .line {
+    width: 55%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #00ff88 50%, transparent 100%);
+    margin: 36px auto 0;
+  }
+  .note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: rgba(0,255,136,0.4);
+    letter-spacing: 0.12em;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="label">EFICIENȚĂ CUMULATĂ &nbsp;·&nbsp; Lanț complet de conversie</div>
+  <div class="math" id="f1"></div>
+  <div class="line"></div>
+  <div class="note">P_livrat (1,6 TW) / P_incident (1,21×10¹³ W) = 13,2% &nbsp;·&nbsp; valori validate 2026-04-19</div>
+</div>
+<script>
+window.addEventListener('load', () => {
+  katex.render(
+    '\\eta_{\\text{total}} = \\eta_{\\text{oglinzi}} \\cdot \\eta_{\\text{laser}} \\cdot \\eta_{L4} \\cdot \\eta_{\\text{YBCO}} \\;\\approx\\; 13\\%',
+    document.getElementById('f1'),
+    { throwOnError: false, displayMode: true }
+  );
+  // Apply green color to all KaTeX elements
+  document.querySelectorAll('#f1 *').forEach(el => el.style.color = '#00ff88');
+});
+</script>
+</body>
+</html>

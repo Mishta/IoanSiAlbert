@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1400px; height: 1400px;
+    background: #0a0e1a;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-start;
+    font-family: 'Space Grotesk', sans-serif;
+    padding: 40px 48px 28px;
+  }
+  .title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #dfe2f3;
+    margin-bottom: 12px;
+    width: 100%;
+    text-align: center;
+  }
+  svg { flex-shrink: 0; }
+  .notes {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: rgba(223,226,243,0.45);
+    line-height: 2;
+    text-align: left;
+    width: 100%;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0,229,255,0.08);
+  }
+</style>
+</head>
+<body>
+  <div class="title">SISTEMUL LAGRANGE &nbsp;·&nbsp; P.O.L.A.R.I.S.</div>
+
+  <svg width="1300" height="1240" viewBox="0 0 1300 1240">
+    <defs>
+      <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#fff8e1"/>
+        <stop offset="35%" stop-color="#ffba20"/>
+        <stop offset="100%" stop-color="#ff8c00" stop-opacity="0.5"/>
+      </radialGradient>
+      <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffba20" stop-opacity="0.25"/>
+        <stop offset="100%" stop-color="#ffba20" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="earthGrad" cx="38%" cy="32%" r="65%">
+        <stop offset="0%" stop-color="#81d4fa"/>
+        <stop offset="50%" stop-color="#1976d2"/>
+        <stop offset="100%" stop-color="#0d2e7a"/>
+      </radialGradient>
+      <radialGradient id="l4Grad" cx="45%" cy="38%" r="65%">
+        <stop offset="0%" stop-color="#b9ffd3"/>
+        <stop offset="55%" stop-color="#00e676"/>
+        <stop offset="100%" stop-color="#00a152"/>
+      </radialGradient>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="3" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+        <path d="M0,0 L0,8 L10,4 z" fill="#00ff88"/>
+      </marker>
+      <marker id="arrowGreenSm" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L8,3 z" fill="rgba(0,255,136,0.5)"/>
+      </marker>
+    </defs>
+
+    <!-- Orbital circle (dashed) -->
+    <circle cx="580" cy="630" r="430" fill="none" stroke="rgba(0,229,255,0.18)" stroke-width="1.5" stroke-dasharray="8 6"/>
+
+    <!-- Sun–Earth dotted axis -->
+    <line x1="580" y1="630" x2="1010" y2="630" stroke="rgba(0,229,255,0.12)" stroke-width="1.5" stroke-dasharray="5 5"/>
+
+    <!-- Sun–L4 line -->
+    <line x1="580" y1="630" x2="795" y2="258" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+    <!-- Sun–L5 line -->
+    <line x1="580" y1="630" x2="795" y2="1002" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+
+    <!-- 60° arc -->
+    <path d="M 660 630 A 80 80 0 0 0 620 552" fill="none" stroke="rgba(255,186,32,0.45)" stroke-width="1.5"/>
+    <text x="672" y="588" fill="rgba(255,186,32,0.8)" font-family="JetBrains Mono,monospace" font-size="18" font-weight="500">60°</text>
+
+    <!-- Dyson Ring circle around Sun -->
+    <circle cx="580" cy="630" r="60" fill="none" stroke="rgba(255,186,32,0.5)" stroke-width="2" stroke-dasharray="5 4"/>
+
+    <!-- Dyson ring label (left side) -->
+    <text x="268" y="590" fill="rgba(255,186,32,0.85)" font-family="JetBrains Mono,monospace" font-size="15" text-anchor="middle">Roi Dyson</text>
+    <text x="268" y="612" fill="rgba(255,186,32,0.85)" font-family="JetBrains Mono,monospace" font-size="15" text-anchor="middle">(7,696M km</text>
+    <text x="268" y="634" fill="rgba(255,186,32,0.85)" font-family="JetBrains Mono,monospace" font-size="15" text-anchor="middle">față de Soare)</text>
+    <line x1="336" y1="617" x2="522" y2="625" stroke="rgba(255,186,32,0.28)" stroke-width="1"/>
+
+    <!-- SUN glow -->
+    <circle cx="580" cy="630" r="72" fill="url(#sunGlow)"/>
+    <!-- SUN -->
+    <circle cx="580" cy="630" r="38" fill="url(#sunGrad)" filter="url(#glow)"/>
+    <text x="580" y="690" fill="#ffba20" font-family="Space Grotesk,sans-serif" font-size="19" font-weight="700" letter-spacing="0.18em" text-anchor="middle">SOARELE</text>
+
+    <!-- EARTH -->
+    <circle cx="1010" cy="630" r="34" fill="url(#earthGrad)" filter="url(#glow)"/>
+    <text x="1060" y="626" fill="#81d4fa" font-family="Space Grotesk,sans-serif" font-size="22" font-weight="700" letter-spacing="0.1em" text-anchor="start">PĂMÂNTUL</text>
+
+    <!-- Diamond markers (Dyson positions on orbit) -->
+    <polygon points="580,555 590,568 580,581 570,568" fill="rgba(255,186,32,0.75)"/>
+    <polygon points="580,679 590,692 580,705 570,692" fill="rgba(255,186,32,0.75)"/>
+
+    <!-- L4 node -->
+    <circle cx="795" cy="258" r="34" fill="url(#l4Grad)" opacity="0.95" filter="url(#glow)"/>
+    <text x="795" y="265" fill="#0a2e1a" font-family="Space Grotesk,sans-serif" font-size="22" font-weight="700" text-anchor="middle">L4</text>
+    <!-- L4 labels -->
+    <text x="840" y="235" fill="rgba(0,255,136,0.9)" font-family="JetBrains Mono,monospace" font-size="15" text-anchor="start">Nod Energetic POLARIS</text>
+    <text x="840" y="255" fill="rgba(0,255,136,0.6)" font-family="JetBrains Mono,monospace" font-size="13" text-anchor="start">Punct stabil gravitațional</text>
+
+    <!-- L5 node -->
+    <circle cx="795" cy="1002" r="34" fill="url(#l4Grad)" opacity="0.95" filter="url(#glow)"/>
+    <text x="795" y="1009" fill="#0a2e1a" font-family="Space Grotesk,sans-serif" font-size="22" font-weight="700" text-anchor="middle">L5</text>
+    <!-- L5 labels -->
+    <text x="840" y="993" fill="rgba(0,255,136,0.9)" font-family="JetBrains Mono,monospace" font-size="15" text-anchor="start">Nod Energetic POLARIS</text>
+    <text x="840" y="1013" fill="rgba(0,255,136,0.6)" font-family="JetBrains Mono,monospace" font-size="13" text-anchor="start">Punct stabil gravitațional</text>
+
+    <!-- Laser L4 → Pol Nord (green beam) -->
+    <line x1="814" y1="287" x2="988" y2="604" stroke="#00ff88" stroke-width="2.5" marker-end="url(#arrowGreen)" opacity="0.85" filter="url(#glow)"/>
+    <text x="882" y="410" fill="#00ff88" font-family="JetBrains Mono,monospace" font-size="16" text-anchor="start">Laser</text>
+    <text x="882" y="430" fill="#00ff88" font-family="JetBrains Mono,monospace" font-size="16" text-anchor="start">L4 → Pol Nord</text>
+
+    <!-- Laser L5 → Pol Sud (green beam) -->
+    <line x1="814" y1="973" x2="988" y2="656" stroke="#00ff88" stroke-width="2.5" marker-end="url(#arrowGreen)" opacity="0.85" filter="url(#glow)"/>
+    <text x="882" y="840" fill="#00ff88" font-family="JetBrains Mono,monospace" font-size="16" text-anchor="start">Laser</text>
+    <text x="882" y="860" fill="#00ff88" font-family="JetBrains Mono,monospace" font-size="16" text-anchor="start">L5 → Pol Sud</text>
+
+    <!-- Subtle collector lines (Sun→L4, Sun→L5 with light) -->
+    <line x1="610" y1="600" x2="768" y2="278" stroke="rgba(255,186,32,0.18)" stroke-width="4"/>
+    <line x1="610" y1="660" x2="768" y2="982" stroke="rgba(255,186,32,0.18)" stroke-width="4"/>
+  </svg>
+
+  <div class="notes">
+    Notă: Diagramă schematică — nu la scară &nbsp;·&nbsp;
+    Distanța Soare–Pământ = 1 UA ≈ 150 milioane km &nbsp;·&nbsp;
+    Distanța Roi Dyson ≈ 7,696 milioane km (0,051 UA) &nbsp;·&nbsp;
+    L4/L5 la 60° față de axa Soare–Pământ
+  </div>
+</body>
+</html>

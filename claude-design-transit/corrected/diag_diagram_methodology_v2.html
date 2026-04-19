@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 1920px; height: 620px;
+    background: #0f131f;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    padding: 48px 64px;
+  }
+  .title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #ffe3b7;
+    margin-bottom: 52px;
+  }
+  .boxes {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .box {
+    flex: 1;
+    border: 1px solid transparent;
+    padding: 28px 20px 24px;
+    position: relative;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 16px;
+  }
+  .box-1 { border-color: #ffba20; }
+  .box-2 { border-color: #00e5ff; }
+  .box-3 { border-color: #00e5ff; }
+  .box-4 { border-color: #00e5ff; }
+  .box-5 { border-color: #00ff88; }
+  .box-6 { border-color: #00ff88; }
+
+  .box-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .box-1 .box-title { color: #ffba20; }
+  .box-2 .box-title, .box-3 .box-title, .box-4 .box-title { color: #00e5ff; }
+  .box-5 .box-title, .box-6 .box-title { color: #00ff88; }
+
+  .box-body {
+    font-family: 'Manrope', sans-serif;
+    font-size: 11.5px;
+    color: rgba(223,226,243,0.65);
+    text-align: center;
+    line-height: 1.55;
+  }
+
+  .arrow {
+    display: flex; align-items: center; justify-content: center;
+    width: 28px; flex-shrink: 0; align-self: center;
+    color: rgba(0,229,255,0.4);
+    font-size: 20px;
+  }
+
+  .result {
+    border: 1px solid #00ff88;
+    padding: 22px 48px;
+    text-align: center;
+    width: 780px;
+  }
+  .result-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    color: #00ff88;
+  }
+</style>
+</head>
+<body>
+  <div class="title">METODOLOGIE &nbsp;·&nbsp; 6 Domenii Integrate — Modele Matematice Înlănțuite</div>
+
+  <div class="boxes">
+    <div class="box box-1">
+      <div class="box-title">FIZICA<br>ASTROFIZICA</div>
+      <div class="box-body">Legea<br>inversului<br>pătratului</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="box box-2">
+      <div class="box-title">ASTRONOMIE<br>ORBITALA</div>
+      <div class="box-body">Mecanica<br>Lagrange<br>L4/L5</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="box box-3">
+      <div class="box-title">INGINERIE<br>OPTICA</div>
+      <div class="box-body">Oglinzi km<br>Fascicule<br>laser</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="box box-4">
+      <div class="box-title">SUPRACOND.<br>YBCO</div>
+      <div class="box-body">T=77K<br>j&lt;j<sub>c</sub><br>pierderi~0</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="box box-5">
+      <div class="box-title">CRIOGENIE<br>FLUIDE</div>
+      <div class="box-body">Azot lichid<br>Baloane He<br>30 km alt.</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="box box-6">
+      <div class="box-title">MECANICA<br>FLUIDE</div>
+      <div class="box-body">Arhimede<br>Plutire<br>stratosf.</div>
+    </div>
+  </div>
+
+  <div class="result">
+    <div class="result-text">REZULTAT: &nbsp; 1,6 TW livrati &nbsp; (η<sub>total</sub> = 13%)</div>
+  </div>
+</body>
+</html>
