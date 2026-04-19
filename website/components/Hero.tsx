@@ -80,7 +80,7 @@ export default function Hero() {
       {/* Satellite exploded view */}
       <div ref={satelliteRef} className={styles.satellite}>
         <Image
-          src="/assets/nano-banana-uploads/upload_system_diagram.png"
+          src="/images/generated/Image%20C%20-%20Full%20System%20Panoramic.png"
           alt="Vedere desfășurată satelit POLARIS"
           width={1100} height={620}
           priority

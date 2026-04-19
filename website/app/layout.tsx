@@ -9,12 +9,13 @@ const jost = Jost({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://polaris-bears.ro'),
   title: 'P.O.L.A.R.I.S. — Polaris Bears · ONCS 2026',
   description: 'Platformă Orbitală Laser pentru Alimentare și Recepție Inovativă Solară. Un sistem energetic spațial pentru civilizația de tip Kardashev 1.',
   openGraph: {
     title: 'P.O.L.A.R.I.S.',
     description: 'Energie din cosmos pentru planeta noastră.',
-    images: ['/assets/nano-banana-uploads/upload_system_diagram.png'],
+    images: ['/images/generated/Image%20C%20-%20Full%20System%20Panoramic.png'],
   },
 }
 

@@ -78,7 +78,7 @@ export default function Concept() {
       <div className={styles.bgWrap} aria-hidden>
         <div ref={panoramicRef} className={styles.bgInner}>
           <Image
-            src="/assets/nano-banana-uploads/upload_panoramic.jpg"
+            src="/images/generated/Imagine%20NB-1%20-%20panoramic.png"
             alt=""
             fill
             className={styles.bgImg}

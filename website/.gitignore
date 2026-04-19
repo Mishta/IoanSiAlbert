@@ -1,2 +1,5 @@
 .next/
 node_modules/
+out/
+public/images/
+public/assets/

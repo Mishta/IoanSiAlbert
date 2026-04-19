@@ -10,7 +10,7 @@ const TECH = [
     title: 'Roi Dyson de Oglinzi',
     subtitle: '30 oglinzi · Ø 1 km · 7M km de Soare',
     body: `La 7 milioane km de Soare, intensitatea radiației solare atinge 622.000 W/m² — de 457× față de suprafața Pământului. 30 de oglinzi orbitale de 1 km diametru concentrează această energie spre sateliții colectori, cu o reflectivitate de 90%.`,
-    img: '/assets/nano-banana-uploads/upload_spg_geo.jpg',
+    img: '/images/generated/Image%20K%20-%20Solar%20Mirror%20Dyson.png',
     accent: '#ffe3b7',
   },
   {
@@ -19,7 +19,7 @@ const TECH = [
     title: 'Sateliți Colectori Laser',
     subtitle: '4 sateliți · η = 43% · Laser verde + albastru',
     body: `Cei 4 sateliți colectori convertesc energia solară concentrată în fascicule laser de mare putere (eficiență 43%), echipați cu sisteme de propulsie ionică pentru menținerea orbitei și transmițătoare laser direcționale spre nodurile Lagrange.`,
-    img: '/assets/nano-banana-uploads/upload_system_diagram.png',
+    img: '/images/generated/Image%20L%20-%20Collector%20Satellite%20Laser.png',
     accent: '#00e5ff',
   },
   {
@@ -28,7 +28,7 @@ const TECH = [
     title: 'Noduri Lagrange L4/L5',
     subtitle: 'Echilibru gravitațional stabil · Transfer 2×800 GW',
     body: `Punctele Lagrange L4 și L5 sunt poziții de echilibru gravitațional stabil în sistemul Soare–Pământ. Nodurile energetice plasate aici primesc energia laser și o redistribuie spre stațiile polare YBCO de pe Pământ prin cabluri supraconductoare.`,
-    img: '/assets/diagrams/diagram_lagrange.png',
+    img: '/images/generated/Image%20M%20-%20Lagrange%20Relay%20Node.png',
     accent: '#bdf4ff',
   },
   {
@@ -37,7 +37,7 @@ const TECH = [
     title: 'Rețea Star Power Grid',
     subtitle: 'YBCO 77K · 800 GW per cablu · Distribuție HVDC globală',
     body: `Supraconductorii YBCO (YBa₂Cu₃O₇₋δ) operează la 77K cu azot lichid — față de 4K pentru NbTi clasic din magneții LHC. Inovația validată prin consultanță cu fizicieni CERN: masă specifică mult mai mică, criogenie 20× mai simplă, densitate de curent superioară.`,
-    img: '/assets/diagrams/diagram_star_power_grid.png',
+    img: '/images/generated/Image%20I%20-%20Star%20Power%20Grid%20GEO.png',
     accent: '#c9a84c',
   },
 ]
