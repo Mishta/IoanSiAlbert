@@ -101,6 +101,41 @@ export default function Kardashev() {
             <span>Tipul 1</span>
           </div>
         </div>
+
+        {/* Video comparison: before / after */}
+        <div data-reveal className={styles.videoGrid}>
+          <div className={styles.videoCard}>
+            <div className={styles.videoWrap}>
+              <iframe
+                src="https://www.youtube.com/embed/hl1aYw9btMs?autoplay=1&mute=1&loop=1&playlist=hl1aYw9btMs&controls=1&rel=0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                className={styles.videoIframe}
+                title="Terra azi — Kardashev 0.73"
+              />
+            </div>
+            <p className={styles.videoLabel}>
+              <span className={styles.videoBadgeWarm}>Acum · Kardashev 0.73</span>
+              Terra azi — energie fragmentată, dependentă de combustibili fosili
+            </p>
+          </div>
+
+          <div className={styles.videoCard}>
+            <div className={styles.videoWrap}>
+              <iframe
+                src="https://www.youtube.com/embed/MGKxNI-l_BY?autoplay=1&mute=1&loop=1&playlist=MGKxNI-l_BY&controls=1&rel=0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                className={styles.videoIframe}
+                title="Terra cu P.O.L.A.R.I.S. — Kardashev 1.0"
+              />
+            </div>
+            <p className={styles.videoLabel}>
+              <span className={styles.videoBadgeCyan}>P.O.L.A.R.I.S. · Kardashev 1.0</span>
+              1,6 TW livrați continuu — prima civilizație de Tipul 1
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   )
