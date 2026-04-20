@@ -12,6 +12,7 @@ const TECH = [
     body: `La 7 milioane km de Soare, intensitatea radiației solare atinge 622.000 W/m² — de 457× față de suprafața Pământului. 30 de oglinzi orbitale de 1 km diametru concentrează această energie spre sateliții colectori, cu o reflectivitate de 90%.`,
     img: '/images/generated/Image%20K%20-%20Solar%20Mirror%20Dyson.jpg',
     videoId: 'j5dQu1uLcrE',
+    videoLocal: '/videos/Image%20K%20-%20Solar%20Mirror%20Dyson%20-%20Video.mp4',
     accent: '#ffe3b7',
     stats: [
       { val: 30,      unit: '',        label: 'oglinzi orbitale' },
@@ -180,6 +181,14 @@ export default function Architecture() {
     })
   }
 
+  // ESC key to close
+  useEffect(() => {
+    if (popup === null) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closePopup() }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [popup])
+
   const t = popup !== null ? TECH[popup] : null
 
   return (
@@ -199,23 +208,36 @@ export default function Architecture() {
             ref={el => { cardsRef.current[i] = el }}
             className={`${styles.card} ${i % 2 !== 0 ? styles.cardReverse : ''}`}
             style={{ '--accent': tech.accent } as React.CSSProperties}
+            onClick={() => setPopup(i)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={e => e.key === 'Enter' && setPopup(i)}
           >
             <div className={styles.cardVisual}>
               <div data-parallax className={styles.imgWrap}>
-                <Image src={tech.img} alt={tech.title} fill className={styles.img}
-                  sizes="(max-width: 900px) 100vw, 50vw" />
+                {tech.videoLocal ? (
+                  <video
+                    autoPlay muted loop playsInline
+                    className={styles.cardVideo}
+                    poster={tech.img}
+                  >
+                    <source src={tech.videoLocal} type="video/mp4" />
+                  </video>
+                ) : (
+                  <Image src={tech.img} alt={tech.title} fill className={styles.img}
+                    sizes="(max-width: 900px) 100vw, 50vw" />
+                )}
               </div>
               <div className={styles.imgOverlay} aria-hidden />
               <span className={styles.numBadge}>{tech.num}</span>
+              <span className={styles.playHint} aria-hidden>▶ Detalii</span>
             </div>
 
             <div className={styles.cardBody}>
               <p className={styles.cardSub}>{tech.subtitle}</p>
               <h3 className={styles.cardTitle}>{tech.title}</h3>
               <p className={styles.cardText}>{tech.body}</p>
-              <button className={styles.detailsBtn} onClick={() => setPopup(i)}>
-                Detalii tehnice →
-              </button>
+              <span className={styles.detailsBtn}>Detalii tehnice →</span>
             </div>
           </div>
         ))}
@@ -236,12 +258,12 @@ export default function Architecture() {
 
     {/* POPUP MODAL */}
     {popup !== null && t && (
-      <div ref={popupRef} className={styles.popupOverlay} onClick={e => { if (e.target === popupRef.current) closePopup() }}>
-        <div data-panel className={styles.popupPanel}>
+      <div ref={popupRef} className={styles.popupOverlay} onClick={closePopup}>
+        <div data-panel className={styles.popupPanel} onClick={closePopup}>
           <button className={styles.popupClose} onClick={closePopup} aria-label="Închide">✕</button>
 
-          {/* Video */}
-          <div data-pop-item className={styles.popupVideo}>
+          {/* Video — stop propagation so clicking video doesn't close */}
+          <div data-pop-item className={styles.popupVideo} onClick={e => e.stopPropagation()}>
             {t.videoId ? (
               <iframe
                 src={`https://www.youtube.com/embed/${t.videoId}?autoplay=1&mute=1&loop=1&playlist=${t.videoId}&controls=1&rel=0`}

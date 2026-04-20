@@ -58,24 +58,48 @@
   min-height: 1.8em;
 }
 
-.olympicBadge {
+.olympicWrap {
+  background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(201,168,76,0.03));
+  border: 1px solid rgba(201,168,76,0.35);
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 0.7rem;
-  background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
-  border: 1px solid rgba(201,168,76,0.4);
-  padding: 0.7rem 1.4rem;
-  border-radius: 3px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
+  width: 100%;
+  max-width: 540px;
 }
 
-.olympicIcon {
-  font-size: 1.1rem;
+.olympicTitle {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.olympicIcon { font-size: 1rem; }
+
+.olympicList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.olympicItem {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--warm);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 2px;
 }
 
 .members {
@@ -211,8 +235,98 @@
   color: #fff;
 }
 
+/* Collaborators */
+.collabSection {
+  width: 100%;
+  margin-top: 1rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.collabLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1.5rem;
+}
+
+.collabGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  text-align: left;
+}
+
+.collabCard {
+  display: flex;
+  gap: 1rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px;
+  padding: 1.25rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+.collabCard:hover {
+  border-color: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.04);
+}
+
+.collabInitial {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--caccent, var(--gold));
+  background: rgba(255,255,255,0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--caccent, var(--gold));
+}
+
+.collabInfo { display: flex; flex-direction: column; gap: 0.25rem; }
+
+.collabName {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.collabRole {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--caccent, var(--gold));
+}
+
+.collabInstitution {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--warm);
+  line-height: 1.5;
+  margin-top: 0.15rem;
+}
+
+.collabContrib {
+  font-size: 0.68rem;
+  font-weight: 300;
+  color: rgba(212,197,171,0.6);
+  line-height: 1.5;
+  font-style: italic;
+  margin-top: 0.25rem;
+  padding-top: 0.25rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
 @media (max-width: 600px) {
   .section { padding: 5rem 1.25rem; }
   .members { gap: 1.5rem; }
   .heroImg { aspect-ratio: 4/5; }
+  .collabGrid { grid-template-columns: 1fr; }
 }

@@ -10,9 +10,9 @@ export default function Footer() {
           Platformă Orbitală Laser pentru Alimentare și Recepție Inovativă Solară
         </p>
         <div className={styles.row}>
-          <span>Polaris Bears · Ioan CHELARU & Albert OLARIU</span>
+          <span>POLARIS Bears · Ioan CHELARU &amp; Albert OLARIU</span>
           <span>·</span>
-          <span>ONCS 2026 · Secțiunea A</span>
+          <span>ONCS 2026 · Juniori · Științe Fundamentale</span>
         </div>
       </div>
     </footer>

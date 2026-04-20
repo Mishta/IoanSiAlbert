@@ -103,17 +103,21 @@
   display: none;
   flex-direction: column;
   gap: 5px;
-  background: none;
-  border: none;
+  background: rgba(8, 12, 26, 0.55);
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  border-radius: 4px;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px 10px;
+  position: relative;
   z-index: 210;
+  flex-shrink: 0;
+  backdrop-filter: blur(8px);
 }
 .burger span {
   display: block;
-  width: 24px;
+  width: 22px;
   height: 2px;
-  background: var(--gold);
+  background: #ffe3b7;
   border-radius: 2px;
   transition: transform 0.3s, opacity 0.3s;
   transform-origin: center;

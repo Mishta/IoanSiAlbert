@@ -107,9 +107,9 @@ export default function Hero() {
         <div ref={metaRef} className={styles.meta}>
           <span className={styles.metaTag}>ONCS 2026</span>
           <span className={styles.metaDivider}>·</span>
-          <span className={styles.metaTag}>Secțiunea A — Științe Fundamentale</span>
+          <span className={styles.metaTag}>Juniori · Științe Fundamentale</span>
           <span className={styles.metaDivider}>·</span>
-          <span className={styles.metaTag}>Polaris Bears</span>
+          <span className={styles.metaTag}>POLARIS Bears</span>
         </div>
 
         <a href="#concept" className={styles.scrollHint} aria-label="Scroll down">
