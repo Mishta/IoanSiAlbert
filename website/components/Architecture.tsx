@@ -266,7 +266,7 @@ export default function Architecture() {
           <div data-pop-item className={styles.popupVideo} onClick={e => e.stopPropagation()}>
             {t.videoId ? (
               <iframe
-                src={`https://www.youtube.com/embed/${t.videoId}?autoplay=1&mute=1&loop=1&playlist=${t.videoId}&controls=1&rel=0`}
+                src={`https://www.youtube-nocookie.com/embed/${t.videoId}?autoplay=1&mute=1&loop=1&playlist=${t.videoId}&controls=1&rel=0&modestbranding=1`}
                 allow="autoplay; encrypted-media"
                 allowFullScreen
                 className={styles.popupIframe}

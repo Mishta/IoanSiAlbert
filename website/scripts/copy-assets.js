@@ -4,6 +4,7 @@ const { execSync } = require('child_process')
 
 const repoRoot = path.resolve(__dirname, '../..')
 const MAX_BYTES = 24 * 1024 * 1024 // 24MB — Cloudflare Pages limit is 25MB
+const WEB_MAX_WIDTH = 1920          // max width for web delivery
 
 function ensureSharp() {
   try { require.resolve('sharp') } catch {
@@ -15,11 +16,16 @@ function ensureSharp() {
 async function copyOrCompress(src, dst) {
   const stat = fs.statSync(src)
   const ext = path.extname(src).toLowerCase()
-  if (stat.size > MAX_BYTES && (ext === '.png' || ext === '.jpg' || ext === '.jpeg')) {
+  if (ext === '.png' || ext === '.jpg' || ext === '.jpeg') {
     const sharp = require('sharp')
     const dstJpeg = dst.replace(/\.(png|jpg|jpeg)$/i, '.jpg')
-    await sharp(src).jpeg({ quality: 82, mozjpeg: true }).toFile(dstJpeg)
-    console.log(`  ✓ compressed → ${path.basename(dstJpeg)}`)
+    await sharp(src)
+      .resize(WEB_MAX_WIDTH, null, { withoutEnlargement: true })
+      .jpeg({ quality: 82, mozjpeg: true })
+      .toFile(dstJpeg)
+    const newStat = fs.statSync(dstJpeg)
+    const savings = Math.round((1 - newStat.size / stat.size) * 100)
+    console.log(`  ✓ ${Math.round(stat.size/1024)}KB → ${Math.round(newStat.size/1024)}KB (-${savings}%) ${path.basename(dstJpeg)}`)
   } else {
     fs.copyFileSync(src, dst)
   }

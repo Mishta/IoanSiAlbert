@@ -107,7 +107,7 @@ export default function Kardashev() {
           <div className={styles.videoCard}>
             <div className={styles.videoWrap}>
               <iframe
-                src="https://www.youtube.com/embed/hl1aYw9btMs?autoplay=1&mute=1&loop=1&playlist=hl1aYw9btMs&controls=1&rel=0"
+                src="https://www.youtube-nocookie.com/embed/hl1aYw9btMs?autoplay=1&mute=1&loop=1&playlist=hl1aYw9btMs&controls=1&rel=0&modestbranding=1"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
                 className={styles.videoIframe}
@@ -123,7 +123,7 @@ export default function Kardashev() {
           <div className={styles.videoCard}>
             <div className={styles.videoWrap}>
               <iframe
-                src="https://www.youtube.com/embed/MGKxNI-l_BY?autoplay=1&mute=1&loop=1&playlist=MGKxNI-l_BY&controls=1&rel=0"
+                src="https://www.youtube-nocookie.com/embed/MGKxNI-l_BY?autoplay=1&mute=1&loop=1&playlist=MGKxNI-l_BY&controls=1&rel=0&modestbranding=1"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
                 className={styles.videoIframe}

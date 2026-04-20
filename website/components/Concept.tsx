@@ -86,7 +86,7 @@ export default function Concept() {
         </div>
         <iframe
           className={styles.ytBgIframe}
-          src="https://www.youtube.com/embed/dUgsGDiooXc?autoplay=1&mute=1&loop=1&playlist=dUgsGDiooXc&controls=0&rel=0&playsinline=1&modestbranding=1"
+          src="https://www.youtube-nocookie.com/embed/dUgsGDiooXc?autoplay=1&mute=1&loop=1&playlist=dUgsGDiooXc&controls=0&rel=0&playsinline=1&modestbranding=1"
           allow="autoplay; encrypted-media"
           title=""
         />
