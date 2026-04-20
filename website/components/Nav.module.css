@@ -26,10 +26,9 @@
 }
 
 .logoImg {
-  border-radius: 50%;
-  border: 1px solid rgba(255, 227, 183, 0.35);
   object-fit: contain;
   transition: transform 0.3s;
+  filter: drop-shadow(0 0 6px rgba(255, 227, 183, 0.3));
 }
 .logo:hover .logoImg { transform: rotate(20deg) scale(1.05); }
 

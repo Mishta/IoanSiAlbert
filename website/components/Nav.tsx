@@ -41,9 +41,10 @@ export default function Nav() {
     <>
       <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
         <a href="#hero" className={styles.logo} onClick={e => { e.preventDefault(); handleLink('#hero') }}>
-          <Image
-            src="/assets/logo-no-ONCS-text-bright-highrez.png"
-            alt="Polaris Bears"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/logo-white.svg"
+            alt="POLARIS Bears"
             width={38} height={38}
             className={styles.logoImg}
           />

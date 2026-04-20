@@ -145,8 +145,9 @@ export default function Team() {
 
         {/* Logo echipă */}
         <div data-logo className={styles.logoWrap}>
-          <Image
-            src="/assets/logo-no-ONCS-text-bright-highrez.png"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/logo-white.svg"
             alt="POLARIS Bears"
             width={180} height={180}
             className={styles.logoImg}
