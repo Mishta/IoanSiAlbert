@@ -177,13 +177,9 @@ body { font-family: 'Space Grotesk', sans-serif; }
 .tm-name { font-size: 2mm; font-weight: 700; color: var(--white); text-align: center; }
 .tm-role { font-size: 1.7mm; font-weight: 400; color: var(--warm); text-align: center; }
 
-.medal-list { display: flex; flex-direction: column; gap: 0.55mm; width: 100%; }
+.medal-list { display: flex; flex-direction: column; gap: 0.6mm; width: 100%; }
 .medal-row { display: flex; align-items: center; gap: 1mm; }
-.medal-pip { flex-shrink: 0; width: 2mm; height: 2mm; border-radius: 50%; }
-.medal-pip-gold     { background: #FFD700; box-shadow: 0 0 0.8mm rgba(255,215,0,0.7); }
-.medal-pip-bronze   { background: #C97B2A; box-shadow: 0 0 0.8mm rgba(201,123,42,0.6); }
-.medal-pip-platinum { background: #D8E0EA; box-shadow: 0 0 0.8mm rgba(216,224,234,0.6); }
-.medal-pip-special  { background: var(--cyan); box-shadow: 0 0 0.8mm rgba(0,229,255,0.6); }
+.medal-emoji { flex-shrink: 0; font-size: 2.8mm; line-height: 1; }
 .medal-text { font-size: 1.42mm; color: var(--warm); line-height: 1.3; flex: 1; }
 .medal-text strong { color: var(--ice); font-weight: 600; }
 
@@ -403,11 +399,11 @@ body { font-family: 'Space Grotesk', sans-serif; }
             </div>
             <div class="medal-list">
               <div class="medal-row">
-                <div class="medal-pip medal-pip-bronze"></div>
+                <span class="medal-emoji">🥉</span>
                 <span class="medal-text"><strong>Bronz</strong> — Olimpiada Naț. Informatică</span>
               </div>
               <div class="medal-row">
-                <div class="medal-pip medal-pip-bronze"></div>
+                <span class="medal-emoji">🥉</span>
                 <span class="medal-text"><strong>Bronz</strong> — Olimpiada Naț. Astronomie</span>
               </div>
             </div>
@@ -422,27 +418,27 @@ body { font-family: 'Space Grotesk', sans-serif; }
             </div>
             <div class="medal-list">
               <div class="medal-row">
-                <div class="medal-pip medal-pip-gold"></div>
+                <span class="medal-emoji">🥇</span>
                 <span class="medal-text"><strong>Aur</strong> — Olimpiada Naț. Informatică</span>
               </div>
               <div class="medal-row">
-                <div class="medal-pip medal-pip-bronze"></div>
-                <span class="medal-text"><strong>Bronz</strong> — IATI Informatică</span>
-              </div>
-              <div class="medal-row">
-                <div class="medal-pip medal-pip-gold"></div>
+                <span class="medal-emoji">🥇</span>
                 <span class="medal-text"><strong>Aur</strong> — FLL International</span>
               </div>
               <div class="medal-row">
-                <div class="medal-pip medal-pip-platinum"></div>
-                <span class="medal-text"><strong>Platina</strong> — Infomatrix Hackathon</span>
+                <span class="medal-emoji">🥈</span>
+                <span class="medal-text"><strong>Platină</strong> — Infomatrix Hackathon</span>
               </div>
               <div class="medal-row">
-                <div class="medal-pip medal-pip-bronze"></div>
+                <span class="medal-emoji">🥉</span>
+                <span class="medal-text"><strong>Bronz</strong> — IATI Informatică</span>
+              </div>
+              <div class="medal-row">
+                <span class="medal-emoji">🥉</span>
                 <span class="medal-text"><strong>Bronz</strong> — Olimpiada Naț. Astronomie</span>
               </div>
               <div class="medal-row">
-                <div class="medal-pip medal-pip-special"></div>
+                <span class="medal-emoji">💠</span>
                 <span class="medal-text"><strong>Premiu Special</strong> — Olimpiada Naț. AI</span>
               </div>
             </div>
