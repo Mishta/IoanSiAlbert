@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   icons: { icon: '/favicon.svg' },
   title: 'P.O.L.A.R.I.S. — Polaris Bears · ONCS 2026',
   description: 'Platformă Orbitală Laser pentru Alimentare și Recepție Inovativă Solară. Un sistem energetic spațial pentru civilizația de tip Kardashev 1.',
+  alternates: {
+    canonical: 'https://polaris-bears.ro',
+  },
   openGraph: {
     title: 'P.O.L.A.R.I.S.',
     description: 'Energie din cosmos pentru planeta noastră.',
