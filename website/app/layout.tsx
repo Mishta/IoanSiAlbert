@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://polaris-bears.ro',
   },
+  verification: {
+    other: { 'msvalidate.01': '6DC21EBCD2186981AD206FDC2FDA46A0' },
+  },
   openGraph: {
     title: 'P.O.L.A.R.I.S.',
     description: 'Energie din cosmos pentru planeta noastră.',
