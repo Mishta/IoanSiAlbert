@@ -11,7 +11,8 @@ const TECH = [
     subtitle: '30 oglinzi · Ø 1 km · 7 milioane km de Soare',
     body: `La 7 milioane km de Soare, intensitatea radiației solare atinge 622.000 W/m² — de 457× față de suprafața Pământului. 30 de oglinzi orbitale de 1 km diametru concentrează această energie spre sateliții colectori, cu o reflectivitate de 90%.`,
     img: '/images/generated/Image%20K%20-%20Solar%20Mirror%20Dyson.jpg',
-    videoId: 'j5dQu1uLcrE',
+    videoId: null,
+    videoBg: '/videos/Image%20B%20-%20Mirror%20and%20Sun%20-%20Video.mp4',
     videoLocal: '/videos/Image%20K%20-%20Solar%20Mirror%20Dyson%20-%20Video.mp4',
     accent: '#ffe3b7',
     stats: [
@@ -215,13 +216,13 @@ export default function Architecture() {
           >
             <div className={styles.cardVisual}>
               <div data-parallax className={styles.imgWrap}>
-                {tech.videoLocal ? (
+                {(tech.videoBg ?? tech.videoLocal) ? (
                   <video
                     autoPlay muted loop playsInline
                     className={styles.cardVideo}
                     poster={tech.img}
                   >
-                    <source src={tech.videoLocal} type="video/mp4" />
+                    <source src={(tech.videoBg ?? tech.videoLocal)!} type="video/mp4" />
                   </video>
                 ) : (
                   <Image src={tech.img} alt={tech.title} fill className={styles.img}
