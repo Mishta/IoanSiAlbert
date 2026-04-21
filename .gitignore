@@ -3,3 +3,13 @@
 output/*.docx
 print-materials/**/*.pdf
 __pycache__/
+
+# Fișiere mari — excluse din repo, păstrate local
+website/public/videos/
+print-materials/PDF-TIPAR/
+print-materials/t-shirt/vertical stand*.png
+print-materials/rollup/rollup_4_complet_hires.png
+print-materials/rollup/rollup_4_complet_300dpi.png
+
+# Build artifacts
+website/tsconfig.tsbuildinfo
