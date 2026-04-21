@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../claude-design-transit/corrected/assets/fonts.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 1800px; height: 900px;
+  background: #080c1a;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow: hidden;
+  display: flex;
+}
+
+.panel { position: relative; overflow: hidden; flex-shrink: 0; }
+.panel-left  { width: 450px; height: 900px; border-right: 2px solid rgba(0,229,255,0.25); }
+.panel-center { width: 900px; height: 900px; }
+.panel-right { width: 450px; height: 900px; border-left: 2px solid rgba(0,229,255,0.25); }
+
+.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+/* ══════════════ LEFT — ARHITECTURA ══════════════ */
+.ov-left {
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(8,12,26,0.97) 0%, rgba(8,12,26,0.82) 60%, rgba(8,12,26,0.93) 100%);
+}
+/* cyan top bar */
+.ov-left::before {
+  content:''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #00e5ff, rgba(0,229,255,0.1));
+}
+
+.left-body {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 40px 32px 32px;
+}
+.sec-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: 0.32em;
+  color: rgba(0,229,255,0.5);
+  text-transform: uppercase; margin-bottom: 18px;
+}
+.sec-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 26px;
+  color: #dfe2f3; line-height: 1.15;
+  margin-bottom: 22px;
+}
+.sec-title em { font-style: normal; color: #00e5ff; }
+
+.arch-steps { display: flex; flex-direction: column; gap: 9px; margin-bottom: auto; }
+.astep {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 10px 12px;
+  background: rgba(0,229,255,0.04);
+  border: 1px solid rgba(0,229,255,0.15);
+  border-radius: 4px;
+}
+.astep-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 20px; line-height: 1;
+  color: #00e5ff; opacity: 0.5; flex-shrink: 0;
+  padding-top: 2px;
+}
+.astep-info {}
+.astep-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 16px;
+  color: #dfe2f3; line-height: 1.2;
+}
+.astep-stat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: rgba(0,229,255,0.55);
+  letter-spacing: 0.12em; margin-top: 3px;
+}
+
+.panel-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.15); text-transform: uppercase;
+  margin-top: 14px;
+}
+
+/* ══════════════ CENTER — DIAGRAMĂ FLUX ══════════════ */
+.ov-center {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(8,12,26,0.95) 0%,
+    rgba(8,12,26,0.55) 25%,
+    rgba(8,12,26,0.45) 65%,
+    rgba(8,12,26,0.95) 100%);
+}
+.center-body {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center;
+  padding: 38px 48px 32px;
+}
+
+.center-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; letter-spacing: 0.28em;
+  color: rgba(255,186,32,0.45);
+  text-transform: uppercase; margin-bottom: 16px; text-align: center;
+}
+.center-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 34px;
+  color: #ffba20; letter-spacing: 0.05em;
+  text-align: center; line-height: 1.1;
+  margin-bottom: 28px;
+  text-shadow: 0 0 40px rgba(255,186,32,0.4);
+}
+
+/* Energy flow chain */
+.flow-chain {
+  display: flex; align-items: center; gap: 0;
+  width: 100%; margin-bottom: 28px;
+}
+.fnode {
+  display: flex; flex-direction: column; align-items: center;
+  flex: 1; text-align: center; padding: 0 4px;
+}
+.fnode-icon {
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 8px; font-size: 20px;
+}
+.fnode-icon-gold { background: rgba(255,186,32,0.15); border: 1.5px solid rgba(255,186,32,0.4); }
+.fnode-icon-cyan { background: rgba(0,229,255,0.12); border: 1.5px solid rgba(0,229,255,0.35); }
+.fnode-icon-green{ background: rgba(0,255,136,0.1);  border: 1.5px solid rgba(0,255,136,0.3); }
+.fnode-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 14px;
+  color: #dfe2f3; line-height: 1.2;
+}
+.fnode-stat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: rgba(255,186,32,0.55);
+  letter-spacing: 0.1em; margin-top: 3px;
+}
+.fnode-stat-c { color: rgba(0,229,255,0.6); }
+.fnode-stat-g { color: rgba(0,255,136,0.6); }
+
+.farrow {
+  flex-shrink: 0; display: flex; flex-direction: column;
+  align-items: center; gap: 2px; padding-bottom: 32px;
+}
+.farrow-line {
+  width: 28px; height: 1.5px; border-radius: 1px;
+}
+.farrow-line-gold { background: linear-gradient(90deg, rgba(255,186,32,0.6), rgba(255,186,32,0.2)); }
+.farrow-line-cyan { background: linear-gradient(90deg, rgba(0,229,255,0.6), rgba(0,229,255,0.2)); }
+.farrow-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7px; color: rgba(255,255,255,0.2);
+  letter-spacing: 0.08em;
+}
+
+/* Formula cards */
+.formula-row {
+  display: flex; gap: 12px; width: 100%; margin-bottom: auto;
+}
+.fcrd {
+  flex: 1;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px; padding: 12px 14px;
+}
+.fcrd-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.16em;
+  color: rgba(255,186,32,0.4); text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.fcrd-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: rgba(223,226,243,0.75);
+  line-height: 1.5;
+}
+.fcrd-formula span { color: #ffba20; }
+.fcrd-result {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 15px;
+  color: #dfe2f3; margin-top: 6px;
+}
+
+.stat-bar {
+  width: 100%;
+  display: flex; gap: 2px; margin-top: 20px;
+}
+.sbar-seg {
+  height: 4px; border-radius: 2px;
+}
+
+/* ══════════════ RIGHT — ECHIPA ══════════════ */
+.ov-right {
+  position: absolute; inset: 0;
+  background: linear-gradient(200deg, rgba(8,12,26,0.97) 0%, rgba(8,12,26,0.8) 55%, rgba(8,12,26,0.95) 100%);
+}
+/* gold top bar */
+.ov-right::before {
+  content:''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, rgba(255,186,32,0.1), #ffba20 100%);
+}
+
+.right-body {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 40px 32px 32px;
+}
+.r-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px; letter-spacing: 0.32em;
+  color: rgba(255,186,32,0.5);
+  text-transform: uppercase; margin-bottom: 18px;
+}
+.r-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 26px;
+  color: #dfe2f3; line-height: 1.15;
+  margin-bottom: 6px;
+}
+.r-oncs {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px; letter-spacing: 0.16em;
+  color: rgba(255,186,32,0.4); margin-bottom: 22px;
+  line-height: 1.5;
+}
+
+/* Member cards */
+.members { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.mcard {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,186,32,0.05);
+  border: 1px solid rgba(255,186,32,0.2);
+  border-radius: 6px; padding: 10px 12px;
+}
+.minitial {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(255,186,32,0.1);
+  border: 1.5px solid rgba(255,186,32,0.35);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 16px; color: #ffba20;
+  flex-shrink: 0;
+}
+.minfo {}
+.mname {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 15px; color: #dfe2f3;
+}
+.mrole {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px; color: rgba(223,226,243,0.45);
+  margin-top: 2px; line-height: 1.3;
+}
+
+.oly-block {
+  background: rgba(255,186,32,0.05);
+  border: 1px solid rgba(255,186,32,0.2);
+  border-radius: 4px; padding: 10px 12px;
+  margin-bottom: auto;
+}
+.oly-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px; letter-spacing: 0.2em;
+  color: rgba(255,186,32,0.5); text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.oly-list { display: flex; flex-direction: column; gap: 5px; }
+.oly-item {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px; color: rgba(223,226,243,0.6);
+  display: flex; align-items: center; gap: 7px;
+}
+.oly-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: #ffba20; opacity: 0.6; flex-shrink: 0;
+}
+
+.mentor-row {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 10px 12px;
+  background: rgba(0,229,255,0.04);
+  border: 1px solid rgba(0,229,255,0.15);
+  border-radius: 4px; margin-bottom: 14px;
+}
+.mentor-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.18em;
+  color: rgba(0,229,255,0.45); text-transform: uppercase;
+  flex-shrink: 0; padding-top: 2px;
+}
+.mentor-name {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px; font-weight: 600;
+  color: rgba(223,226,243,0.65); line-height: 1.4;
+}
+.mentor-inst {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px; color: rgba(223,226,243,0.35); margin-top: 2px;
+}
+
+.r-footer { margin-top: 14px; }
+.r-website {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; letter-spacing: 0.16em;
+  color: rgba(0,229,255,0.4);
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ LEFT (verso) — ARHITECTURA ═══════════════ -->
+<div class="panel panel-left">
+  <img class="bg" src="../../images/generated/Image K - Solar Mirror Dyson.png" alt="">
+  <div class="ov-left"></div>
+  <div class="left-body">
+    <div class="sec-label">ARHITECTURA SISTEMULUI</div>
+    <div class="sec-title">Patru module.<br><em>Un lanț</em><br>energetic coerent.</div>
+
+    <div class="arch-steps">
+      <div class="astep">
+        <div class="astep-num">01</div>
+        <div class="astep-info">
+          <div class="astep-name">Inel Dyson de Oglinzi</div>
+          <div class="astep-stat">30 oglinzi · Ø1 km · 7M km de Soare</div>
+        </div>
+      </div>
+      <div class="astep">
+        <div class="astep-num">02</div>
+        <div class="astep-info">
+          <div class="astep-name">Sateliți Colectori Laser</div>
+          <div class="astep-stat">4 sateliți · η = 43% · verde+albastru</div>
+        </div>
+      </div>
+      <div class="astep">
+        <div class="astep-num">03</div>
+        <div class="astep-info">
+          <div class="astep-name">Noduri Lagrange L4/L5</div>
+          <div class="astep-stat">800 GW/nod · releu gravitațional stabil</div>
+        </div>
+      </div>
+      <div class="astep">
+        <div class="astep-num">04</div>
+        <div class="astep-info">
+          <div class="astep-name">Rețea Star Power Grid</div>
+          <div class="astep-stat">YBCO 77K · 800 GW/cablu · 0% rezistență</div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- ═══════════════ CENTER (verso) — DIAGRAMA FLUX ═══════════════ -->
+<div class="panel panel-center">
+  <img class="bg" src="../../images/generated/06 POLARIS System General View (v2).png" alt="">
+  <div class="ov-center"></div>
+  <div class="center-body">
+    <div class="center-label">Lanțul energetic complet</div>
+    <div class="center-title">Soare → Spațiu → Pământ</div>
+
+    <!-- Flow chain nodes -->
+    <div class="flow-chain">
+      <div class="fnode">
+        <div class="fnode-icon fnode-icon-gold">☀️</div>
+        <div class="fnode-name">Soare</div>
+        <div class="fnode-stat">622.000 W/m²</div>
+      </div>
+      <div class="farrow">
+        <div class="farrow-line farrow-line-gold"></div>
+        <div class="farrow-pct">→</div>
+      </div>
+      <div class="fnode">
+        <div class="fnode-icon fnode-icon-gold">⬡</div>
+        <div class="fnode-name">Inel Dyson</div>
+        <div class="fnode-stat">30 oglinzi · 90%</div>
+      </div>
+      <div class="farrow">
+        <div class="farrow-line farrow-line-gold"></div>
+        <div class="farrow-pct">→</div>
+      </div>
+      <div class="fnode">
+        <div class="fnode-icon fnode-icon-cyan">◈</div>
+        <div class="fnode-name">Sateliți</div>
+        <div class="fnode-stat-c fnode-stat">η = 43%</div>
+      </div>
+      <div class="farrow">
+        <div class="farrow-line farrow-line-cyan"></div>
+        <div class="farrow-pct">→</div>
+      </div>
+      <div class="fnode">
+        <div class="fnode-icon fnode-icon-cyan">◉</div>
+        <div class="fnode-name">L4 / L5</div>
+        <div class="fnode-stat-c fnode-stat">2×800 GW</div>
+      </div>
+      <div class="farrow">
+        <div class="farrow-line farrow-line-cyan"></div>
+        <div class="farrow-pct">→</div>
+      </div>
+      <div class="fnode">
+        <div class="fnode-icon fnode-icon-green">⊕</div>
+        <div class="fnode-name">Poli Pământ</div>
+        <div class="fnode-stat fnode-stat-g">YBCO 77K</div>
+      </div>
+    </div>
+
+    <!-- Formula cards -->
+    <div class="formula-row">
+      <div class="fcrd">
+        <div class="fcrd-label">Intensitate solară</div>
+        <div class="fcrd-formula">I = <span>L☉</span> / (4π·r²)</div>
+        <div class="fcrd-result">622.000 W/m²</div>
+      </div>
+      <div class="fcrd">
+        <div class="fcrd-label">Putere livrată</div>
+        <div class="fcrd-formula">P = <span>η</span> · A · I · N</div>
+        <div class="fcrd-result">1,6 × 10¹² W</div>
+      </div>
+      <div class="fcrd">
+        <div class="fcrd-label">Electricitate globală</div>
+        <div class="fcrd-formula">P_POLARIS / <span>P_world</span></div>
+        <div class="fcrd-result">≈ 48%</div>
+      </div>
+    </div>
+
+    <!-- Color progress bar -->
+    <div class="stat-bar">
+      <div class="sbar-seg" style="flex:30; background:#ffba20; opacity:0.7"></div>
+      <div class="sbar-seg" style="flex:2; background:transparent"></div>
+      <div class="sbar-seg" style="flex:43; background:#00e5ff; opacity:0.7"></div>
+      <div class="sbar-seg" style="flex:2; background:transparent"></div>
+      <div class="sbar-seg" style="flex:47; background:#00ff88; opacity:0.7"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ RIGHT (verso) — ECHIPA ═══════════════ -->
+<div class="panel panel-right">
+  <img class="bg" src="../../images/generated/Image G - Science Lab meets Space.png" alt="">
+  <div class="ov-right"></div>
+  <div class="right-body">
+    <div class="r-label">ECHIPA POLARIS Bears</div>
+    <div class="r-title">ONI · ONIA · ONAA<br />Olimpici naționali.<br>Vizionari.</div>
+    <div class="r-oncs">
+      ONCS 2026 · Juniori<br>
+      Secțiunea: Științe Fundamentale
+    </div>
+
+    <div class="members">
+      <div class="mcard">
+        <div class="minitial">I</div>
+        <div class="minfo">
+          <div class="mname">Ioan CHELARU</div>
+          <div class="mrole">Cercetare · Grafică AI · Prezentare</div>
+        </div>
+      </div>
+      <div class="mcard">
+        <div class="minitial">A</div>
+        <div class="minfo">
+          <div class="mname">Albert OLARIU</div>
+          <div class="mrole">Inginerie · Calcule · Arhitectură</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="oly-block">
+      <div class="oly-title">🏅 Olimpiade Naționale</div>
+      <div class="oly-list">
+        <div class="oly-item"><div class="oly-dot"></div>ONAA — Astronomie &amp; Astrofizică</div>
+        <div class="oly-item"><div class="oly-dot"></div>ONI — Informatică</div>
+        <div class="oly-item"><div class="oly-dot"></div>ONIA — Inteligență Artificială</div>
+      </div>
+    </div>
+
+    <div class="mentor-row" style="margin-top:14px">
+      <div class="mentor-lbl">Inovator</div>
+      <div>
+        <div class="mentor-name">Fizică Clasică · Supraconductivitate <br /> Criogenie · Inginerie Orbitală</div>
+        <div class="mentor-inst">Proiect interdisciplinar</div>
+	
+      </div>
+    </div>
+
+    <div class="r-footer">
+      <div class="r-website">POLARIS-Bears.ro</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

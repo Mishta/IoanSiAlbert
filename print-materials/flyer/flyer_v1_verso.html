@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<title>P.O.L.A.R.I.S. — Flyer V1 IMPACT — Verso</title>
+<link rel="stylesheet" href="../../claude-design-transit/corrected/assets/fonts.css">
+<style>
+@page { size: A4 landscape; margin: 0; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #080c1a; --gold: #ffba20; --cyan: #00e5ff;
+  --ice: #e8f4f8; --warm: #d4c5ab; --white: #fff;
+}
+html { background: #111; display: flex; justify-content: center; padding: 8mm; min-height: 100vh; }
+body { font-family: 'Space Grotesk', sans-serif; }
+.flyer { width: 297mm; height: 210mm; display: flex; position: relative; overflow: hidden; background: var(--navy); }
+@media screen {
+  .fold { position: absolute; top: 0; bottom: 0; width: 0.3mm; background: rgba(255,186,32,0.25); z-index: 200; }
+}
+.panel { width: 99mm; height: 210mm; position: relative; overflow: hidden; flex-shrink: 0; }
+.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.label { font-size: 2mm; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cyan); }
+
+/* ═══════════ LEFT — ARCHITECTURE ═══════════ */
+.p-left .ov {
+  position: absolute; inset: 0;
+  background: linear-gradient(150deg, rgba(8,12,26,0.90) 0%, rgba(8,12,26,0.62) 50%, rgba(8,12,26,0.92) 100%);
+}
+.p-left .body { position: absolute; inset: 0; padding: 7mm 6mm; display: flex; flex-direction: column; gap: 4mm; }
+
+.arch-title { font-size: 6mm; font-weight: 800; color: var(--gold); letter-spacing: 0.06em; line-height: 1.15; }
+.arch-intro { font-size: 2.7mm; font-weight: 300; color: var(--warm); line-height: 1.6; }
+.arch-intro strong { color: var(--ice); font-weight: 600; }
+
+.comp { display: flex; gap: 2.5mm; align-items: flex-start; padding: 2mm 0; border-bottom: 0.3mm solid rgba(255,186,32,0.15); }
+.comp:last-child { border-bottom: none; }
+.comp-num {
+  flex-shrink: 0; width: 6mm; height: 6mm; border-radius: 50%;
+  border: 0.4mm solid var(--gold); display: flex; align-items: center; justify-content: center;
+  font-size: 2.5mm; font-weight: 700; color: var(--gold); font-family: 'JetBrains Mono', monospace;
+}
+.comp-info { flex: 1; }
+.comp-name { font-size: 2.8mm; font-weight: 700; color: var(--ice); letter-spacing: 0.05em; margin-bottom: 0.5mm; }
+.comp-stat { font-size: 2.2mm; font-weight: 400; color: var(--warm); line-height: 1.4; }
+.comp-stat em { color: var(--gold); font-style: normal; font-weight: 600; }
+
+/* ═══════════ CENTER — ENERGY FLOW DIAGRAM ═══════════ */
+.p-center { background: var(--navy); }
+.p-center .body { position: absolute; inset: 0; padding: 7mm 5mm; display: flex; flex-direction: column; align-items: center; gap: 3mm; }
+.p-center .bg-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 70%);
+}
+.diag-title { font-size: 4.5mm; font-weight: 800; color: var(--gold); letter-spacing: 0.1em; text-align: center; }
+.diag-sub { font-size: 2.2mm; font-weight: 400; color: var(--warm); text-align: center; letter-spacing: 0.08em; }
+.diag-wrap { flex: 1; width: 100%; display: flex; align-items: center; justify-content: center; padding: 0 2mm; position: relative; z-index: 1; }
+.diag-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.diag-stats { display: flex; justify-content: center; gap: 4mm; width: 100%; }
+.dstat {
+  display: flex; flex-direction: column; align-items: center;
+  background: rgba(255,186,32,0.07); border: 0.3mm solid rgba(255,186,32,0.3);
+  padding: 1.5mm 3mm; flex: 1;
+}
+.dstat-val { font-size: 4.5mm; font-weight: 800; color: var(--gold); line-height: 1; font-family: 'JetBrains Mono', monospace; }
+.dstat-lbl { font-size: 1.8mm; font-weight: 500; color: var(--warm); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.5mm; text-align: center; }
+
+/* ═══════════ RIGHT — TEAM + QR ═══════════ */
+.p-right .ov {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(8,12,26,0.3) 0%, rgba(8,12,26,0.1) 20%, rgba(8,12,26,0.75) 55%, rgba(8,12,26,0.97) 100%);
+}
+.p-right .body { position: absolute; inset: 0; padding: 7mm 6mm; display: flex; flex-direction: column; justify-content: flex-end; }
+.team-label { font-size: 2mm; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cyan); margin-bottom: 3mm; }
+.team-member {
+  display: flex; align-items: center; gap: 2.5mm;
+  padding: 2mm 0; border-bottom: 0.3mm solid rgba(255,186,32,0.15);
+}
+.tm-init {
+  flex-shrink: 0; width: 8mm; height: 8mm; border-radius: 50%;
+  border: 0.5mm solid rgba(255,186,32,0.5); background: rgba(255,186,32,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3.5mm; font-weight: 800; color: var(--gold);
+}
+.tm-name { font-size: 3mm; font-weight: 700; color: var(--white); }
+.tm-role { font-size: 2.2mm; font-weight: 400; color: var(--warm); letter-spacing: 0.06em; }
+
+.olympiads { display: flex; gap: 1.5mm; flex-wrap: wrap; margin: 3mm 0; }
+.olympiad {
+  font-size: 1.8mm; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold); border: 0.3mm solid rgba(255,186,32,0.4);
+  padding: 0.7mm 2mm; background: rgba(255,186,32,0.07);
+}
+
+.mentor {
+  font-size: 2.3mm; font-weight: 300; color: var(--warm); line-height: 1.5; margin: 2mm 0;
+  padding: 2mm 0; border-top: 0.3mm solid rgba(255,255,255,0.07);
+}
+.mentor strong { color: var(--ice); font-weight: 600; }
+
+.qr-row {
+  display: flex; align-items: center; gap: 3.5mm; margin-top: 3mm;
+  padding: 2mm; background: rgba(255,255,255,0.03); border: 0.3mm solid rgba(255,186,32,0.2);
+}
+.qr-code { width: 20mm; height: 20mm; flex-shrink: 0; }
+.qr-info { display: flex; flex-direction: column; gap: 0.8mm; }
+.qr-label { font-size: 1.8mm; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm); }
+.qr-url { font-size: 3mm; font-weight: 700; color: var(--gold); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em; }
+.qr-desc { font-size: 1.8mm; color: var(--warm); font-weight: 300; }
+</style>
+</head>
+<body>
+<div class="flyer">
+  <div class="fold" style="left:99mm;"></div>
+  <div class="fold" style="left:198mm;"></div>
+
+  <!-- LEFT — ARCHITECTURE OVERVIEW -->
+  <div class="panel p-left">
+    <img class="bg" src="../../images/generated/Image%20K%20-%20Solar%20Mirror%20Dyson.png" alt="" style="object-position:center 40%;">
+    <div class="ov"></div>
+    <div class="body">
+      <div>
+        <p class="label">Arhitectura sistemului</p>
+        <div class="arch-title" style="margin-top:2mm;">5 Niveluri<br>de Inovație</div>
+        <p class="arch-intro" style="margin-top:2mm;">
+          P.O.L.A.R.I.S. captează energia solară <strong>înainte de atmosferă</strong>
+          și o transmite prin <strong>laser</strong> direct la Poli.
+        </p>
+      </div>
+      <div>
+        <div class="comp">
+          <div class="comp-num">01</div>
+          <div class="comp-info">
+            <div class="comp-name">Dyson Ring</div>
+            <div class="comp-stat"><em>30 oglinzi</em> · Ø 1km · la 7 mln km de Soare</div>
+          </div>
+        </div>
+        <div class="comp">
+          <div class="comp-num">02</div>
+          <div class="comp-info">
+            <div class="comp-name">Sateliți Colectori</div>
+            <div class="comp-stat"><em>4 sateliți</em> · eficiență lumină→laser <em>43%</em></div>
+          </div>
+        </div>
+        <div class="comp">
+          <div class="comp-num">03</div>
+          <div class="comp-info">
+            <div class="comp-name">Noduri L4/L5 Lagrange</div>
+            <div class="comp-stat"><em>2.83 × 10¹² W</em> disponibil per nod</div>
+          </div>
+        </div>
+        <div class="comp">
+          <div class="comp-num">04</div>
+          <div class="comp-info">
+            <div class="comp-name">Centrale Polare</div>
+            <div class="comp-stat"><em>30 km altitudine</em> · baloane heliu · 11 tone</div>
+          </div>
+        </div>
+        <div class="comp">
+          <div class="comp-num">05</div>
+          <div class="comp-info">
+            <div class="comp-name">Cabluri YBCO</div>
+            <div class="comp-stat"><em>800 GW/cablu</em> · T<sub>c</sub> = 93K · azot lichid</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTER — ENERGY FLOW DIAGRAM -->
+  <div class="panel p-center">
+    <div class="bg-glow"></div>
+    <div class="body">
+      <div class="diag-title">Fluxul Energetic</div>
+      <div class="diag-sub">De la Soare la priza din perete</div>
+      <div class="diag-wrap">
+        <img src="../../assets/diagrams/diagram_energy_flow.svg" alt="Energy Flow Diagram">
+      </div>
+      <div class="diag-stats">
+        <div class="dstat">
+          <div class="dstat-val">43%</div>
+          <div class="dstat-lbl">Eficiență<br>lumină→laser</div>
+        </div>
+        <div class="dstat">
+          <div class="dstat-val">47%</div>
+          <div class="dstat-lbl">Utilizat<br>din disponibil</div>
+        </div>
+        <div class="dstat">
+          <div class="dstat-val">1.6</div>
+          <div class="dstat-lbl">TW<br>livrat</div>
+        </div>
+      </div>
+      <div style="font-size:2mm; color:var(--warm); text-align:center; line-height:1.5; margin-top:1mm;">
+        Laser <span style="color:var(--cyan)">verde</span>: Colectori → L4/L5 ·
+        Laser <span style="color:#4488ff">albastru</span>: L4/L5 → Poli
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — TEAM + QR (opens from COVER) -->
+  <div class="panel p-right">
+    <img class="bg" src="../../assets/team-hero.jpeg" alt="" style="object-position:center top;">
+    <div class="ov"></div>
+    <div class="body">
+      <div class="team-label">Echipa POLARIS Bears</div>
+
+      <div class="team-member">
+        <div class="tm-init">A</div>
+        <div>
+          <div class="tm-name">Albert OLARIU</div>
+          <div class="tm-role">Cercetător · Clasa VIII-a</div>
+        </div>
+      </div>
+      <div class="team-member">
+        <div class="tm-init">I</div>
+        <div>
+          <div class="tm-name">Ioan CHELARU</div>
+          <div class="tm-role">Cercetător · Clasa VIII-a</div>
+        </div>
+      </div>
+
+      <div class="olympiads" style="margin-top:3mm;">
+        <span class="olympiad">★ Astronomie</span>
+        <span class="olympiad">★ Informatică</span>
+        <span class="olympiad">★ ONIA — AI</span>
+      </div>
+
+      <div class="mentor">
+        Coordonator: <strong>Prof. F. D. AARON</strong><br>
+        ICHB — Liceul Teoretic Internațional de Informatică
+      </div>
+
+      <div class="qr-row">
+        <img class="qr-code" src="../../assets/qr-code-POLARIS-Bears.png" alt="QR Code">
+        <div class="qr-info">
+          <div class="qr-label">Website proiect</div>
+          <div class="qr-url">POLARIS-Bears.ro</div>
+          <div class="qr-desc">Scanează pentru a vizita pagina<br>oficială P.O.L.A.R.I.S.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

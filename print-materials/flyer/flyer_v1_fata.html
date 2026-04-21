@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<title>P.O.L.A.R.I.S. — Flyer V1 IMPACT — Față</title>
+<link rel="stylesheet" href="../../claude-design-transit/corrected/assets/fonts.css">
+<style>
+@page { size: A4 landscape; margin: 0; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #080c1a; --gold: #ffba20; --cyan: #00e5ff;
+  --ice: #e8f4f8; --warm: #d4c5ab; --white: #fff;
+}
+html {
+  background: #111;
+  display: flex; justify-content: center; align-items: flex-start;
+  padding: 8mm; min-height: 100vh;
+}
+body { font-family: 'Space Grotesk', sans-serif; }
+
+.flyer {
+  width: 297mm; height: 210mm;
+  display: flex; position: relative; overflow: hidden;
+  background: var(--navy);
+}
+@media screen {
+  .fold-l, .fold-r {
+    position: absolute; top: 0; bottom: 0; width: 0.3mm;
+    background: rgba(255,186,32,0.25); z-index: 200; pointer-events: none;
+  }
+  .fold-l { left: 99mm; } .fold-r { left: 198mm; }
+}
+.panel { width: 99mm; height: 210mm; position: relative; overflow: hidden; flex-shrink: 0; }
+.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* ═══════════ LEFT — BACK OF BROCHURE ═══════════ */
+.p-left .ov {
+  position: absolute; inset: 0;
+  background: linear-gradient(155deg,
+    rgba(8,12,26,0.93) 0%, rgba(8,12,26,0.65) 50%, rgba(8,12,26,0.90) 100%);
+}
+.p-left .body {
+  position: absolute; inset: 0; padding: 7mm 6mm;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.label {
+  font-size: 2mm; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--cyan);
+}
+.crisis-num {
+  font-size: 24mm; font-weight: 800; color: var(--gold);
+  line-height: 0.9; letter-spacing: -0.02em;
+  text-shadow: 0 0 20mm rgba(255,186,32,0.35);
+}
+.crisis-unit { font-size: 4mm; font-weight: 300; color: var(--ice); letter-spacing: 0.06em; margin-top: 1mm; }
+.crisis-body { font-size: 2.8mm; font-weight: 300; color: var(--warm); line-height: 1.65; }
+.crisis-body strong { color: var(--ice); font-weight: 600; }
+.bullet {
+  display: flex; gap: 2mm; align-items: flex-start;
+  font-size: 2.7mm; color: var(--warm); line-height: 1.5; margin-bottom: 1.5mm;
+}
+.bullet::before { content: '→'; color: var(--gold); flex-shrink: 0; font-size: 2.5mm; margin-top: 0.3mm; }
+.bullet.hi { color: var(--ice); font-weight: 600; }
+.bullet.hi::before { color: var(--cyan); }
+
+/* ═══════════ CENTER — POWER STATEMENT ═══════════ */
+.p-center .ov {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to right, rgba(8,12,26,0.82) 0%, rgba(8,12,26,0.15) 25%, rgba(8,12,26,0.15) 75%, rgba(8,12,26,0.82) 100%),
+    linear-gradient(to bottom, rgba(8,12,26,0.75) 0%, rgba(8,12,26,0.08) 30%, rgba(8,12,26,0.08) 65%, rgba(8,12,26,0.88) 100%);
+}
+.p-center .body {
+  position: absolute; inset: 0; padding: 7mm 5mm;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center; gap: 3.5mm;
+}
+.pw-label {
+  font-size: 2mm; font-weight: 700; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--cyan);
+  border: 0.4mm solid rgba(0,229,255,0.4); padding: 0.8mm 3mm;
+}
+.pw-num {
+  font-size: 42mm; font-weight: 800; color: var(--gold);
+  line-height: 0.82; letter-spacing: -0.03em;
+  text-shadow: 0 0 30mm rgba(255,186,32,0.45), 0 0 60mm rgba(255,186,32,0.2);
+}
+.pw-unit { font-size: 13mm; font-weight: 300; color: var(--ice); letter-spacing: 0.06em; margin-top: -2mm; }
+.pw-sub { font-size: 3mm; font-weight: 300; color: var(--ice); letter-spacing: 0.06em; font-style: italic; }
+.pw-impact { font-size: 4.5mm; font-weight: 700; color: var(--cyan); letter-spacing: 0.03em; }
+.pw-badges { display: flex; gap: 2mm; flex-wrap: wrap; justify-content: center; }
+.pw-badge {
+  font-size: 2mm; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold);
+  border: 0.3mm solid rgba(255,186,32,0.5); padding: 0.8mm 2.5mm;
+  background: rgba(255,186,32,0.07);
+}
+
+/* Laser beam decoration */
+.laser-v {
+  position: absolute; top: 0; bottom: 0; width: 0.4mm;
+  background: linear-gradient(to bottom, transparent, rgba(0,229,255,0.6) 30%, rgba(0,229,255,0.6) 70%, transparent);
+  pointer-events: none;
+}
+.laser-v.l1 { left: 20mm; }
+.laser-v.l2 { right: 20mm; }
+
+/* ═══════════ RIGHT — COVER ═══════════ */
+.p-right .ov {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(8,12,26,0.5) 0%,
+    rgba(8,12,26,0.1) 20%,
+    rgba(8,12,26,0.15) 50%,
+    rgba(8,12,26,0.88) 68%,
+    rgba(8,12,26,0.97) 100%);
+}
+.p-right .body {
+  position: absolute; inset: 0; padding: 7mm 6mm;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: flex-end; text-align: center;
+}
+.cover-logo { width: 26mm; height: 26mm; object-fit: contain; margin-bottom: 3.5mm; filter: drop-shadow(0 0 5mm rgba(255,186,32,0.55)); }
+.cover-title { font-size: 10mm; font-weight: 800; color: var(--gold); letter-spacing: 0.18em; line-height: 1; }
+.cover-sub { font-size: 1.8mm; font-weight: 400; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 1.5mm; line-height: 1.5; }
+.cover-div {
+  width: 24mm; height: 0.3mm; margin: 4mm auto;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.cover-slogan { font-size: 3mm; font-weight: 300; color: var(--ice); letter-spacing: 0.07em; font-style: italic; line-height: 1.7; }
+.cover-slogan strong { color: var(--gold); font-weight: 700; }
+.cover-badge {
+  margin-top: 5mm; font-size: 1.9mm; font-weight: 800; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--navy);
+  background: var(--gold); padding: 1.2mm 4mm; margin-bottom: 2.5mm;
+}
+.cover-url { font-size: 2.8mm; font-weight: 600; letter-spacing: 0.08em; color: var(--cyan); font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body>
+<div class="flyer">
+  <div class="fold-l"></div>
+  <div class="fold-r"></div>
+
+  <!-- LEFT — BACK OF BROCHURE -->
+  <div class="panel p-left">
+    <img class="bg" src="../../images/generated/Image%20A%20-%20Earth%20Energy%20Crisis.png" alt="" style="object-position:center 40%;">
+    <div class="ov"></div>
+    <div class="body">
+      <div>
+        <p class="label">Provocarea globală</p>
+        <div style="margin-top:3.5mm;">
+          <div class="crisis-num">622K</div>
+          <div class="crisis-unit">W/m² · la suprafața solară</div>
+        </div>
+        <p class="crisis-body" style="margin-top:3.5mm;">
+          Soarele emite <strong>3.8 × 10²⁶ W</strong> continuu —
+          mai multă energie în <strong>1 oră</strong>
+          decât omenirea consumă într-un <strong>an întreg</strong>.
+        </p>
+      </div>
+      <div>
+        <p class="label" style="margin-bottom:2mm;">De ce nu ajunge?</p>
+        <div class="bullet">Atmosfera filtrează ~30% din radiație</div>
+        <div class="bullet">Noapte, nori, variație sezonieră</div>
+        <div class="bullet">Transmisie pe distanțe mari — pierderi mari</div>
+        <div class="bullet hi">P.O.L.A.R.I.S. rezolvă toate cele trei</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTER — POWER STATEMENT -->
+  <div class="panel p-center">
+    <img class="bg" src="../../images/generated/Image%20C%20-%20Full%20System%20Panoramic.png" alt="" style="object-position:center;">
+    <div class="ov"></div>
+    <div class="laser-v l1"></div>
+    <div class="laser-v l2"></div>
+    <div class="body">
+      <div class="pw-label">Putere livrată continuu · 24/7</div>
+      <div>
+        <div class="pw-num">1.6</div>
+        <div class="pw-unit">TW</div>
+      </div>
+      <div class="pw-sub">energie curată · zero emisii · fără întrerupere</div>
+      <div class="pw-impact">≈ 48% din electricitatea globală</div>
+      <div class="pw-badges">
+        <span class="pw-badge">0 CO₂</span>
+        <span class="pw-badge">Scalabil orbital</span>
+        <span class="pw-badge">Kardashev 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — COVER -->
+  <div class="panel p-right">
+    <img class="bg" src="../../images/generated/Image%20N%20-%20A5%20System%20Overview.png" alt="" style="object-position:center 35%;">
+    <div class="ov"></div>
+    <div class="body">
+      <img class="cover-logo" src="../../assets/logo-white.svg" alt="POLARIS Bears">
+      <div class="cover-title">P·O·L·A·R·I·S·</div>
+      <div class="cover-sub">Planetary Orbital Laser Array<br>Relay Infrastructure System</div>
+      <div class="cover-div"></div>
+      <div class="cover-slogan">Inovăm prezentul.</div>
+      <div class="cover-slogan"><strong>Alimentăm viitorul.</strong></div>
+      <div class="cover-badge">ONCS 2026 · Juniori</div>
+      <div class="cover-url">POLARIS-Bears.ro</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

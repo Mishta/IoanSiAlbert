@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../claude-design-transit/corrected/assets/fonts.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 1800px; height: 900px;
+  background: #040814;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow: hidden;
+  display: flex;
+}
+
+.panel { position: relative; overflow: hidden; flex-shrink: 0; }
+.panel-left   { width: 450px; height: 900px; border-right: 1px solid rgba(255,186,32,0.15); }
+.panel-center { width: 900px; height: 900px; }
+.panel-right  { width: 450px; height: 900px; border-left: 1px solid rgba(255,186,32,0.15); }
+
+.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+/* ══════════════ LEFT — KARDASHEV ══════════════ */
+.ov-left {
+  position: absolute; inset: 0;
+  background: linear-gradient(140deg, rgba(4,8,20,0.97) 0%, rgba(4,8,20,0.85) 55%, rgba(4,8,20,0.96) 100%);
+}
+.left-body {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 40px 32px 32px;
+}
+.sec-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(255,186,32,0.5); margin-bottom: 16px;
+}
+.k-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 26px; color: #dfe2f3; line-height: 1.1;
+  margin-bottom: 24px;
+}
+.k-title em { font-style: normal; color: #ffba20; }
+
+/* Kardashev scale visual */
+.k-scale {
+  display: flex; flex-direction: column; gap: 12px; margin-bottom: 22px;
+}
+.k-level {
+  display: flex; align-items: center; gap: 12px;
+}
+.k-pill {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 22px; line-height: 1;
+  width: 80px; text-align: right; flex-shrink: 0;
+}
+.k-bar-wrap { flex: 1; }
+.k-bar-track { height: 8px; background: rgba(255,255,255,0.07); border-radius: 4px; overflow: hidden; }
+.k-bar-fill { height: 100%; border-radius: 4px; }
+.k-bar-lbl {
+  font-family: 'Manrope', sans-serif;
+  font-size: 9.5px; color: rgba(223,226,243,0.4);
+  margin-top: 4px;
+}
+
+.k-arrow {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  background: linear-gradient(90deg, rgba(255,186,32,0.08), rgba(0,229,255,0.06));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px; margin-bottom: auto;
+}
+.k-arrow-txt {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 13px;
+  color: rgba(223,226,243,0.7);
+}
+.k-arrow-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 20px;
+  color: #00ff88; margin-left: auto;
+}
+
+.k-bottom {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5px; letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.12); text-transform: uppercase;
+}
+
+/* ══════════════ CENTER — DIAGRAME TEHNICE ══════════════ */
+.ov-center {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg,
+    rgba(4,8,20,0.97) 0%,
+    rgba(4,8,20,0.85) 20%,
+    rgba(4,8,20,0.8) 70%,
+    rgba(4,8,20,0.97) 100%);
+}
+.center-body {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 38px 48px 34px;
+}
+.c-top-row {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 28px;
+}
+.c-logo { width: 50px; height: 50px; object-fit: contain; }
+.c-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 36px;
+  letter-spacing: 0.16em; color: #ffba20; line-height: 1;
+  text-shadow: 0 0 30px rgba(255,186,32,0.4);
+}
+.c-brand-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.22em;
+  color: rgba(255,186,32,0.4); margin-top: 4px;
+}
+
+/* Diagram panels */
+.diag-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  flex: 1;
+}
+.diag-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px; overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.diag-card-hdr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5px; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 8px 12px 6px; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.diag-card-body {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  padding: 8px; overflow: hidden;
+}
+.diag-img { width: 100%; height: 100%; object-fit: contain; }
+
+/* Bottom stat row */
+.c-stat-row {
+  display: flex; gap: 8px; margin-top: 14px;
+}
+.c-scard {
+  flex: 1; padding: 10px 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 4px; text-align: center;
+}
+.c-scard-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 24px; line-height: 1;
+}
+.c-scard-lbl {
+  font-family: 'Manrope', sans-serif;
+  font-size: 8.5px; color: rgba(223,226,243,0.35);
+  margin-top: 4px; line-height: 1.2;
+}
+
+/* ══════════════ RIGHT — ECHIPA ══════════════ */
+.ov-right {
+  position: absolute; inset: 0;
+  background: linear-gradient(220deg, rgba(4,8,20,0.4) 0%, rgba(4,8,20,0.75) 40%, rgba(4,8,20,0.97) 100%);
+}
+.right-body {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 40px 32px 32px;
+}
+.r-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(0,229,255,0.5); margin-bottom: 16px;
+}
+.r-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 28px; color: #dfe2f3; line-height: 1.1;
+  margin-bottom: 6px;
+}
+.r-oncs {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px; color: rgba(223,226,243,0.35);
+  letter-spacing: 0.04em; line-height: 1.6; margin-bottom: 22px;
+}
+
+.members { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.mcard {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(0,229,255,0.04);
+  border: 1px solid rgba(0,229,255,0.18);
+  border-radius: 6px; padding: 10px 14px;
+}
+.minitial {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: rgba(0,229,255,0.08);
+  border: 1.5px solid rgba(0,229,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 16px; color: #00e5ff;
+  flex-shrink: 0;
+}
+.mname { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; color: #dfe2f3; }
+.mrole { font-family: 'Manrope', sans-serif; font-size: 10px; color: rgba(223,226,243,0.4); margin-top: 2px; }
+
+/* Collab list */
+.collab-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.2); margin-bottom: 10px;
+}
+.collab-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: auto; }
+.citem {
+  display: flex; gap: 8px; align-items: flex-start;
+}
+.citem-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: rgba(255,186,32,0.4); flex-shrink: 0; margin-top: 5px;
+}
+.citem-info {}
+.citem-name {
+  font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 10.5px;
+  color: rgba(223,226,243,0.65); line-height: 1.3;
+}
+.citem-inst {
+  font-family: 'Manrope', sans-serif; font-size: 9px;
+  color: rgba(223,226,243,0.3); margin-top: 1px;
+}
+
+/* QR + website */
+.r-footer { display: flex; align-items: flex-end; gap: 12px; }
+.r-website {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.16em;
+  color: rgba(0,229,255,0.4);
+}
+.qr-placeholder {
+  width: 52px; height: 52px; border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 3px; display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.03);
+  font-family: 'JetBrains Mono', monospace; font-size: 6px;
+  color: rgba(255,255,255,0.15); text-align: center; line-height: 1.4;
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ LEFT (verso V2) — KARDASHEV ═══════════════ -->
+<div class="panel panel-left">
+  <img class="bg" src="../../images/generated/Image F - Kardashev Scale.png" alt="">
+  <div class="ov-left"></div>
+  <div class="left-body">
+    <div class="sec-lbl">SCARA KARDASHEV</div>
+    <div class="k-title">De la <em>0.73</em><br>la civilizație<br>de Tip I</div>
+
+    <div class="k-scale">
+      <div class="k-level">
+        <div class="k-pill" style="color:#ff5555">0.73</div>
+        <div class="k-bar-wrap">
+          <div class="k-bar-track">
+            <div class="k-bar-fill" style="width:73%;background:linear-gradient(90deg,#ff5555,rgba(255,85,85,0.3))"></div>
+          </div>
+          <div class="k-bar-lbl">Terra azi — energie terestră</div>
+        </div>
+      </div>
+      <div class="k-level">
+        <div class="k-pill" style="color:#00ff88">1.0</div>
+        <div class="k-bar-wrap">
+          <div class="k-bar-track">
+            <div class="k-bar-fill" style="width:100%;background:linear-gradient(90deg,#00ff88,rgba(0,255,136,0.3))"></div>
+          </div>
+          <div class="k-bar-lbl">Terra cu P.O.L.A.R.I.S.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="k-arrow">
+      <div class="k-arrow-txt">Salt cu P.O.L.A.R.I.S.</div>
+      <div class="k-arrow-val">+0.27 →</div>
+    </div>
+
+    <div style="margin-top:14px;font-family:'Manrope',sans-serif;font-size:11.5px;line-height:1.55;color:rgba(223,226,243,0.5);margin-bottom:auto">
+      O civilizație de <span style="color:#ffba20;font-weight:600">Tip I</span> utilizează
+      toată energia disponibilă a planetei sale.
+      POLARIS aduce umanitatea acolo.
+    </div>
+
+    <div class="k-bottom">VARIANTA 2 · VERSO · 01/03</div>
+  </div>
+</div>
+
+<!-- ═══════════════ CENTER (verso V2) — DIAGRAME ═══════════════ -->
+<div class="panel panel-center">
+  <img class="bg" src="../../images/generated/Image D - Energy Mathematics.png" alt="">
+  <div class="ov-center"></div>
+  <div class="center-body">
+    <div class="c-top-row">
+      <img class="c-logo" src="../../assets/logo-no-ONCS-text-bright-highrez.png" alt="Logo">
+      <div>
+        <div class="c-brand">P.O.L.A.R.I.S.</div>
+        <div class="c-brand-sub">DATE TEHNICE · ONCS 2026</div>
+      </div>
+    </div>
+
+    <div class="diag-grid">
+      <div class="diag-card">
+        <div class="diag-card-hdr" style="color:rgba(255,186,32,0.5)">Flux energetic</div>
+        <div class="diag-card-body">
+          <img class="diag-img" src="../../assets/diagrams/diagram_energy_flow.png" alt="">
+        </div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card-hdr" style="color:rgba(0,229,255,0.5)">Geometrie Lagrange</div>
+        <div class="diag-card-body">
+          <img class="diag-img" src="../../assets/diagrams/diagram_lagrange.png" alt="">
+        </div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card-hdr" style="color:rgba(0,255,136,0.5)">Star Power Grid</div>
+        <div class="diag-card-body">
+          <img class="diag-img" src="../../assets/diagrams/diagram_star_power_grid.png" alt="">
+        </div>
+      </div>
+      <div class="diag-card">
+        <div class="diag-card-hdr" style="color:rgba(255,186,32,0.5)">Bara energetică</div>
+        <div class="diag-card-body">
+          <img class="diag-img" src="../../assets/diagrams/diagram_energy_bar.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="c-stat-row">
+      <div class="c-scard">
+        <div class="c-scard-val" style="color:#ffba20">43%</div>
+        <div class="c-scard-lbl">eficiență lumină→laser</div>
+      </div>
+      <div class="c-scard">
+        <div class="c-scard-val" style="color:#00e5ff">90%</div>
+        <div class="c-scard-lbl">reflectivitate oglinzi</div>
+      </div>
+      <div class="c-scard">
+        <div class="c-scard-val" style="color:#00ff88">77K</div>
+        <div class="c-scard-lbl">temp. YBCO critică</div>
+      </div>
+      <div class="c-scard">
+        <div class="c-scard-val" style="color:#ffffff">25yr</div>
+        <div class="c-scard-lbl">durată de viață estimată</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ RIGHT (verso V2) — ECHIPA ═══════════════ -->
+<div class="panel panel-right">
+  <img class="bg" src="../../images/generated/Image E - Earth Grid Distribution.png" alt="">
+  <div class="ov-right"></div>
+  <div class="right-body">
+    <div class="r-lbl">ECHIPA &amp; COLABORATORI</div>
+    <div class="r-headline">POLARIS Bears</div>
+    <div class="r-oncs">
+      Olimpiada Națională de Creativitate Științifică<br>
+      ONCS 2026 · Juniori · Științe Fundamentale
+    </div>
+
+    <div class="members">
+      <div class="mcard">
+        <div class="minitial">I</div>
+        <div>
+          <div class="mname">Ioan CHELARU</div>
+          <div class="mrole">Cercetare · Grafică AI· Prezentare</div>
+        </div>
+      </div>
+      <div class="mcard">
+        <div class="minitial">A</div>
+        <div>
+          <div class="mname">Albert OLARIU</div>
+          <div class="mrole">Inginerie · Calcule · Arhitectură</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="collab-title">Colaboratori & Mentori</div>
+    <div class="collab-list">
+      <div class="citem">
+        <div class="citem-dot" style="background:rgba(255,186,32,0.6)"></div>
+        <div class="citem-info">
+          <div class="citem-name">Prof. Francisc D. AARON</div>
+          <div class="citem-inst">ICHB · Mentor</div>
+	  <br />
+        </div>
+      </div>
+      <div class="citem">
+        <div class="citem-dot"></div>
+        <div class="citem-info">
+          <div class="citem-name">Prof. Univ. Dr. Valentin BARNA</div>
+          <div class="citem-inst">UVT · Fizică plasmă &amp; supraconductori · Laseri</div>
+        </div>
+      </div>
+      <div class="citem">
+        <div class="citem-dot"></div>
+        <div class="citem-info">
+          <div class="citem-name">Carlo Emilio MONTANARI</div>
+          <div class="citem-inst">Ing. aerospațial · Consultant CERN · POLITO</div>
+        </div>
+      </div>
+      <div class="citem">
+        <div class="citem-dot"></div>
+        <div class="citem-info">
+          <div class="citem-name">Daniel-Justinian ZELENSCHI</div>
+          <div class="citem-inst">Ing. Chimic · Consultant AI</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="r-footer" style="margin-top:16px">
+      <div class="r-website">POLARIS-Bears.ro</div>
+      <img src="../../assets/qr-code-POLARIS-Bears.png" style="width:160px;height:160px;display:block;border-radius:3px;flex-shrink:0;">
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

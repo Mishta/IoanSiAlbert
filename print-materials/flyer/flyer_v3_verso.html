@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<title>P.O.L.A.R.I.S. — Flyer V3 BLUEPRINT — Verso</title>
+<link rel="stylesheet" href="../../claude-design-transit/corrected/assets/fonts.css">
+<style>
+@page { size: A4 landscape; margin: 0; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #080c1a; --navy2: #060910; --gold: #ffba20; --cyan: #00e5ff;
+  --ice: #e8f4f8; --warm: #d4c5ab; --white: #fff;
+}
+html { background: #0a0a0a; display: flex; justify-content: center; padding: 8mm; min-height: 100vh; }
+body { font-family: 'Space Grotesk', sans-serif; }
+.flyer { width: 297mm; height: 210mm; display: flex; position: relative; overflow: hidden; background: var(--navy2); }
+@media screen {
+  .fold { position: absolute; top: 0; bottom: 0; width: 0.3mm; background: rgba(255,186,32,0.2); z-index: 200; }
+}
+.panel { width: 99mm; height: 210mm; position: relative; overflow: hidden; flex-shrink: 0; }
+.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,186,32,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,186,32,0.04) 1px, transparent 1px);
+  background-size: 5mm 5mm;
+}
+.label { font-size: 2mm; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cyan); }
+
+/* ═══════════ LEFT — 5 COMPONENTS TECHNICAL ═══════════ */
+.p-left { background: var(--navy2); }
+.p-left .body { position: absolute; inset: 0; padding: 6.5mm 5.5mm; display: flex; flex-direction: column; gap: 0; z-index: 1; }
+
+.comp-tech {
+  display: grid; grid-template-columns: 6mm 1fr; gap: 0 2mm;
+  padding: 2.2mm 0; border-bottom: 0.3mm solid rgba(255,186,32,0.12);
+  align-items: flex-start;
+}
+.comp-tech:last-child { border-bottom: none; }
+.ct-num {
+  width: 6mm; height: 6mm; border-radius: 50%;
+  background: rgba(255,186,32,0.1); border: 0.4mm solid rgba(255,186,32,0.5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5mm; font-weight: 700; color: var(--gold); font-family: 'JetBrains Mono', monospace;
+  flex-shrink: 0; margin-top: 0.5mm;
+}
+.ct-content { display: flex; flex-direction: column; gap: 0.6mm; }
+.ct-name { font-size: 3mm; font-weight: 700; color: var(--ice); letter-spacing: 0.04em; }
+.ct-spec { font-size: 2mm; font-weight: 400; color: var(--warm); line-height: 1.4; }
+.ct-spec em { color: var(--gold); font-style: normal; font-weight: 600; }
+.ct-key {
+  display: flex; gap: 1mm; flex-wrap: wrap; margin-top: 0.5mm;
+}
+.ct-tag {
+  font-size: 1.7mm; font-weight: 600; color: var(--cyan);
+  border: 0.3mm solid rgba(0,229,255,0.3); padding: 0.3mm 1.5mm;
+  background: rgba(0,229,255,0.05);
+}
+
+/* ═══════════ CENTER — KARDASHEV + STAR POWER GRID ═══════════ */
+.p-center { background: var(--navy2); }
+.p-center .body { position: absolute; inset: 0; padding: 6.5mm 5mm; display: flex; flex-direction: column; gap: 2.5mm; z-index: 1; }
+
+.kard-title { font-size: 4.5mm; font-weight: 800; color: var(--gold); letter-spacing: 0.08em; text-align: center; }
+.kard-sub { font-size: 2mm; color: var(--warm); text-align: center; letter-spacing: 0.08em; }
+
+.kard-diag { background: rgba(255,255,255,0.03); border: 0.3mm solid rgba(255,186,32,0.2); overflow: hidden; }
+.kard-diag img { width: 100%; display: block; }
+
+.kard-jump {
+  display: flex; align-items: center; justify-content: center; gap: 3mm;
+  padding: 2.5mm; background: rgba(255,186,32,0.07); border: 0.4mm solid rgba(255,186,32,0.4);
+}
+.kj-from { display: flex; flex-direction: column; align-items: center; }
+.kj-val { font-size: 6mm; font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+.kj-val.today { color: #ff9944; }
+.kj-val.future { color: var(--cyan); }
+.kj-lbl { font-size: 1.8mm; font-weight: 500; color: var(--warm); text-align: center; letter-spacing: 0.06em; }
+.kj-arrow { font-size: 8mm; color: var(--gold); }
+.kj-delta { font-size: 3.5mm; font-weight: 800; color: var(--gold); }
+
+.spg-wrap { background: rgba(0,229,255,0.04); border: 0.3mm solid rgba(0,229,255,0.2); overflow: hidden; flex: 1; display: flex; align-items: center; justify-content: center; }
+.spg-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+.impact-row {
+  display: flex; gap: 1.5mm;
+}
+.ir-card {
+  flex: 1; background: rgba(255,255,255,0.03); border: 0.3mm solid rgba(0,229,255,0.2);
+  padding: 1.5mm; display: flex; flex-direction: column; gap: 0.5mm; align-items: center; text-align: center;
+}
+.ir-val { font-size: 4mm; font-weight: 800; color: var(--cyan); font-family: 'JetBrains Mono', monospace; line-height: 1; }
+.ir-lbl { font-size: 1.7mm; color: var(--warm); font-weight: 400; line-height: 1.3; }
+
+/* ═══════════ RIGHT — TEAM FULL + QR ═══════════ */
+.p-right { background: var(--navy2); }
+.p-right .bg-ov { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(6,9,16,0.4) 0%, rgba(6,9,16,0.1) 30%, rgba(6,9,16,0.75) 60%, rgba(6,9,16,0.97) 100%); }
+.p-right .body { position: absolute; inset: 0; padding: 6.5mm 5.5mm; display: flex; flex-direction: column; justify-content: flex-end; z-index: 1; }
+
+.team-photo-wrap { position: absolute; top: 0; left: 0; right: 0; height: 60%; overflow: hidden; }
+.team-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+.team-label { font-size: 2mm; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cyan); margin-bottom: 2mm; }
+.members-row { display: flex; gap: 1.5mm; margin-bottom: 2.5mm; }
+.member {
+  flex: 1; background: rgba(255,186,32,0.08); border: 0.3mm solid rgba(255,186,32,0.35);
+  padding: 1.5mm 2mm; display: flex; flex-direction: column; gap: 0.5mm;
+}
+.mb-init { font-size: 4mm; font-weight: 800; color: var(--gold); }
+.mb-name { font-size: 2.2mm; font-weight: 700; color: var(--white); line-height: 1.2; }
+.mb-role { font-size: 1.8mm; color: var(--warm); font-weight: 300; }
+
+.olymp-row { display: flex; gap: 1mm; flex-wrap: wrap; margin-bottom: 2.5mm; }
+.olymp { font-size: 1.7mm; font-weight: 600; color: var(--gold); border: 0.3mm solid rgba(255,186,32,0.4); padding: 0.5mm 1.5mm; background: rgba(255,186,32,0.07); }
+
+.collab-compact { display: flex; flex-direction: column; gap: 1mm; margin-bottom: 2.5mm; }
+.cc-item { display: flex; gap: 1.5mm; align-items: center; }
+.cc-init { flex-shrink: 0; width: 4.5mm; height: 4.5mm; border-radius: 50%; border: 0.3mm solid var(--cyan); display: flex; align-items: center; justify-content: center; font-size: 2mm; font-weight: 800; color: var(--cyan); }
+.cc-name { font-size: 2mm; font-weight: 700; color: var(--ice); }
+.cc-dot { font-size: 1.5mm; color: var(--warm); }
+.cc-inst { font-size: 1.8mm; color: var(--warm); font-weight: 300; }
+
+.qr-row { display: flex; align-items: center; gap: 2.5mm; padding: 2mm; background: rgba(255,255,255,0.03); border: 0.3mm solid rgba(255,186,32,0.25); }
+.qr-img { width: 20mm; height: 20mm; flex-shrink: 0; }
+.qr-txt { display: flex; flex-direction: column; gap: 0.8mm; }
+.qr-url { font-size: 2.8mm; font-weight: 700; color: var(--gold); font-family: 'JetBrains Mono', monospace; }
+.qr-sub { font-size: 1.8mm; color: var(--warm); font-weight: 300; line-height: 1.4; }
+</style>
+</head>
+<body>
+<div class="flyer">
+  <div class="fold" style="left:99mm;"></div>
+  <div class="fold" style="left:198mm;"></div>
+
+  <!-- LEFT — 5 COMPONENTS TECHNICAL SPECS -->
+  <div class="panel p-left">
+    <div class="grid-bg"></div>
+    <div class="body">
+      <p class="label" style="margin-bottom:3mm;">Componente Tehnice</p>
+
+      <div class="comp-tech">
+        <div class="ct-num">01</div>
+        <div class="ct-content">
+          <div class="ct-name">Dyson Ring</div>
+          <div class="ct-spec"><em>30 oglinzi</em> circumsolare · Ø <em>1 km</em> fiecare · orbită la <em>7 mln km</em> de Soare · reflectivitate <em>90%</em> · structură hexagonală modular</div>
+          <div class="ct-key"><span class="ct-tag">Orbită heliocentrică</span><span class="ct-tag">Au anodizat</span></div>
+        </div>
+      </div>
+
+      <div class="comp-tech">
+        <div class="ct-num">02</div>
+        <div class="ct-content">
+          <div class="ct-name">Sateliți Colectori</div>
+          <div class="ct-spec"><em>4 sateliți</em> la <em>10 mln km</em> · eficiență lumină→laser <em>43%</em> (limita Shockley-Queisser: 33% PV, dep. de arhitectură) · radiatoare termice laterale</div>
+          <div class="ct-key"><span class="ct-tag">Laser verde #00FF88</span><span class="ct-tag">PV + conversie</span></div>
+        </div>
+      </div>
+
+      <div class="comp-tech">
+        <div class="ct-num">03</div>
+        <div class="ct-content">
+          <div class="ct-name">Noduri L4/L5 Lagrange</div>
+          <div class="ct-spec">Echilibru gravitațional Soare-Pământ · <em>2.83 × 10¹² W</em> disponibil · <em>47%</em> utilizat · <em>53%</em> surplus în Star Power Grid</div>
+          <div class="ct-key"><span class="ct-tag">Zero propulsie</span><span class="ct-tag">Lagrange stabil</span></div>
+        </div>
+      </div>
+
+      <div class="comp-tech">
+        <div class="ct-num">04</div>
+        <div class="ct-content">
+          <div class="ct-name">Centrale Polare</div>
+          <div class="ct-spec"><em>30 km</em> altitudine · baloane heliu · <em>11 tone</em> (4t centrală + 7t cablu) · receptor laser albastru · conversie → curent DC</div>
+          <div class="ct-key"><span class="ct-tag">Laser albastru #0088FF</span><span class="ct-tag">Stratosferă</span></div>
+        </div>
+      </div>
+
+      <div class="comp-tech">
+        <div class="ct-num">05</div>
+        <div class="ct-content">
+          <div class="ct-name">Cabluri YBCO</div>
+          <div class="ct-spec">YBa₂Cu₃O₇ · T<sub>c</sub> = <em>93 K</em> · răcit la <em>77 K</em> (azot lichid) · <em>800 GW/cablu</em> · avantaj vs. NbTi (CERN): nu necesită heliu lichid</div>
+          <div class="ct-key"><span class="ct-tag">Supraconductor HTS</span><span class="ct-tag">800 GW/cablu</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTER — KARDASHEV + IMPACT -->
+  <div class="panel p-center">
+    <div class="grid-bg"></div>
+    <div class="body">
+      <div class="kard-title">Scara Kardashev</div>
+      <div class="kard-sub">Civilizația de tip I — obiectivul P.O.L.A.R.I.S.</div>
+
+      <div class="kard-diag">
+        <img src="../../assets/diagrams/diagram_kardashev.png" alt="Kardashev Scale">
+      </div>
+
+      <div class="kard-jump">
+        <div class="kj-from">
+          <div class="kj-val today">0.73</div>
+          <div class="kj-lbl">Omenirea azi<br>~18 TW total</div>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:0.5mm;">
+          <div class="kj-arrow">→</div>
+          <div class="kj-delta">+0.27</div>
+        </div>
+        <div class="kj-from">
+          <div class="kj-val future">1.0</div>
+          <div class="kj-lbl">Cu P.O.L.A.R.I.S.<br>~1.6 TW în plus</div>
+        </div>
+      </div>
+
+      <div class="spg-wrap">
+        <img src="../../assets/diagrams/diagram_star_power_grid.svg" alt="Star Power Grid">
+      </div>
+
+      <div class="impact-row">
+        <div class="ir-card">
+          <div class="ir-val">48%</div>
+          <div class="ir-lbl">din electricitatea globală</div>
+        </div>
+        <div class="ir-card">
+          <div class="ir-val">0</div>
+          <div class="ir-lbl">emisii CO₂ în producere</div>
+        </div>
+        <div class="ir-card">
+          <div class="ir-val">24/7</div>
+          <div class="ir-lbl">livrare continuă, fără noapte</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — TEAM + COLLABORATORS + QR -->
+  <div class="panel p-right">
+    <div class="team-photo-wrap">
+      <img src="../../assets/team-hero.jpeg" alt="Echipa POLARIS Bears">
+    </div>
+    <div class="bg-ov"></div>
+    <div class="body">
+      <div class="team-label">Echipa POLARIS Bears</div>
+      <div class="members-row">
+        <div class="member">
+          <div class="mb-init">A</div>
+          <div class="mb-name">Albert OLARIU</div>
+          <div class="mb-role">Cercetător · VIII-a</div>
+        </div>
+        <div class="member">
+          <div class="mb-init">I</div>
+          <div class="mb-name">Ioan CHELARU</div>
+          <div class="mb-role">Cercetător · VIII-a</div>
+        </div>
+      </div>
+      <div class="olymp-row">
+        <span class="olymp">★ Astronomie & Astrofizică</span>
+        <span class="olymp">★ Informatică</span>
+        <span class="olymp">★ ONIA · AI</span>
+      </div>
+      <div class="collab-compact">
+        <p class="label" style="margin-bottom:1mm;">Colaboratori</p>
+        <div class="cc-item">
+          <div class="cc-init">A</div>
+          <div><span class="cc-name">Prof. F.D. Aaron</span><span class="cc-dot"> · </span><span class="cc-inst">Mentor ICHB</span></div>
+        </div>
+        <div class="cc-item">
+          <div class="cc-init">B</div>
+          <div><span class="cc-name">Prof. Dr. V. Barna</span><span class="cc-dot"> · </span><span class="cc-inst">Univ. București</span></div>
+        </div>
+        <div class="cc-item">
+          <div class="cc-init">M</div>
+          <div><span class="cc-name">C.E. Montanari</span><span class="cc-dot"> · </span><span class="cc-inst">CERN / Bologna</span></div>
+        </div>
+        <div class="cc-item">
+          <div class="cc-init">Z</div>
+          <div><span class="cc-name">D.-J. Zelenschi</span><span class="cc-dot"> · </span><span class="cc-inst">UCL · NASA Ames</span></div>
+        </div>
+      </div>
+      <div class="qr-row">
+        <img class="qr-img" src="../../assets/qr-code-POLARIS-Bears.png" alt="QR Code">
+        <div class="qr-txt">
+          <div class="qr-url">POLARIS-Bears.ro</div>
+          <div class="qr-sub">Proiect complet online<br>ONCS 2026 · Juniori · Științe Fundamentale</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

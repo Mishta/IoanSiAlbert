@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../claude-design-transit/corrected/assets/fonts.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 1800px; height: 900px;
+  background: #080c1a;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow: hidden;
+  display: flex;
+}
+
+.panel { position: relative; overflow: hidden; flex-shrink: 0; }
+.panel-left  { width: 450px; height: 900px; border-right: 2px solid rgba(255,186,32,0.3); }
+.panel-center { width: 900px; height: 900px; }
+.panel-right { width: 450px; height: 900px; border-left: 2px solid rgba(255,186,32,0.3); }
+
+.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+/* ══════════════ LEFT — PROVOCAREA ══════════════ */
+.ov-left {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(135deg, rgba(8,12,26,0.94) 0%, rgba(8,12,26,0.7) 55%, rgba(8,12,26,0.88) 100%);
+}
+.left-body {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 44px 36px 36px;
+}
+.act-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px; letter-spacing: 0.32em;
+  color: rgba(255,186,32,0.5);
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.left-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 30px;
+  color: #dfe2f3; line-height: 1.1;
+  margin-bottom: 24px;
+}
+.left-headline em { font-style: normal; color: #ffba20; }
+
+.crisis-stat {
+  display: flex; flex-direction: column; gap: 3px;
+  margin-bottom: 20px;
+}
+.crisis-stat .n {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 72px; line-height: 1;
+  color: #ffba20;
+  text-shadow: 0 0 40px rgba(255,186,32,0.45);
+}
+.crisis-stat .u {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px; letter-spacing: 0.22em;
+  color: rgba(255,186,32,0.55); text-transform: uppercase;
+}
+
+.rule { width: 36px; height: 1.5px; background: rgba(255,186,32,0.4); margin-bottom: 18px; }
+
+.left-text {
+  font-family: 'Manrope', sans-serif;
+  font-size: 12.5px; line-height: 1.65;
+  color: rgba(223,226,243,0.65);
+  margin-bottom: auto;
+}
+.left-text strong { color: #ffba20; font-weight: 600; }
+
+.mini-bars {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 18px;
+}
+.mbar { display: flex; flex-direction: column; gap: 4px; }
+.mbar-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: 0.18em;
+  color: rgba(223,226,243,0.35); text-transform: uppercase;
+}
+.mbar-track { height: 3px; background: rgba(255,255,255,0.07); border-radius: 2px; }
+.mbar-fill { height: 100%; border-radius: 2px; }
+.mbar-fill-gold { background: linear-gradient(90deg, #ffba20, rgba(255,186,32,0.4)); }
+.mbar-fill-red  { background: linear-gradient(90deg, #ff4444, rgba(255,68,68,0.3)); }
+
+.panel-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5px; letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.15); text-transform: uppercase;
+}
+
+/* ══════════════ CENTER — P.O.L.A.R.I.S. ══════════════ */
+.ov-center {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(8,12,26,0.72) 0%,
+      rgba(8,12,26,0.15) 30%,
+      rgba(8,12,26,0.08) 55%,
+      rgba(8,12,26,0.75) 80%,
+      rgba(8,12,26,0.96) 100%);
+}
+.center-body {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center;
+}
+
+/* top identity */
+.center-top {
+  padding: 36px 56px 0;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; z-index: 2; width: 100%;
+}
+.id-row {
+  display: flex; align-items: center; gap: 18px; margin-bottom: 14px;
+}
+.logo { width: 58px; height: 58px; object-fit: contain; }
+.brand-block {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.24em;
+  color: rgba(255,186,32,0.45); line-height: 1.6;
+  text-align: left;
+}
+.polaris-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 62px;
+  letter-spacing: 0.2em; color: #ffba20; line-height: 1;
+  text-shadow: 0 0 50px rgba(255,186,32,0.55), 0 0 100px rgba(255,186,32,0.2);
+}
+.polaris-sub {
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px; color: rgba(223,226,243,0.38);
+  letter-spacing: 0.08em; margin-top: 10px;
+  max-width: 520px;
+}
+
+/* bottom mega stat */
+.center-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 0 56px 36px;
+  display: flex; flex-direction: column; align-items: center;
+}
+.mega-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 100px; line-height: 1;
+  color: #ffffff;
+  text-shadow: 0 0 60px rgba(255,255,255,0.25);
+  letter-spacing: 0.02em;
+}
+.mega-sub {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px; color: rgba(223,226,243,0.55);
+  letter-spacing: 0.14em; text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* tri color bar */
+.tri {
+  width: 100%; height: 2.5px; margin-top: 22px; border-radius: 1px;
+  background: linear-gradient(90deg,
+    #ffba20 0%, #ffba20 33%,
+    #00e5ff 33%, #00e5ff 66%,
+    #00ff88 66%, #00ff88 100%);
+}
+
+/* laser beam decoration */
+.laser-h {
+  position: absolute;
+  left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0,229,255,0.6) 50%, transparent 100%);
+}
+
+/* ══════════════ RIGHT — IMPACTUL ══════════════ */
+.ov-right {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(225deg, rgba(8,12,26,0.96) 0%, rgba(8,12,26,0.7) 55%, rgba(8,12,26,0.9) 100%);
+}
+.right-body {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  padding: 44px 36px 36px;
+  gap: 0;
+}
+.act-label-g {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px; letter-spacing: 0.32em;
+  color: rgba(0,255,136,0.5);
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.right-headline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 30px;
+  color: #dfe2f3; line-height: 1.1;
+  margin-bottom: 22px;
+}
+.right-headline em { font-style: normal; color: #00ff88; }
+
+.impact-grid {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-bottom: auto;
+}
+.ig-card {
+  background: rgba(0,255,136,0.05);
+  border: 1px solid rgba(0,255,136,0.2);
+  border-left: 3px solid rgba(0,255,136,0.6);
+  border-radius: 4px; padding: 11px 14px;
+}
+.ig-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800; font-size: 36px; line-height: 1;
+  color: #00ff88;
+}
+.ig-lbl {
+  font-family: 'Manrope', sans-serif;
+  font-size: 17px; color: rgba(223,226,243,0.5);
+  margin-top: 3px; line-height: 1.3;
+}
+
+.rule-g { width: 36px; height: 1.5px; background: rgba(0,255,136,0.4); margin-bottom: 16px; }
+
+.right-quote {
+  border-left: 2.5px solid rgba(0,255,136,0.5);
+  padding: 12px 14px;
+  background: rgba(0,255,136,0.04);
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 18px;
+}
+.right-quote p {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11.5px; line-height: 1.55;
+  color: rgba(223,226,243,0.65); font-style: italic;
+}
+.right-quote p strong { color: #00ff88; font-style: normal; }
+
+.right-footer {
+  display: flex; align-items: flex-end; justify-content: space-between;
+}
+.team-block {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 11.5px;
+  color: rgba(223,226,243,0.55); line-height: 1.55;
+}
+.team-block small {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5px; color: rgba(255,255,255,0.2);
+  letter-spacing: 0.16em; font-weight: 400;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ LEFT — PROVOCAREA ═══════════════ -->
+<div class="panel panel-left">
+  <img class="bg" src="../../images/generated/Image A - Earth Energy Crisis.png" alt="">
+  <div class="ov-left"></div>
+  <div class="left-body">
+    <div class="act-label">ACT I — PROVOCAREA</div>
+    <div class="left-headline">Cererea mondială<br>depășește <em>orice</em><br>soluție terestră</div>
+
+    <div class="crisis-stat">
+      <span class="n">622K</span>
+      <span class="u">W/m² radiație solară<br>la 7,7 M km de Soare</span>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="mini-bars">
+      <div class="mbar">
+        <div class="mbar-label">Consum global 2024</div>
+        <div class="mbar-track"><div class="mbar-fill mbar-fill-red" style="width:73%"></div></div>
+      </div>
+      <div class="mbar">
+        <div class="mbar-label">Capacitate regenerabilă</div>
+        <div class="mbar-track"><div class="mbar-fill mbar-fill-gold" style="width:38%"></div></div>
+      </div>
+    </div>
+
+    <div class="left-text">
+      Sursa există — <strong>imediată, inepuizabilă</strong>,<br>
+      de 457× mai intensă ca pe Pământ.<br>
+      Singura limită a fost distanța.
+    </div>
+
+    <div class="panel-tag">VARIANTA 1 · FAȚĂ · 01/03</div>
+  </div>
+</div>
+
+<!-- ═══════════════ CENTER — P.O.L.A.R.I.S. ════════════════ -->
+<div class="panel panel-center">
+  <img class="bg" src="../../images/generated/Image C - Full System Panoramic.png" alt="">
+  <div class="ov-center"></div>
+  <div class="laser-h" style="top: 48%"></div>
+
+  <div class="center-body">
+    <div class="center-top">
+      <div class="id-row">
+        <img class="logo" src="../../assets/logo-no-ONCS-text-bright-highrez.png" alt="Logo POLARIS">
+        <div class="brand-block">
+          POLARIS Bears<br>
+          ONCS 2026 · Juniori
+        </div>
+      </div>
+      <div class="polaris-name">P.O.L.A.R.I.S.</div>
+      <div class="polaris-sub">
+        Platformă Orbitală Laser pentru Alimentare și Recepție Inovativă Solară
+	<br /> Inovăm prezentul. Alimentăm viitorul!
+      </div>
+    </div>
+
+    <div class="center-bottom">
+      <div class="mega-num">1,6 TW</div>
+      <div class="mega-sub">energie solară · livrată continuu · zero emisii</div>
+      <div class="tri"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ RIGHT — IMPACTUL ════════════════ -->
+<div class="panel panel-right">
+  <img class="bg" src="../../images/generated/Image I - Star Power Grid GEO.png" alt="">
+  <div class="ov-right"></div>
+  <div class="right-body">
+    <div class="act-label-g">ACT III — IMPACTUL</div>
+    <div class="right-headline">Energia unei<br><em>civilizații</em> întregi</div>
+
+    <div class="impact-grid">
+      <div class="ig-card">
+        <div class="ig-val">48%</div>
+        <div class="ig-lbl">din electricitatea mondială necesară acoperită</div>
+      </div>
+      <div class="ig-card">
+        <div class="ig-val">0 CO₂</div>
+        <div class="ig-lbl">emisii în operare · combustibil zero</div>
+      </div>
+      <div class="ig-card">
+        <div class="ig-val">800 GW</div>
+        <div class="ig-lbl">per cablu YBCO superconductor</div>
+      </div>
+      <div class="ig-card" style="border-color:rgba(0,229,255,0.2);border-left-color:rgba(0,229,255,0.6);background:rgba(0,229,255,0.04)">
+        <div class="ig-val" style="color:#00e5ff;font-size:28px">Kardashev 1.0</div>
+        <div class="ig-lbl">de la 0.73 → civilizație de tip I</div>
+      </div>
+    </div>
+
+    <div class="rule-g"></div>
+
+    <div class="right-quote">
+      <p>Nu e o sursă de energie —<br>
+      ci o <strong>infrastructură civilizațională</strong>.</p>
+    </div>
+
+    <div class="right-footer">
+      <div class="team-block">
+        <small>ECHIPA POLARIS Bears</small>
+        Ioan CHELARU<br>Albert OLARIU
+      </div>
+      <div class="panel-tag" style="text-align:right">03/03</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

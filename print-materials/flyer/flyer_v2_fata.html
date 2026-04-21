@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<title>P.O.L.A.R.I.S. — Flyer V2 SYSTEM — Față</title>
+<link rel="stylesheet" href="../../claude-design-transit/corrected/assets/fonts.css">
+<style>
+@page { size: A4 landscape; margin: 0; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #080c1a; --navy2: #0d1426; --gold: #ffba20; --cyan: #00e5ff;
+  --ice: #e8f4f8; --warm: #d4c5ab; --white: #fff;
+}
+html { background: #111; display: flex; justify-content: center; padding: 8mm; min-height: 100vh; }
+body { font-family: 'Space Grotesk', sans-serif; }
+.flyer { width: 297mm; height: 210mm; display: flex; position: relative; overflow: hidden; background: var(--navy); }
+@media screen {
+  .fold { position: absolute; top: 0; bottom: 0; width: 0.3mm; background: rgba(0,229,255,0.2); z-index: 200; }
+}
+.panel { width: 99mm; height: 210mm; position: relative; overflow: hidden; flex-shrink: 0; }
+.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.label { font-size: 2mm; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cyan); }
+
+/* ═══════════ LEFT — BACK: IMPACT NUMBERS ═══════════ */
+.p-left .ov {
+  position: absolute; inset: 0;
+  background: linear-gradient(145deg, rgba(8,12,26,0.97) 0%, rgba(8,12,26,0.80) 60%, rgba(8,12,26,0.95) 100%);
+}
+.p-left .body { position: absolute; inset: 0; padding: 7mm 6mm; display: flex; flex-direction: column; justify-content: space-between; }
+
+.impact-header { display: flex; flex-direction: column; gap: 1.5mm; }
+.impact-title { font-size: 7mm; font-weight: 800; color: var(--white); letter-spacing: 0.04em; line-height: 1.15; }
+.impact-title span { color: var(--gold); }
+.impact-desc { font-size: 2.7mm; font-weight: 300; color: var(--warm); line-height: 1.6; }
+
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm; }
+.stat-card {
+  background: linear-gradient(135deg, rgba(255,186,32,0.1), rgba(255,186,32,0.04));
+  border: 0.4mm solid rgba(255,186,32,0.3); padding: 3mm 2.5mm;
+  display: flex; flex-direction: column; gap: 0.8mm;
+}
+.stat-card.cyan {
+  background: linear-gradient(135deg, rgba(0,229,255,0.08), rgba(0,229,255,0.02));
+  border-color: rgba(0,229,255,0.3);
+}
+.stat-val { font-size: 7.5mm; font-weight: 800; color: var(--gold); line-height: 1; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.02em; }
+.stat-card.cyan .stat-val { color: var(--cyan); }
+.stat-unit { font-size: 2mm; font-weight: 600; color: var(--ice); letter-spacing: 0.08em; }
+.stat-lbl { font-size: 2mm; font-weight: 400; color: var(--warm); line-height: 1.4; }
+
+.vs-bar {
+  display: flex; align-items: center; gap: 2mm;
+  background: rgba(255,255,255,0.03); border: 0.3mm solid rgba(255,255,255,0.07);
+  padding: 2mm 2.5mm;
+}
+.vs-today { font-size: 2mm; color: #ff6655; font-weight: 600; letter-spacing: 0.05em; }
+.vs-arrow { font-size: 3mm; color: var(--gold); flex-shrink: 0; }
+.vs-polaris { font-size: 2mm; color: var(--cyan); font-weight: 600; letter-spacing: 0.05em; }
+.vs-label { font-size: 1.8mm; color: var(--warm); font-weight: 300; }
+
+/* ═══════════ CENTER — COMPONENT GALLERY ═══════════ */
+.p-center .ov {
+  position: absolute; inset: 0; background: rgba(8,12,26,0.88);
+}
+.p-center .body {
+  position: absolute; inset: 0; padding: 6mm 5mm; display: flex; flex-direction: column; gap: 3mm;
+}
+.gallery-title { font-size: 4.5mm; font-weight: 800; color: var(--gold); letter-spacing: 0.08em; text-align: center; }
+.gallery-sub { font-size: 2mm; color: var(--warm); text-align: center; letter-spacing: 0.1em; text-transform: uppercase; }
+.gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm; flex: 1; }
+.gallery-item { position: relative; overflow: hidden; border: 0.3mm solid rgba(255,186,32,0.25); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-item .gi-ov {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,12,26,0.88) 0%, rgba(8,12,26,0.15) 50%, transparent 100%);
+}
+.gallery-item .gi-label {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5mm 2mm;
+}
+.gi-name { font-size: 2.2mm; font-weight: 700; color: var(--white); letter-spacing: 0.04em; }
+.gi-stat { font-size: 1.8mm; font-weight: 400; color: var(--gold); }
+
+.system-strip {
+  display: flex; align-items: center; justify-content: center; gap: 1.5mm;
+  padding: 1.8mm; background: rgba(255,186,32,0.07); border: 0.3mm solid rgba(255,186,32,0.25);
+}
+.strip-node {
+  font-size: 1.8mm; font-weight: 700; color: var(--gold); white-space: nowrap;
+  background: rgba(255,186,32,0.12); padding: 0.5mm 1.5mm;
+}
+.strip-arrow { font-size: 2.5mm; color: var(--cyan); flex-shrink: 0; }
+
+/* ═══════════ RIGHT — COVER ═══════════ */
+.p-right .ov {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom,
+    rgba(8,12,26,0.45) 0%, rgba(8,12,26,0.08) 15%, rgba(8,12,26,0.1) 45%,
+    rgba(8,12,26,0.82) 65%, rgba(8,12,26,0.97) 100%);
+}
+.p-right .body {
+  position: absolute; inset: 0; padding: 7mm 6mm;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center;
+}
+.cover-logo { width: 28mm; height: 28mm; object-fit: contain; filter: drop-shadow(0 0 6mm rgba(255,186,32,0.6)); margin-bottom: 3mm; }
+.cover-title { font-size: 9.5mm; font-weight: 800; color: var(--gold); letter-spacing: 0.2em; }
+.cover-sub { font-size: 2mm; font-weight: 400; color: var(--cyan); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 1.5mm; line-height: 1.55; }
+.cover-div { width: 22mm; height: 0.3mm; margin: 4mm auto; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+.cover-slogan { font-size: 3mm; font-weight: 300; color: var(--ice); letter-spacing: 0.07em; font-style: italic; line-height: 1.7; }
+.cover-slogan strong { color: var(--gold); font-weight: 700; }
+
+.comp-badges { display: flex; flex-direction: column; gap: 1.2mm; margin: 3.5mm 0; width: 100%; }
+.cbadge {
+  display: flex; align-items: center; gap: 2mm; padding: 1.2mm 2mm;
+  background: rgba(255,255,255,0.03); border: 0.3mm solid rgba(255,186,32,0.2);
+}
+.cbadge-num { font-size: 2mm; font-weight: 700; color: var(--gold); font-family: 'JetBrains Mono', monospace; flex-shrink: 0; width: 4mm; }
+.cbadge-name { font-size: 2.2mm; font-weight: 600; color: var(--ice); flex: 1; text-align: left; }
+.cbadge-val { font-size: 1.8mm; font-weight: 400; color: var(--warm); }
+
+.cover-badge {
+  font-size: 1.9mm; font-weight: 800; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--navy);
+  background: var(--gold); padding: 1.2mm 4mm; margin-bottom: 2mm;
+}
+.cover-url { font-size: 2.8mm; font-weight: 600; color: var(--cyan); font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body>
+<div class="flyer">
+  <div class="fold" style="left:99mm;"></div>
+  <div class="fold" style="left:198mm;"></div>
+
+  <!-- LEFT — BACK: IMPACT NUMBERS -->
+  <div class="panel p-left">
+    <img class="bg" src="../../images/generated/Image%20I%20-%20Star%20Power%20Grid%20GEO.png" alt="" style="object-position:center 60%;">
+    <div class="ov"></div>
+    <div class="body">
+      <div class="impact-header">
+        <div class="label">Impactul Global</div>
+        <div class="impact-title">De ce<br><span>P.O.L.A.R.I.S.?</span></div>
+        <p class="impact-desc">
+          Prima infrastructură energetică orbitală capabilă să alimenteze aproape jumătate din planeta noastră.
+        </p>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-val">1.6</div>
+          <div class="stat-unit">TW livrat</div>
+          <div class="stat-lbl">Putere continuă, 24/7</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">48%</div>
+          <div class="stat-unit">din global</div>
+          <div class="stat-lbl">Din electricitatea mondială</div>
+        </div>
+        <div class="stat-card cyan">
+          <div class="stat-val">800</div>
+          <div class="stat-unit">GW/cablu</div>
+          <div class="stat-lbl">Superconductor YBCO</div>
+        </div>
+        <div class="stat-card cyan">
+          <div class="stat-val">0</div>
+          <div class="stat-unit">CO₂ emisii</div>
+          <div class="stat-lbl">Zero amprentă carbon</div>
+        </div>
+      </div>
+
+      <div class="vs-bar">
+        <div>
+          <div class="vs-today">Kardashev 0.73</div>
+          <div class="vs-label">Omenirea azi</div>
+        </div>
+        <div class="vs-arrow">→</div>
+        <div>
+          <div class="vs-polaris">Kardashev 1.0</div>
+          <div class="vs-label">Cu P.O.L.A.R.I.S.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTER — COMPONENT GALLERY -->
+  <div class="panel p-center">
+    <img class="bg" src="../../images/generated/Image%20N%20-%20A5%20System%20Overview.png" alt="" style="opacity:0.15;">
+    <div class="ov"></div>
+    <div class="body">
+      <div class="gallery-title">Sistemul P.O.L.A.R.I.S.</div>
+      <div class="gallery-sub">5 componente · De la Soare la priza ta</div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="../../images/generated/Image%20K%20-%20Solar%20Mirror%20Dyson.png" alt="" style="object-position:center 30%;">
+          <div class="gi-ov"></div>
+          <div class="gi-label">
+            <div class="gi-name">Dyson Ring</div>
+            <div class="gi-stat">30 oglinzi Ø 1km</div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="../../images/generated/Image%20L%20-%20Collector%20Satellite%20Laser.png" alt="" style="object-position:center 40%;">
+          <div class="gi-ov"></div>
+          <div class="gi-label">
+            <div class="gi-name">Satelit Colector</div>
+            <div class="gi-stat">Eficiență 43%</div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="../../images/generated/Image%20M%20-%20Lagrange%20Relay%20Node.png" alt="" style="object-position:center 40%;">
+          <div class="gi-ov"></div>
+          <div class="gi-label">
+            <div class="gi-name">Nod L4/L5</div>
+            <div class="gi-stat">2.83 × 10¹² W</div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="../../images/generated/Image%20H%20-%20Floating%20Station%20Stratosphere.png" alt="" style="object-position:center 30%;">
+          <div class="gi-ov"></div>
+          <div class="gi-label">
+            <div class="gi-name">Stație Polară</div>
+            <div class="gi-stat">30km · baloane He</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="system-strip">
+        <span class="strip-node">Soare</span>
+        <span class="strip-arrow">→</span>
+        <span class="strip-node">Ring</span>
+        <span class="strip-arrow">→</span>
+        <span class="strip-node">Laser</span>
+        <span class="strip-arrow">→</span>
+        <span class="strip-node">L4/L5</span>
+        <span class="strip-arrow">→</span>
+        <span class="strip-node">Poli</span>
+        <span class="strip-arrow">→</span>
+        <span class="strip-node">Rețea</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — COVER -->
+  <div class="panel p-right">
+    <img class="bg" src="../../images/generated/Image%20L%20-%20Collector%20Satellite%20Laser.png" alt="" style="object-position:center 40%;">
+    <div class="ov"></div>
+    <div class="body">
+      <img class="cover-logo" src="../../assets/logo-white.svg" alt="POLARIS Bears">
+      <div class="cover-title">P·O·L·A·R·I·S·</div>
+      <div class="cover-sub">Planetary Orbital Laser Array<br>Relay Infrastructure System</div>
+      <div class="cover-div"></div>
+      <div class="cover-slogan">Inovăm prezentul.</div>
+      <div class="cover-slogan"><strong>Alimentăm viitorul.</strong></div>
+
+      <div class="comp-badges">
+        <div class="cbadge"><span class="cbadge-num">01</span><span class="cbadge-name">Dyson Ring</span><span class="cbadge-val">30 oglinzi</span></div>
+        <div class="cbadge"><span class="cbadge-num">02</span><span class="cbadge-name">Sateliți Colectori</span><span class="cbadge-val">43% eff.</span></div>
+        <div class="cbadge"><span class="cbadge-num">03</span><span class="cbadge-name">Noduri L4/L5</span><span class="cbadge-val">Lagrange</span></div>
+        <div class="cbadge"><span class="cbadge-num">04</span><span class="cbadge-name">Centrale Polare</span><span class="cbadge-val">30km alt.</span></div>
+        <div class="cbadge"><span class="cbadge-num">05</span><span class="cbadge-name">Cabluri YBCO</span><span class="cbadge-val">800 GW</span></div>
+      </div>
+
+      <div class="cover-badge">ONCS 2026 · Juniori</div>
+      <div class="cover-url">POLARIS-Bears.ro</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
