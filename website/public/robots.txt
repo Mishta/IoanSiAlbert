@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://polaris-bears.ro/sitemap.xml

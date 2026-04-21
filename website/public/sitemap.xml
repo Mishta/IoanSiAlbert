@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
+
+  <!-- Pagina principală -->
+  <url>
+    <loc>https://polaris-bears.ro/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://polaris-bears.ro/images/generated/Image%20C%20-%20Full%20System%20Panoramic.png</image:loc>
+      <image:title>P.O.L.A.R.I.S. — Sistem Energetic Orbital Complet</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://polaris-bears.ro/images/generated/Image%20N%20-%20A5%20System%20Overview.png</image:loc>
+      <image:title>P.O.L.A.R.I.S. System Overview</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://polaris-bears.ro/images/generated/Image%20K%20-%20Solar%20Mirror%20Dyson.png</image:loc>
+      <image:title>Inel Dyson de Oglinzi — 30 oglinzi orbitale</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://polaris-bears.ro/images/generated/Image%20L%20-%20Collector%20Satellite%20Laser.png</image:loc>
+      <image:title>Sateliți Colectori Laser — conversie lumină → laser 43%</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://polaris-bears.ro/images/generated/Image%20M%20-%20Lagrange%20Relay%20Node.png</image:loc>
+      <image:title>Noduri Lagrange L4/L5 — Transfer 2×800 GW</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://polaris-bears.ro/images/generated/Image%20I%20-%20Star%20Power%20Grid%20GEO.png</image:loc>
+      <image:title>Rețea Star Power Grid — YBCO 77K</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://polaris-bears.ro/images/generated/Image%20E%20-%20Earth%20Grid%20Distribution.png</image:loc>
+      <image:title>Distribuție globală energie — P.O.L.A.R.I.S.</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://polaris-bears.ro/assets/team-hero.jpeg</image:loc>
+      <image:title>Albert OLARIU și Ioan CHELARU — Echipa POLARIS Bears</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://polaris-bears.ro/assets/diagrams/diagram_energy_flow.png</image:loc>
+      <image:title>Lanțul energetic complet P.O.L.A.R.I.S.</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://polaris-bears.ro/assets/diagrams/diagram_kardashev.png</image:loc>
+      <image:title>Scara Kardashev — Tranziția 0.73 → 1.0</image:title>
+    </image:image>
+  </url>
+
+  <!-- Secțiuni — anchor links -->
+  <url>
+    <loc>https://polaris-bears.ro/#concept</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://polaris-bears.ro/#tech</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://polaris-bears.ro/#numbers</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://polaris-bears.ro/#team</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
