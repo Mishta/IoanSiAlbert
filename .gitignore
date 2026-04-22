@@ -13,3 +13,6 @@ print-materials/rollup/rollup_4_complet_300dpi.png
 
 # Build artifacts
 website/tsconfig.tsbuildinfo
+
+# Back-up-uri locale — nu se uploadă niciodată pe GitHub
+BACK_UP/

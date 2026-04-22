@@ -244,17 +244,6 @@ export default function Architecture() {
         ))}
       </div>
 
-      {/* Energy flow diagram */}
-      <div className={styles.flowWrap}>
-        <p className={styles.flowLabel}>Lanțul energetic complet</p>
-        <Image
-          data-flow
-          src="/assets/diagrams/diagram_energy_flow.png"
-          alt="Diagrama fluxului energetic POLARIS"
-          width={1000} height={220}
-          className={styles.flowImg}
-        />
-      </div>
     </section>
 
     {/* POPUP MODAL */}

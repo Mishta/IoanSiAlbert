@@ -4,6 +4,7 @@ import Hero from '@/components/Hero'
 import Concept from '@/components/Concept'
 import Stats from '@/components/Stats'
 import Architecture from '@/components/Architecture'
+import DiagramZoom from '@/components/DiagramZoom'
 import Kardashev from '@/components/Kardashev'
 import Team from '@/components/Team'
 import Footer from '@/components/Footer'
@@ -47,6 +48,7 @@ export default function Home() {
         <Concept />
         <Stats />
         <Architecture />
+        <DiagramZoom />
         <Kardashev />
         <Team />
       </main>

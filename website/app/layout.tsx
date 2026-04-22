@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Jost } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 
 const jost = Jost({
@@ -29,7 +30,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ro" className={jost.variable}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-KJNZ9FXHQK"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KJNZ9FXHQK');`}
+        </Script>
+      </body>
     </html>
   )
 }
