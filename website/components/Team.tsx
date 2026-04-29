@@ -5,7 +5,7 @@ import styles from './Team.module.css'
 
 const COLLABORATORS = [
   {
-    name: 'Prof. Francisc Dionisie AARON',
+    name: 'Prof. Dr. Francisc Dionisie AARON',
     role: 'Mentor · Coordonator',
     institution: 'ICHB — Liceul Teoretic Internațional de Informatică, București',
     contribution: 'Coordonarea proiectului și îndrumarea echipei POLARIS Bears',
@@ -196,7 +196,7 @@ export default function Team() {
         {/* Foto echipă */}
         <div data-reveal className={styles.heroImg}>
           <Image
-            src="/assets/team-hero.jpeg"
+            src="/assets/team-hero.jpg"
             alt="Albert OLARIU și Ioan CHELARU — POLARIS Bears"
             fill
             className={styles.heroImgEl}
