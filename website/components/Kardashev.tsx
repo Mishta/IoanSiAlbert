@@ -1,9 +1,15 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import styles from './Kardashev.module.css'
 
+const VIDEOS = [
+  { id: 'hl1aYw9btMs', label: 'Terra azi — Kardashev 0.73' },
+  { id: 'MGKxNI-l_BY', label: 'Terra cu P.O.L.A.R.I.S. — Kardashev 1.0' },
+]
+
 export default function Kardashev() {
+  const [playing, setPlaying] = useState<Record<string, boolean>>({})
   const sectionRef = useRef<HTMLElement>(null)
   const barRef = useRef<HTMLDivElement>(null)
   const bgRef = useRef<HTMLDivElement>(null)
@@ -105,14 +111,15 @@ export default function Kardashev() {
         {/* Video comparison: before / after */}
         <div data-reveal className={styles.videoGrid}>
           <div className={styles.videoCard}>
-            <div className={styles.videoWrap}>
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/hl1aYw9btMs?autoplay=1&mute=1&loop=1&playlist=hl1aYw9btMs&controls=0&rel=0&modestbranding=1"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-                className={styles.videoIframe}
-                title="Terra azi — Kardashev 0.73"
-              />
+            <div
+              className={styles.videoWrap}
+              style={{backgroundImage: `url(https://img.youtube.com/vi/hl1aYw9btMs/maxresdefault.jpg)`}}
+              onClick={() => window.open('https://youtu.be/hl1aYw9btMs', '_blank')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && window.open('https://youtu.be/hl1aYw9btMs', '_blank')}
+            >
+              <div className={styles.playButton} />
             </div>
             <p className={styles.videoLabel}>
               <span className={styles.videoBadgeWarm}>Acum · Kardashev 0.73</span>
@@ -121,14 +128,15 @@ export default function Kardashev() {
           </div>
 
           <div className={styles.videoCard}>
-            <div className={styles.videoWrap}>
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/MGKxNI-l_BY?autoplay=1&mute=1&loop=1&playlist=MGKxNI-l_BY&controls=0&rel=0&modestbranding=1"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-                className={styles.videoIframe}
-                title="Terra cu P.O.L.A.R.I.S. — Kardashev 1.0"
-              />
+            <div
+              className={styles.videoWrap}
+              style={{backgroundImage: `url(https://img.youtube.com/vi/MGKxNI-l_BY/maxresdefault.jpg)`}}
+              onClick={() => window.open('https://youtu.be/MGKxNI-l_BY', '_blank')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === 'Enter' && window.open('https://youtu.be/MGKxNI-l_BY', '_blank')}
+            >
+              <div className={styles.playButton} />
             </div>
             <p className={styles.videoLabel}>
               <span className={styles.videoBadgeCyan}>P.O.L.A.R.I.S. · Kardashev 1.0</span>
