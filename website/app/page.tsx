@@ -34,9 +34,18 @@ const jsonLd = {
   },
 }
 
+const langRedirect = `
+  try {
+    if (localStorage.getItem('polaris-lang') !== 'ro') {
+      location.replace('/en/');
+    }
+  } catch (e) {}
+`
+
 export default function Home() {
   return (
     <>
+      <script dangerouslySetInnerHTML={{ __html: langRedirect }} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

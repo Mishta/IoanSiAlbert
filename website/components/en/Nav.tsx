@@ -65,7 +65,12 @@ export default function Nav() {
             </li>
           ))}
           <li>
-            <a href="/" className={styles.link} title="Versiunea în română">
+            <a
+              href="/"
+              className={styles.link}
+              title="Versiunea în română"
+              onClick={() => { try { localStorage.setItem('polaris-lang', 'ro') } catch {} }}
+            >
               RO
             </a>
           </li>
@@ -104,7 +109,12 @@ export default function Nav() {
             </li>
           ))}
           <li>
-            <a href="/" className={styles.drawerLink} title="Versiunea în română">
+            <a
+              href="/"
+              className={styles.drawerLink}
+              title="Versiunea în română"
+              onClick={() => { try { localStorage.setItem('polaris-lang', 'ro') } catch {} }}
+            >
               RO
             </a>
           </li>

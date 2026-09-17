@@ -64,6 +64,16 @@ export default function Nav() {
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href="/en"
+              className={styles.link}
+              title="English version"
+              onClick={() => { try { localStorage.setItem('polaris-lang', 'en') } catch {} }}
+            >
+              EN
+            </a>
+          </li>
         </ul>
 
         <a
@@ -98,6 +108,16 @@ export default function Nav() {
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href="/en"
+              className={styles.drawerLink}
+              title="English version"
+              onClick={() => { try { localStorage.setItem('polaris-lang', 'en') } catch {} }}
+            >
+              EN
+            </a>
+          </li>
           <li>
             <a href="#team" className={styles.drawerCta} onClick={e => { e.preventDefault(); handleLink('#team') }}>
               Echipă
