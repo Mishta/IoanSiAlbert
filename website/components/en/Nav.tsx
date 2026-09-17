@@ -1,13 +1,13 @@
 'use client'
 import { useEffect, useState, useCallback } from 'react'
 import Image from 'next/image'
-import styles from './Nav.module.css'
+import styles from '../Nav.module.css'
 
 const LINKS = [
   { href: '#concept',  label: 'Concept' },
-  { href: '#tech',     label: 'Tehnologie' },
-  { href: '#numbers',  label: 'Date' },
-  { href: '#team',     label: 'Echipă' },
+  { href: '#tech',     label: 'Technology' },
+  { href: '#numbers',  label: 'Data' },
+  { href: '#team',     label: 'Team' },
 ]
 
 export default function Nav() {
@@ -64,6 +64,11 @@ export default function Nav() {
               </a>
             </li>
           ))}
+          <li>
+            <a href="/" className={styles.link} title="Versiunea în română">
+              RO
+            </a>
+          </li>
         </ul>
 
         <a
@@ -71,14 +76,14 @@ export default function Nav() {
           className={styles.cta}
           onClick={e => { e.preventDefault(); handleLink('#team') }}
         >
-          Echipă
+          Team
         </a>
 
         {/* Hamburger */}
         <button
           className={`${styles.burger} ${open ? styles.burgerOpen : ''}`}
           onClick={() => setOpen(o => !o)}
-          aria-label="Meniu"
+          aria-label="Menu"
         >
           <span /><span /><span />
         </button>
@@ -99,8 +104,13 @@ export default function Nav() {
             </li>
           ))}
           <li>
+            <a href="/" className={styles.drawerLink} title="Versiunea în română">
+              RO
+            </a>
+          </li>
+          <li>
             <a href="#team" className={styles.drawerCta} onClick={e => { e.preventDefault(); handleLink('#team') }}>
-              Echipă
+              Team
             </a>
           </li>
         </ul>

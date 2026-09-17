@@ -1,4 +1,4 @@
-import styles from './Footer.module.css'
+import styles from '../Footer.module.css'
 
 export default function Footer() {
   return (
@@ -7,12 +7,12 @@ export default function Footer() {
       <div className={styles.inner}>
         <p className={styles.title}>P.O.L.A.R.I.S.</p>
         <p className={styles.sub}>
-          Platformă Orbitală Laser pentru Alimentare și Recepție Inovativă Solară
+          Planetary Orbital Laser Array Relay Infrastructure System
         </p>
         <div className={styles.row}>
           <span>POLARIS Bears · Ioan CHELARU &amp; Albert OLARIU</span>
           <span>·</span>
-          <span>Științe Fundamentale</span>
+          <span>Fundamental Sciences</span>
         </div>
       </div>
     </footer>

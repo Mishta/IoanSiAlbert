@@ -1,31 +1,31 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
-import styles from './Team.module.css'
+import styles from '../Team.module.css'
 
 const COLLABORATORS = [
   {
     name: 'Prof. Univ. Dr. Valentin BARNA',
-    role: 'Colaborator științific',
-    institution: 'Facultatea de Fizică, Universitatea din București · Optică & Fotonică',
-    contribution: 'Consultanță: principii de fotonică și conversie radiație solară → LASER',
+    role: 'Scientific collaborator',
+    institution: 'Faculty of Physics, University of Bucharest · Optics & Photonics',
+    contribution: 'Consulting: principles of photonics and solar radiation → LASER conversion',
     initial: 'B',
     accent: 'var(--cyan)',
   },
   {
     name: 'Carlo Emilio MONTANARI',
-    role: 'Colaborator — Fizician aplicat',
-    institution: 'Doctorand Dinamica Fasciculelor, CERN / Univ. Bologna',
-    contribution: 'Consultanță: dinamica fasciculelor de înaltă precizie (LHC → POLARIS)',
+    role: 'Collaborator — Applied physicist',
+    institution: 'PhD Candidate in Beam Dynamics, CERN / Univ. Bologna',
+    contribution: 'Consulting: high-precision beam dynamics (LHC → POLARIS)',
     initial: 'M',
     accent: 'var(--cyan)',
   },
 ]
 
 const OLYMPIADS = [
-  { label: 'Astronomie & Astrofizică', icon: '★' },
-  { label: 'Informatică', icon: '★' },
-  { label: 'ONIA — Inteligență Artificială', icon: '★' },
+  { label: 'Astronomy & Astrophysics', icon: '★' },
+  { label: 'Computer Science', icon: '★' },
+  { label: 'ONIA — Artificial Intelligence', icon: '★' },
 ]
 
 export default function Team() {
@@ -127,7 +127,7 @@ export default function Team() {
 
       <div className={styles.inner}>
 
-        {/* Logo echipă */}
+        {/* Team logo */}
         <div data-logo className={styles.logoWrap}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -138,18 +138,18 @@ export default function Team() {
           />
         </div>
 
-        <p data-reveal className={styles.label}>Echipa</p>
+        <p data-reveal className={styles.label}>Team</p>
         <h2 data-reveal className={styles.heading}>POLARIS Bears</h2>
 
         <p data-typewriter className={styles.slogan}>
-          Inovăm prezentul. Alimentăm viitorul.
+          Innovating the present. Powering the future.
         </p>
 
-        {/* Badge olimpici — toate trei olimpiadele */}
+        {/* Olympiad badge — all three olympiads */}
         <div data-reveal className={styles.olympicWrap}>
           <p className={styles.olympicTitle}>
             <span className={styles.olympicIcon}>★</span>
-            Olimpici Naționali Medaliați
+            National Olympiad Medalists
           </p>
           <div className={styles.olympicList}>
             {OLYMPIADS.map(o => (
@@ -160,11 +160,11 @@ export default function Team() {
           </div>
         </div>
 
-        {/* Carduri membri */}
+        {/* Member cards */}
         <div className={styles.members}>
           {[
-            { name: 'Albert OLARIU', role: 'Cercetător' },
-            { name: 'Ioan CHELARU',  role: 'Cercetător' },
+            { name: 'Albert OLARIU', role: 'Researcher' },
+            { name: 'Ioan CHELARU',  role: 'Researcher' },
           ].map((m, i) => (
             <div key={m.name} data-card className={styles.memberCard}>
               <div className={styles.cardGlow} aria-hidden />
@@ -177,11 +177,11 @@ export default function Team() {
           ))}
         </div>
 
-        {/* Foto echipă */}
+        {/* Team photo */}
         <div data-reveal className={styles.heroImg}>
           <Image
             src="/assets/team-hero.jpg"
-            alt="Albert OLARIU și Ioan CHELARU — POLARIS Bears"
+            alt="Albert OLARIU and Ioan CHELARU — POLARIS Bears"
             fill
             className={styles.heroImgEl}
             sizes="(max-width: 768px) 100vw, 700px"
@@ -194,19 +194,19 @@ export default function Team() {
           </div>
         </div>
 
-        {/* Badge-uri */}
+        {/* Badges */}
         <div className={styles.badges}>
           {[
-            'Științe Fundamentale',
-            'Olimpici Naționali',
+            'Fundamental Sciences',
+            'National Olympiad',
           ].map(b => (
             <span key={b} data-badge className={styles.badge}>{b}</span>
           ))}
         </div>
 
-        {/* Colaboratori */}
+        {/* Collaborators */}
         <div data-reveal className={styles.collabSection}>
-          <p className={styles.collabLabel}>Colaboratori</p>
+          <p className={styles.collabLabel}>Collaborators</p>
           <div className={styles.collabGrid}>
             {COLLABORATORS.map((c, i) => (
               <div key={c.name} data-collab className={styles.collabCard} style={{ '--caccent': c.accent } as React.CSSProperties}>

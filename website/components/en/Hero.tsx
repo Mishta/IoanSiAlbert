@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
-import styles from './Hero.module.css'
+import styles from '../Hero.module.css'
 
 const TITLE = 'P.O.L.A.R.I.S.'
 
@@ -100,19 +100,19 @@ export default function Hero() {
         </h1>
 
         <p ref={subtitleRef} className={styles.subtitle}>
-          Platformă Orbitală Laser pentru<br />
-          Alimentare și Recepție Inovativă Solară
+          Planetary Orbital Laser Array<br />
+          Relay Infrastructure System
         </p>
 
         <div ref={metaRef} className={styles.meta}>
-          <span className={styles.metaTag}>Științe Fundamentale</span>
+          <span className={styles.metaTag}>Fundamental Sciences</span>
           <span className={styles.metaDivider}>·</span>
           <span className={styles.metaTag}>POLARIS Bears</span>
         </div>
 
         <a href="#concept" className={styles.scrollHint} aria-label="Scroll down">
           <span className={styles.scrollLine} />
-          <span className={styles.scrollLabel}>Explorează</span>
+          <span className={styles.scrollLabel}>Explore</span>
         </a>
       </div>
     </section>
