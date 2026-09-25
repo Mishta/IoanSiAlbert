@@ -16,3 +16,7 @@ website/tsconfig.tsbuildinfo
 
 # Back-up-uri locale — nu se uploadă niciodată pe GitHub
 BACK_UP/
+# --- Secrete: toate secretele locale stau în secrets/ (niciodată în git) ---
+# Doar README.md (indexul, fără valori) e urmărit. Vezi secrets/README.md.
+secrets/*
+!secrets/README.md
