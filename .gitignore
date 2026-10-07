@@ -23,3 +23,8 @@ secrets/*
 
 # Stare runtime Claude Code (locală)
 .claude/runtime/
+
+# Unelte locale (Nano Banana): mediu virtual, chei, setari locale
+tools/**/venv/
+tools/**/.env
+.claude/settings.local.json
