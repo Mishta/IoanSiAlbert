@@ -1,0 +1,31 @@
+Department:
+
+Structural Engineering  
+
+Physics: 
+Understanding basic mechanics, structural forces (tension, compression), and materials science.
+
+Math: 
+2D/3D geometry for designing layouts, scaling dimensions, and calculating volumes.
+
+Tools: 
+Familiarity with basic 3D modeling software (like CAD, Blender, or Tinkercad) or technical sketching is a plus.
+
+Operations Engineering 
+
+Physics & Chemistry: Concepts related to power generation (solar, nuclear), environmental control, water recycling, and waste management systems.
+
+Logic: 
+Creating functional flowcharts for how vital utilities (air, electricity, water) travel through a space station.
+
+Human Factors
+Biology & Psychology: Understanding fundamental human needs, safety protocols, atmosphere composition, gravity simulation, and space-suit requirements.
+
+Architecture/Design Creating pleasant community floor plans, residential spaces, and recreational zones for the settlement's residents.
+
+Mission Systems Engineering 
+
+Computer Science:
+ Understanding basic automation, logic loops, networks, and communication protocols.
+
+Robotics: Conceptualizing how automated systems and robots will handle external maintenance, construction, or security.
