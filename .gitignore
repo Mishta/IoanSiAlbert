@@ -20,3 +20,6 @@ BACK_UP/
 # Doar README.md (indexul, fără valori) e urmărit. Vezi secrets/README.md.
 secrets/*
 !secrets/README.md
+
+# Stare runtime Claude Code (locală)
+.claude/runtime/
