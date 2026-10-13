@@ -105,7 +105,7 @@ export default function Hero() {
         </p>
 
         <div ref={metaRef} className={styles.meta}>
-          <span className={styles.metaTag}>Științe Fundamentale</span>
+          <span className={styles.metaTag}>Proiect interdisciplinar</span>
           <span className={styles.metaDivider}>·</span>
           <span className={styles.metaTag}>POLARIS Bears</span>
         </div>

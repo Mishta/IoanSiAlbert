@@ -12,7 +12,7 @@ export default function Footer() {
         <div className={styles.row}>
           <span>POLARIS Bears · Ioan CHELARU &amp; Albert OLARIU</span>
           <span>·</span>
-          <span>Fundamental Sciences</span>
+          <span>Interdisciplinary Project</span>
         </div>
       </div>
     </footer>

@@ -197,8 +197,7 @@ export default function Team() {
         {/* Badge-uri */}
         <div className={styles.badges}>
           {[
-            'Științe Fundamentale',
-            'Olimpici Naționali',
+            'Proiect interdisciplinar',
           ].map(b => (
             <span key={b} data-badge className={styles.badge}>{b}</span>
           ))}

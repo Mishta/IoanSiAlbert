@@ -105,7 +105,7 @@ export default function Hero() {
         </p>
 
         <div ref={metaRef} className={styles.meta}>
-          <span className={styles.metaTag}>Fundamental Sciences</span>
+          <span className={styles.metaTag}>Interdisciplinary Project</span>
           <span className={styles.metaDivider}>·</span>
           <span className={styles.metaTag}>POLARIS Bears</span>
         </div>
